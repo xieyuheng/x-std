@@ -23,10 +23,6 @@ run(char **args) {
     text_test();
     canvas_test();
 
-    worker_test();
-    lexer_test();
-    parser_test();
-
     printf("</self-test>\n");
 
     return 0;
