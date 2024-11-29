@@ -1,5 +1,4 @@
 remove inet code
-change bin name
 
 # canvas
 
