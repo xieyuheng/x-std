@@ -1,5 +1,3 @@
-`assets/` for testing
-
 # canvas
 
 [canvas] `canvas` has `palette`
