@@ -1,4 +1,4 @@
-ambr inet bifer
+`assets/` for testing
 
 # canvas
 

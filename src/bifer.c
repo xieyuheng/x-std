@@ -8,7 +8,7 @@ int
 main(int argc, char *argv[]) {
     setup_io();
 
-    commander_t *commander = commander_new("inet", INET_VERSION, argc, argv);
+    commander_t *commander = commander_new("bifer", BIFER_VERSION, argc, argv);
 
     commander_use(commander, default_help_command);
     commander_use(commander, default_version_command);

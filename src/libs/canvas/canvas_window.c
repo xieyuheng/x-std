@@ -61,7 +61,7 @@ canvas_window_init(canvas_window_t *self) {
     XSelectInput(self->display, self->window, event_mask);
 
     XClassHint *class_hint = XAllocClassHint();
-    class_hint->res_name = string_dup("inet");
+    class_hint->res_name = string_dup("bifer");
     class_hint->res_class = string_dup("canvas");
     XSetClassHint(self->display, self->window, class_hint);
 
