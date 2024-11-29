@@ -1,4 +1,0 @@
-* (sole) -> value!
-
-. @wire/pair sole @wire/connect
-  @print-current-worker

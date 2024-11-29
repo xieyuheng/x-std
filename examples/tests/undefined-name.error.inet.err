@@ -1,7 +1,0 @@
-[compiler-error] undefined node name: add
-[src] examples/tests/undefined-name.error.inet
-  1|! (zero)-(add)
-> 2|  (add)-addend result-(add)
-  3|
-  4|! (add1)-(add)
-  5|  (add1)-prev (add)-addend add
