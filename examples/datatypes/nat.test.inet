@@ -1,0 +1,88 @@
+* (zero) -> value!
+* (add1) prev -> value!
+* (add) target! addend -> result
+
+! (zero)-(add)
+  (add)-addend result-(add)
+
+! (add1)-(add)
+  (add1)-prev (add)-addend add
+  add1 result-(add)
+
+(- test -)
+
+= one zero add1
+= two one one add
+= three two one add
+= four two two add
+
+. two two add
+  two two add
+  add
+
+  @wire/print-net
+  @interact
+  @wire/print-net
+
+(- to define `mul`, we first need `nat-erase` and `nat-dup`. -)
+
+* (nat-erase) target! ->
+
+! (zero)-(nat-erase)
+
+! (add1)-(nat-erase)
+  (add1)-prev nat-erase
+
+* (nat-dup) target! -> first second
+
+! (zero)-(nat-dup)
+  zero first-(nat-dup)
+  zero second-(nat-dup)
+
+! (add1)-(nat-dup)
+  (add1)-prev nat-dup
+  (- first second -) add1 second-(nat-dup)
+  (- first -) add1 first-(nat-dup)
+
+* (mul) target! mulend -> result
+
+! (zero)-(mul)
+  (mul)-mulend nat-erase
+  zero result-(mul)
+
+! (add1)-(mul)
+  (mul)-mulend nat-dup
+  (- first second -) (add1)-prev @swap mul
+  (- first almost -) add result-(mul)
+
+. two two mul
+
+  @wire/print-net
+  @interact
+  @wire/print-net
+
+(- to define `max`, we need `max-aux`. -)
+
+* (max) first! second -> result
+* (max-aux) first second! -> result
+
+! (zero)-(max)
+  (max)-second result-(max)
+
+! (add1)-(max)
+  (add1)-prev (max)-second max-aux
+  result-(max)
+
+! (zero)-(max-aux)
+  (max-aux)-first add1
+  result-(max-aux)
+
+! (add1)-(max-aux)
+  (max-aux)-first (add1)-prev max
+  add1 result-(max-aux)
+
+. one two max
+
+  @wire/print-net
+  @interact
+  @wire/print-net

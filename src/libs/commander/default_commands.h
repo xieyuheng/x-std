@@ -1,0 +1,4 @@
+#pragma once
+
+commander_plugin_t default_help_command;
+commander_plugin_t default_version_command;
