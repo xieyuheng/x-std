@@ -1,6 +1,8 @@
 # canvas
 
-[canvas] `canvas` has `palette`
-[canvas] `canvas_draw_pixel`
-[canvas] `canvas_draw_chr`
-[canvas] render inet by programming `canvas`
+[canvas] `canvas_draw_pixel` -- take color from `palette`
+[canvas] `canvas_draw_chr` -- take color from `palette`
+
+# editor
+
+[editor] `editor` setup

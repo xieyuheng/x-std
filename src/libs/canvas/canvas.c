@@ -6,6 +6,10 @@ canvas_new(size_t width, size_t height) {
     self->width = width;
     self->height = height;
     self->pixels = allocate(self->width * self->height * sizeof(uint32_t));
+    self->palette[BG_COLOR] = 0xff000000;
+    self->palette[SL_COLOR] = 0xffffffff;
+    self->palette[FG_COLOR] = 0xff000000;
+    self->palette[AP_COLOR] = 0xffffffff;
     return self;
 }
 

@@ -1,8 +1,19 @@
 #pragma once
 
+// About the four colors:
+// - https://wiki.xxiivv.com/site/theme.html
+
+typedef enum {
+    BG_COLOR = 0, // Background/alpha
+    SL_COLOR = 1, // Selection
+    FG_COLOR = 2, // Foreground
+    AP_COLOR = 3, // Application
+} palette_color_t;
+
 struct canvas_t {
     size_t width, height;
     uint32_t *pixels;
+    uint32_t palette[4];
 };
 
 canvas_t *canvas_new(size_t width, size_t height);
