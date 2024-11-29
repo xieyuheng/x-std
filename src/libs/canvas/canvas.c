@@ -30,6 +30,11 @@ canvas_put_pixel(canvas_t *self, size_t x, size_t y, uint32_t pixel) {
 }
 
 void
+canvas_draw_pixel(canvas_t *self, size_t x, size_t y, palette_color_t color) {
+    canvas_put_pixel(self, x, y, self->palette[color]);
+}
+
+void
 canvas_draw_icn(
     canvas_t *self,
     size_t x, size_t y,
@@ -42,13 +47,12 @@ canvas_draw_icn(
                 uint8_t byte = bytes[(row * 8 * width) + (col * 8 + line)];
                 for (uint8_t s = 0; s < 8; s++) {
                     bool bit = ((byte << s) & 0x80) != 0;
-                    if (bit) {
-                        canvas_put_pixel(
-                            self,
-                            x + (col * 8 + s),
-                            y + (row * 8 + line),
-                            0xffffffff);
-                    }
+                    palette_color_t color = bit ? AP_COLOR : FG_COLOR;
+                    canvas_draw_pixel(
+                        self,
+                        x + (col * 8 + s),
+                        y + (row * 8 + line),
+                        color);
                 }
             }
         }
