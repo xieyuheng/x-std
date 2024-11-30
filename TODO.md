@@ -1,8 +1,9 @@
 # image_viewer
 
-[image_viewer] parse image size from image name
+[image_viewer] fix bug about `scale` -- must be 8 for now
+[image_viewer] q key -- to quit -- take handle Keyboard input
+[image_viewer] tab key -- to change blending
 [image_viewer] take theme as input
-[image_viewer] tab to change blending -- take handle Keyboard input
 
 # canvas
 

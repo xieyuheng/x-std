@@ -18,15 +18,31 @@ image_viewer_destroy(image_viewer_t **self_pointer) {
     }
 }
 
+static uint8_t parse_image_width(const char *path) {
+    size_t length = strlen(path);
+    const char *width_start = path + (length - 9);
+    return strtol(width_start, NULL, 16);
+}
+
+static uint8_t parse_image_height(const char *path) {
+    size_t length = strlen(path);
+    const char *height_start = path + (length - 6);
+    return strtol(height_start, NULL, 16);
+}
+
 void
 image_viewer_open(image_viewer_t *self, const char *path) {
-    size_t width = 0x10;
-    size_t height = 0x10;
+    size_t width = parse_image_width(path);
+    size_t height = parse_image_height(path);
+    printf("[image_viewer_open] width: 0x%lx, height: 0x%lx\n", width, height);
+
     canvas_t *canvas = canvas_new(width * self->scale, height * self->scale);
     canvas_window_t *canvas_window = canvas_window_new(canvas, self->scale);
-    canvas_window->title = "image viewer";
+    canvas_window->title = path;
+
     file_t *file = file_open_or_fail(path, "rb");
     uint8_t *bytes = file_read_bytes(file);
+
     if (string_ends_with(path, ".icn")) {
         canvas_draw_icn(canvas, 0, 0, bytes, width, height, self->blending);
     }
