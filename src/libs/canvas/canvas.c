@@ -5,7 +5,12 @@ canvas_new(size_t width, size_t height) {
     canvas_t *self = allocate(sizeof(canvas_t));
     self->width = width;
     self->height = height;
-    self->pixels = allocate(self->width * self->height * sizeof(uint32_t));
+
+    self->pixels = allocate(
+        self->width * TILE_SIZE *
+        self->height * TILE_SIZE *
+        sizeof(uint32_t));
+
     self->palette[BG_COLOR] = 0xff0047A0;
     self->palette[SL_COLOR] = 0xffcd2e3a;
     self->palette[FG_COLOR] = 0xff000000;
@@ -26,7 +31,7 @@ canvas_destroy(canvas_t **self_pointer) {
 
 void
 canvas_put_pixel(canvas_t *self, size_t x, size_t y, uint32_t pixel) {
-    self->pixels[y * self->width + x] = pixel;
+    self->pixels[y * self->width * TILE_SIZE + x] = pixel;
 }
 
 void

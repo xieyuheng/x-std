@@ -36,8 +36,7 @@ image_viewer_open(image_viewer_t *self, const char *path) {
     size_t height = parse_image_height(path);
     printf("[image_viewer_open] width: 0x%lx, height: 0x%lx\n", width, height);
 
-    const uint8_t tile_size = 8;
-    canvas_t *canvas = canvas_new(width * tile_size, height * tile_size);
+    canvas_t *canvas = canvas_new(width, height);
     canvas_window_t *canvas_window = canvas_window_new(canvas, self->scale);
     canvas_window->title = path;
 

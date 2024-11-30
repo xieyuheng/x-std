@@ -10,6 +10,10 @@ typedef enum {
     AP_COLOR = 3, // Application
 } palette_color_t;
 
+// The size of canvas is measured in tile,
+// a tile is a 8x8 pixel square.
+#define TILE_SIZE 8
+
 struct canvas_t {
     size_t width, height;
     uint32_t *pixels;

@@ -7,14 +7,14 @@ canvas_window_new(canvas_t *canvas, size_t scale) {
     self->scale = scale;
 
     self->image_buffer = allocate(
-        self->canvas->width *
-        self->canvas->height *
+        self->canvas->width * TILE_SIZE *
+        self->canvas->height * TILE_SIZE *
         self->scale *
         self->scale *
         sizeof(uint32_t));
 
-    self->width = self->canvas->width * self->scale;
-    self->height = self->canvas->height * self->scale;
+    self->width = self->canvas->width * TILE_SIZE * self->scale;
+    self->height = self->canvas->height * TILE_SIZE * self->scale;
 
     return self;
 }
@@ -72,10 +72,11 @@ canvas_window_init(canvas_window_t *self) {
 
 static void
 canvas_window_update_pixel(canvas_window_t *self, size_t col, size_t row) {
-    uint32_t pixel = self->canvas->pixels[row * self->canvas->width + col];
+    uint32_t pixel = self->canvas->pixels[
+        row * self->canvas->width * TILE_SIZE + col];
     uint32_t y_start = row * self->scale;
     uint32_t x_start = col * self->scale;
-    uint32_t x_width = self->canvas->width * self->scale;
+    uint32_t x_width = self->canvas->width * TILE_SIZE * self->scale;
     for (size_t y = y_start; y < y_start + self->scale; y++) {
         for (size_t x = x_start; x < x_start + self->scale; x++) {
             self->image_buffer[y * x_width + x] = pixel;
@@ -85,8 +86,8 @@ canvas_window_update_pixel(canvas_window_t *self, size_t col, size_t row) {
 
 static void
 canvas_window_update_image_buffer(canvas_window_t *self) {
-    for (size_t row = 0; row < self->canvas->height; row++) {
-        for (size_t col = 0; col < self->canvas->width; col++) {
+    for (size_t row = 0; row < self->canvas->height * TILE_SIZE; row++) {
+        for (size_t col = 0; col < self->canvas->width * TILE_SIZE; col++) {
             canvas_window_update_pixel(self, col, row);
         }
     }
@@ -108,8 +109,8 @@ canvas_window_update_image(canvas_window_t *self) {
         self->display, visual,
         image_depth, ZPixmap, image_offset,
         (char *) self->image_buffer,
-        self->canvas->width * self->scale,
-        self->canvas->height * self->scale,
+        self->canvas->width * TILE_SIZE * self->scale,
+        self->canvas->height * TILE_SIZE * self->scale,
         pixel_bits, bytes_per_line);
 }
 
@@ -118,14 +119,14 @@ canvas_window_resize(canvas_window_t *self, size_t width, size_t height) {
     self->width = width;
     self->height = height;
 
-    size_t width_scale = self->width / self->canvas->width;
-    size_t height_scale = self->height / self->canvas->height;
+    size_t width_scale = self->width / (self->canvas->width * TILE_SIZE);
+    size_t height_scale = self->height / (self->canvas->height * TILE_SIZE);
     self->scale = uint_min(width_scale, height_scale);
 
     self->image_buffer = realloc(
         self->image_buffer,
-        self->canvas->width *
-        self->canvas->height *
+        self->canvas->width * TILE_SIZE *
+        self->canvas->height * TILE_SIZE *
         self->scale *
         self->scale *
         sizeof(uint32_t));
@@ -135,8 +136,8 @@ canvas_window_resize(canvas_window_t *self, size_t width, size_t height) {
 
 static void
 canvas_window_show_image(canvas_window_t *self) {
-    size_t image_width = self->canvas->width * self->scale;
-    size_t image_height = self->canvas->height * self->scale;
+    size_t image_width = self->canvas->width * TILE_SIZE * self->scale;
+    size_t image_height = self->canvas->height * TILE_SIZE * self->scale;
 
     size_t x_offset = (self->width - image_width) / 2;
     size_t y_offset = (self->height - image_height) / 2;

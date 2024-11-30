@@ -1,5 +1,3 @@
-[canvas] the size of canvas should be measured in tile instead of pixel
-
 # image_viewer
 
 [image_viewer] q key -- to quit -- take handle Keyboard input
