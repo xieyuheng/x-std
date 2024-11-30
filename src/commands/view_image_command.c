@@ -3,9 +3,9 @@
 static int run(char **args);
 
 void
-open_command(const commander_t *commander) {
-    command_t *command = command_new("open");
-    command->description = "open file";
+view_image(const commander_t *commander) {
+    command_t *command = command_new("view-image");
+    command->description = "view .icn or .chr image";
     command->run = run;
     commander_add(commander, command);
 }

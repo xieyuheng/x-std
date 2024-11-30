@@ -1,6 +1,5 @@
 # image_viewer
 
-[image_viewer] rename `open` command `view-image` command
 [image_viewer] extract `image_viewer` to show `.icn` and `.chr` picture
 [image_viewer] parse image size from image name
 [image_viewer] take theme as input
