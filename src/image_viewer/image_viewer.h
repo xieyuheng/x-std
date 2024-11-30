@@ -7,3 +7,5 @@ struct image_viewer_t {
 
 image_viewer_t *image_viewer_new(const char *path);
 void image_viewer_destroy(image_viewer_t **self_pointer);
+
+void image_viewer_open(image_viewer_t *self);

@@ -1,6 +1,5 @@
 # image_viewer
 
-[image_viewer] `image_viewer_open`
 [image_viewer] `view_image_command` call `image_viewer_open`
 [image_viewer] parse image size from image name
 [image_viewer] take theme as input
