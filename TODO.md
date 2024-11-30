@@ -1,6 +1,6 @@
 # canvas
 
-[canvas] add a commend to show `.icn` and `.chr` picture
+[canvas] `view-image` commend to show `.icn` and `.chr` picture
 
 - pass image size from image name
 
