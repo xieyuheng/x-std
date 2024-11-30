@@ -5,9 +5,13 @@
 [image_viewer] + - key -- to zoom
 [image_viewer] take theme as input
 
+# example
+
+[example] button
+
 # canvas
 
-[canvas] example button
+[canvas] quit using buzy loop
 [canvas] [maybe] give each 16 blending a name
 [canvas] parse hex and use `canvas_draw_icn` to view font
 
