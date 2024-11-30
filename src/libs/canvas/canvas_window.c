@@ -6,15 +6,13 @@ canvas_window_new(canvas_t *canvas, size_t scale) {
     self->canvas = canvas;
     self->scale = scale;
 
-    self->image_buffer = allocate(
-        self->canvas->width * TILE_SIZE *
-        self->canvas->height * TILE_SIZE *
-        self->scale *
-        self->scale *
-        sizeof(uint32_t));
+    size_t image_width = self->canvas->width * TILE_SIZE * self->scale;
+    size_t image_height = self->canvas->height * TILE_SIZE * self->scale;
 
-    self->width = self->canvas->width * TILE_SIZE * self->scale;
-    self->height = self->canvas->height * TILE_SIZE * self->scale;
+    self->image_buffer = allocate(image_width * image_height * sizeof(uint32_t));
+
+    self->width = image_width;
+    self->height = image_height;
 
     return self;
 }
@@ -72,8 +70,8 @@ canvas_window_init(canvas_window_t *self) {
 
 static void
 canvas_window_update_pixel(canvas_window_t *self, size_t col, size_t row) {
-    uint32_t pixel = self->canvas->pixels[
-        row * self->canvas->width * TILE_SIZE + col];
+    uint32_t index = row * self->canvas->width * TILE_SIZE + col;
+    uint32_t pixel = self->canvas->pixels[index];
     uint32_t y_start = row * self->scale;
     uint32_t x_start = col * self->scale;
     uint32_t x_width = self->canvas->width * TILE_SIZE * self->scale;
@@ -104,13 +102,15 @@ canvas_window_update_image(canvas_window_t *self) {
     int64_t pixel_bits = pixel_bytes * 8;
     int64_t bytes_per_line = 0;
 
+    size_t image_width = self->canvas->width * TILE_SIZE * self->scale;
+    size_t image_height = self->canvas->height * TILE_SIZE * self->scale;
+
     if (self->image) XFree(self->image);
     self->image = XCreateImage(
         self->display, visual,
         image_depth, ZPixmap, image_offset,
         (char *) self->image_buffer,
-        self->canvas->width * TILE_SIZE * self->scale,
-        self->canvas->height * TILE_SIZE * self->scale,
+        image_width, image_height,
         pixel_bits, bytes_per_line);
 }
 
@@ -123,12 +123,13 @@ canvas_window_resize(canvas_window_t *self, size_t width, size_t height) {
     size_t height_scale = self->height / (self->canvas->height * TILE_SIZE);
     self->scale = uint_min(width_scale, height_scale);
 
+    size_t image_width = self->canvas->width * TILE_SIZE * self->scale;
+    size_t image_height = self->canvas->height * TILE_SIZE * self->scale;
+
     self->image_buffer = realloc(
         self->image_buffer,
-        self->canvas->width * TILE_SIZE *
-        self->canvas->height * TILE_SIZE *
-        self->scale *
-        self->scale *
+        image_width *
+        image_height *
         sizeof(uint32_t));
 
     canvas_window_update_image(self);

@@ -6,6 +6,8 @@ struct canvas_window_t {
 
     uint32_t *image_buffer;
     XImage* image;
+
+    // The window size is messured by pixel, instead of tile.
     size_t width, height;
 
     Display* display;
