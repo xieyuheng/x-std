@@ -46,7 +46,8 @@ canvas_draw_icn(
     canvas_t *self,
     size_t x, size_t y,
     uint8_t *bytes,
-    size_t width, size_t height
+    size_t width, size_t height,
+    uint8_t blending
 ) {
     for (size_t row = 0; row < height; row++) {
         for (size_t col = 0; col < width; col++) {
@@ -55,12 +56,13 @@ canvas_draw_icn(
                 uint8_t byte = bytes[index];
                 for (uint8_t s = 0; s < 8; s++) {
                     uint8_t bit = ((byte << s) & 0x80) != 0;
-                    palette_color_t color = bit ? AP_COLOR : FG_COLOR;
+                    palette_color_t color = bit;
+                    palette_color_t blended = blending_table[color][blending];
                     canvas_draw_pixel(
                         self,
                         x + (col * 8 + s),
                         y + (row * 8 + line),
-                        color);
+                        blended);
                 }
             }
         }
