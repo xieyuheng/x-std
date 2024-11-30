@@ -1,6 +1,9 @@
+[canvas] extract `canvas_window_test`
+[canvas] `canvas_window_test` -- should print some info about the display
+[canvas] inject Keyboard input handler
+
 # image_viewer
 
-[image_viewer] q key -- to quit -- take handle Keyboard input
 [image_viewer] tab key -- to change blending
 [image_viewer] + - key -- to zoom
 [image_viewer] take theme as input
