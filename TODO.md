@@ -1,8 +1,8 @@
 # image_viewer
 
-[image_viewer] `image_viewer_new`
 [image_viewer] `image_viewer_destroy`
 [image_viewer] `image_viewer_open`
+[image_viewer] `view_image_command` call `image_viewer_open`
 [image_viewer] parse image size from image name
 [image_viewer] take theme as input
 [image_viewer] tab to change blending -- take handle Keyboard input
