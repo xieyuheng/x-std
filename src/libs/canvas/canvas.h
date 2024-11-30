@@ -22,3 +22,4 @@ void canvas_destroy(canvas_t **self_pointer);
 void canvas_put_pixel(canvas_t *self, size_t x, size_t y, uint32_t pixel);
 void canvas_draw_pixel(canvas_t *self, size_t x, size_t y, palette_color_t color);
 void canvas_draw_icn(canvas_t *self, size_t x, size_t y, uint8_t *bytes, size_t width, size_t height);
+void canvas_draw_chr(canvas_t *self, size_t x, size_t y, uint8_t *bytes, size_t width, size_t height, uint8_t blending);
