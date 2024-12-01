@@ -1,4 +1,10 @@
-[image_viewer] tab key -- to change blending
+[canvas_window] inject `on_frame` to `canvas_window_t`
+
+- [image_viewer] tab key -- to change blending
+
+[canvas_window] extract `frame_timer`
+
+
 
 [string] `string_to_lower_case` & `string_to_upper_case`
 [string] `string_equal_mod_case`
@@ -14,7 +20,6 @@
 
 # canvas
 
-[canvas] quit using buzy loop
 [canvas] [maybe] give each 16 blending a name
 [canvas] parse hex and use `canvas_draw_icn` to view font
 

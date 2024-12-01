@@ -257,10 +257,36 @@ void
 canvas_window_open(canvas_window_t *self) {
     canvas_window_show(self);
 
+    // 60 frame per second:
+    struct timespec timespec;
+    timespec.tv_sec = 0;
+    timespec.tv_nsec = 16666666; // (1 / 60) * 10^9 nanoseconds
+    struct itimerspec interval_timespec;
+    interval_timespec.it_value = timespec;
+    interval_timespec.it_interval = timespec;
+
+    int timerfd = timerfd_create(CLOCK_MONOTONIC, 0);
+    timerfd_settime(timerfd, 0, &interval_timespec, NULL);
+
+    size_t nfds = 2;
+    struct pollfd fds[nfds];
+    fds[0].fd = XConnectionNumber(self->display);
+    fds[1].fd = timerfd;
+    fds[0].events = fds[1].events = POLLIN;
+
     self->is_open = true;
     while (self->is_open) {
+        if (poll(fds, nfds, 1000) <= 0) continue;
+
         while (XPending(self->display)) {
             canvas_window_receive(self);
+        }
+
+        if ((fds[1].revents & POLLIN) != 0) {
+            uint64_t expirations;
+            read(fds[1].fd, &expirations, sizeof(uint64_t));
+            canvas_window_update_image(self);
+            canvas_window_show_image(self);
         }
     }
 }
