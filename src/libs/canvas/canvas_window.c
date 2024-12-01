@@ -52,10 +52,10 @@ canvas_window_init_display(canvas_window_t *self) {
     assert(self->display);
 
     int screen = DefaultScreen(self->display);
-    printf("[canvas_window_init_display] width: %u, height: %u\n",
+    printf("[canvas_window_init_display] width: %upx, height: %upx\n",
            XDisplayWidth(self->display, screen),
            XDisplayHeight(self->display, screen));
-    printf("[canvas_window_init_display] black pixel: %lx, white pixel: %lx\n",
+    printf("[canvas_window_init_display] black pixel: 0x%lx, white pixel: 0x%lx\n",
            XBlackPixel(self->display, screen),
            XWhitePixel(self->display, screen));
 }
