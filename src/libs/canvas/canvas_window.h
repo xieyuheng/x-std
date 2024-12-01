@@ -1,11 +1,9 @@
 #pragma once
 
+typedef void (on_key_t)(canvas_window_t *self, void *state,
+                        const char *key_name, bool is_release);
 
-typedef void (on_key_t)(
-    canvas_window_t *self,
-    void *state,
-    const char *key_name,
-    bool is_release);
+typedef void (on_frame_t)(canvas_window_t *self, void *state, uint64_t expirations);
 
 struct canvas_window_t {
     canvas_t *canvas;
@@ -25,6 +23,7 @@ struct canvas_window_t {
 
     void *state;
     on_key_t *on_key;
+    on_frame_t *on_frame;
 };
 
 canvas_window_t *canvas_window_new(canvas_t *canvas, size_t scale);

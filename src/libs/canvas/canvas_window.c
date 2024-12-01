@@ -287,6 +287,9 @@ canvas_window_open(canvas_window_t *self) {
             read(fds[1].fd, &expirations, sizeof(uint64_t));
             canvas_window_update_image(self);
             canvas_window_show_image(self);
+            if (self->on_frame) {
+                self->on_frame(self, self->state, expirations);
+            }
         }
     }
 }
