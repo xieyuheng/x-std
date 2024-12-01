@@ -1,5 +1,3 @@
-[image_viewer] `on_frame` do not run the body when nothing changed
-
 [canvas_window] extract `frame_timer`
 
 [string] `string_to_lower_case` & `string_to_upper_case`

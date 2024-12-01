@@ -6,6 +6,7 @@ image_viewer_new(const char *path) {
     self->path = path;
     self->blending = 1;
     self->scale = 8;
+    self->is_changed = true;
     return self;
 }
 
@@ -32,12 +33,7 @@ static uint8_t parse_image_height(const char *path) {
 }
 
 static void
-on_key(
-    canvas_window_t *window,
-    image_viewer_t *self,
-    const char *key_name,
-    bool is_release
-) {
+on_key(canvas_window_t *window, image_viewer_t *self, const char *key_name, bool is_release) {
     (void) window;
 
     if (is_release) {
@@ -45,19 +41,20 @@ on_key(
             self->blending = (self->blending + 1) % 16;
         }
     }
+
+    self->is_changed = true;
 }
 
 static void
-on_frame(
-    canvas_window_t *window,
-    image_viewer_t *self,
-    uint64_t expirations
-) {
+on_frame(canvas_window_t *window, image_viewer_t *self, uint64_t expirations) {
     (void) expirations;
+
+    if (!self->is_changed) return;
 
     size_t width = parse_image_width(self->path);
     size_t height = parse_image_height(self->path);
-    printf("[image_viewer_open] width: 0x%lxti, height: 0x%lxti\n", width, height);
+    printf("[on_frame] width: 0x%lxti, height: 0x%lxti\n", width, height);
+    printf("[on_frame] blending: %u\n", self->blending);
 
     file_t *file = file_open_or_fail(self->path, "rb");
     uint8_t *bytes = file_read_bytes(file);
@@ -67,6 +64,8 @@ on_frame(
 
     if (string_ends_with(self->path, ".chr"))
         canvas_draw_chr(window->canvas, 0, 0, bytes, width, height, self->blending);
+
+    self->is_changed = false;
 }
 
 void

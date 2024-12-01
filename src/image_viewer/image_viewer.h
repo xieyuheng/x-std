@@ -5,6 +5,7 @@ struct image_viewer_t {
     const char *path;
     uint8_t blending;
     size_t scale;
+    bool is_changed;
 };
 
 image_viewer_t *image_viewer_new(const char *path);
