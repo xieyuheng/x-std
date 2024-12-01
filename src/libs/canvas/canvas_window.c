@@ -1,5 +1,7 @@
 #include "index.h"
 
+static void canvas_window_init(canvas_window_t *self);
+
 canvas_window_t *
 canvas_window_new(canvas_t *canvas, size_t scale) {
     canvas_window_t *self = allocate(sizeof(canvas_window_t));
@@ -13,6 +15,8 @@ canvas_window_new(canvas_t *canvas, size_t scale) {
 
     self->width = image_width;
     self->height = image_height;
+
+    canvas_window_init(self);
 
     return self;
 }
@@ -29,7 +33,7 @@ canvas_window_destroy(canvas_window_t **self_pointer) {
     }
 }
 
-static void
+void
 canvas_window_init(canvas_window_t *self) {
     self->display = XOpenDisplay(NULL);
     assert(self->display);
@@ -194,7 +198,6 @@ canvas_window_show(canvas_window_t *self) {
 
 void
 canvas_window_open(canvas_window_t *self) {
-    canvas_window_init(self);
     canvas_window_show(self);
 
     self->is_open = true;
