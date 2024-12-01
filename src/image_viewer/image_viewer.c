@@ -34,7 +34,7 @@ void
 image_viewer_open(image_viewer_t *self, const char *path) {
     size_t width = parse_image_width(path);
     size_t height = parse_image_height(path);
-    printf("[image_viewer_open] width: 0x%lxtl, height: 0x%lxtl\n", width, height);
+    printf("[image_viewer_open] width: 0x%lxti, height: 0x%lxti\n", width, height);
 
     canvas_t *canvas = canvas_new(width, height);
     canvas_window_t *canvas_window = canvas_window_new(canvas, self->scale);

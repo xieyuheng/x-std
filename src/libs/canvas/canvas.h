@@ -12,6 +12,7 @@ typedef enum {
 
 // The width and height of canvas are measured in tile, instead of pixel.
 // A tile is a 8x8 pixel square.
+// abbr. of tile is ti, like mi for mile.
 #define TILE_SIZE 8
 
 struct canvas_t {
