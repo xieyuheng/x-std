@@ -34,10 +34,12 @@ canvas_window_destroy(canvas_window_t **self_pointer) {
 }
 
 static void canvas_window_init_display(canvas_window_t *self);
+static void canvas_window_init_window(canvas_window_t *self);
 
 void
 canvas_window_init(canvas_window_t *self) {
     canvas_window_init_display(self);
+    canvas_window_init_window(self);
 
     int window_x = 0;
     int window_y = 0;
@@ -76,6 +78,23 @@ void
 canvas_window_init_display(canvas_window_t *self) {
     self->display = XOpenDisplay(NULL);
     assert(self->display);
+}
+
+void
+canvas_window_init_window(canvas_window_t *self) {
+    int window_x = 0;
+    int window_y = 0;
+    uint64_t border_width = 1;
+    uint64_t border_pixel = 0;
+    uint64_t background_pixel = 0;
+    self->window = XCreateSimpleWindow(
+        self->display,
+        DefaultRootWindow(self->display),
+        window_x, window_y,
+        self->width,
+        self->height,
+        border_width,  border_pixel,
+        background_pixel);
 }
 
 static void
