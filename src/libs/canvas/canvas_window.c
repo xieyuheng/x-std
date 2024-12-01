@@ -253,14 +253,13 @@ canvas_window_show(canvas_window_t *self) {
     XFlush(self->display);
 }
 
-void
-canvas_window_open(canvas_window_t *self) {
-    canvas_window_show(self);
-
-    // 60 frame per second:
+static int
+frame_timerfd(size_t n) {
+    // n frame per second:
+    size_t ns = 1000000000 / n;
     struct timespec timespec;
     timespec.tv_sec = 0;
-    timespec.tv_nsec = 16666666; // (1 / 60) * 10^9 nanoseconds
+    timespec.tv_nsec = ns;
     struct itimerspec interval_timespec;
     interval_timespec.it_value = timespec;
     interval_timespec.it_interval = timespec;
@@ -268,10 +267,17 @@ canvas_window_open(canvas_window_t *self) {
     int timerfd = timerfd_create(CLOCK_MONOTONIC, 0);
     timerfd_settime(timerfd, 0, &interval_timespec, NULL);
 
+    return timerfd;
+}
+
+void
+canvas_window_open(canvas_window_t *self) {
+    canvas_window_show(self);
+
     size_t nfds = 2;
     struct pollfd fds[nfds];
     fds[0].fd = XConnectionNumber(self->display);
-    fds[1].fd = timerfd;
+    fds[1].fd = frame_timerfd(60);
     fds[0].events = fds[1].events = POLLIN;
 
     self->is_open = true;

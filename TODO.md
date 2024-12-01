@@ -1,5 +1,3 @@
-[canvas_window] extract `frame_timer`
-
 [string] `string_to_lower_case` & `string_to_upper_case`
 [string] `string_equal_mod_case`
 
