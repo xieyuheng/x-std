@@ -50,6 +50,14 @@ void
 canvas_window_init_display(canvas_window_t *self) {
     self->display = XOpenDisplay(NULL);
     assert(self->display);
+
+    int screen = DefaultScreen(self->display);
+    printf("[canvas_window_init_display] width: %u, height: %u\n",
+           XDisplayWidth(self->display, screen),
+           XDisplayHeight(self->display, screen));
+    printf("[canvas_window_init_display] black pixel: %lx, white pixel: %lx\n",
+           XBlackPixel(self->display, screen),
+           XWhitePixel(self->display, screen));
 }
 
 void
@@ -61,7 +69,7 @@ canvas_window_init_window(canvas_window_t *self) {
     uint64_t background_pixel = 0;
     self->window = XCreateSimpleWindow(
         self->display,
-        DefaultRootWindow(self->display),
+        XDefaultRootWindow(self->display),
         window_x, window_y,
         self->width,
         self->height,
@@ -120,8 +128,8 @@ static void
 canvas_window_update_image(canvas_window_t *self) {
     canvas_window_update_image_buffer(self);
 
-    Visual *visual = DefaultVisual(self->display, 0);
-    uint64_t image_depth = DefaultDepth(self->display, 0);
+    Visual *visual = XDefaultVisual(self->display, 0);
+    uint64_t image_depth = XDefaultDepth(self->display, 0);
     int64_t image_offset = 0;
     int64_t pixel_bytes = sizeof(uint32_t);
     int64_t pixel_bits = pixel_bytes * 8;
@@ -170,7 +178,7 @@ canvas_window_show_image(canvas_window_t *self) {
 
     XPutImage(
         self->display, self->window,
-        DefaultGC(self->display, 0),
+        XDefaultGC(self->display, 0),
         self->image,
         0, 0,
         x_offset, y_offset,

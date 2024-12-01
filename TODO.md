@@ -1,4 +1,3 @@
-[canvas] `canvas_test` -- should print some info about the display
 [canvas] inject Keyboard input handler
 
 # image_viewer
