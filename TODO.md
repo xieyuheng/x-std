@@ -1,4 +1,3 @@
-[canvas] extract `canvas_window_init_input`
 [canvas] extract `canvas_window_init_title`
 [canvas] `canvas_test` -- should print some info about the display
 [canvas] inject Keyboard input handler
