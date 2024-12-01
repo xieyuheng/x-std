@@ -36,20 +36,14 @@ canvas_window_destroy(canvas_window_t **self_pointer) {
 static void canvas_window_init_display(canvas_window_t *self);
 static void canvas_window_init_window(canvas_window_t *self);
 static void canvas_window_init_input(canvas_window_t *self);
+static void canvas_window_init_title(canvas_window_t *self);
 
 void
 canvas_window_init(canvas_window_t *self) {
     canvas_window_init_display(self);
     canvas_window_init_window(self);
     canvas_window_init_input(self);
-
-    XClassHint *class_hint = XAllocClassHint();
-    class_hint->res_name = string_dup("bifer");
-    class_hint->res_class = string_dup("canvas");
-    XSetClassHint(self->display, self->window, class_hint);
-
-    if (self->title)
-        XStoreName(self->display, self->window, self->title);
+    canvas_window_init_title(self);
 }
 
 void
@@ -86,6 +80,17 @@ canvas_window_init_input(canvas_window_t *self) {
         KeyReleaseMask |
         StructureNotifyMask;
     XSelectInput(self->display, self->window, event_mask);
+}
+
+void
+canvas_window_init_title(canvas_window_t *self) {
+    XClassHint *class_hint = XAllocClassHint();
+    class_hint->res_name = string_dup("bifer");
+    class_hint->res_class = string_dup("canvas");
+    XSetClassHint(self->display, self->window, class_hint);
+
+    if (self->title)
+        XStoreName(self->display, self->window, self->title);
 }
 
 static void
