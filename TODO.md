@@ -1,4 +1,3 @@
-[canvas] extract `canvas_window_init_display`
 [canvas] extract `canvas_window_init_window`
 [canvas] extract `canvas_window_init_input`
 [canvas] extract `canvas_window_init_title`

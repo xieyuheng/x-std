@@ -33,10 +33,11 @@ canvas_window_destroy(canvas_window_t **self_pointer) {
     }
 }
 
+static void canvas_window_init_display(canvas_window_t *self);
+
 void
 canvas_window_init(canvas_window_t *self) {
-    self->display = XOpenDisplay(NULL);
-    assert(self->display);
+    canvas_window_init_display(self);
 
     int window_x = 0;
     int window_y = 0;
@@ -71,6 +72,11 @@ canvas_window_init(canvas_window_t *self) {
         XStoreName(self->display, self->window, self->title);
 }
 
+void
+canvas_window_init_display(canvas_window_t *self) {
+    self->display = XOpenDisplay(NULL);
+    assert(self->display);
+}
 
 static void
 canvas_window_update_pixel(canvas_window_t *self, size_t col, size_t row) {
