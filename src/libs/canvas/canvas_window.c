@@ -216,6 +216,34 @@ canvas_window_receive(canvas_window_t *self) {
         canvas_window_resize(self, event->width, event->height);
         return;
     }
+
+    case KeyPress: {
+        if (self->on_key) {
+            XKeyPressedEvent* event = (XKeyPressedEvent*) &unknown_event;
+            int group = 0;
+            int level = event->state & ShiftMask ? 1 : 0;
+            KeySym keysym = XkbKeycodeToKeysym(self->display, event->keycode, group, level);
+            const char *key_name = XKeysymToString(keysym);
+            bool is_release = false;
+            self->on_key(self, self->state, key_name, is_release);
+        }
+
+        return;
+    }
+
+    case KeyRelease: {
+        if (self->on_key) {
+            XKeyReleasedEvent* event = (XKeyReleasedEvent*) &unknown_event;
+            int group = 0;
+            int level = event->state & ShiftMask ? 1 : 0;
+            KeySym keysym = XkbKeycodeToKeysym(self->display, event->keycode, group, level);
+            const char *key_name = XKeysymToString(keysym);
+            bool is_release = true;
+            self->on_key(self, self->state, key_name, is_release);
+        }
+
+        return;
+    }
     }
 }
 

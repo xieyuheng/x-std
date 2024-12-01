@@ -1,8 +1,10 @@
-[canvas] inject Keyboard input handler
+[image_viewer] tab key -- to change blending
+
+[string] `string_to_lower_case` & `string_to_upper_case`
+[string] `string_equal_mod_case`
 
 # image_viewer
 
-[image_viewer] tab key -- to change blending
 [image_viewer] + - key -- to zoom
 [image_viewer] take theme as input
 
