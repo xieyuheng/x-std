@@ -39,10 +39,9 @@ on_key(canvas_window_t *window, image_viewer_t *self, const char *key_name, bool
     if (is_release) {
         if (string_equal(key_name, "Tab")) {
             self->blending = (self->blending + 1) % 16;
+            self->is_changed = true;
         }
     }
-
-    self->is_changed = true;
 }
 
 static void
