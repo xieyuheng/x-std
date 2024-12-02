@@ -10,5 +10,7 @@
 
 # editor
 
-[editor] parse hex and use `canvas_draw_icn` to view font
 [editor] `editor` setup
+[editor] parse hex
+[editor] use `canvas_draw_icn` to view font
+[editor] `canvas_draw_text`

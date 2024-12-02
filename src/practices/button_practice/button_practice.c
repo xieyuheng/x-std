@@ -45,6 +45,7 @@ on_frame(canvas_window_t *window, button_practice_t *self, uint64_t expirations)
     (void) expirations;
 
     canvas_fill_bottom_right(window->canvas, 0, 0, 0);
+
     size_t x = 3 * TILE;
     size_t y = 3 * TILE;
     canvas_draw_chr(window->canvas, x, y, self->button_up_chr, 3, 3, 1);
