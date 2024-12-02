@@ -1,7 +1,4 @@
-[canvas] `canvas_draw_icn` handle alpha
-[canvas] `canvas_draw_chr` handle alpha
-
-[practice] button -- load nasu assets
+[practice] button -- setup canvas
 [practice] button -- `on_frame`
 [canvas_window] support `on_click`
 [practice] button -- `on_click`
@@ -13,4 +10,6 @@
 
 # canvas
 
+[canvas] `canvas_draw_icn` handle alpha
+[canvas] `canvas_draw_chr` handle alpha
 [canvas] [maybe] give each 16 blending a name
