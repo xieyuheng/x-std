@@ -6,10 +6,7 @@ canvas_new(size_t width, size_t height) {
     self->width = width;
     self->height = height;
 
-    self->pixels = allocate(
-        self->width * TILE *
-        self->height * TILE *
-        sizeof(uint32_t));
+    self->pixels = allocate(self->width * self->height * sizeof(uint32_t));
 
     self->palette[BG_COLOR] = 0xff0047A0;
     self->palette[SL_COLOR] = 0xffcd2e3a;
@@ -31,7 +28,7 @@ canvas_destroy(canvas_t **self_pointer) {
 
 void
 canvas_put_pixel(canvas_t *self, size_t x, size_t y, uint32_t pixel) {
-    self->pixels[y * self->width * TILE + x] = pixel;
+    self->pixels[y * self->width + x] = pixel;
 }
 
 void
@@ -41,8 +38,8 @@ canvas_draw_pixel(canvas_t *self, size_t x, size_t y, palette_color_t color) {
 
 void
 canvas_fill_bottom_right(canvas_t *self, size_t x, size_t y, palette_color_t color) {
-    for (size_t j = 0; j < (self->height - y) * TILE; j++) {
-        for (size_t i = 0; i < (self->width - x) * TILE; i++) {
+    for (size_t j = 0; j < self->height - y; j++) {
+        for (size_t i = 0; i < self->width - x; i++) {
             canvas_draw_pixel(self, x + i, y + j, color);
         }
     }
@@ -63,8 +60,6 @@ canvas_draw_icn(
     size_t width, size_t height,
     uint8_t blending
 ) {
-    assert(TILE == 8);
-
     for (size_t row = 0; row < height; row++) {
         for (size_t col = 0; col < width; col++) {
             for (size_t line = 0; line < 8; line++) {
@@ -93,8 +88,6 @@ canvas_draw_chr(
     size_t width, size_t height,
     uint8_t blending
 ) {
-    assert(TILE == 8);
-
     for (size_t row = 0; row < height; row++) {
         for (size_t col = 0; col < width; col++) {
             for (size_t line = 0; line < 8; line++) {

@@ -14,7 +14,7 @@ button_practice(void) {
     uint8_t *button_up_chr = chr_subimage(bytes, 0x10, 0, 0, 3, 3);
     uint8_t *button_down_chr = chr_subimage(bytes, 0x10, 3, 0, 3, 3);
 
-    canvas_t *canvas = canvas_new(9, 9);
+    canvas_t *canvas = canvas_new(9 * TILE, 9 * TILE);
     canvas_window_t *window = canvas_window_new(canvas, 0x10);
     window->title = "button practice";
 
