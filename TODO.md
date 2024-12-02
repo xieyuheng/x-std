@@ -1,5 +1,3 @@
-[image] `image_width_from_path` and `image_height_from_path` -- add some tests
-
 [image] `chr_subimage` -- to use subimage in nasu file
 
 - row, col, width, height
