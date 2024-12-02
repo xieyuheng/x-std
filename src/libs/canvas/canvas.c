@@ -54,6 +54,8 @@ canvas_draw_icn(
     size_t width, size_t height,
     uint8_t blending
 ) {
+    assert(TILE_SIZE == 8);
+
     for (size_t row = 0; row < height; row++) {
         for (size_t col = 0; col < width; col++) {
             for (size_t line = 0; line < 8; line++) {
@@ -82,12 +84,14 @@ canvas_draw_chr(
     size_t width, size_t height,
     uint8_t blending
 ) {
+    assert(TILE_SIZE == 8);
+
     for (size_t row = 0; row < height; row++) {
         for (size_t col = 0; col < width; col++) {
             for (size_t line = 0; line < 8; line++) {
                 size_t index = (row * 8 * 2 * width) + (col * 8 * 2 + line);
                 uint8_t chr1 = bytes[index];
-                uint8_t chr2 = bytes[index + TILE_SIZE];
+                uint8_t chr2 = bytes[index + 8];
                 for (uint8_t s = 0; s < 8; s++) {
                     uint8_t bit1 = ((chr1 << s) & 0x80) != 0;
                     uint8_t bit2 = ((chr2 << s) & 0x80) != 0;
