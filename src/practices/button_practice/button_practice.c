@@ -9,6 +9,16 @@ button_practice_new(void) {
 }
 
 void
+button_practice_destroy(button_practice_t **self_pointer) {
+    assert(self_pointer);
+    if (*self_pointer) {
+        button_practice_t *self = *self_pointer;
+        free(self);
+        *self_pointer = NULL;
+    }
+}
+
+void
 button_practice(void) {
     char *base = dirname(string_dup(__FILE__));
     const char *file_name = string_append(base, "/button10x10.chr");

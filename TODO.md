@@ -1,5 +1,3 @@
-[practice] `button_practice_destroy`
-
 [practice] command call `button_practice_run`
 [practice] button -- `on_frame`
 [canvas_window] support `on_click`
