@@ -8,11 +8,16 @@ canvas_test(void) {
     canvas_window_t *window = canvas_window_new(canvas, 10);
     window->title = "hello canvas";
 
-    {
-        for (size_t i = 0; i < 8; i++)
-            canvas_draw_pixel(canvas, i, i, 1);
-        canvas_window_open(window);
-    }
+    // {
+    //     for (size_t i = 0; i < 8; i++)
+    //         canvas_draw_pixel(canvas, i, i, 1);
+    //     canvas_window_open(window);
+    // }
+
+    // {
+    //     canvas_fill_bottom_left(canvas, TILE, 2 * TILE, 1);
+    //     canvas_window_open(window);
+    // }
 
     // {
     //     const char *file_name = "/home/xyh/projects/xieyuheng/bifer/src/practices/button10x10.chr";

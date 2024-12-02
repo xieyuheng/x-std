@@ -6,8 +6,6 @@
 
 # canvas
 
-[canvas] `canvas_fill_bottom_left`
-
 [canvas] `canvas_fill_top_right`
 [canvas] `canvas_fill_top_left`
 
