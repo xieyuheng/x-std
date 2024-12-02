@@ -51,7 +51,7 @@ canvas_window_init_display(canvas_window_t *self) {
 
     int width = XDisplayWidth(self->display, screen);
     int height = XDisplayHeight(self->display, screen);
-    printf("[canvas_window_init_display] width : %upx\n", width);
+    printf("[canvas_window_init_display] width:  %upx\n", width);
     printf("[canvas_window_init_display] height: %upx\n", height);
 
     uint32_t black_pixel = XBlackPixel(self->display, screen);
@@ -149,7 +149,7 @@ canvas_window_update_image(canvas_window_t *self) {
 
 static void
 canvas_window_resize(canvas_window_t *self, size_t width, size_t height) {
-    printf("[canvas_window_resize] width : %lupx\n", width);
+    printf("[canvas_window_resize] width:  %lupx\n", width);
     printf("[canvas_window_resize] height: %lupx\n", width);
 
     self->width = width;
