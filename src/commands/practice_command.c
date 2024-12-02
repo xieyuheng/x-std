@@ -17,7 +17,7 @@ run(char **args) {
     char *path = paths[0];
 
     if (string_equal(path, "button")) {
-        button_practice();
+        button_practice_start();
         return 0;
     }
 
