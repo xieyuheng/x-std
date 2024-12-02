@@ -40,8 +40,9 @@ on_frame(canvas_window_t *window, image_viewer_t *self, uint64_t expirations) {
 
     size_t width = image_width_from_path(self->path);
     size_t height = image_height_from_path(self->path);
-    printf("[on_frame] width: 0x%lxti, height: 0x%lxti\n", width, height);
-    printf("[on_frame] blending: 0x%x\n", self->blending);
+    printf("[image_viewer/on_frame] width: 0x%lxti\n", width);
+    printf("[image_viewer/on_frame] height: 0x%lxti\n", height);
+    printf("[image_viewer/on_frame] blending: 0x%x\n", self->blending);
 
     file_t *file = file_open_or_fail(self->path, "rb");
     uint8_t *bytes = file_read_bytes(file);
@@ -59,7 +60,8 @@ void
 image_viewer_open(image_viewer_t *self) {
     size_t width = image_width_from_path(self->path);
     size_t height = image_height_from_path(self->path);
-    printf("[image_viewer_open] width: 0x%lxti, height: 0x%lxti\n", width, height);
+    printf("[image_viewer_open] width: 0x%lxti\n", width);
+    printf("[image_viewer_open] height: 0x%lxti\n", height);
 
     canvas_t *canvas = canvas_new(width * TILE, height * TILE);
     canvas_window_t *window = canvas_window_new(canvas, self->scale);

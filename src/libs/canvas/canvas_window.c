@@ -48,12 +48,16 @@ canvas_window_init_display(canvas_window_t *self) {
     assert(self->display);
 
     int screen = DefaultScreen(self->display);
-    printf("[canvas_window_init_display] width: %upx, height: %upx\n",
-           XDisplayWidth(self->display, screen),
-           XDisplayHeight(self->display, screen));
-    printf("[canvas_window_init_display] black pixel: 0x%lx, white pixel: 0x%lx\n",
-           XBlackPixel(self->display, screen),
-           XWhitePixel(self->display, screen));
+
+    int width = XDisplayWidth(self->display, screen);
+    int height = XDisplayHeight(self->display, screen);
+    printf("[canvas_window_init_display] width: %upx\n", width);
+    printf("[canvas_window_init_display] height: %upx\n", height);
+
+    uint32_t black_pixel = XBlackPixel(self->display, screen);
+    uint32_t white_pixel = XWhitePixel(self->display, screen);
+    printf("[canvas_window_init_display] black pixel: 0x%x\n", black_pixel);
+    printf("[canvas_window_init_display] white pixel: 0x%x\n", white_pixel);
 }
 
 void
@@ -145,6 +149,9 @@ canvas_window_update_image(canvas_window_t *self) {
 
 static void
 canvas_window_resize(canvas_window_t *self, size_t width, size_t height) {
+    printf("[canvas_window_resize] width: %lupx\n", width);
+    printf("[canvas_window_resize] height: %lupx\n", width);
+
     self->width = width;
     self->height = height;
 
@@ -206,9 +213,6 @@ canvas_window_receive(canvas_window_t *self) {
 
     case ConfigureNotify: {
         XConfigureEvent* event = (XConfigureEvent *) &unknown_event;
-        // printf("[ConfigureNotify] width: %lu, height: %lu\n",
-        //        self->width,
-        //        self->height);
         canvas_window_resize(self, event->width, event->height);
         return;
     }
