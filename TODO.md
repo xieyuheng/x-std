@@ -1,9 +1,5 @@
-[image] `test_image` with example chr in c file
-
-```
-chr_subimage(bytes, 0x10, 0, 0, 3, 3) -- button up
-chr_subimage(bytes, 0x10, 3, 0, 3, 3) -- button down
-```
+[canvas] `canvas_draw_icn` handle alpha
+[canvas] `canvas_draw_chr` handle alpha
 
 [practice] button -- load nasu assets
 [practice] button -- `on_frame`

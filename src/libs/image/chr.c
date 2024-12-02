@@ -16,10 +16,12 @@ chr_subimage(
             for (size_t line = 0; line < TILE_SIZE; line++) {
                 size_t index =
                     (start_row + row) * TILE_SIZE * 2 * width +
-                    (start_col + col) * TILE_SIZE * 2;
+                    (start_col + col) * TILE_SIZE * 2 +
+                    line;
                 size_t subindex =
                     row * TILE_SIZE * 2 * subwidth +
-                    col * TILE_SIZE * 2;
+                    col * TILE_SIZE * 2 +
+                    line;
                 subimage[subindex] = bytes[index];
                 subimage[subindex + TILE_SIZE] = bytes[index + TILE_SIZE];
             }
