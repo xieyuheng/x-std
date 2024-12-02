@@ -1,7 +1,8 @@
-# example
-
-setup `example` command -- i just want to ecompile one bin
-[example] button
+[practice] setup `example` command -- i just want to ecompile one bin
+[practice] button -- load nasu assert
+[practice] button -- `on_frame`
+[canvas_window] support `on_click`
+[practice] button -- `on_click`
 
 # editor
 
@@ -10,4 +11,5 @@ setup `example` command -- i just want to ecompile one bin
 
 # canvas
 
+[canvas] support subimage for chr -- to use nasu spritesheet
 [canvas] [maybe] give each 16 blending a name
