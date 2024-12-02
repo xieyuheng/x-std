@@ -1,4 +1,6 @@
-[practice] `practice_button_t` to hold state for `on_frame`
+[practice] `practice_button_new`
+[practice] `practice_button_destroy`
+
 [practice] command call `practice_button_run`
 [practice] button -- `on_frame`
 [canvas_window] support `on_click`
