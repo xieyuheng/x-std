@@ -18,6 +18,7 @@ button_practice(void) {
     canvas_window_t *window = canvas_window_new(canvas, 0x10);
     window->title = "button practice";
 
+    canvas_fill_bottom_right(canvas, 0, 0, 0);
     size_t x = 3 * TILE_SIZE;
     size_t y = 3 * TILE_SIZE;
     canvas_draw_chr(canvas, x, y, button_up_chr, 3, 3, 1);
