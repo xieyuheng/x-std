@@ -81,6 +81,7 @@ image_viewer_open(image_viewer_t *self) {
     window->on_frame = (on_frame_t *) on_frame;
 
     canvas_window_open(window);
+
     canvas_window_destroy(&window);
     canvas_destroy(&canvas);
 }

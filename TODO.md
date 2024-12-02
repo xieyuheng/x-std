@@ -1,3 +1,4 @@
+`canvas_window` should own `canvas`
 [practice] setup `example` command -- i just want to ecompile one bin
 [practice] button -- load nasu assert
 [practice] button -- `on_frame`
