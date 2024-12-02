@@ -10,7 +10,6 @@ button_practice_new(void) {
 
 void
 button_practice(void) {
-
     char *base = dirname(string_dup(__FILE__));
     const char *file_name = string_append(base, "/button10x10.chr");
 

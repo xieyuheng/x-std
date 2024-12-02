@@ -1,4 +1,4 @@
-[practice] setup `practices/button_practice/` -- to be dogmatic about project structure
+[practice] fix `practices/button_practice/` directory structure
 
 [practice] `button_practice_destroy`
 
