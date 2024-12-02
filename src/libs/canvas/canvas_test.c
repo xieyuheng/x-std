@@ -14,7 +14,6 @@ canvas_test(void) {
     //     canvas_window_open(window);
     // }
 
-
     // {
     //     const char *file_name = "/home/xyh/projects/xieyuheng/bifer/src/practices/button10x10.chr";
     //     file_t *file = fopen(file_name, "rb");
