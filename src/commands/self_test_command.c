@@ -22,6 +22,7 @@ run(char **args) {
     int_test();
     text_test();
     canvas_test();
+    image_test();    
 
     printf("</self-test>\n");
 

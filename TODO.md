@@ -1,5 +1,3 @@
-[image] setup `libs/image/`
-
 [image] `chr_subimage` -- to use subimage in nasu file
 
 - row, col, width, height

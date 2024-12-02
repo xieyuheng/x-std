@@ -18,5 +18,6 @@
 #include "libs/text/index.h"
 #include "libs/file/index.h"
 #include "libs/lexer/index.h"
+#include "libs/image/index.h"
 #include "libs/canvas/index.h"
 #include "libs/commander/index.h"
