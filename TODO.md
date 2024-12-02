@@ -1,4 +1,3 @@
-[image] `image` setup
 [image] `image_width_from_path` and `image_height_from_path`
 
 [image] `chr_subimage` -- to use subimage in nasu file
