@@ -20,18 +20,6 @@ image_viewer_destroy(image_viewer_t **self_pointer) {
     }
 }
 
-static uint8_t parse_image_width(const char *path) {
-    size_t length = strlen(path);
-    const char *width_start = path + (length - 9);
-    return strtol(width_start, NULL, 16);
-}
-
-static uint8_t parse_image_height(const char *path) {
-    size_t length = strlen(path);
-    const char *height_start = path + (length - 6);
-    return strtol(height_start, NULL, 16);
-}
-
 static void
 on_key(canvas_window_t *window, image_viewer_t *self, const char *key_name, bool is_release) {
     (void) window;
@@ -50,8 +38,8 @@ on_frame(canvas_window_t *window, image_viewer_t *self, uint64_t expirations) {
 
     if (!self->is_changed) return;
 
-    size_t width = parse_image_width(self->path);
-    size_t height = parse_image_height(self->path);
+    size_t width = image_width_from_path(self->path);
+    size_t height = image_height_from_path(self->path);
     printf("[on_frame] width: 0x%lxti, height: 0x%lxti\n", width, height);
     printf("[on_frame] blending: 0x%x\n", self->blending);
 
@@ -69,8 +57,8 @@ on_frame(canvas_window_t *window, image_viewer_t *self, uint64_t expirations) {
 
 void
 image_viewer_open(image_viewer_t *self) {
-    size_t width = parse_image_width(self->path);
-    size_t height = parse_image_height(self->path);
+    size_t width = image_width_from_path(self->path);
+    size_t height = image_height_from_path(self->path);
     printf("[image_viewer_open] width: 0x%lxti, height: 0x%lxti\n", width, height);
 
     canvas_t *canvas = canvas_new(width, height);
