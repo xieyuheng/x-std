@@ -54,6 +54,15 @@ canvas_fill_bottom_left(canvas_t *self, size_t x, size_t y, palette_color_t colo
     }
 }
 
+void
+canvas_fill_top_right(canvas_t *self, size_t x, size_t y, palette_color_t color) {
+    for (size_t j = 0; j < y; j++) {
+        for (size_t i = 0; i < self->width - x; i++) {
+            canvas_draw_pixel(self, x + i, j, color);
+        }
+    }
+}
+
 static uint8_t blending_table[4][16] = {
     {0, 0, 0, 0, 1, 0, 1, 1, 2, 2, 0, 2, 3, 3, 3, 0},
     {0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3},

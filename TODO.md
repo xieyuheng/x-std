@@ -6,7 +6,6 @@
 
 # canvas
 
-[canvas] `canvas_fill_top_right`
 [canvas] `canvas_fill_top_left`
 
 [canvas] `canvas_draw_icn` handle alpha
