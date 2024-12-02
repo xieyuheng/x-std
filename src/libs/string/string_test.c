@@ -10,6 +10,11 @@ string_test(void) {
     char *abc = string_dup("abc");
     assert(string_equal("abc", abc));
 
+    assert(string_length("") == 0);
+    assert(string_length("1") == 1);
+    assert(string_length("12") == 2);
+    assert(string_length("123") == 3);
+
     string_destroy(&abc);
     assert(abc == NULL);
 

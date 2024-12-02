@@ -53,7 +53,7 @@ on_frame(canvas_window_t *window, image_viewer_t *self, uint64_t expirations) {
     size_t width = parse_image_width(self->path);
     size_t height = parse_image_height(self->path);
     printf("[on_frame] width: 0x%lxti, height: 0x%lxti\n", width, height);
-    printf("[on_frame] blending: %u\n", self->blending);
+    printf("[on_frame] blending: 0x%x\n", self->blending);
 
     file_t *file = file_open_or_fail(self->path, "rb");
     uint8_t *bytes = file_read_bytes(file);
