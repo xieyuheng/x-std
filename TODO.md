@@ -1,5 +1,3 @@
-[practice] fix `practices/button_practice/` directory structure
-
 [practice] `button_practice_destroy`
 
 [practice] command call `button_practice_run`
