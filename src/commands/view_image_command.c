@@ -1,9 +1,10 @@
 #include "index.h"
+#include "../image_viewer/index.h"
 
 static int run(char **args);
 
 void
-view_image(const commander_t *commander) {
+view_image_command(const commander_t *commander) {
     command_t *command = command_new("view-image");
     command->description = "view .icn or .chr image";
     command->run = run;

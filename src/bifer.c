@@ -13,7 +13,8 @@ main(int argc, char *argv[]) {
     commander_use(commander, default_help_command);
     commander_use(commander, default_version_command);
     commander_use(commander, self_test_command);
-    commander_use(commander, view_image);
+    commander_use(commander, view_image_command);
+    commander_use(commander, practice_command);
 
     int status = commander_run(commander);
     commander_destroy(&commander);
