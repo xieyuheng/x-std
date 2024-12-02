@@ -1,6 +1,13 @@
 #include "index.h"
 #include "button_practice.h"
 
+practice_button_t *
+practice_button_new(void) {
+    practice_button_t *self = allocate(sizeof(practice_button_t));
+    // TODO
+    return self;
+}
+
 void
 button_practice(void) {
 

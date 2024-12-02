@@ -1,4 +1,5 @@
-[practice] `practice_button_new`
+[practice] setup `practices/practice_button/` -- to be dogmatic about project structure
+
 [practice] `practice_button_destroy`
 
 [practice] command call `practice_button_run`
