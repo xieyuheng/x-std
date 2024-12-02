@@ -1,7 +1,5 @@
 #include "index.h"
 
-static void canvas_window_init(canvas_window_t *self);
-
 canvas_window_t *
 canvas_window_new(canvas_t *canvas, size_t scale) {
     canvas_window_t *self = allocate(sizeof(canvas_window_t));
@@ -15,8 +13,6 @@ canvas_window_new(canvas_t *canvas, size_t scale) {
 
     self->width = image_width;
     self->height = image_height;
-
-    canvas_window_init(self);
 
     return self;
 }
@@ -38,7 +34,7 @@ static void canvas_window_init_window(canvas_window_t *self);
 static void canvas_window_init_input(canvas_window_t *self);
 static void canvas_window_init_title(canvas_window_t *self);
 
-void
+static void
 canvas_window_init(canvas_window_t *self) {
     canvas_window_init_display(self);
     canvas_window_init_window(self);
@@ -272,6 +268,7 @@ frame_timerfd(size_t n) {
 
 void
 canvas_window_open(canvas_window_t *self) {
+    canvas_window_init(self);
     canvas_window_show(self);
 
     size_t nfds = 2;
