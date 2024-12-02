@@ -48,5 +48,7 @@ string_test(void) {
     assert(string_count_substring("0aaa0aaa", "aa") == 4);
     assert(string_count_substring("0aaa0aaa", "aaa") == 2);
 
+    assert(string_equal(string_to_lower_case("ABC"), "abc"));
+
     printf("</string>\n");
 }

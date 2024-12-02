@@ -1,4 +1,3 @@
-[string] `string_to_lower_case` -- for `on_key`
 [string] `string_to_upper_case` -- for `on_key`
 [string] `string_equal_mod_case` -- for `on_key`
 
