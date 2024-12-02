@@ -1,4 +1,6 @@
-[practice] button -- load nasu assert
+[canvas] support subimage for chr -- to use nasu spritesheet
+
+[practice] button -- load nasu assets
 [practice] button -- `on_frame`
 [canvas_window] support `on_click`
 [practice] button -- `on_click`
@@ -10,5 +12,4 @@
 
 # canvas
 
-[canvas] support subimage for chr -- to use nasu spritesheet
 [canvas] [maybe] give each 16 blending a name
