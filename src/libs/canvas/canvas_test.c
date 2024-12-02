@@ -19,10 +19,15 @@ canvas_test(void) {
     //     canvas_window_open(window);
     // }
 
-    {
-        canvas_fill_top_right(canvas, TILE, 2 * TILE, 1);
-        canvas_window_open(window);
-    }
+    // {
+    //     canvas_fill_top_right(canvas, TILE, 2 * TILE, 1);
+    //     canvas_window_open(window);
+    // }
+
+    // {
+    //     canvas_fill_top_left(canvas, TILE, 2 * TILE, 1);
+    //     canvas_window_open(window);
+    // }
 
     // {
     //     const char *file_name = "/home/xyh/projects/xieyuheng/bifer/src/practices/button10x10.chr";
