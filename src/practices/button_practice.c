@@ -1,9 +1,9 @@
 #include "index.h"
 #include "button_practice.h"
 
-practice_button_t *
-practice_button_new(void) {
-    practice_button_t *self = allocate(sizeof(practice_button_t));
+button_practice_t *
+button_practice_new(void) {
+    button_practice_t *self = allocate(sizeof(button_practice_t));
     // TODO
     return self;
 }

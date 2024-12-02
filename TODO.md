@@ -1,8 +1,8 @@
-[practice] setup `practices/practice_button/` -- to be dogmatic about project structure
+[practice] setup `practices/button_practice/` -- to be dogmatic about project structure
 
-[practice] `practice_button_destroy`
+[practice] `button_practice_destroy`
 
-[practice] command call `practice_button_run`
+[practice] command call `button_practice_run`
 [practice] button -- `on_frame`
 [canvas_window] support `on_click`
 [practice] button -- `on_click`
