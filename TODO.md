@@ -1,10 +1,10 @@
 [image] `chr_subimage` -- to use subimage in nasu file
 
-- row, col, width, height
+- bytes, row, col, width, height
 
   ```
-  chr_subimage(bytes, 0, 0, 3, 3) button up
-  chr_subimage(bytes, 3, 0, 3, 3) button down
+  chr_subimage(bytes, 0, 0, 3, 3) -- button up
+  chr_subimage(bytes, 3, 0, 3, 3) -- button down
   ```
 
 [image] `test_image` with example chr in c file

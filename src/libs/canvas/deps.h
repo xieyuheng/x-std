@@ -15,3 +15,4 @@
 #include "../file/index.h"
 #include "../list/index.h"
 #include "../int/index.h"
+#include "../image/index.h"
