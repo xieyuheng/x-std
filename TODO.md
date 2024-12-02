@@ -1,13 +1,9 @@
-[image] `chr_subimage` -- to use subimage in nasu file
-
-- bytes, row, col, width, height
-
-  ```
-  chr_subimage(bytes, 0, 0, 3, 3) -- button up
-  chr_subimage(bytes, 3, 0, 3, 3) -- button down
-  ```
-
 [image] `test_image` with example chr in c file
+
+```
+chr_subimage(bytes, 0x10, 0, 0, 3, 3) -- button up
+chr_subimage(bytes, 0x10, 3, 0, 3, 3) -- button down
+```
 
 [practice] button -- load nasu assets
 [practice] button -- `on_frame`

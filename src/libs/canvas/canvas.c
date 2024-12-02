@@ -87,7 +87,7 @@ canvas_draw_chr(
             for (size_t line = 0; line < 8; line++) {
                 size_t index = (row * 8 * 2 * width) + (col * 8 * 2 + line);
                 uint8_t chr1 = bytes[index];
-                uint8_t chr2 = bytes[index + 8];
+                uint8_t chr2 = bytes[index + TILE_SIZE];
                 for (uint8_t s = 0; s < 8; s++) {
                     uint8_t bit1 = ((chr1 << s) & 0x80) != 0;
                     uint8_t bit2 = ((chr2 << s) & 0x80) != 0;
