@@ -10,12 +10,10 @@ struct canvas_window_t {
     uint32_t *image_buffer;
     XImage* image;
 
-    // The window size is messured by pixel, instead of tile.
-    size_t width, height;
-
     Display* display;
     Window window;
-
+    // The window size is messured by pixel.
+    size_t width, height;
     const char *title;
     bool is_open;
 
