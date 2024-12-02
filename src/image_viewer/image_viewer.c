@@ -37,7 +37,7 @@ on_key(canvas_window_t *window, image_viewer_t *self, const char *key_name, bool
     (void) window;
 
     if (is_release) {
-        if (string_equal(key_name, "Tab")) {
+        if (string_equal_mod_case(key_name, "tab")) {
             self->blending = (self->blending + 1) % 16;
             self->is_changed = true;
         }

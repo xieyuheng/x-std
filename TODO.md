@@ -1,5 +1,3 @@
-[string] `string_equal_mod_case` -- for `on_key`
-
 # example
 
 setup `example` command -- i just want to ecompile one bin

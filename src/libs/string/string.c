@@ -161,3 +161,16 @@ string_to_upper_case(const char *self) {
 
     return result;
 }
+
+bool
+string_equal_mod_case(const char *left, const char *right) {
+    char *left_upper = string_to_upper_case(left);
+    char *right_upper = string_to_upper_case(right);
+
+    bool result = string_equal(left_upper, right_upper);
+
+    free(left_upper);
+    free(right_upper);
+
+    return result;
+}

@@ -51,5 +51,8 @@ string_test(void) {
     assert(string_equal(string_to_lower_case("ABC"), "abc"));
     assert(string_equal(string_to_upper_case("abc"), "ABC"));
 
+    assert(string_equal_mod_case("ABC", "abc"));
+    assert(string_equal_mod_case("abc", "ABC"));
+
     printf("</string>\n");
 }
