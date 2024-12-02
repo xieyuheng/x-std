@@ -152,7 +152,12 @@ string_to_lower_case(const char *self) {
     return result;
 }
 
-// char *
-// string_to_upper_case(const char *self) {
-//     //
-// }
+char *
+string_to_upper_case(const char *self) {
+    char *result = string_dup(self);
+    for (size_t i = 0; i < string_length(result); i++) {
+        result[i] = toupper((unsigned char) result[i]);
+    }
+
+    return result;
+}

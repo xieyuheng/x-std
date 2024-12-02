@@ -17,4 +17,4 @@ size_t string_count_char(const char *self, char ch);
 bool string_has_char(const char *self, char ch);
 size_t string_count_substring(const char *self, const char* substring);
 char *string_to_lower_case(const char *self);
-// char *string_to_upper_case(const char *self);
+char *string_to_upper_case(const char *self);
