@@ -1,4 +1,3 @@
-[practice] button -- `on_frame`
 [canvas_window] support `on_click`
 [practice] button -- `on_click`
 

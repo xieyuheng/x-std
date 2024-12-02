@@ -21,6 +21,7 @@ button_practice_new(void) {
     canvas_t *canvas = canvas_new(9 * TILE, 9 * TILE);
     self->window = canvas_window_new(canvas, 0x10);
     self->window->title = "button practice";
+    self->window->state = self;
 
     return self;
 }
@@ -39,14 +40,20 @@ button_practice_destroy(button_practice_t **self_pointer) {
     }
 }
 
+static void
+on_frame(canvas_window_t *window, button_practice_t *self, uint64_t expirations) {
+    (void) expirations;
+
+    canvas_fill_bottom_right(window->canvas, 0, 0, 0);
+    size_t x = 3 * TILE;
+    size_t y = 3 * TILE;
+    canvas_draw_chr(window->canvas, x, y, self->button_up_chr, 3, 3, 1);
+}
+
 void
 button_practice_start(void) {
     button_practice_t *self = button_practice_new();
-
-    canvas_fill_bottom_right(self->window->canvas, 0, 0, 0);
-    size_t x = 3 * TILE;
-    size_t y = 3 * TILE;
-    canvas_draw_chr(self->window->canvas, x, y, self->button_up_chr, 3, 3, 1);
+    self->window->on_frame = (on_frame_t *) on_frame;
 
     canvas_window_open(self->window);
 
