@@ -1,9 +1,12 @@
-[practice] button -- `on_click`
-
-# canvas
+[practice] button -- has a list of click handlers
+[practice] button -- only the button can be clicked
 
 [canvas] `canvas_draw_icn` handle alpha
 [canvas] `canvas_draw_chr` handle alpha
+
+[practice] button custom cursor
+
+# canvas
 
 [canvas] [maybe] give each 16 blending a name
 

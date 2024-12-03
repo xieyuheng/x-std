@@ -4,6 +4,7 @@ struct button_practice_t {
     canvas_window_t *window;
     uint8_t *button_up_chr;
     uint8_t *button_down_chr;
+    bool is_pressed;
 };
 
 button_practice_t *
@@ -22,6 +23,8 @@ button_practice_new(void) {
     self->window = canvas_window_new(canvas, 0x10);
     self->window->title = "button practice";
     self->window->state = self;
+
+    self->is_pressed = false;
 
     return self;
 }
@@ -48,13 +51,37 @@ on_frame(canvas_window_t *window, button_practice_t *self, uint64_t expirations)
 
     size_t x = 3 * TILE;
     size_t y = 3 * TILE;
-    canvas_draw_chr(window->canvas, x, y, self->button_up_chr, 3, 3, 1);
+
+    if (self->is_pressed) {
+        canvas_draw_chr(window->canvas, x, y, self->button_down_chr, 3, 3, 1);
+    } else {
+        canvas_draw_chr(window->canvas, x, y, self->button_up_chr, 3, 3, 1);
+    }
+
+}
+
+static void
+on_click(canvas_window_t *window, button_practice_t *self, size_t x, size_t y, uint8_t button, bool is_release) {
+    (void) window;
+    (void) self;
+
+    (void) x;
+    (void) y;
+
+    if (button == 1) {
+        if (is_release) {
+            self->is_pressed = false;
+        } else {
+            self->is_pressed = true;
+        }
+    }
 }
 
 void
 button_practice_start(void) {
     button_practice_t *self = button_practice_new();
     self->window->on_frame = (on_frame_t *) on_frame;
+    self->window->on_click = (on_click_t *) on_click;
 
     canvas_window_open(self->window);
 

@@ -250,12 +250,13 @@ canvas_window_receive(canvas_window_t *self) {
     case ButtonPress: {
         XButtonPressedEvent *event = (XButtonPressedEvent *)&unknown_event;
         if (self->on_click) {
+            bool is_release = false;
             self->on_click(
-                self,
-                self->state,
-                event->x,
-                event->y,
-                event->button, false);
+                self, self->state,
+                event->x / self->scale,
+                event->y / self->scale,
+                event->button,
+                is_release);
         }
 
         return;
@@ -264,12 +265,13 @@ canvas_window_receive(canvas_window_t *self) {
     case ButtonRelease: {
         XButtonPressedEvent *event = (XButtonPressedEvent *)&unknown_event;
         if (self->on_click) {
+            bool is_release = true;
             self->on_click(
-                self,
-                self->state,
-                event->x,
-                event->y,
-                event->button, true);
+                self, self->state,
+                event->x / self->scale,
+                event->y / self->scale,
+                event->button,
+                is_release);
         }
 
         return;
