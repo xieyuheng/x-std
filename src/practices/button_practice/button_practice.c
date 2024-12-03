@@ -42,27 +42,27 @@ button_practice_destroy(button_practice_t **self_pointer) {
 }
 
 static void
-render_button(canvas_window_t *window, button_practice_t *self) {
+render_button(canvas_t *canvas, button_practice_t *self) {
     size_t x = 3 * TILE;
     size_t y = 3 * TILE;
 
     if (self->is_pressed) {
-        canvas_draw_chr(window->canvas, x, y, self->button_down_chr, 3, 3, 1);
+        canvas_draw_chr(canvas, x, y, self->button_down_chr, 3, 3, 1);
 
-        // canvas_window_add_clickable_area(
-        //     window,
+        // canvas_add_clickable_area(
+        //     canvas,
         //     x, y,
         //     3 * TILE, 3 * TILE,
         //     button_on_click);
 
-        // canvas_window_render_image_button(
-        //     window,
+        // canvas_render_image_button(
+        //     canvas,
         //     x, y,
         //     "asset-name",
         //     button_on_click);
 
     } else {
-        canvas_draw_chr(window->canvas, x, y, self->button_up_chr, 3, 3, 1);
+        canvas_draw_chr(canvas, x, y, self->button_up_chr, 3, 3, 1);
     }
 }
 
@@ -72,7 +72,7 @@ on_frame(canvas_t *canvas, button_practice_t *self, uint64_t expirations) {
 
     canvas->window->background_pixel = canvas->palette[BG_COLOR];
     canvas_fill_bottom_right(canvas, 0, 0, BG_COLOR);
-    render_button(canvas->window, self);
+    render_button(canvas, self);
 }
 
 static void

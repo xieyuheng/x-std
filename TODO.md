@@ -1,9 +1,9 @@
 [canvas] `clickable_area_t`
 [canvas] has `clickable_area_list`
 
-[canvas] `canvas_window_add_clickable_area`
+[canvas] `canvas_add_clickable_area`
 [canvas] `asset_store_t` -- asset file with cache
-[canvas] `canvas_window_render_image_button` -- load image from asset store
+[canvas] `canvas_render_image_button` -- load image from asset store
 
 [practice] `render_button` add click handler for button
 [canvas] fix click event x and y after centered
