@@ -148,6 +148,24 @@ canvas_window_update_image(canvas_window_t *self) {
 }
 
 static void
+canvas_window_show_image(canvas_window_t *self) {
+    size_t image_width = self->canvas->width * self->scale;
+    size_t image_height = self->canvas->height * self->scale;
+
+    size_t x_offset = (self->width - image_width) / 2;
+    size_t y_offset = (self->height - image_height) / 2;
+
+    XPutImage(
+        self->display, self->window,
+        XDefaultGC(self->display, 0),
+        self->image,
+        0, 0,
+        x_offset, y_offset,
+        self->width,
+        self->height);
+}
+
+static void
 canvas_window_resize(canvas_window_t *self, size_t width, size_t height) {
     printf("[canvas_window_resize] width:  %lupx\n", width);
     printf("[canvas_window_resize] height: %lupx\n", width);
@@ -169,24 +187,6 @@ canvas_window_resize(canvas_window_t *self, size_t width, size_t height) {
         sizeof(uint32_t));
 
     canvas_window_update_image(self);
-}
-
-static void
-canvas_window_show_image(canvas_window_t *self) {
-    size_t image_width = self->canvas->width * self->scale;
-    size_t image_height = self->canvas->height * self->scale;
-
-    size_t x_offset = (self->width - image_width) / 2;
-    size_t y_offset = (self->height - image_height) / 2;
-
-    XPutImage(
-        self->display, self->window,
-        XDefaultGC(self->display, 0),
-        self->image,
-        0, 0,
-        x_offset, y_offset,
-        self->width,
-        self->height);
 }
 
 static void

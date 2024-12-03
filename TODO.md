@@ -8,6 +8,8 @@
 
 [canvas] [maybe] give each 16 blending a name
 
+[canvas_window] clear bg on resize
+
 # editor
 
 [editor] `editor` setup
