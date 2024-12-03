@@ -336,15 +336,15 @@ canvas_window_open(canvas_window_t *self) {
         }
 
         if ((fds[1].revents & POLLIN) != 0) {
-            uint64_t expirations;
-            read(fds[1].fd, &expirations, sizeof(uint64_t));
+            uint64_t passed;
+            read(fds[1].fd, &passed, sizeof(uint64_t));
             canvas_window_update_image(self);
             canvas_window_show_image(self);
             if (self->canvas->on_frame) {
                 self->canvas->on_frame(
                     self->canvas,
                     self->canvas->state,
-                    expirations);
+                    passed);
             }
         }
     }

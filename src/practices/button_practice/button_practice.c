@@ -67,8 +67,8 @@ render_button(canvas_t *canvas, button_practice_t *self) {
 }
 
 static void
-on_frame(canvas_t *canvas, button_practice_t *self, uint64_t expirations) {
-    (void) expirations;
+on_frame(canvas_t *canvas, button_practice_t *self, uint64_t passed) {
+    (void) passed;
 
     canvas->window->background_pixel = canvas->palette[BG_COLOR];
     canvas_fill_bottom_right(canvas, 0, 0, BG_COLOR);

@@ -33,8 +33,8 @@ on_key(canvas_t *canvas, image_viewer_t *self, const char *key_name, bool is_rel
 }
 
 static void
-on_frame(canvas_t *canvas, image_viewer_t *self, uint64_t expirations) {
-    (void) expirations;
+on_frame(canvas_t *canvas, image_viewer_t *self, uint64_t passed) {
+    (void) passed;
 
     if (!self->is_changed) return;
 
