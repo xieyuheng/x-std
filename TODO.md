@@ -1,7 +1,10 @@
+[canvas] change callback function argument order -- state first
+
 [canvas] `clickable_area_t`
 [canvas] has `clickable_area_list`
 
 [canvas] `canvas_add_clickable_area`
+
 [canvas] `asset_store_t` -- asset file with cache
 [canvas] `canvas_render_image_button` -- load image from asset store
 

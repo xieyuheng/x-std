@@ -10,10 +10,19 @@ typedef enum {
     AP_COLOR = 3, // Application
 } color_t;
 
+typedef void (on_key_t)(
+    canvas_t *canvas, void *state,
+    const char *key_name, bool is_release);
 
-typedef void (on_key_t)(canvas_t *self, void *state, const char *key_name, bool is_release);
-typedef void (on_click_t)(canvas_t *self, void *state, size_t x, size_t y, uint8_t button, bool is_release);
-typedef void (on_frame_t)(canvas_t *self, void *state, uint64_t passed);
+typedef void (on_click_t)(
+    canvas_t *canvas, void *state,
+    size_t x, size_t y,
+    uint8_t button,
+    bool is_release);
+
+typedef void (on_frame_t)(
+    canvas_t *canvas, void *state,
+    uint64_t passed);
 
 // The width and height of canvas are measured in tile.
 struct canvas_t {
