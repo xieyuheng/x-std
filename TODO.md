@@ -1,6 +1,8 @@
 [list] `list_new_with` -- instead of `list_new` + `list_set_item_destructor`
 [stack] `stack_new_with` -- instead of `stack_new` + `stack_set_item_destructor`
 
+[practice] report on unknown practice and list avaiable practices
+
 [canvas] `canvas_clickable_area_new`
 [canvas] `canvas_clickable_area_destroy`
 
