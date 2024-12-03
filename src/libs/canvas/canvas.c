@@ -41,12 +41,12 @@ canvas_put_pixel(canvas_t *self, size_t x, size_t y, uint32_t pixel) {
 }
 
 void
-canvas_draw_pixel(canvas_t *self, size_t x, size_t y, palette_color_t color) {
+canvas_draw_pixel(canvas_t *self, size_t x, size_t y, color_t color) {
     canvas_put_pixel(self, x, y, self->palette[color]);
 }
 
 void
-canvas_fill_bottom_right(canvas_t *self, size_t x, size_t y, palette_color_t color) {
+canvas_fill_bottom_right(canvas_t *self, size_t x, size_t y, color_t color) {
     for (size_t j = 0; j < self->height - y; j++) {
         for (size_t i = 0; i < self->width - x; i++) {
             canvas_draw_pixel(self, x + i, y + j, color);
@@ -55,7 +55,7 @@ canvas_fill_bottom_right(canvas_t *self, size_t x, size_t y, palette_color_t col
 }
 
 void
-canvas_fill_bottom_left(canvas_t *self, size_t x, size_t y, palette_color_t color) {
+canvas_fill_bottom_left(canvas_t *self, size_t x, size_t y, color_t color) {
     for (size_t j = 0; j < self->height - y; j++) {
         for (size_t i = 0; i < x; i++) {
             canvas_draw_pixel(self, i, y + j, color);
@@ -64,7 +64,7 @@ canvas_fill_bottom_left(canvas_t *self, size_t x, size_t y, palette_color_t colo
 }
 
 void
-canvas_fill_top_right(canvas_t *self, size_t x, size_t y, palette_color_t color) {
+canvas_fill_top_right(canvas_t *self, size_t x, size_t y, color_t color) {
     for (size_t j = 0; j < y; j++) {
         for (size_t i = 0; i < self->width - x; i++) {
             canvas_draw_pixel(self, x + i, j, color);
@@ -73,7 +73,7 @@ canvas_fill_top_right(canvas_t *self, size_t x, size_t y, palette_color_t color)
 }
 
 void
-canvas_fill_top_left(canvas_t *self, size_t x, size_t y, palette_color_t color) {
+canvas_fill_top_left(canvas_t *self, size_t x, size_t y, color_t color) {
     for (size_t j = 0; j < y; j++) {
         for (size_t i = 0; i < x; i++) {
             canvas_draw_pixel(self, i, j, color);
@@ -103,8 +103,8 @@ canvas_draw_icn(
                 uint8_t byte = bytes[index];
                 for (uint8_t s = 0; s < 8; s++) {
                     uint8_t bit = ((byte << s) & 0x80) != 0;
-                    palette_color_t color = bit;
-                    palette_color_t blended = blending_table[color][blending];
+                    color_t color = bit;
+                    color_t blended = blending_table[color][blending];
                     canvas_draw_pixel(
                         self,
                         x + (col * 8 + s),
@@ -133,8 +133,8 @@ canvas_draw_chr(
                 for (uint8_t s = 0; s < 8; s++) {
                     uint8_t bit1 = ((chr1 << s) & 0x80) != 0;
                     uint8_t bit2 = ((chr2 << s) & 0x80) != 0;
-                    palette_color_t color = bit1 + bit2 * 2;
-                    palette_color_t blended = blending_table[color][blending];
+                    color_t color = bit1 + bit2 * 2;
+                    color_t blended = blending_table[color][blending];
                     canvas_draw_pixel(
                         self,
                         x + (col * 8 + s),

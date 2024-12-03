@@ -8,7 +8,7 @@ typedef enum {
     SL_COLOR = 1, // Selection
     FG_COLOR = 2, // Foreground
     AP_COLOR = 3, // Application
-} palette_color_t;
+} color_t;
 
 
 typedef void (on_key_t)(canvas_t *self, void *state, const char *key_name, bool is_release);
@@ -43,12 +43,12 @@ void canvas_open(canvas_t *self);
 // The x and y position are measured in pixel.
 
 void canvas_put_pixel(canvas_t *self, size_t x, size_t y, uint32_t pixel);
-void canvas_draw_pixel(canvas_t *self, size_t x, size_t y, palette_color_t color);
+void canvas_draw_pixel(canvas_t *self, size_t x, size_t y, color_t color);
 
-void canvas_fill_bottom_right(canvas_t *self, size_t x, size_t y, palette_color_t color);
-void canvas_fill_bottom_left(canvas_t *self, size_t x, size_t y, palette_color_t color);
-void canvas_fill_top_right(canvas_t *self, size_t x, size_t y, palette_color_t color);
-void canvas_fill_top_left(canvas_t *self, size_t x, size_t y, palette_color_t color);
+void canvas_fill_bottom_right(canvas_t *self, size_t x, size_t y, color_t color);
+void canvas_fill_bottom_left(canvas_t *self, size_t x, size_t y, color_t color);
+void canvas_fill_top_right(canvas_t *self, size_t x, size_t y, color_t color);
+void canvas_fill_top_left(canvas_t *self, size_t x, size_t y, color_t color);
 
 // The width and height of image are measured in tile.
 
