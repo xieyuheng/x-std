@@ -47,6 +47,9 @@ static void
 on_frame(canvas_window_t *window, button_practice_t *self, uint64_t expirations) {
     (void) expirations;
 
+    self->window->background_pixel =
+        self->window->canvas->palette[BG_COLOR];
+
     canvas_fill_bottom_right(window->canvas, 0, 0, 0);
 
     size_t x = 3 * TILE;
@@ -57,7 +60,6 @@ on_frame(canvas_window_t *window, button_practice_t *self, uint64_t expirations)
     } else {
         canvas_draw_chr(window->canvas, x, y, self->button_up_chr, 3, 3, 1);
     }
-
 }
 
 static void

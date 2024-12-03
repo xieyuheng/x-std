@@ -14,6 +14,8 @@ canvas_window_new(canvas_t *canvas, size_t scale) {
     self->width = image_width;
     self->height = image_height;
 
+    self->background_pixel = 0xff000000;
+
     return self;
 }
 
@@ -132,7 +134,7 @@ canvas_window_update_image_buffer(canvas_window_t *self) {
     for (size_t y = 0; y < self->height; y++) {
         for (size_t x = 0; x < self->width; x++) {
             self->image_buffer[y * self->width + x] =
-                self->canvas->palette[BG_COLOR];
+                self->background_pixel;
         }
     }
 

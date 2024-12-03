@@ -1,5 +1,4 @@
 [practice] extract `render_button`
-
 [canvas_window] fix click event x and y after centered
 
 [canvas_window] has a list of click handlers

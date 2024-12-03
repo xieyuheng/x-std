@@ -10,6 +10,7 @@ struct canvas_window_t {
 
     uint32_t *image_buffer;
     XImage* image;
+    uint32_t background_pixel;
 
     Display* display;
     Window window;
