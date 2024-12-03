@@ -1,8 +1,3 @@
-[canvas] extract `canvas_draw_image.c`
-
-touch canvas_draw_image.c
-touch canvas_draw_image.h
-
 [canvas] `canvas_clickable_area_t`
 [canvas] has `clickable_area_list`
 

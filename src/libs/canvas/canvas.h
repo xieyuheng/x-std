@@ -49,12 +49,5 @@ void canvas_destroy(canvas_t **self_pointer);
 
 void canvas_open(canvas_t *self);
 
-// The x and y position are measured in pixel.
-
 void canvas_put_pixel(canvas_t *self, size_t x, size_t y, uint32_t pixel);
 void canvas_draw_pixel(canvas_t *self, size_t x, size_t y, color_t color);
-
-// The width and height of image are measured in tile.
-
-void canvas_draw_icn_image(canvas_t *self, size_t x, size_t y, uint8_t *bytes, size_t width, size_t height, uint8_t blending);
-void canvas_draw_chr_image(canvas_t *self, size_t x, size_t y, uint8_t *bytes, size_t width, size_t height, uint8_t blending);
