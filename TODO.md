@@ -1,5 +1,3 @@
-[image viewer] use `canvas_open`
-
 [practice] `canvas_t` has `on_frame` and `on_click` and `on_key` -- instead of `canvas_window_t`
 
 [canvas] `clickable_area_t`

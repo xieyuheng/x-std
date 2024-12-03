@@ -64,14 +64,12 @@ image_viewer_open(image_viewer_t *self) {
     printf("[image_viewer_open] height: 0x%lxti\n", height);
 
     canvas_t *canvas = canvas_new(width * TILE, height * TILE, self->scale);
-    canvas_window_t *window = canvas_window_new(canvas);
-    window->title = self->path;
-    window->state = self;
-    window->on_key = (on_key_t *) on_key;
-    window->on_frame = (on_frame_t *) on_frame;
+    canvas->window->title = self->path;
+    canvas->window->state = self;
+    canvas->window->on_key = (on_key_t *) on_key;
+    canvas->window->on_frame = (on_frame_t *) on_frame;
 
-    canvas_window_open(window);
+    canvas_open(canvas);
 
-    canvas_window_destroy(&window);
     canvas_destroy(&canvas);
 }
