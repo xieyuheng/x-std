@@ -20,10 +20,14 @@ struct canvas_t {
 
     uint32_t *pixels;
     uint32_t palette[4];
+
+    canvas_window_t *window;
 };
 
 canvas_t *canvas_new(size_t width, size_t height, size_t scale);
 void canvas_destroy(canvas_t **self_pointer);
+
+void canvas_open(canvas_t *self);
 
 // The x and y position are measured in pixel.
 

@@ -13,6 +13,8 @@ canvas_new(size_t width, size_t height, size_t scale) {
     self->palette[SL_COLOR] = 0xffcd2e3a;
     self->palette[FG_COLOR] = 0xff000000;
     self->palette[AP_COLOR] = 0xffffffff;
+
+    self->window = canvas_window_new(self);
     return self;
 }
 
@@ -22,9 +24,15 @@ canvas_destroy(canvas_t **self_pointer) {
     if (*self_pointer) {
         canvas_t *self = *self_pointer;
         free(self->pixels);
+        canvas_window_destroy(&self->window);
         free(self);
         *self_pointer = NULL;
     }
+}
+
+void
+canvas_open(canvas_t *self) {
+    canvas_window_open(self->window);
 }
 
 void

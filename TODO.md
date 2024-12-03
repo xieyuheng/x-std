@@ -1,4 +1,6 @@
-[canvas] `canvas_t` has `window`
+[practice] use `canvas_open`
+[image viewer] use `canvas_open`
+tests use `canvas_open`
 
 [canvas] `clickable_area_t`
 [canvas] has `clickable_area_list`
