@@ -1,7 +1,6 @@
-[canvas] extract `canvas_fill.c`
-[canvas] extract `canvas_draw.c`
+[canvas] extract `canvas_draw_image.c`
 
-[canvas] `clickable_area_t`
+[canvas] `canvas_clickable_area_t`
 [canvas] has `clickable_area_list`
 
 [canvas] `canvas_add_clickable_area`

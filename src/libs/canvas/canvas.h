@@ -54,11 +54,6 @@ void canvas_open(canvas_t *self);
 void canvas_put_pixel(canvas_t *self, size_t x, size_t y, uint32_t pixel);
 void canvas_draw_pixel(canvas_t *self, size_t x, size_t y, color_t color);
 
-void canvas_fill_bottom_right(canvas_t *self, size_t x, size_t y, color_t color);
-void canvas_fill_bottom_left(canvas_t *self, size_t x, size_t y, color_t color);
-void canvas_fill_top_right(canvas_t *self, size_t x, size_t y, color_t color);
-void canvas_fill_top_left(canvas_t *self, size_t x, size_t y, color_t color);
-
 // The width and height of image are measured in tile.
 
 void canvas_draw_icn(canvas_t *self, size_t x, size_t y, uint8_t *bytes, size_t width, size_t height, uint8_t blending);
