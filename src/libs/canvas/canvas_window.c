@@ -1,13 +1,12 @@
 #include "index.h"
 
 canvas_window_t *
-canvas_window_new(canvas_t *canvas, size_t scale) {
+canvas_window_new(canvas_t *canvas) {
     canvas_window_t *self = allocate(sizeof(canvas_window_t));
     self->canvas = canvas;
-    self->scale = scale;
 
-    size_t image_width = self->canvas->width * self->scale;
-    size_t image_height = self->canvas->height * self->scale;
+    size_t image_width = self->canvas->width * self->canvas->scale;
+    size_t image_height = self->canvas->height * self->canvas->scale;
 
     self->image_buffer = allocate(image_width * image_height * sizeof(uint32_t));
 
@@ -110,18 +109,18 @@ canvas_window_update_pixel(canvas_window_t *self, size_t col, size_t row) {
     size_t width_scale = self->width / (self->canvas->width);
     size_t height_scale = self->height / (self->canvas->height);
 
-    self->scale = uint_min(width_scale, height_scale);
+    self->canvas->scale = uint_min(width_scale, height_scale);
 
-    size_t image_width = self->canvas->width * self->scale;
-    size_t image_height = self->canvas->height * self->scale;
+    size_t image_width = self->canvas->width * self->canvas->scale;
+    size_t image_height = self->canvas->height * self->canvas->scale;
 
     size_t x_offset = (self->width - image_width) / 2;
     size_t y_offset = (self->height - image_height) / 2;
 
-    uint32_t y_start = row * self->scale;
-    uint32_t x_start = col * self->scale;
-    for (size_t y = y_start; y < y_start + self->scale; y++) {
-        for (size_t x = x_start; x < x_start + self->scale; x++) {
+    uint32_t y_start = row * self->canvas->scale;
+    uint32_t x_start = col * self->canvas->scale;
+    for (size_t y = y_start; y < y_start + self->canvas->scale; y++) {
+        for (size_t x = x_start; x < x_start + self->canvas->scale; x++) {
             self->image_buffer[(y_offset + y) * self->width + (x_offset + x)] =
                 self->canvas->pixels[row * self->canvas->width + col];
         }
@@ -258,8 +257,8 @@ canvas_window_receive(canvas_window_t *self) {
             bool is_release = false;
             self->on_click(
                 self, self->state,
-                event->x / self->scale,
-                event->y / self->scale,
+                event->x / self->canvas->scale,
+                event->y / self->canvas->scale,
                 event->button,
                 is_release);
         }
@@ -273,8 +272,8 @@ canvas_window_receive(canvas_window_t *self) {
             bool is_release = true;
             self->on_click(
                 self, self->state,
-                event->x / self->scale,
-                event->y / self->scale,
+                event->x / self->canvas->scale,
+                event->y / self->canvas->scale,
                 event->button,
                 is_release);
         }

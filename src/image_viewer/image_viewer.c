@@ -63,8 +63,8 @@ image_viewer_open(image_viewer_t *self) {
     printf("[image_viewer_open] width:  0x%lxti\n", width);
     printf("[image_viewer_open] height: 0x%lxti\n", height);
 
-    canvas_t *canvas = canvas_new(width * TILE, height * TILE);
-    canvas_window_t *window = canvas_window_new(canvas, self->scale);
+    canvas_t *canvas = canvas_new(width * TILE, height * TILE, self->scale);
+    canvas_window_t *window = canvas_window_new(canvas);
     window->title = self->path;
     window->state = self;
     window->on_key = (on_key_t *) on_key;

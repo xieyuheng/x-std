@@ -4,8 +4,8 @@ void
 canvas_test(void) {
     printf("<canvas_test>\n");
 
-    canvas_t *canvas = canvas_new(3 * TILE, 3 * TILE);
-    canvas_window_t *window = canvas_window_new(canvas, 10);
+    canvas_t *canvas = canvas_new(3 * TILE, 3 * TILE, 10);
+    canvas_window_t *window = canvas_window_new(canvas);
     window->title = "hello canvas";
 
     // {

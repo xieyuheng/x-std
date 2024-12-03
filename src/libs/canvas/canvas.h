@@ -13,11 +13,16 @@ typedef enum {
 // The width and height of canvas are measured in tile.
 struct canvas_t {
     size_t width, height;
+
+    // scale defines the ratio between
+    // canvas pixel and screen pixel.
+    size_t scale;
+
     uint32_t *pixels;
     uint32_t palette[4];
 };
 
-canvas_t *canvas_new(size_t width, size_t height);
+canvas_t *canvas_new(size_t width, size_t height, size_t scale);
 void canvas_destroy(canvas_t **self_pointer);
 
 // The x and y position are measured in pixel.

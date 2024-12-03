@@ -19,8 +19,8 @@ button_practice_new(void) {
     self->button_down_chr = chr_subimage(bytes, 0x10, 3, 0, 3, 3);
     free(bytes);
 
-    canvas_t *canvas = canvas_new(9 * TILE, 9 * TILE);
-    self->window = canvas_window_new(canvas, 0x10);
+    canvas_t *canvas = canvas_new(9 * TILE, 9 * TILE, 0x10);
+    self->window = canvas_window_new(canvas);
     self->window->title = "button practice";
     self->window->state = self;
 

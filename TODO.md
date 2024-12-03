@@ -1,4 +1,4 @@
-canvas has window
+[canvas] `canvas_t` has `window`
 
 [canvas] `clickable_area_t`
 [canvas] has `clickable_area_list`

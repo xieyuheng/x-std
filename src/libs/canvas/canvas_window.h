@@ -6,7 +6,6 @@ typedef void (on_frame_t)(canvas_window_t *self, void *state, uint64_t expiratio
 
 struct canvas_window_t {
     canvas_t *canvas;
-    size_t scale;
 
     uint32_t *image_buffer;
     XImage* image;
@@ -25,7 +24,7 @@ struct canvas_window_t {
     on_frame_t *on_frame;
 };
 
-canvas_window_t *canvas_window_new(canvas_t *canvas, size_t scale);
+canvas_window_t *canvas_window_new(canvas_t *canvas);
 void canvas_window_destroy(canvas_window_t **self_pointer);
 
 void canvas_window_open(canvas_window_t *self);
