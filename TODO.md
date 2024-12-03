@@ -1,4 +1,5 @@
-[canvas] change callback function argument order -- state first
+[canvas] extract `canvas_fill.c`
+[canvas] extract `canvas_draw.c`
 
 [canvas] `clickable_area_t`
 [canvas] has `clickable_area_list`

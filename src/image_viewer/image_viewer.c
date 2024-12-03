@@ -21,7 +21,12 @@ image_viewer_destroy(image_viewer_t **self_pointer) {
 }
 
 static void
-on_key(canvas_t *canvas, image_viewer_t *self, const char *key_name, bool is_release) {
+on_key(
+    image_viewer_t *self,
+    canvas_t *canvas,
+    const char *key_name,
+    bool is_release
+) {
     (void) canvas;
 
     if (is_release) {
@@ -33,7 +38,11 @@ on_key(canvas_t *canvas, image_viewer_t *self, const char *key_name, bool is_rel
 }
 
 static void
-on_frame(canvas_t *canvas, image_viewer_t *self, uint64_t passed) {
+on_frame(
+    image_viewer_t *self,
+    canvas_t *canvas,
+    uint64_t passed
+) {
     (void) passed;
 
     if (!self->is_changed) return;

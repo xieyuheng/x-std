@@ -42,7 +42,7 @@ button_practice_destroy(button_practice_t **self_pointer) {
 }
 
 static void
-render_button(canvas_t *canvas, button_practice_t *self) {
+render_button(button_practice_t *self, canvas_t *canvas) {
     size_t x = 3 * TILE;
     size_t y = 3 * TILE;
 
@@ -67,16 +67,27 @@ render_button(canvas_t *canvas, button_practice_t *self) {
 }
 
 static void
-on_frame(canvas_t *canvas, button_practice_t *self, uint64_t passed) {
+on_frame(
+    button_practice_t *self,
+    canvas_t *canvas,
+    uint64_t passed
+) {
     (void) passed;
 
     canvas->window->background_pixel = canvas->palette[BG_COLOR];
     canvas_fill_bottom_right(canvas, 0, 0, BG_COLOR);
-    render_button(canvas, self);
+    render_button(self, canvas);
 }
 
 static void
-on_click(canvas_t *canvas, button_practice_t *self, size_t x, size_t y, uint8_t button, bool is_release) {
+on_click(
+    button_practice_t *self,
+    canvas_t *canvas,
+    size_t x,
+    size_t y,
+    uint8_t button,
+    bool is_release
+) {
     (void) canvas;
     (void) self;
 

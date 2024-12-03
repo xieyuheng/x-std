@@ -232,8 +232,8 @@ canvas_window_receive(canvas_window_t *self) {
             const char *key_name = XKeysymToString(keysym);
             bool is_release = false;
             self->canvas->on_key(
-                self->canvas,
                 self->canvas->state,
+                self->canvas,
                 key_name,
                 is_release);
         }
@@ -250,8 +250,8 @@ canvas_window_receive(canvas_window_t *self) {
             const char *key_name = XKeysymToString(keysym);
             bool is_release = true;
             self->canvas->on_key(
-                self->canvas,
                 self->canvas->state,
+                self->canvas,
                 key_name,
                 is_release);
         }
@@ -264,8 +264,8 @@ canvas_window_receive(canvas_window_t *self) {
         if (self->canvas->on_click) {
             bool is_release = false;
             self->canvas->on_click(
-                self->canvas,
                 self->canvas->state,
+                self->canvas,
                 event->x / self->canvas->scale,
                 event->y / self->canvas->scale,
                 event->button,
@@ -280,8 +280,8 @@ canvas_window_receive(canvas_window_t *self) {
         if (self->canvas->on_click) {
             bool is_release = true;
             self->canvas->on_click(
-                self->canvas,
                 self->canvas->state,
+                self->canvas,
                 event->x / self->canvas->scale,
                 event->y / self->canvas->scale,
                 event->button,
@@ -342,8 +342,8 @@ canvas_window_open(canvas_window_t *self) {
             canvas_window_show_image(self);
             if (self->canvas->on_frame) {
                 self->canvas->on_frame(
-                    self->canvas,
                     self->canvas->state,
+                    self->canvas,
                     passed);
             }
         }
