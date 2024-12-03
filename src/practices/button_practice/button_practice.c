@@ -1,7 +1,7 @@
 #include "index.h"
 
 struct button_practice_t {
-    canvas_window_t *window;
+    canvas_t *canvas;
     uint8_t *button_up_chr;
     uint8_t *button_down_chr;
     bool is_pressed;
@@ -19,10 +19,9 @@ button_practice_new(void) {
     self->button_down_chr = chr_subimage(bytes, 0x10, 3, 0, 3, 3);
     free(bytes);
 
-    canvas_t *canvas = canvas_new(9 * TILE, 9 * TILE, 0x10);
-    self->window = canvas_window_new(canvas);
-    self->window->title = "button practice";
-    self->window->state = self;
+    self->canvas = canvas_new(9 * TILE, 9 * TILE, 0x10);
+    self->canvas->window->title = "button practice";
+    self->canvas->window->state = self;
 
     self->is_pressed = false;
 
@@ -34,8 +33,7 @@ button_practice_destroy(button_practice_t **self_pointer) {
     assert(self_pointer);
     if (*self_pointer) {
         button_practice_t *self = *self_pointer;
-        canvas_destroy(&self->window->canvas);
-        canvas_window_destroy(&self->window);
+        canvas_destroy(&self->canvas);
         free(self->button_up_chr);
         free(self->button_down_chr);
         free(self);
@@ -72,7 +70,7 @@ static void
 on_frame(canvas_window_t *window, button_practice_t *self, uint64_t expirations) {
     (void) expirations;
 
-    self->window->background_pixel = self->window->canvas->palette[BG_COLOR];
+    window->background_pixel = window->canvas->palette[BG_COLOR];
     canvas_fill_bottom_right(window->canvas, 0, 0, BG_COLOR);
     render_button(window, self);
 }
@@ -97,10 +95,10 @@ on_click(canvas_window_t *window, button_practice_t *self, size_t x, size_t y, u
 void
 button_practice_start(void) {
     button_practice_t *self = button_practice_new();
-    self->window->on_frame = (on_frame_t *) on_frame;
-    self->window->on_click = (on_click_t *) on_click;
+    self->canvas->window->on_frame = (on_frame_t *) on_frame;
+    self->canvas->window->on_click = (on_click_t *) on_click;
 
-    canvas_window_open(self->window);
+    canvas_open(self->canvas);
 
     button_practice_destroy(&self);
 }
