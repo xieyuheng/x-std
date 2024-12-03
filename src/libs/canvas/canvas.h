@@ -27,6 +27,7 @@ struct canvas_t {
     uint32_t palette[4];
 
     canvas_window_t *window;
+    const char *title;
 
     void *state;
     on_key_t *on_key;

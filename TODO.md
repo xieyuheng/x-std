@@ -1,5 +1,3 @@
-[canvas] `canvas_t` has `title`
-
 [canvas] `clickable_area_t`
 [canvas] has `clickable_area_list`
 

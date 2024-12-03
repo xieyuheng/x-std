@@ -5,7 +5,7 @@ canvas_test(void) {
     printf("<canvas_test>\n");
 
     canvas_t *canvas = canvas_new(3 * TILE, 3 * TILE, 10);
-    canvas->window->title = "hello canvas";
+    canvas->title = "hello canvas";
 
     // {
     //     for (size_t i = 0; i < 8; i++)

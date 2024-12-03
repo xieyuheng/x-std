@@ -1,7 +1,6 @@
 #pragma once
 
 struct image_viewer_t {
-    const char *window_title;
     const char *path;
     uint8_t blending;
     size_t scale;

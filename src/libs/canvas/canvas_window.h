@@ -11,7 +11,6 @@ struct canvas_window_t {
     Window window;
     // The window size is messured by pixel.
     size_t width, height;
-    const char *title;
     bool is_open;
 };
 

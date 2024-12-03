@@ -98,8 +98,8 @@ canvas_window_init_title(canvas_window_t *self) {
     class_hint->res_class = string_dup("canvas");
     XSetClassHint(self->display, self->window, class_hint);
 
-    if (self->title)
-        XStoreName(self->display, self->window, self->title);
+    if (self->canvas->title)
+        XStoreName(self->display, self->window, self->canvas->title);
 }
 
 static void
