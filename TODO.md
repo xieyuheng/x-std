@@ -1,7 +1,9 @@
+[list] `list_new_with` -- instead of `list_new` + `list_set_item_destructor`
+
 [canvas] `canvas_clickable_area_new`
 [canvas] `canvas_clickable_area_destroy`
 
-[canvas] has `clickable_area_list`
+[canvas] has `clickable_area_list` with `canvas_clickable_area_destroy`
 
 [canvas] `canvas_add_clickable_area`
 

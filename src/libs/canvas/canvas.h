@@ -42,6 +42,8 @@ struct canvas_t {
     on_key_t *on_key;
     on_click_t *on_click;
     on_frame_t *on_frame;
+
+    list_t *clickable_area_list;
 };
 
 canvas_t *canvas_new(size_t width, size_t height, size_t scale);
