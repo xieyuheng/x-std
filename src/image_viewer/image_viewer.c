@@ -21,8 +21,8 @@ image_viewer_destroy(image_viewer_t **self_pointer) {
 }
 
 static void
-on_key(canvas_window_t *window, image_viewer_t *self, const char *key_name, bool is_release) {
-    (void) window;
+on_key(canvas_t *canvas, image_viewer_t *self, const char *key_name, bool is_release) {
+    (void) canvas;
 
     if (is_release) {
         if (string_equal_mod_case(key_name, "tab")) {
@@ -33,7 +33,7 @@ on_key(canvas_window_t *window, image_viewer_t *self, const char *key_name, bool
 }
 
 static void
-on_frame(canvas_window_t *window, image_viewer_t *self, uint64_t expirations) {
+on_frame(canvas_t *canvas, image_viewer_t *self, uint64_t expirations) {
     (void) expirations;
 
     if (!self->is_changed) return;
@@ -48,10 +48,10 @@ on_frame(canvas_window_t *window, image_viewer_t *self, uint64_t expirations) {
     uint8_t *bytes = file_read_bytes(file);
 
     if (string_ends_with(self->path, ".icn"))
-        canvas_draw_icn(window->canvas, 0, 0, bytes, width, height, self->blending);
+        canvas_draw_icn(canvas, 0, 0, bytes, width, height, self->blending);
 
     if (string_ends_with(self->path, ".chr"))
-        canvas_draw_chr(window->canvas, 0, 0, bytes, width, height, self->blending);
+        canvas_draw_chr(canvas, 0, 0, bytes, width, height, self->blending);
 
     self->is_changed = false;
 }
@@ -65,9 +65,9 @@ image_viewer_open(image_viewer_t *self) {
 
     canvas_t *canvas = canvas_new(width * TILE, height * TILE, self->scale);
     canvas->window->title = self->path;
-    canvas->window->state = self;
-    canvas->window->on_key = (on_key_t *) on_key;
-    canvas->window->on_frame = (on_frame_t *) on_frame;
+    canvas->state = self;
+    canvas->on_key = (on_key_t *) on_key;
+    canvas->on_frame = (on_frame_t *) on_frame;
 
     canvas_open(canvas);
 

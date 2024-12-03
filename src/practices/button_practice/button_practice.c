@@ -21,7 +21,7 @@ button_practice_new(void) {
 
     self->canvas = canvas_new(9 * TILE, 9 * TILE, 0x10);
     self->canvas->window->title = "button practice";
-    self->canvas->window->state = self;
+    self->canvas->state = self;
 
     self->is_pressed = false;
 
@@ -67,17 +67,17 @@ render_button(canvas_window_t *window, button_practice_t *self) {
 }
 
 static void
-on_frame(canvas_window_t *window, button_practice_t *self, uint64_t expirations) {
+on_frame(canvas_t *canvas, button_practice_t *self, uint64_t expirations) {
     (void) expirations;
 
-    window->background_pixel = window->canvas->palette[BG_COLOR];
-    canvas_fill_bottom_right(window->canvas, 0, 0, BG_COLOR);
-    render_button(window, self);
+    canvas->window->background_pixel = canvas->palette[BG_COLOR];
+    canvas_fill_bottom_right(canvas, 0, 0, BG_COLOR);
+    render_button(canvas->window, self);
 }
 
 static void
-on_click(canvas_window_t *window, button_practice_t *self, size_t x, size_t y, uint8_t button, bool is_release) {
-    (void) window;
+on_click(canvas_t *canvas, button_practice_t *self, size_t x, size_t y, uint8_t button, bool is_release) {
+    (void) canvas;
     (void) self;
 
     (void) x;
@@ -95,8 +95,8 @@ on_click(canvas_window_t *window, button_practice_t *self, size_t x, size_t y, u
 void
 button_practice_start(void) {
     button_practice_t *self = button_practice_new();
-    self->canvas->window->on_frame = (on_frame_t *) on_frame;
-    self->canvas->window->on_click = (on_click_t *) on_click;
+    self->canvas->on_frame = (on_frame_t *) on_frame;
+    self->canvas->on_click = (on_click_t *) on_click;
 
     canvas_open(self->canvas);
 

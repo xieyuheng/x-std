@@ -224,28 +224,36 @@ canvas_window_receive(canvas_window_t *self) {
     }
 
     case KeyPress: {
-        if (self->on_key) {
+        if (self->canvas->on_key) {
             XKeyPressedEvent* event = (XKeyPressedEvent*) &unknown_event;
             int group = 0;
             int level = event->state & ShiftMask ? 1 : 0;
             KeySym keysym = XkbKeycodeToKeysym(self->display, event->keycode, group, level);
             const char *key_name = XKeysymToString(keysym);
             bool is_release = false;
-            self->on_key(self, self->state, key_name, is_release);
+            self->canvas->on_key(
+                self->canvas,
+                self->canvas->state,
+                key_name,
+                is_release);
         }
 
         return;
     }
 
     case KeyRelease: {
-        if (self->on_key) {
+        if (self->canvas->on_key) {
             XKeyReleasedEvent* event = (XKeyReleasedEvent*) &unknown_event;
             int group = 0;
             int level = event->state & ShiftMask ? 1 : 0;
             KeySym keysym = XkbKeycodeToKeysym(self->display, event->keycode, group, level);
             const char *key_name = XKeysymToString(keysym);
             bool is_release = true;
-            self->on_key(self, self->state, key_name, is_release);
+            self->canvas->on_key(
+                self->canvas,
+                self->canvas->state,
+                key_name,
+                is_release);
         }
 
         return;
@@ -253,10 +261,11 @@ canvas_window_receive(canvas_window_t *self) {
 
     case ButtonPress: {
         XButtonPressedEvent *event = (XButtonPressedEvent *)&unknown_event;
-        if (self->on_click) {
+        if (self->canvas->on_click) {
             bool is_release = false;
-            self->on_click(
-                self, self->state,
+            self->canvas->on_click(
+                self->canvas,
+                self->canvas->state,
                 event->x / self->canvas->scale,
                 event->y / self->canvas->scale,
                 event->button,
@@ -268,10 +277,11 @@ canvas_window_receive(canvas_window_t *self) {
 
     case ButtonRelease: {
         XButtonPressedEvent *event = (XButtonPressedEvent *)&unknown_event;
-        if (self->on_click) {
+        if (self->canvas->on_click) {
             bool is_release = true;
-            self->on_click(
-                self, self->state,
+            self->canvas->on_click(
+                self->canvas,
+                self->canvas->state,
                 event->x / self->canvas->scale,
                 event->y / self->canvas->scale,
                 event->button,
@@ -330,8 +340,11 @@ canvas_window_open(canvas_window_t *self) {
             read(fds[1].fd, &expirations, sizeof(uint64_t));
             canvas_window_update_image(self);
             canvas_window_show_image(self);
-            if (self->on_frame) {
-                self->on_frame(self, self->state, expirations);
+            if (self->canvas->on_frame) {
+                self->canvas->on_frame(
+                    self->canvas,
+                    self->canvas->state,
+                    expirations);
             }
         }
     }

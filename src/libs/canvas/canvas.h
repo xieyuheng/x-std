@@ -10,6 +10,11 @@ typedef enum {
     AP_COLOR = 3, // Application
 } palette_color_t;
 
+
+typedef void (on_key_t)(canvas_t *self, void *state, const char *key_name, bool is_release);
+typedef void (on_click_t)(canvas_t *self, void *state, size_t x, size_t y, uint8_t button, bool is_release);
+typedef void (on_frame_t)(canvas_t *self, void *state, uint64_t expirations);
+
 // The width and height of canvas are measured in tile.
 struct canvas_t {
     size_t width, height;
@@ -22,6 +27,11 @@ struct canvas_t {
     uint32_t palette[4];
 
     canvas_window_t *window;
+
+    void *state;
+    on_key_t *on_key;
+    on_click_t *on_click;
+    on_frame_t *on_frame;
 };
 
 canvas_t *canvas_new(size_t width, size_t height, size_t scale);
