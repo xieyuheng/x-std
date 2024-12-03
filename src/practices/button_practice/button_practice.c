@@ -44,14 +44,7 @@ button_practice_destroy(button_practice_t **self_pointer) {
 }
 
 static void
-on_frame(canvas_window_t *window, button_practice_t *self, uint64_t expirations) {
-    (void) expirations;
-
-    self->window->background_pixel =
-        self->window->canvas->palette[BG_COLOR];
-
-    canvas_fill_bottom_right(window->canvas, 0, 0, 0);
-
+render_button(canvas_window_t *window, button_practice_t *self) {
     size_t x = 3 * TILE;
     size_t y = 3 * TILE;
 
@@ -60,6 +53,15 @@ on_frame(canvas_window_t *window, button_practice_t *self, uint64_t expirations)
     } else {
         canvas_draw_chr(window->canvas, x, y, self->button_up_chr, 3, 3, 1);
     }
+}
+
+static void
+on_frame(canvas_window_t *window, button_practice_t *self, uint64_t expirations) {
+    (void) expirations;
+
+    self->window->background_pixel = self->window->canvas->palette[BG_COLOR];
+    canvas_fill_bottom_right(window->canvas, 0, 0, BG_COLOR);
+    render_button(window, self);
 }
 
 static void

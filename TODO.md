@@ -1,9 +1,7 @@
-[practice] extract `render_button`
-[canvas_window] fix click event x and y after centered
-
 [canvas_window] has a list of click handlers
-
 [practice] `render_button` add click handler for button
+
+[canvas_window] fix click event x and y after centered
 
 [canvas] `canvas_draw_icn` handle alpha
 [canvas] `canvas_draw_chr` handle alpha
