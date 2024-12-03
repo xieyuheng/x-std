@@ -50,6 +50,19 @@ render_button(canvas_window_t *window, button_practice_t *self) {
 
     if (self->is_pressed) {
         canvas_draw_chr(window->canvas, x, y, self->button_down_chr, 3, 3, 1);
+
+        // canvas_window_add_clickable_area(
+        //     window,
+        //     x, y,
+        //     3 * TILE, 3 * TILE,
+        //     button_on_click);
+
+        // canvas_window_render_image_button(
+        //     window,
+        //     x, y,
+        //     "asset-name",
+        //     button_on_click);
+
     } else {
         canvas_draw_chr(window->canvas, x, y, self->button_up_chr, 3, 3, 1);
     }

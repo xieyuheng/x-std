@@ -1,6 +1,13 @@
-[canvas_window] has a list of click handlers
-[practice] `render_button` add click handler for button
+maybe canvas has window
 
+[canvas_window] `clickable_area_t`
+[canvas_window] has `clickable_area_list`
+
+[canvas_window] `canvas_window_add_clickable_area`
+[canvas_window] `asset_store_t` -- asset file with cache
+[canvas_window] `canvas_window_render_image_button` -- load image from asset store
+
+[practice] `render_button` add click handler for button
 [canvas_window] fix click event x and y after centered
 
 [canvas] `canvas_draw_icn` handle alpha
