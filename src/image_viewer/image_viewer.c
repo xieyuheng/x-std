@@ -57,10 +57,10 @@ on_frame(
     uint8_t *bytes = file_read_bytes(file);
 
     if (string_ends_with(self->path, ".icn"))
-        canvas_draw_icn(canvas, 0, 0, bytes, width, height, self->blending);
+        canvas_draw_icn_image(canvas, 0, 0, bytes, width, height, self->blending);
 
     if (string_ends_with(self->path, ".chr"))
-        canvas_draw_chr(canvas, 0, 0, bytes, width, height, self->blending);
+        canvas_draw_chr_image(canvas, 0, 0, bytes, width, height, self->blending);
 
     self->is_changed = false;
 }

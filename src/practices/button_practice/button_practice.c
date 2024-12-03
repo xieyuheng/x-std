@@ -47,7 +47,7 @@ render_button(button_practice_t *self, canvas_t *canvas) {
     size_t y = 3 * TILE;
 
     if (self->is_pressed) {
-        canvas_draw_chr(canvas, x, y, self->button_down_chr, 3, 3, 1);
+        canvas_draw_chr_image(canvas, x, y, self->button_down_chr, 3, 3, 1);
 
         // canvas_add_clickable_area(
         //     canvas,
@@ -62,7 +62,7 @@ render_button(button_practice_t *self, canvas_t *canvas) {
         //     button_on_click);
 
     } else {
-        canvas_draw_chr(canvas, x, y, self->button_up_chr, 3, 3, 1);
+        canvas_draw_chr_image(canvas, x, y, self->button_up_chr, 3, 3, 1);
     }
 }
 

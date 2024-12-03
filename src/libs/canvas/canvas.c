@@ -53,7 +53,7 @@ static uint8_t blending_table[4][16] = {
 };
 
 void
-canvas_draw_icn(
+canvas_draw_icn_image(
     canvas_t *self,
     size_t x, size_t y,
     uint8_t *bytes,
@@ -81,7 +81,7 @@ canvas_draw_icn(
 }
 
 void
-canvas_draw_chr(
+canvas_draw_chr_image(
     canvas_t *self,
     size_t x, size_t y,
     uint8_t *bytes,

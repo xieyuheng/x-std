@@ -1,5 +1,8 @@
 [canvas] extract `canvas_draw_image.c`
 
+touch canvas_draw_image.c
+touch canvas_draw_image.h
+
 [canvas] `canvas_clickable_area_t`
 [canvas] has `clickable_area_list`
 
@@ -11,8 +14,8 @@
 [practice] `render_button` add click handler for button
 [canvas] fix click event x and y after centered
 
-[canvas] `canvas_draw_icn` handle alpha
-[canvas] `canvas_draw_chr` handle alpha
+[canvas] `canvas_draw_icn_image` handle alpha
+[canvas] `canvas_draw_chr_image` handle alpha
 
 [practice] button custom cursor
 
@@ -24,5 +27,5 @@
 
 [editor] `editor` setup
 [editor] parse hex
-[editor] use `canvas_draw_icn` to view font
+[editor] use `canvas_draw_icn_image` to view font
 [editor] `canvas_draw_text`
