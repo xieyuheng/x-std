@@ -155,9 +155,11 @@ canvas_window_show_image(canvas_window_t *self) {
     size_t x_offset = (self->width - image_width) / 2;
     size_t y_offset = (self->height - image_height) / 2;
 
+    GC graphic_context = XDefaultGC(self->display, 0);
+
     XPutImage(
         self->display, self->window,
-        XDefaultGC(self->display, 0),
+        graphic_context,
         self->image,
         0, 0,
         x_offset, y_offset,
@@ -240,6 +242,34 @@ canvas_window_receive(canvas_window_t *self) {
             const char *key_name = XKeysymToString(keysym);
             bool is_release = true;
             self->on_key(self, self->state, key_name, is_release);
+        }
+
+        return;
+    }
+
+    case ButtonPress: {
+        XButtonPressedEvent *event = (XButtonPressedEvent *)&unknown_event;
+        if (self->on_click) {
+            self->on_click(
+                self,
+                self->state,
+                event->x,
+                event->y,
+                event->button, false);
+        }
+
+        return;
+    }
+
+    case ButtonRelease: {
+        XButtonPressedEvent *event = (XButtonPressedEvent *)&unknown_event;
+        if (self->on_click) {
+            self->on_click(
+                self,
+                self->state,
+                event->x,
+                event->y,
+                event->button, true);
         }
 
         return;

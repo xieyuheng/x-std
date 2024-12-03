@@ -1,6 +1,7 @@
 #pragma once
 
 typedef void (on_key_t)(canvas_window_t *self, void *state, const char *key_name, bool is_release);
+typedef void (on_click_t)(canvas_window_t *self, void *state, int x, int y, int button, bool is_release);
 typedef void (on_frame_t)(canvas_window_t *self, void *state, uint64_t expirations);
 
 struct canvas_window_t {
@@ -19,6 +20,7 @@ struct canvas_window_t {
 
     void *state;
     on_key_t *on_key;
+    on_click_t *on_click;
     on_frame_t *on_frame;
 };
 
