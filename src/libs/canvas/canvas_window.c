@@ -103,20 +103,40 @@ canvas_window_init_title(canvas_window_t *self) {
 
 static void
 canvas_window_update_pixel(canvas_window_t *self, size_t col, size_t row) {
-    uint32_t index = row * self->canvas->width + col;
-    uint32_t pixel = self->canvas->pixels[index];
+    // canvas should be at the center of the image.
+
+    size_t width_scale = self->width / (self->canvas->width);
+    size_t height_scale = self->height / (self->canvas->height);
+
+    self->scale = uint_min(width_scale, height_scale);
+
+    size_t image_width = self->canvas->width * self->scale;
+    size_t image_height = self->canvas->height * self->scale;
+
+    size_t x_offset = (self->width - image_width) / 2;
+    size_t y_offset = (self->height - image_height) / 2;
+
     uint32_t y_start = row * self->scale;
     uint32_t x_start = col * self->scale;
-    uint32_t x_width = self->canvas->width * self->scale;
     for (size_t y = y_start; y < y_start + self->scale; y++) {
         for (size_t x = x_start; x < x_start + self->scale; x++) {
-            self->image_buffer[y * x_width + x] = pixel;
+            self->image_buffer[(y_offset + y) * self->width + (x_offset + x)] =
+                self->canvas->pixels[row * self->canvas->width + col];
         }
     }
 }
 
 static void
 canvas_window_update_image_buffer(canvas_window_t *self) {
+    // update background
+    for (size_t y = 0; y < self->height; y++) {
+        for (size_t x = 0; x < self->width; x++) {
+            self->image_buffer[y * self->width + x] =
+                self->canvas->palette[BG_COLOR];
+        }
+    }
+
+    // update image
     for (size_t row = 0; row < self->canvas->height; row++) {
         for (size_t col = 0; col < self->canvas->width; col++) {
             canvas_window_update_pixel(self, col, row);
@@ -135,34 +155,24 @@ canvas_window_update_image(canvas_window_t *self) {
     int64_t pixel_bits = pixel_bytes * 8;
     int64_t bytes_per_line = 0;
 
-    size_t image_width = self->canvas->width * self->scale;
-    size_t image_height = self->canvas->height * self->scale;
-
     if (self->image) XFree(self->image);
     self->image = XCreateImage(
         self->display, visual,
-        image_depth, ZPixmap, image_offset,
+        image_depth, ZPixmap,
+        image_offset,
         (char *) self->image_buffer,
-        image_width, image_height,
+        self->width, self->height,
         pixel_bits, bytes_per_line);
 }
 
 static void
 canvas_window_show_image(canvas_window_t *self) {
-    size_t image_width = self->canvas->width * self->scale;
-    size_t image_height = self->canvas->height * self->scale;
-
-    size_t x_offset = (self->width - image_width) / 2;
-    size_t y_offset = (self->height - image_height) / 2;
-
-    GC graphic_context = XDefaultGC(self->display, 0);
-
     XPutImage(
-        self->display, self->window,
-        graphic_context,
+        self->display,
+        self->window,
+        XDefaultGC(self->display, 0),
         self->image,
-        0, 0,
-        x_offset, y_offset,
+        0, 0, 0, 0,
         self->width,
         self->height);
 }
@@ -175,17 +185,10 @@ canvas_window_resize(canvas_window_t *self, size_t width, size_t height) {
     self->width = width;
     self->height = height;
 
-    size_t width_scale = self->width / (self->canvas->width);
-    size_t height_scale = self->height / (self->canvas->height);
-    self->scale = uint_min(width_scale, height_scale);
-
-    size_t image_width = self->canvas->width * self->scale;
-    size_t image_height = self->canvas->height * self->scale;
-
     self->image_buffer = realloc(
         self->image_buffer,
-        image_width *
-        image_height *
+        self->width *
+        self->height *
         sizeof(uint32_t));
 
     canvas_window_update_image(self);

@@ -1,5 +1,10 @@
-[practice] button -- has a list of click handlers
-[practice] button -- only the button can be clicked
+[practice] extract `render_button`
+
+[canvas_window] fix click event x and y after centered
+
+[canvas_window] has a list of click handlers
+
+[practice] `render_button` add click handler for button
 
 [canvas] `canvas_draw_icn` handle alpha
 [canvas] `canvas_draw_chr` handle alpha
@@ -9,8 +14,6 @@
 # canvas
 
 [canvas] [maybe] give each 16 blending a name
-
-[canvas_window] clear bg on resize
 
 # editor
 
