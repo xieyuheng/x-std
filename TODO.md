@@ -1,4 +1,4 @@
-[dict] `dict_t`
+[dict] `entry_t` -- private
 [dict] `dict_test` setup
 [dict] `dict_new`
 [dict] `dict_destroy`
