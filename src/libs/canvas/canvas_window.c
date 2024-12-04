@@ -203,8 +203,19 @@ canvas_window_resize_button(
     uint8_t button_id,
     bool is_release
 ) {
-    size_t x = event_x / self->canvas->scale;
-    size_t y = event_y / self->canvas->scale;
+    // adjust `x` and `y` after centering.
+
+    size_t image_width = self->canvas->width * self->canvas->scale;
+    size_t image_height = self->canvas->height * self->canvas->scale;
+
+    size_t x_offset = (self->width - image_width) / 2;
+    size_t y_offset = (self->height - image_height) / 2;
+
+    size_t adjusted_x = event_x - x_offset;
+    size_t adjusted_y = event_y - y_offset;
+
+    size_t x = adjusted_x / self->canvas->scale;
+    size_t y = adjusted_y / self->canvas->scale;
 
     if (self->canvas->on_click) {
         self->canvas->on_click(

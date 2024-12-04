@@ -1,5 +1,3 @@
-[canvas] `canvas_window_resize_button` -- adjust click callback arguments `x` and `y` after centering
-
 [canvas] `asset_store_t` -- asset file with cache
 [canvas] `canvas_render_image_button` -- load image from asset store
 
