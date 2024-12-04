@@ -300,7 +300,7 @@ canvas_window_receive(canvas_window_t *self) {
 
     case ButtonRelease: {
         XButtonPressedEvent *event = (XButtonPressedEvent *)&unknown_event;
-        bool is_release = false;
+        bool is_release = true;
         size_t x = event->x / self->canvas->scale;
         size_t y = event->y / self->canvas->scale;
 

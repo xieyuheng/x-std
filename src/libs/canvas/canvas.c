@@ -51,7 +51,14 @@ canvas_draw_pixel(canvas_t *self, size_t x, size_t y, color_t color) {
 }
 
 void
-canvas_add_clickable_area(canvas_t *self, canvas_clickable_area_t *clickable_area) {
+canvas_add_clickable_area(
+    canvas_t *self,
+    size_t x, size_t y,
+    size_t width, size_t height,
+    on_click_t *on_click
+) {
+    canvas_clickable_area_t *clickable_area =
+        canvas_clickable_area_new(x, y, width, height, on_click);
     list_push(self->clickable_area_list, clickable_area);
 }
 

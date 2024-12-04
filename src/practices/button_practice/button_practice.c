@@ -42,45 +42,7 @@ button_practice_destroy(button_practice_t **self_pointer) {
 }
 
 static void
-render_button(button_practice_t *self, canvas_t *canvas) {
-    size_t x = 3 * TILE;
-    size_t y = 3 * TILE;
-
-    if (self->is_pressed) {
-        canvas_draw_chr_image(canvas, x, y, self->button_down_chr, 3, 3, 1);
-
-        // canvas_add_clickable_area(
-        //     canvas,
-        //     x, y,
-        //     3 * TILE, 3 * TILE,
-        //     button_on_click);
-
-        // canvas_render_image_button(
-        //     canvas,
-        //     x, y,
-        //     "asset-name",
-        //     button_on_click);
-
-    } else {
-        canvas_draw_chr_image(canvas, x, y, self->button_up_chr, 3, 3, 1);
-    }
-}
-
-static void
-on_frame(
-    button_practice_t *self,
-    canvas_t *canvas,
-    uint64_t passed
-) {
-    (void) passed;
-
-    canvas->window->background_pixel = canvas->palette[BG_COLOR];
-    canvas_fill_bottom_right(canvas, 0, 0, BG_COLOR);
-    render_button(self, canvas);
-}
-
-static void
-on_click(
+button_on_click(
     button_practice_t *self,
     canvas_t *canvas,
     size_t x,
@@ -97,17 +59,54 @@ on_click(
     if (button == 1) {
         if (is_release) {
             self->is_pressed = false;
+            printf("!");
         } else {
             self->is_pressed = true;
         }
     }
 }
 
+static void
+render_button(button_practice_t *self, canvas_t *canvas) {
+    size_t x = 3 * TILE;
+    size_t y = 3 * TILE;
+
+    if (self->is_pressed) {
+        canvas_draw_chr_image(canvas, x, y, self->button_down_chr, 3, 3, 1);
+        canvas_add_clickable_area(
+            canvas, x, y, 3 * TILE, 3 * TILE,
+            (on_click_t *) button_on_click);
+        // canvas_render_image_button(
+        //     canvas, x, y,
+        //     "asset-name",
+        //     (on_click_t *) button_on_click);
+    } else {
+        canvas_draw_chr_image(canvas, x, y, self->button_up_chr, 3, 3, 1);
+        canvas_add_clickable_area(
+            canvas, x, y, 3 * TILE, 3 * TILE,
+            (on_click_t *) button_on_click);
+    }
+}
+
+static void
+on_frame(
+    button_practice_t *self,
+    canvas_t *canvas,
+    uint64_t passed
+) {
+    (void) passed;
+
+
+    canvas->window->background_pixel = canvas->palette[BG_COLOR];
+    canvas_fill_bottom_right(canvas, 0, 0, BG_COLOR);
+    // canvas_clear_clickable_area(canvas);
+    render_button(self, canvas);
+}
+
 void
 button_practice_start(void) {
     button_practice_t *self = button_practice_new();
     self->canvas->on_frame = (on_frame_t *) on_frame;
-    self->canvas->on_click = (on_click_t *) on_click;
 
     canvas_open(self->canvas);
 

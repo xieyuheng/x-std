@@ -1,5 +1,3 @@
-[practice] `render_button` -- use `canvas_add_clickable_area`
-
 [canvas] fix click callback arguments `x` and `y` -- should be after centered
 
 [canvas] `asset_store_t` -- asset file with cache
