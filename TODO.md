@@ -1,5 +1,6 @@
+extract `libs_test`
+
 [dict] `entry_t` -- private
-[dict] `dict_test` setup
 [dict] `dict_new`
 [dict] `dict_destroy`
 [dict] `dict_new_with`

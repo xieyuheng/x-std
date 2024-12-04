@@ -18,6 +18,7 @@ run(char **args) {
 
     string_test();
     list_test();
+    dict_test();
     stack_test();
     int_test();
     text_test();
