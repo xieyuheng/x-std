@@ -261,15 +261,38 @@ canvas_window_receive(canvas_window_t *self) {
 
     case ButtonPress: {
         XButtonPressedEvent *event = (XButtonPressedEvent *)&unknown_event;
+        bool is_release = false;
+        size_t x = event->x / self->canvas->scale;
+        size_t y = event->y / self->canvas->scale;
+
         if (self->canvas->on_click) {
-            bool is_release = false;
             self->canvas->on_click(
                 self->canvas->state,
                 self->canvas,
-                event->x / self->canvas->scale,
-                event->y / self->canvas->scale,
+                x, y,
                 event->button,
                 is_release);
+        }
+
+        canvas_clickable_area_t *clickable_area =
+            list_first(self->canvas->clickable_area_list);
+
+        while (clickable_area) {
+            if (x >= clickable_area->x &&
+                x < clickable_area->x + clickable_area->width &&
+                y >= clickable_area->y &&
+                y < clickable_area->y + clickable_area->height)
+            {
+                clickable_area->on_click(
+                    self->canvas->state,
+                    self->canvas,
+                    x, y,
+                    event->button,
+                    is_release);
+                return;
+            }
+
+            clickable_area = list_next(self->canvas->clickable_area_list);
         }
 
         return;
@@ -277,15 +300,38 @@ canvas_window_receive(canvas_window_t *self) {
 
     case ButtonRelease: {
         XButtonPressedEvent *event = (XButtonPressedEvent *)&unknown_event;
+        bool is_release = false;
+        size_t x = event->x / self->canvas->scale;
+        size_t y = event->y / self->canvas->scale;
+
         if (self->canvas->on_click) {
-            bool is_release = true;
             self->canvas->on_click(
                 self->canvas->state,
                 self->canvas,
-                event->x / self->canvas->scale,
-                event->y / self->canvas->scale,
+                x, y,
                 event->button,
                 is_release);
+        }
+
+        canvas_clickable_area_t *clickable_area =
+            list_first(self->canvas->clickable_area_list);
+
+        while (clickable_area) {
+            if (x >= clickable_area->x &&
+                x < clickable_area->x + clickable_area->width &&
+                y >= clickable_area->y &&
+                y < clickable_area->y + clickable_area->height)
+            {
+                clickable_area->on_click(
+                    self->canvas->state,
+                    self->canvas,
+                    x, y,
+                    event->button,
+                    is_release);
+                return;
+            }
+
+            clickable_area = list_next(self->canvas->clickable_area_list);
         }
 
         return;

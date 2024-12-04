@@ -1,5 +1,3 @@
-[canvas] use `clickable_area_list` to handle click
-
 [practice] `render_button` -- use `canvas_add_clickable_area`
 
 [canvas] fix click callback arguments `x` and `y` -- should be after centered
