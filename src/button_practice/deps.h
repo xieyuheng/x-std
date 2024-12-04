@@ -2,4 +2,4 @@
 
 #include <libgen.h>
 
-#include "../../deps.h"
+#include "../deps.h"

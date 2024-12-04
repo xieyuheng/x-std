@@ -1,3 +1,15 @@
+rename `practice` command to `example`
+
+[dict] setup `libs/dict` string to pointer kv-map
+
+[dict] `dict_t`
+[dict] `dict_test` setup
+[dict] `dict_new`
+[dict] `dict_destroy`
+[dict] `dict_new_with`
+
+[canvas] be able to config frame rate
+
 [canvas] `asset_store_t` -- asset file with cache
 
 [canvas] `canvas_render_image_button` -- load image from asset store

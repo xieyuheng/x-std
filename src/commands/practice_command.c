@@ -1,5 +1,5 @@
 #include "index.h"
-#include "../practices/button_practice/index.h"
+#include "../button_practice/index.h"
 
 static int run(char **args);
 
