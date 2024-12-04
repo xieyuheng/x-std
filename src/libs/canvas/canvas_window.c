@@ -227,7 +227,7 @@ canvas_window_resize_button(
             is_release);
     }
 
-    canvas_clickable_area_t *clickable_area =
+    clickable_area_t *clickable_area =
         list_first(self->canvas->clickable_area_list);
 
     while (clickable_area) {

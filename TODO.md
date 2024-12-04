@@ -1,4 +1,5 @@
 [canvas] `asset_store_t` -- asset file with cache
+
 [canvas] `canvas_render_image_button` -- load image from asset store
 
 ```c
