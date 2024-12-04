@@ -96,10 +96,9 @@ on_frame(
 ) {
     (void) passed;
 
-
     canvas->window->background_pixel = canvas->palette[BG_COLOR];
     canvas_fill_bottom_right(canvas, 0, 0, BG_COLOR);
-    // canvas_clear_clickable_area(canvas);
+    canvas_clear_clickable_area(canvas);
     render_button(self, canvas);
 }
 
