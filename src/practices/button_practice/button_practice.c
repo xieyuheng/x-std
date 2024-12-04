@@ -42,7 +42,7 @@ button_practice_destroy(button_practice_t **self_pointer) {
 }
 
 static void
-button_on_click(
+on_click_button(
     button_practice_t *self,
     canvas_t *canvas,
     size_t x,
@@ -77,12 +77,12 @@ render_button(button_practice_t *self, canvas_t *canvas) {
         canvas_draw_chr_image(canvas, x, y, self->button_down_chr, 3, 3, 1);
         canvas_add_clickable_area(
             canvas, x, y, width, height,
-            (on_click_t *) button_on_click);
+            (on_click_t *) on_click_button);
     } else {
         canvas_draw_chr_image(canvas, x, y, self->button_up_chr, 3, 3, 1);
         canvas_add_clickable_area(
             canvas, x, y, width, height,
-            (on_click_t *) button_on_click);
+            (on_click_t *) on_click_button);
     }
 }
 
