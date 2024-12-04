@@ -1,5 +1,5 @@
 #include "index.h"
-#include "../button_practice/index.h"
+#include "../example_button/index.h"
 
 static int run(char **args);
 
@@ -17,7 +17,7 @@ run(char **args) {
     char *name = names[0];
 
     if (string_equal(name, "button")) {
-        button_practice_start();
+        example_button_start();
         return 0;
     }
 

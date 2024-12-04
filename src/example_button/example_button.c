@@ -1,15 +1,15 @@
 #include "index.h"
 
-struct button_practice_t {
+struct example_button_t {
     canvas_t *canvas;
     uint8_t *button_up_chr;
     uint8_t *button_down_chr;
     bool is_pressed;
 };
 
-button_practice_t *
-button_practice_new(void) {
-    button_practice_t *self = allocate(sizeof(button_practice_t));
+example_button_t *
+example_button_new(void) {
+    example_button_t *self = allocate(sizeof(example_button_t));
 
     char *base = dirname(string_dup(__FILE__));
     const char *file_name = string_append(base, "/button10x10.chr");
@@ -29,10 +29,10 @@ button_practice_new(void) {
 }
 
 void
-button_practice_destroy(button_practice_t **self_pointer) {
+example_button_destroy(example_button_t **self_pointer) {
     assert(self_pointer);
     if (*self_pointer) {
-        button_practice_t *self = *self_pointer;
+        example_button_t *self = *self_pointer;
         canvas_destroy(&self->canvas);
         free(self->button_up_chr);
         free(self->button_down_chr);
@@ -43,7 +43,7 @@ button_practice_destroy(button_practice_t **self_pointer) {
 
 static void
 on_click_button(
-    button_practice_t *self,
+    example_button_t *self,
     canvas_t *canvas,
     size_t x,
     size_t y,
@@ -67,7 +67,7 @@ on_click_button(
 }
 
 static void
-render_button(button_practice_t *self, canvas_t *canvas) {
+render_button(example_button_t *self, canvas_t *canvas) {
     size_t x = 3 * TILE;
     size_t y = 3 * TILE;
     size_t width = 3 * TILE;
@@ -88,7 +88,7 @@ render_button(button_practice_t *self, canvas_t *canvas) {
 
 static void
 on_frame(
-    button_practice_t *self,
+    example_button_t *self,
     canvas_t *canvas,
     uint64_t passed
 ) {
@@ -101,9 +101,9 @@ on_frame(
 }
 
 void
-button_practice_start(void) {
-    button_practice_t *self = button_practice_new();
+example_button_start(void) {
+    example_button_t *self = example_button_new();
     self->canvas->on_frame = (on_frame_t *) on_frame;
     canvas_open(self->canvas);
-    button_practice_destroy(&self);
+    example_button_destroy(&self);
 }
