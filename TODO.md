@@ -1,4 +1,3 @@
-[dict] `entry_new`
 [dict] `entry_destroy`
 
 [dict] `dict_new`
