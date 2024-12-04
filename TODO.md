@@ -1,5 +1,3 @@
-[list] use `list_new_with` instead of `list_set_item_destructor`
-
 [stack] `stack_new_with` -- instead of `stack_new` + `stack_set_item_destructor`
 
 [practice] report on unknown practice and list avaiable practices
