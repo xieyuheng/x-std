@@ -3,6 +3,13 @@
 [canvas] `asset_store_t` -- asset file with cache
 [canvas] `canvas_render_image_button` -- load image from asset store
 
+```c
+canvas_render_image_button(
+    canvas, x, y,
+    "asset-name",
+    (on_click_t *) button_on_click);
+```
+
 [canvas] `canvas_draw_icn_image` handle alpha
 [canvas] `canvas_draw_chr_image` handle alpha
 

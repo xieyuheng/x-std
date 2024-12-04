@@ -70,20 +70,18 @@ static void
 render_button(button_practice_t *self, canvas_t *canvas) {
     size_t x = 3 * TILE;
     size_t y = 3 * TILE;
+    size_t width = 3 * TILE;
+    size_t height = 3 * TILE;
 
     if (self->is_pressed) {
         canvas_draw_chr_image(canvas, x, y, self->button_down_chr, 3, 3, 1);
         canvas_add_clickable_area(
-            canvas, x, y, 3 * TILE, 3 * TILE,
+            canvas, x, y, width, height,
             (on_click_t *) button_on_click);
-        // canvas_render_image_button(
-        //     canvas, x, y,
-        //     "asset-name",
-        //     (on_click_t *) button_on_click);
     } else {
         canvas_draw_chr_image(canvas, x, y, self->button_up_chr, 3, 3, 1);
         canvas_add_clickable_area(
-            canvas, x, y, 3 * TILE, 3 * TILE,
+            canvas, x, y, width, height,
             (on_click_t *) button_on_click);
     }
 }
@@ -106,8 +104,6 @@ void
 button_practice_start(void) {
     button_practice_t *self = button_practice_new();
     self->canvas->on_frame = (on_frame_t *) on_frame;
-
     canvas_open(self->canvas);
-
     button_practice_destroy(&self);
 }
