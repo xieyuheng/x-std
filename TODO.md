@@ -1,11 +1,11 @@
-[canvas] `canvas_add_clickable_area`
+[canvas] `canvas_clear_clickable_area`
+
+[practice] `render_button` -- use `canvas_add_clickable_area`
+
+[canvas] fix click callback arguments `x` and `y` -- should be after centered
 
 [canvas] `asset_store_t` -- asset file with cache
 [canvas] `canvas_render_image_button` -- load image from asset store
-
-[practice] `render_button` add click handler for button
-
-[canvas] fix click callback arguments `x` and `y` -- should be after centered
 
 [canvas] `canvas_draw_icn_image` handle alpha
 [canvas] `canvas_draw_chr_image` handle alpha
