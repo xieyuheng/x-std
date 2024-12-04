@@ -1,4 +1,5 @@
-[dict] `entry_t` -- private
+[dict] `entry_new`
+[dict] `entry_destroy`
 
 [dict] `dict_new`
 [dict] `dict_destroy`
