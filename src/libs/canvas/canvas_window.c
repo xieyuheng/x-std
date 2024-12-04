@@ -224,70 +224,66 @@ canvas_window_receive(canvas_window_t *self) {
     }
 
     case KeyPress: {
-        if (self->canvas->on_key) {
-            XKeyPressedEvent* event = (XKeyPressedEvent*) &unknown_event;
-            int group = 0;
-            int level = event->state & ShiftMask ? 1 : 0;
-            KeySym keysym = XkbKeycodeToKeysym(self->display, event->keycode, group, level);
-            const char *key_name = XKeysymToString(keysym);
-            bool is_release = false;
-            self->canvas->on_key(
-                self->canvas->state,
-                self->canvas,
-                key_name,
-                is_release);
-        }
+        if (!self->canvas->on_key) return;
 
+        XKeyPressedEvent* event = (XKeyPressedEvent*) &unknown_event;
+        int group = 0;
+        int level = event->state & ShiftMask ? 1 : 0;
+        KeySym keysym = XkbKeycodeToKeysym(self->display, event->keycode, group, level);
+        const char *key_name = XKeysymToString(keysym);
+        bool is_release = false;
+        self->canvas->on_key(
+            self->canvas->state,
+            self->canvas,
+            key_name,
+            is_release);
         return;
     }
 
     case KeyRelease: {
-        if (self->canvas->on_key) {
-            XKeyReleasedEvent* event = (XKeyReleasedEvent*) &unknown_event;
-            int group = 0;
-            int level = event->state & ShiftMask ? 1 : 0;
-            KeySym keysym = XkbKeycodeToKeysym(self->display, event->keycode, group, level);
-            const char *key_name = XKeysymToString(keysym);
-            bool is_release = true;
-            self->canvas->on_key(
-                self->canvas->state,
-                self->canvas,
-                key_name,
-                is_release);
-        }
+        if (!self->canvas->on_key) return;
 
+        XKeyReleasedEvent* event = (XKeyReleasedEvent*) &unknown_event;
+        int group = 0;
+        int level = event->state & ShiftMask ? 1 : 0;
+        KeySym keysym = XkbKeycodeToKeysym(self->display, event->keycode, group, level);
+        const char *key_name = XKeysymToString(keysym);
+        bool is_release = true;
+        self->canvas->on_key(
+            self->canvas->state,
+            self->canvas,
+            key_name,
+            is_release);
         return;
     }
 
     case ButtonPress: {
-        XButtonPressedEvent *event = (XButtonPressedEvent *)&unknown_event;
-        if (self->canvas->on_click) {
-            bool is_release = false;
-            self->canvas->on_click(
-                self->canvas->state,
-                self->canvas,
-                event->x / self->canvas->scale,
-                event->y / self->canvas->scale,
-                event->button,
-                is_release);
-        }
+        if (!self->canvas->on_click) return;
 
+        XButtonPressedEvent *event = (XButtonPressedEvent *)&unknown_event;
+        bool is_release = false;
+        self->canvas->on_click(
+            self->canvas->state,
+            self->canvas,
+            event->x / self->canvas->scale,
+            event->y / self->canvas->scale,
+            event->button,
+            is_release);
         return;
     }
 
     case ButtonRelease: {
-        XButtonPressedEvent *event = (XButtonPressedEvent *)&unknown_event;
-        if (self->canvas->on_click) {
-            bool is_release = true;
-            self->canvas->on_click(
-                self->canvas->state,
-                self->canvas,
-                event->x / self->canvas->scale,
-                event->y / self->canvas->scale,
-                event->button,
-                is_release);
-        }
+        if (!self->canvas->on_click) return;
 
+        XButtonPressedEvent *event = (XButtonPressedEvent *)&unknown_event;
+        bool is_release = true;
+        self->canvas->on_click(
+            self->canvas->state,
+            self->canvas,
+            event->x / self->canvas->scale,
+            event->y / self->canvas->scale,
+            event->button,
+            is_release);
         return;
     }
     }
