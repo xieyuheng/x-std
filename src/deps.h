@@ -12,6 +12,7 @@
 #include "libs/allocate/index.h"
 #include "libs/string/index.h"
 #include "libs/list/index.h"
+#include "libs/dict/index.h"
 #include "libs/file/index.h"
 #include "libs/stack/index.h"
 #include "libs/int/index.h"

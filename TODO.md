@@ -1,5 +1,3 @@
-[dict] setup `libs/dict` string to pointer kv-map
-
 [dict] `dict_t`
 [dict] `dict_test` setup
 [dict] `dict_new`
