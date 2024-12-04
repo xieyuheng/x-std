@@ -13,7 +13,7 @@ struct list_t {
     node_t *last;
     node_t *cursor;
     size_t length;
-    list_destructor_t *destructor;
+    destructor_t *destructor;
 };
 
 list_t *
@@ -55,13 +55,13 @@ list_purge(list_t *self) {
 void
 list_set_destructor(
     list_t *self,
-    list_destructor_t *destructor
+    destructor_t *destructor
 ) {
     self->destructor = destructor;
 }
 
 list_t *
-list_new_with(list_destructor_t *destructor) {
+list_new_with(destructor_t *destructor) {
     list_t *self = list_new();
     self->destructor = destructor;
     return self;

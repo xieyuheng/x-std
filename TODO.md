@@ -1,4 +1,3 @@
-extract `destructor_t` to `allocate`
 [dict] `entry_t` -- private
 
 [dict] `dict_new`

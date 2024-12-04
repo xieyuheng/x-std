@@ -6,7 +6,7 @@ struct stack_t {
     size_t size;
     size_t cursor;
     item_t *items;
-    stack_destructor_t *destructor;
+    destructor_t *destructor;
 };
 
 stack_t *
@@ -43,13 +43,13 @@ stack_destroy(stack_t **self_pointer) {
 void
 stack_set_destructor(
     stack_t *self,
-    stack_destructor_t *destructor
+    destructor_t *destructor
 ) {
     self->destructor = destructor;
 }
 
 stack_t *
-stack_new_with(size_t size, stack_destructor_t *destructor) {
+stack_new_with(size_t size, destructor_t *destructor) {
     stack_t *self = stack_new(size);
     self->destructor = destructor;
     return self;

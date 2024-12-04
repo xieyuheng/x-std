@@ -17,7 +17,7 @@ canvas_new(size_t width, size_t height, size_t scale) {
     self->window = canvas_window_new(self);
 
     self->clickable_area_list = list_new_with(
-        (list_destructor_t *) clickable_area_destroy);
+        (destructor_t *) clickable_area_destroy);
 
     return self;
 }
