@@ -1,4 +1,5 @@
 [dict] `entry_t` -- private
+
 [dict] `dict_new`
 [dict] `dict_destroy`
 [dict] `dict_new_with`
@@ -6,6 +7,10 @@
 [canvas] be able to config frame rate
 
 [canvas] `asset_store_t` -- asset file with cache
+
+[canvas] `asset_store_has`
+[canvas] `asset_store_get`
+[canvas] `asset_store_set`
 
 [canvas] `canvas_render_image_button` -- load image from asset store
 
