@@ -20,7 +20,7 @@ example_button_new(void) {
     free(bytes);
 
     self->canvas = canvas_new(9 * TILE, 9 * TILE, 0x10);
-    self->canvas->title = "button practice";
+    self->canvas->title = "example button";
     self->canvas->state = self;
 
     self->is_pressed = false;

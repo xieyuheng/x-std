@@ -1,5 +1,3 @@
-rename `practice` command to `example`
-
 [dict] setup `libs/dict` string to pointer kv-map
 
 [dict] `dict_t`
