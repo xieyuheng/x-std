@@ -10,6 +10,7 @@ libs_test(void) {
     stack_test();
     int_test();
     text_test();
+    lexer_test();
     canvas_test();
     image_test();
 
