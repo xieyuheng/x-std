@@ -1,4 +1,4 @@
-[canvas] `canvas_window` use `clickable_area_list` to handle click
+[canvas] use `clickable_area_list` to handle click
 
 [practice] `render_button` -- use `canvas_add_clickable_area`
 
