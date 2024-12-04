@@ -1,5 +1,3 @@
-extract `libs_test`
-
 [dict] `entry_t` -- private
 [dict] `dict_new`
 [dict] `dict_destroy`

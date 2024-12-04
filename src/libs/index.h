@@ -12,3 +12,5 @@
 #include "image/index.h"
 #include "canvas/index.h"
 #include "commander/index.h"
+
+#include "libs_test.h"
