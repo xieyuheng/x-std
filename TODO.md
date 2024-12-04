@@ -1,5 +1,3 @@
-[practice] report on unknown practice and list avaiable practices
-
 [canvas] `canvas_clickable_area_new`
 [canvas] `canvas_clickable_area_destroy`
 

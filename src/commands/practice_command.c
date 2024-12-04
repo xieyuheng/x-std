@@ -13,13 +13,17 @@ practice_command(const commander_t *commander) {
 
 int
 run(char **args) {
-    char **paths = args + 1;
-    char *path = paths[0];
+    char **names = args + 1;
+    char *name = names[0];
 
-    if (string_equal(path, "button")) {
+    if (string_equal(name, "button")) {
         button_practice_start();
         return 0;
     }
 
-    return 0;
+    fprintf(stderr, "[practice] unknown practice name: %s\n", name);
+    fprintf(stderr, "[practice] known practices: "
+            "button"
+            "\n");
+    return 1;
 }
