@@ -11,16 +11,22 @@ example_command(const commander_t *commander) {
     commander_add(commander, command);
 }
 
+static void
+print_known_examples(void) {
+    printf(
+        "[example] known examples: "
+        "button"
+        "\n");
+}
+
 int
 run(char **args) {
     char **names = args + 1;
     char *name = names[0];
 
     if (!name) {
-        fprintf(stderr, "[example] expect a given example\n");
-        fprintf(stderr, "[example] known examples: "
-                "button"
-                "\n");
+        printf("[example] expect a given example\n");
+        print_known_examples();
         return 1;
     }
 
@@ -29,9 +35,7 @@ run(char **args) {
         return 0;
     }
 
-    fprintf(stderr, "[example] unknown example name: %s\n", name);
-    fprintf(stderr, "[example] known examples: "
-            "button"
-            "\n");
+    printf("[example] unknown example name: %s\n", name);
+    print_known_examples();
     return 1;
 }
