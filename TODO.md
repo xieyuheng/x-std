@@ -1,8 +1,12 @@
 [dict] `dict_new`
 [dict] `dict_destroy`
 [dict] `dict_new_with`
+[dict] `dict_has`
+[dict] `dict_set`
+[dict] `dict_get`
+[dict] `dict_get_or_fail`
 
-[canvas] be able to config frame rate
+[canvas] be able to config `frame_rate` -- default to 60
 
 [canvas] `asset_store_t` -- asset file with cache
 
