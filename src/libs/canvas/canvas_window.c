@@ -30,6 +30,16 @@ canvas_window_destroy(canvas_window_t **self_pointer) {
     }
 }
 
+size_t canvas_window_offset_x(canvas_window_t *self) {
+    size_t image_width = self->canvas->width * self->canvas->scale;
+    return (self->width - image_width) / 2;
+}
+
+size_t canvas_window_offset_y(canvas_window_t *self) {
+    size_t image_height = self->canvas->height * self->canvas->scale;
+    return (self->height - image_height) / 2;
+}
+
 static void canvas_window_init_display(canvas_window_t *self);
 static void canvas_window_init_window(canvas_window_t *self);
 static void canvas_window_init_input(canvas_window_t *self);
@@ -111,14 +121,12 @@ canvas_window_update_pixel(canvas_window_t *self, size_t col, size_t row) {
 
     self->canvas->scale = uint_min(width_scale, height_scale);
 
-    size_t image_width = self->canvas->width * self->canvas->scale;
-    size_t image_height = self->canvas->height * self->canvas->scale;
-
-    size_t x_offset = (self->width - image_width) / 2;
-    size_t y_offset = (self->height - image_height) / 2;
+    size_t x_offset = canvas_window_offset_x(self);
+    size_t y_offset = canvas_window_offset_y(self);
 
     uint32_t y_start = row * self->canvas->scale;
     uint32_t x_start = col * self->canvas->scale;
+
     for (size_t y = y_start; y < y_start + self->canvas->scale; y++) {
         for (size_t x = x_start; x < x_start + self->canvas->scale; x++) {
             self->image_buffer[(y_offset + y) * self->width + (x_offset + x)] =
@@ -204,15 +212,8 @@ canvas_window_resize_button(
     bool is_release
 ) {
     // adjust `x` and `y` after centering.
-
-    size_t image_width = self->canvas->width * self->canvas->scale;
-    size_t image_height = self->canvas->height * self->canvas->scale;
-
-    size_t x_offset = (self->width - image_width) / 2;
-    size_t y_offset = (self->height - image_height) / 2;
-
-    size_t adjusted_x = event_x - x_offset;
-    size_t adjusted_y = event_y - y_offset;
+    size_t adjusted_x = event_x - canvas_window_offset_x(self);
+    size_t adjusted_y = event_y - canvas_window_offset_y(self);
 
     size_t x = adjusted_x / self->canvas->scale;
     size_t y = adjusted_y / self->canvas->scale;
