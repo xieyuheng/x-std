@@ -54,3 +54,8 @@ void
 canvas_add_clickable_area(canvas_t *self, canvas_clickable_area_t *clickable_area) {
     list_push(self->clickable_area_list, clickable_area);
 }
+
+void
+canvas_clear_clickable_area(canvas_t *self) {
+    list_purge(self->clickable_area_list);
+}
