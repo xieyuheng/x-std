@@ -1,5 +1,3 @@
-[canvas] `canvas_clickable_area_destroy`
-
 [canvas] has `clickable_area_list` with `canvas_clickable_area_destroy`
 
 [canvas] `canvas_add_clickable_area`

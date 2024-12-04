@@ -10,3 +10,4 @@ canvas_clickable_area_t *canvas_clickable_area_new(
     size_t x, size_t y,
     size_t width, size_t height,
     on_click_t *on_click);
+void canvas_clickable_area_destroy(canvas_clickable_area_t **self_pointer);
