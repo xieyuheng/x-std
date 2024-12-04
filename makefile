@@ -5,23 +5,24 @@ cflags = -g -Wall -Wwrite-strings -Wextra -Werror -O0 -std=c99 -D_POSIX_C_SOURCE
 src = $(shell find src -name '*.c')
 headers = $(shell find src -name '*.h')
 lib = $(patsubst src/%,lib/%,$(patsubst %.c,%.o,$(src)))
-bin = bin/bifer
+app = bifer
+bin = bin/$(app)
 
 .PHONY: all
-all: bin/bifer
+all: bin/$(app)
 
 .PHONY: run
-run: bin/bifer
-	./bin/bifer
+run: bin/$(app)
+	./bin/$(app)
 
 .PHONY: test
-test: self-test 
+test: self-test
 
 .PHONY: self-test
-self-test: bin/bifer
-	./bin/bifer self-test
+self-test: bin/$(app)
+	./bin/$(app) self-test
 
-bin/bifer: $(lib) lib/bifer.o
+bin/$(app): $(lib) lib/$(app).o
 	mkdir -p $(dir $@); $(cc) $^ $(ldflags) -o $@
 
 lib/%.o: src/%.c $(headers)
