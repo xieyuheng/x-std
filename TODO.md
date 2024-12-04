@@ -1,5 +1,3 @@
-[canvas] has `clickable_area_list` with `canvas_clickable_area_destroy`
-
 [canvas] `canvas_add_clickable_area`
 
 [canvas] `asset_store_t` -- asset file with cache
