@@ -1,3 +1,4 @@
+extract libs/destructor
 [dict] `entry_t` -- private
 
 [dict] `dict_new`

@@ -1,6 +1,6 @@
 #pragma once
 
-typedef void (list_item_destructor_t)(void **item);
+typedef void (list_destructor_t)(void **item);
 
 // double linked list, with a private cursor.
 
@@ -8,8 +8,8 @@ list_t *list_new(void);
 void list_destroy(list_t **self_pointer);
 void list_purge(list_t *self);
 
-void list_set_item_destructor(list_t *self, list_item_destructor_t *item_destructor);
-list_t *list_new_with(list_item_destructor_t *item_destructor);
+void list_set_destructor(list_t *self, list_destructor_t *destructor);
+list_t *list_new_with(list_destructor_t *destructor);
 
 size_t list_length(const list_t *self);
 bool list_is_empty(const list_t *self);
