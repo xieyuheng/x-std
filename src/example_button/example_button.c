@@ -58,28 +58,20 @@ on_click_button(
 
 static void
 render_button(example_button_t *self, canvas_t *canvas) {
-    uint8_t *bytes = canvas_asset_store_get(self->canvas, "button10x10.chr");
-
-    static uint8_t *button_up_chr;
-    if (!button_up_chr)
-        button_up_chr = chr_subimage(bytes, 0x10, 0, 0, 3, 3);
-
-    static uint8_t *button_down_chr;
-    if (!button_down_chr)
-        button_down_chr = chr_subimage(bytes, 0x10, 3, 0, 3, 3);
-
     size_t x = 3 * TILE;
     size_t y = 3 * TILE;
     size_t width = 3 * TILE;
     size_t height = 3 * TILE;
 
     if (self->is_pressed) {
-        canvas_draw_chr_bytes(canvas, x, y, button_down_chr, 3, 3, 1);
+        uint8_t *bytes = canvas_asset_store_get(self->canvas, "button-down-03x03.chr");
+        canvas_draw_chr_bytes(canvas, x, y, bytes, 3, 3, 1);
         canvas_add_clickable_area(
             canvas, x, y, width, height,
             (on_click_t *) on_click_button);
     } else {
-        canvas_draw_chr_bytes(canvas, x, y, button_up_chr, 3, 3, 1);
+        uint8_t *bytes = canvas_asset_store_get(self->canvas, "button-up-03x03.chr");
+        canvas_draw_chr_bytes(canvas, x, y, bytes, 3, 3, 1);
         canvas_add_clickable_area(
             canvas, x, y, width, height,
             (on_click_t *) on_click_button);

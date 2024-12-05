@@ -3,6 +3,10 @@
 
 static int run(commander_t *commander);
 
+// examples:
+//     bifer cut-image button10x10.chr 0 0 button-up-03x03.chr
+//     bifer cut-image button10x10.chr 3 0 button-down-03x03.chr
+
 void
 cut_image_command(commander_t *commander) {
     command_t *command = command_new("cut-image");

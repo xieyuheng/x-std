@@ -1,5 +1,3 @@
-[example] `example_button` -- quit using `chr_subimage`
-
 [canvas] `canvas_draw_image` load asset from `asset_store`
 
 [canvas] `canvas_render_image_button`
