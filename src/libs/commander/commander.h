@@ -1,6 +1,6 @@
 #pragma once
 
-typedef void (commander_plugin_t)(const commander_t *commander);
+typedef void (commander_plugin_t)(commander_t *commander);
 
 struct commander_t {
     const char *name;
@@ -18,8 +18,9 @@ commander_t *commander_new(
     char **argv);
 void commander_destroy(commander_t **self_pointer);
 
-void commander_add(const commander_t *self, command_t *command);
-void commander_use(const commander_t *self, commander_plugin_t *plugin);
+void commander_add(commander_t *self, command_t *command);
+void commander_use(commander_t *self, commander_plugin_t *plugin);
 void commander_help(const commander_t *self);
 const char *commander_command_name(const commander_t *self);
-int commander_run(const commander_t *self);
+char **commander_rest_argv(const commander_t *self);
+int commander_run(commander_t *self);

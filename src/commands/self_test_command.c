@@ -1,10 +1,10 @@
 #include "index.h"
 #include "../editor/index.h"
 
-static int run(char **args, const commander_t *commander);
+static int run(commander_t *commander);
 
 void
-self_test_command(const commander_t *commander) {
+self_test_command(commander_t *commander) {
     command_t *command = command_new("self-test");
     command->description = "run self test";
     command->run = run;
@@ -12,10 +12,9 @@ self_test_command(const commander_t *commander) {
 }
 
 int
-run(char **args, const commander_t *commander) {
+run(commander_t *commander) {
     (void) commander;
-    (void) args;
-
+    
     printf("<self-test>\n");
 
     libs_test();

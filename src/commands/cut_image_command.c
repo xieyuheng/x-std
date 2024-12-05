@@ -1,10 +1,10 @@
 #include "index.h"
 #include "../editor/index.h"
 
-static int run(char **args, const commander_t *commander);
+static int run(commander_t *commander);
 
 void
-cut_image_command(const commander_t *commander) {
+cut_image_command(commander_t *commander) {
     command_t *command = command_new("cut-image");
     command->description = "cut subimage from .chr image";
     command->run = run;
@@ -12,11 +12,13 @@ cut_image_command(const commander_t *commander) {
 }
 
 int
-run(char **args, const commander_t *commander) {
-    char *input_path = args[0];
-    char *x_string = args[1];
-    char *y_string = args[2];
-    char *output_path = args[3];
+run(commander_t *commander) {
+    char **argv = commander_rest_argv(commander);
+    
+    char *input_path = argv[0];
+    char *x_string = argv[1];
+    char *y_string = argv[2];
+    char *output_path = argv[3];
 
     printf("[cut_image_command] argc: %d\n", commander->argc);
     printf("[cut_image_command] input_path: %s\n", input_path);

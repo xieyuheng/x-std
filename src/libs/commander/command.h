@@ -1,6 +1,6 @@
 #pragma once
 
-typedef int (command_run_t)(char **args, const commander_t *commander);
+typedef int (command_run_t)(commander_t *commander);
 
 struct command_t {
     const char *name;

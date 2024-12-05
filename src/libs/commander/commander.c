@@ -23,12 +23,12 @@ commander_destroy(commander_t **self_pointer) {
 }
 
 void
-commander_add(const commander_t *self, command_t *command) {
+commander_add(commander_t *self, command_t *command) {
     list_push(self->command_list, command);
 }
 
 void
-commander_use(const commander_t *self, commander_plugin_t *plugin) {
+commander_use(commander_t *self, commander_plugin_t *plugin) {
     (*plugin)(self);
 }
 
@@ -62,14 +62,16 @@ commander_help(const commander_t *self) {
     }
 }
 
+char **
+commander_rest_argv(const commander_t *self) {
+    return self->argv + 2;
+}
+
 static int
-commander_run_command(const commander_t *self, const command_t *command) {
+commander_run_command(commander_t *self, const command_t *command) {
     assert(command);
     assert(command->run);
-
-    char **args = self->argv + 1;
-    return (*command->run)(args, self);
-    return 1;
+    return (*command->run)(self);
 }
 
 const char *
@@ -78,7 +80,7 @@ commander_command_name(const commander_t *self) {
 }
 
 int
-commander_run(const commander_t *self) {
+commander_run(commander_t *self) {
     const char *command_name = commander_command_name(self);
 
     if (!command_name) {
