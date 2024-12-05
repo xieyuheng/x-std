@@ -1,4 +1,5 @@
-[canvas] `cursor_t` has `x` and `y`
+[canvas] `cursor_new`
+[canvas] `cursor_destroy`
 [canvas] `canvas` has `cursor`
 [canvas] `on_click_t` no need to pase `x` and `y` just read form `canvas->cursor`
 
