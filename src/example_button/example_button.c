@@ -63,11 +63,17 @@ render_cursor(example_button_t *self, canvas_t *canvas) {
 
     size_t x = canvas->cursor->x;
     size_t y = canvas->cursor->y;
-    uint8_t blending = 1;
 
-    canvas_draw_image(
-        canvas, x, y,
-        "cursor-01x01.chr", blending);
+    if (self->is_pressed) {
+        canvas_draw_image(
+            canvas, x, y,
+            "cursor-01x01.chr", 4);
+    } else {
+        canvas_draw_image(
+            canvas, x, y,
+            "cursor-01x01.chr", 1);
+    }
+
 }
 
 void

@@ -1,9 +1,7 @@
-[canvas] hide system cursor -- learn from uxn11
-[canvas] `canvas` has a default cursor chr image
-
 # example button
 
-[example button] `render_cursor`
+[canvas] hide system cursor -- learn from uxn11
+[canvas] `canvas` has a default cursor chr image
 
 [canvas] `canvas_draw_icn_bytes` handle alpha
 [canvas] `canvas_draw_chr_bytes` handle alpha

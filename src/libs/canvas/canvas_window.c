@@ -343,7 +343,6 @@ canvas_window_receive(canvas_window_t *self) {
         size_t y = canvas_window_adjust_x(self, int_relu(event->y));
         self->canvas->cursor->x = x;
         self->canvas->cursor->y = y;
-        printf("x: %lu, y: %lu\n", x, y);
         break;
     }
     }
