@@ -60,16 +60,17 @@ static void
 render_button(example_button_t *self, canvas_t *canvas) {
     size_t x = 3 * TILE;
     size_t y = 3 * TILE;
+    uint8_t blending = 1;
 
     if (self->is_pressed) {
         canvas_draw_image_button(
             canvas, x, y,
-            "button-down-03x03.chr", 1,
+            "button-down-03x03.chr", blending,
             (on_click_t *) on_click_button);
     } else {
         canvas_draw_image_button(
             canvas, x, y,
-            "button-up-03x03.chr", 1,
+            "button-up-03x03.chr", blending,
             (on_click_t *) on_click_button);
     }
 }
