@@ -23,6 +23,7 @@ entry_destroy(entry_t **self_pointer) {
     assert(self_pointer);
     if (*self_pointer) {
         entry_t *self = *self_pointer;
+        free(self->key);
         free(self);
         *self_pointer = NULL;
     }
@@ -30,6 +31,7 @@ entry_destroy(entry_t **self_pointer) {
 
 struct dict_t {
     list_t *entry_list;
+    destructor_t *destructor;
 };
 
 dict_t *
@@ -37,4 +39,24 @@ dict_new(void) {
     dict_t *self = allocate(sizeof(dict_t));
     self->entry_list = list_new_with((destructor_t *) entry_destroy);
     return self;
+}
+
+void
+dict_set_destructor(
+    dict_t *self,
+    destructor_t *destructor
+) {
+    self->destructor = destructor;
+}
+
+void
+dict_destroy(dict_t **self_pointer) {
+    assert(self_pointer);
+    if (*self_pointer) {
+        dict_t *self = *self_pointer;
+
+        list_destroy(&self->entry_list);
+        free(self);
+        *self_pointer = NULL;
+    }
 }
