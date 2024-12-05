@@ -15,17 +15,41 @@ int
 run(commander_t *commander) {
     char **argv = commander_rest_argv(commander);
     size_t argc = commander_rest_argc(commander);
+    if (argc != 4) {
+        printf("[cut-image] expect 4 arguments, given: %ld\n", argc);
+        return 1;
+    }
 
     char *input_path = argv[0];
-    char *x_string = argv[1];
-    char *y_string = argv[2];
-    char *output_path = argv[3];
+    if (!string_ends_with(input_path, ".chr")) {
+        printf("[cut-image] can only handle .chr file, input_path: %s\n", input_path);
+        return 1;
+    }
 
-    printf("[cut_image_command] argc: %ld\n", argc);
-    printf("[cut_image_command] input_path: %s\n", input_path);
-    printf("[cut_image_command] x_string: %s\n", x_string);
-    printf("[cut_image_command] y_string: %s\n", y_string);
-    printf("[cut_image_command] output_path: %s\n", output_path);
+    char *output_path = argv[3];
+    if (!string_ends_with(output_path, ".chr")) {
+        printf("[cut-image] can only handle .chr file, output_path: %s\n", output_path);
+        return 1;
+    }
+
+    uint8_t input_width = image_hex_width_from_path(input_path);
+    uint8_t x = string_parse_hex(argv[1]);
+    uint8_t y = string_parse_hex(argv[2]);
+    uint8_t output_width = image_hex_width_from_path(output_path);
+    uint8_t output_height = image_hex_height_from_path(output_path);
+
+    file_t *input_file = file_open_or_fail(input_path, "rb");
+    uint8_t * bytes = file_read_bytes(input_file);
+
+    file_t *output_file = file_open_or_fail(output_path, "wb");
+    size_t output_size = output_width * output_height * 8 * 8;
+    uint8_t *subimage = chr_subimage(
+        bytes,
+        input_width,
+        x, y,
+        output_width,
+        output_height);
+    file_write_bytes(output_file, subimage, output_size);
 
     return 0;
 }
