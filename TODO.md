@@ -1,6 +1,4 @@
-[example] `example_button` -- still need `button_up_chr` and `button_down_chr`
-
-- just load from store during rendering
+[example] `example_button` -- `button_up_chr` and `button_down_chr` as local variables in `render_button`
 
 [canvas] `canvas_render_image_button` -- load image from asset store
 

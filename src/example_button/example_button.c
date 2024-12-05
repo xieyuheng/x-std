@@ -17,14 +17,9 @@ example_button_new(void) {
 
     char *base = dirname(string_dup(__FILE__));
     canvas_init_asset_store(self->canvas, base);
-    // uint8_t *bytes = canvas_asset_store_get(self->canvas, "button10x10.chr");
-
-    const char *file_name = string_append(base, "/button10x10.chr");
-    file_t *file = fopen(file_name, "rb");
-    uint8_t *bytes = file_read_bytes(file);
+    uint8_t *bytes = canvas_asset_store_get(self->canvas, "button10x10.chr");
     self->button_up_chr = chr_subimage(bytes, 0x10, 0, 0, 3, 3);
     self->button_down_chr = chr_subimage(bytes, 0x10, 3, 0, 3, 3);
-    free(bytes);
 
     self->is_pressed = false;
 
