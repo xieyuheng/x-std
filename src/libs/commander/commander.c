@@ -36,8 +36,9 @@ static const command_t *
 commander_default_command(const commander_t *self) {
     command_t *command = list_start(self->command_list);
     while (command) {
-        if (strcmp(command->name, "default") == 0)
+        if (string_equal(command->name, "default")) {
             return command;
+        }
 
         command = list_next(self->command_list);
     }
@@ -64,20 +65,23 @@ commander_help(const commander_t *self) {
 static int
 commander_run_command(const commander_t *self, const command_t *command) {
     assert(command);
+    assert(command->run);
 
     char **args = self->argv + 1;
-    if (command->run)
-        return (*command->run)(args, self);
-
-    printf("no callback function in command: %s\n", command->name);
+    return (*command->run)(args, self);
     return 1;
+}
+
+const char *
+commander_command_name(const commander_t *self) {
+    return self->argv[1];
 }
 
 int
 commander_run(const commander_t *self) {
-    char *name = self->argv[1];
+    const char *command_name = commander_command_name(self);
 
-    if (!name) {
+    if (!command_name) {
         const command_t *default_command = commander_default_command(self);
         if (default_command) {
             return commander_run_command(self, default_command);
@@ -89,11 +93,13 @@ commander_run(const commander_t *self) {
 
     command_t *command = list_start(self->command_list);
     while (command) {
-        if (strcmp(command->name, name) == 0)
+        if (string_equal(command->name, command_name)) {
             return commander_run_command(self, command);
+        }
+
         command = list_next(self->command_list);
     }
 
-    printf("[commander_run] command not found: %s\n", name);
+    printf("[commander_run] undefined command: %s\n", command_name);
     return 1;
 }
