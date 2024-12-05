@@ -6,7 +6,7 @@
 - get image size from path
 
 ```c
-canvas_render_image_button(canvas, x, y, "asset-name", (on_click_t *) on_click_button);
+canvas_render_image_button(canvas, x, y, "asset-name", blending, (on_click_t *) on_click_button);
 ```
 
 [canvas] `canvas_draw_icn_bytes` handle alpha
