@@ -60,18 +60,16 @@ static void
 render_button(example_button_t *self, canvas_t *canvas) {
     size_t x = 3 * TILE;
     size_t y = 3 * TILE;
-    size_t width = 3 * TILE;
-    size_t height = 3 * TILE;
 
     if (self->is_pressed) {
-        canvas_draw_image(canvas, x, y, "button-down-03x03.chr", 1);
-        canvas_add_clickable_area(
-            canvas, x, y, width, height,
+        canvas_draw_image_button(
+            canvas, x, y,
+            "button-down-03x03.chr", 1,
             (on_click_t *) on_click_button);
     } else {
-        canvas_draw_image(canvas, x, y, "button-up-03x03.chr", 1);
-        canvas_add_clickable_area(
-            canvas, x, y, width, height,
+        canvas_draw_image_button(
+            canvas, x, y,
+            "button-up-03x03.chr", 1,
             (on_click_t *) on_click_button);
     }
 }

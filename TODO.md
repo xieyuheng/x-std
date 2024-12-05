@@ -1,9 +1,3 @@
-[canvas] `canvas_draw_image_button`
-
-```c
-canvas_draw_image_button(canvas, x, y, "asset-name", blending, (on_click_t *) on_click_button);
-```
-
 [canvas] `canvas_draw_icn_bytes` handle alpha
 [canvas] `canvas_draw_chr_bytes` handle alpha
 
