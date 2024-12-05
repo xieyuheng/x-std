@@ -33,6 +33,18 @@ size_t canvas_window_offset_y(canvas_window_t *self) {
     return (self->height - image_height) / 2;
 }
 
+size_t
+canvas_window_adjust_x(canvas_window_t *self, size_t x) {
+    // adjust `x` after centering.
+    return (x - canvas_window_offset_x(self)) / self->canvas->scale;
+}
+
+size_t
+canvas_window_adjust_y(canvas_window_t *self, size_t y) {
+    // adjust `y` after centering.
+    return (y - canvas_window_offset_y(self)) / self->canvas->scale;
+}
+
 static void canvas_window_init_display(canvas_window_t *self);
 static void canvas_window_init_window(canvas_window_t *self);
 static void canvas_window_init_input(canvas_window_t *self);
@@ -209,12 +221,8 @@ canvas_window_resize_button(
     uint8_t button_id,
     bool is_release
 ) {
-    // adjust `x` and `y` after centering.
-    size_t adjusted_x = event_x - canvas_window_offset_x(self);
-    size_t adjusted_y = event_y - canvas_window_offset_y(self);
-
-    size_t x = adjusted_x / self->canvas->scale;
-    size_t y = adjusted_y / self->canvas->scale;
+    size_t x = canvas_window_adjust_x(self, event_x);
+    size_t y = canvas_window_adjust_y(self, event_y);
 
     if (self->canvas->on_click) {
         self->canvas->on_click(
@@ -335,6 +343,13 @@ canvas_window_receive(canvas_window_t *self) {
             event->button,
             is_release);
         return;
+    }
+
+    case MotionNotify: {
+        XMotionEvent *event = (XMotionEvent *)&unknown_event;
+        (void) event->x;
+        (void) event->y;
+        break;
     }
     }
 }
