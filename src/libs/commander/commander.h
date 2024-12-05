@@ -2,6 +2,15 @@
 
 typedef void (commander_plugin_t)(const commander_t *commander);
 
+struct commander_t {
+    const char *name;
+    const char *version;
+    const char *description;
+    int argc;
+    char **argv;
+    list_t *command_list;
+};
+
 commander_t *commander_new(
     const char *name,
     const char *version,

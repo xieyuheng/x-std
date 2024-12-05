@@ -1,14 +1,5 @@
 #include "index.h"
 
-struct commander_t {
-    const char *name;
-    const char *version;
-    const char *description;
-    int argc;
-    char **argv;
-    list_t *command_list;
-};
-
 commander_t *
 commander_new(const char *name, const char *version, int argc, char **argv) {
     commander_t *self = new(commander_t);
@@ -81,9 +72,7 @@ commander_run_command(const commander_t *self, const command_t *command) {
     char **args = self->argv + 1;
     if (command->run_with_commander)
         return (*command->run_with_commander)(args, self);
-    if (command->run)
-        return (*command->run)(args);
-
+    
     printf("no callback function in command: %s\n", command->name);
     return 1;
 }

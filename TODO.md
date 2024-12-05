@@ -1,3 +1,4 @@
+ambr run_with_commander run
 `cut_image_command` -- call `chr_subimage` -- only handle `.chr` for now
 
 ```
