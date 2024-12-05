@@ -41,9 +41,8 @@ on_click_button(
     uint8_t button,
     bool is_release
 ) {
-    (void) canvas;
     (void) self;
-
+    (void) canvas;
     (void) x;
     (void) y;
 
@@ -75,12 +74,12 @@ render_button(example_button_t *self, canvas_t *canvas) {
     size_t height = 3 * TILE;
 
     if (self->is_pressed) {
-        canvas_draw_chr_image(canvas, x, y, button_down_chr, 3, 3, 1);
+        canvas_draw_chr_bytes(canvas, x, y, button_down_chr, 3, 3, 1);
         canvas_add_clickable_area(
             canvas, x, y, width, height,
             (on_click_t *) on_click_button);
     } else {
-        canvas_draw_chr_image(canvas, x, y, button_up_chr, 3, 3, 1);
+        canvas_draw_chr_bytes(canvas, x, y, button_up_chr, 3, 3, 1);
         canvas_add_clickable_area(
             canvas, x, y, width, height,
             (on_click_t *) on_click_button);
