@@ -22,6 +22,22 @@ commander_destroy(commander_t **self_pointer) {
     }
 }
 
+
+const char *
+commander_command_name(const commander_t *self) {
+    return self->argv[1];
+}
+
+char **
+commander_rest_argv(const commander_t *self) {
+    return self->argv + 2;
+}
+
+size_t
+commander_rest_argc(const commander_t *self) {
+    return self->argc - 2;
+}
+
 void
 commander_add(commander_t *self, command_t *command) {
     list_push(self->command_list, command);
@@ -62,21 +78,11 @@ commander_help(const commander_t *self) {
     }
 }
 
-char **
-commander_rest_argv(const commander_t *self) {
-    return self->argv + 2;
-}
-
 static int
 commander_run_command(commander_t *self, const command_t *command) {
     assert(command);
     assert(command->run);
     return (*command->run)(self);
-}
-
-const char *
-commander_command_name(const commander_t *self) {
-    return self->argv[1];
 }
 
 int

@@ -14,13 +14,14 @@ cut_image_command(commander_t *commander) {
 int
 run(commander_t *commander) {
     char **argv = commander_rest_argv(commander);
-    
+    size_t argc = commander_rest_argc(commander);
+
     char *input_path = argv[0];
     char *x_string = argv[1];
     char *y_string = argv[2];
     char *output_path = argv[3];
 
-    printf("[cut_image_command] argc: %d\n", commander->argc);
+    printf("[cut_image_command] argc: %ld\n", argc);
     printf("[cut_image_command] input_path: %s\n", input_path);
     printf("[cut_image_command] x_string: %s\n", x_string);
     printf("[cut_image_command] y_string: %s\n", y_string);
