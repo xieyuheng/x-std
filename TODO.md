@@ -1,6 +1,3 @@
-[dict] `dict_has`
-[dict] `dict_get`
-
 [dict] `dict_test` -- `set` and `has` and `get`
 
 [dict] `dict_get_or_fail`

@@ -92,3 +92,31 @@ dict_set(dict_t *self, const char *key, void *item) {
 
     list_push(self->entry_list, entry_new(string_dup(key), item));
 }
+
+bool
+dict_has(dict_t *self, const char *key) {
+    entry_t *entry = list_first(self->entry_list);
+    while (entry) {
+        if (string_equal(entry->key, key)) {
+            return true;
+        }
+
+        entry = list_next(self->entry_list);
+    }
+
+    return false;
+}
+
+void *
+dict_get(dict_t *self, const char *key) {
+    entry_t *entry = list_first(self->entry_list);
+    while (entry) {
+        if (string_equal(entry->key, key)) {
+            return entry->item;
+        }
+
+        entry = list_next(self->entry_list);
+    }
+
+    return NULL;
+}
