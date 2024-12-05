@@ -58,15 +58,37 @@ dict_destroy(dict_t **self_pointer) {
     assert(self_pointer);
     if (*self_pointer) {
         dict_t *self = *self_pointer;
-        entry_t *entry = list_pop(self->entry_list);
-        while (entry) {
-            self->destructor(&entry->item);
-            entry_destroy(&entry);
-            entry = list_pop(self->entry_list);
+
+        if (self->destructor) {
+            entry_t *entry = list_pop(self->entry_list);
+            while (entry) {
+                self->destructor(&entry->item);
+                entry_destroy(&entry);
+                entry = list_pop(self->entry_list);
+            }
         }
 
         list_destroy(&self->entry_list);
         free(self);
         *self_pointer = NULL;
     }
+}
+
+void
+dict_set(dict_t *self, const char *key, void *item) {
+    entry_t *entry = list_first(self->entry_list);
+    while (entry) {
+        if (string_equal(entry->key, key)) {
+            if (self->destructor) {
+                self->destructor(&entry->item);
+            }
+
+            entry->item = item;
+            return;
+        }
+
+        entry = list_next(self->entry_list);
+    }
+
+    list_push(self->entry_list, entry_new(string_dup(key), item));
 }

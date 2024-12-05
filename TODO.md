@@ -1,6 +1,8 @@
 [dict] `dict_has`
-[dict] `dict_set`
 [dict] `dict_get`
+
+[dict] `dict_test` -- `set` and `has` and `get`
+
 [dict] `dict_get_or_fail`
 
 [canvas] be able to config `frame_rate` -- default to 60
