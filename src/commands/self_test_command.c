@@ -1,4 +1,5 @@
 #include "index.h"
+#include "../editor/index.h"
 
 static int run(char **args);
 
@@ -17,6 +18,7 @@ run(char **args) {
     printf("<self-test>\n");
 
     libs_test();
+    editor_test();
 
     printf("</self-test>\n");
 

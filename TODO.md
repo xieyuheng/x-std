@@ -1,5 +1,3 @@
-[editor] `editor_test` setup
-
 [store] `store_new`
 [store] `store_destroy`
 
