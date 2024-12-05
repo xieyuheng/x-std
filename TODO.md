@@ -1,4 +1,4 @@
-[dict] `dict_new_with`
+[dict] fix `dict_destroy` -- call `destructor`
 [dict] `dict_has`
 [dict] `dict_set`
 [dict] `dict_get`

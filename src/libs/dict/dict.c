@@ -42,11 +42,15 @@ dict_new(void) {
 }
 
 void
-dict_set_destructor(
-    dict_t *self,
-    destructor_t *destructor
-) {
+dict_set_destructor(dict_t *self, destructor_t *destructor) {
     self->destructor = destructor;
+}
+
+dict_t *
+dict_new_with(destructor_t *destructor) {
+    dict_t *self = dict_new();
+    self->destructor = destructor;
+    return self;
 }
 
 void
