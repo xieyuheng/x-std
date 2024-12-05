@@ -3,9 +3,9 @@
 canvas_t *
 canvas_new(size_t width, size_t height, size_t scale) {
     canvas_t *self = new(canvas_t);
-
     self->width = width;
     self->height = height;
+    self->cursor = cursor_new(width / 2, height / 2);
     self->scale = scale;
 
     self->pixels = allocate(width * height * sizeof(uint32_t));

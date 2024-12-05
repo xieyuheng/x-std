@@ -17,6 +17,7 @@ typedef void (on_frame_t)(void *state, canvas_t *canvas, uint64_t passed);
 // The width and height of canvas are measured in tile.
 struct canvas_t {
     size_t width, height;
+    cursor_t *cursor;
 
     // scale defines the ratio between
     // canvas pixel and screen pixel.
