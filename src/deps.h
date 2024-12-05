@@ -8,5 +8,6 @@
 #include <string.h>
 #include <stdbool.h>
 #include <ctype.h>
+#include <libgen.h>
 
 #include "libs/index.h"

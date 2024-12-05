@@ -2,9 +2,7 @@
 
 #include <unistd.h>
 #include <stdio.h>
-#include <poll.h>
-#include <time.h>
-#include <sys/timerfd.h>
+#include <libgen.h>
 
 #include "../memory/index.h"
 #include "../string/index.h"
