@@ -1,5 +1,3 @@
-[memory] `destroy` -- like free but indirect
-
 [store] `store_new` -- set `destructor` for `dict`
 
 [store] `store_destroy`
