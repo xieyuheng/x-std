@@ -1,4 +1,4 @@
-[string] `string_parse_hex`
+[image] use `string_parse_hex`
 
 `cut_image_command` -- call `chr_subimage` -- only handle `.chr` for now
 
