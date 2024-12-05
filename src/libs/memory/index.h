@@ -4,3 +4,4 @@
 #include "types.h"
 #include "allocate.h"
 #include "destroy.h"
+#include "new.h"

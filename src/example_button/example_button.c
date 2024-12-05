@@ -9,7 +9,7 @@ struct example_button_t {
 
 example_button_t *
 example_button_new(void) {
-    example_button_t *self = allocate(sizeof(example_button_t));
+    example_button_t *self = new(example_button_t);
 
     self->canvas = canvas_new(9 * TILE, 9 * TILE, 0x10);
     self->canvas->title = "example button";
