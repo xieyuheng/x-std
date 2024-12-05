@@ -52,6 +52,10 @@ store_set_cache(store_t *self, const char* path, uint8_t *bytes) {
 uint8_t *
 store_get_fresh(store_t *self, const char* path) {
     char *file_name = string_append(self->base, path);
+    if (!file_exists(file_name)) {
+        return NULL;
+    }
+
     file_t *file = fopen(file_name, "rb");
     uint8_t *bytes = file_read_bytes(file);
     free(file_name);

@@ -9,8 +9,8 @@ store_test(void) {
 
     assert(store_has(store, "abc.txt"));
     assert(store_has(store, "123.txt"));
-    // assert(!store_has(store, "xyz.txt"));
-    // assert(!store_has(store, "456.txt"));
+    assert(!store_has(store, "xyz.txt"));
+    assert(!store_has(store, "456.txt"));
 
     {
         uint8_t *bytes = store_get(store, "abc.txt");

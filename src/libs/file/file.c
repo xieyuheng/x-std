@@ -1,5 +1,10 @@
 #include "index.h"
 
+bool
+file_exists(const char *file_name) {
+    return access(file_name, F_OK) != -1;
+}
+
 file_t *
 file_open_or_fail(
     const char *file_name,
