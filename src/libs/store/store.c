@@ -71,7 +71,10 @@ store_get(store_t *self, const char* path) {
     }
 
     uint8_t *fresh_bytes = store_get_fresh(self, path);
-    store_set_cache(self, path, fresh_bytes);
+    if (fresh_bytes) {
+        store_set_cache(self, path, fresh_bytes);
+    }
+
     return fresh_bytes;
 }
 

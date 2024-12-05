@@ -1,5 +1,3 @@
-[store] `store_test` -- `store_purge_cache`
-
 [store] `store_get_fresh` normalize path
 
 [canvas] `canvas` has `asset_store`
