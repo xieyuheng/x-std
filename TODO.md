@@ -1,5 +1,3 @@
-fix all the use of `allocate(sizeof`
-
 [store] `store_destroy`
 [store] `store_base`
 [store] `store_clear_cache`

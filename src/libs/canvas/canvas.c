@@ -2,7 +2,7 @@
 
 canvas_t *
 canvas_new(size_t width, size_t height, size_t scale) {
-    canvas_t *self = allocate(sizeof(canvas_t));
+    canvas_t *self = new(canvas_t);
     self->width = width;
     self->height = height;
     self->scale = scale;

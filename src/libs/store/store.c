@@ -7,7 +7,7 @@ struct store_t {
 
 store_t *
 store_new(const char *base) {
-    store_t *self = allocate(sizeof(store_t));
+    store_t *self = new(store_t);
     self->base = base;
     self->cache_dict = dict_new_with((destructor_t *) destroy);
     return self;

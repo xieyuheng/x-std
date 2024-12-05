@@ -12,7 +12,7 @@ void entry_destroy(entry_t **self_pointer);
 
 entry_t *
 entry_new(char *key, void *item) {
-    entry_t *self = allocate(sizeof(entry_t));
+    entry_t *self = new(entry_t);
     self->key = key;
     self->item = item;
     return self;
@@ -36,7 +36,7 @@ struct dict_t {
 
 dict_t *
 dict_new(void) {
-    dict_t *self = allocate(sizeof(dict_t));
+    dict_t *self = new(dict_t);
     self->entry_list = list_new_with((destructor_t *) entry_destroy);
     return self;
 }

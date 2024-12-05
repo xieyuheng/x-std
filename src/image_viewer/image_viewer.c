@@ -2,7 +2,7 @@
 
 image_viewer_t *
 image_viewer_new(const char *path) {
-    image_viewer_t *self = allocate(sizeof(image_viewer_t));
+    image_viewer_t *self = new(image_viewer_t);
     self->path = path;
     self->blending = 1;
     self->scale = 8;
