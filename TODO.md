@@ -1,8 +1,5 @@
 # example button
 
-[canvas] `canvas_draw_icn_bytes` handle alpha
-[canvas] `canvas_draw_chr_bytes` handle alpha
-
 [canvas] `canvas` has a default cursor chr image
 
 # example blending

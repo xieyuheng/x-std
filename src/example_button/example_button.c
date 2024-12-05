@@ -67,11 +67,11 @@ render_cursor(example_button_t *self, canvas_t *canvas) {
     if (self->is_pressed) {
         canvas_draw_image(
             canvas, x, y,
-            "cursor-01x01.chr", 4);
+            "cursor-01x01.chr", 0xf);
     } else {
         canvas_draw_image(
             canvas, x, y,
-            "cursor-01x01.chr", 1);
+            "cursor-01x01.chr", 0x5);
     }
 
 }
