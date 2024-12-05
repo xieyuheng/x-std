@@ -3,11 +3,12 @@
 canvas_t *
 canvas_new(size_t width, size_t height, size_t scale) {
     canvas_t *self = new(canvas_t);
+
     self->width = width;
     self->height = height;
     self->scale = scale;
 
-    self->pixels = allocate(self->width * self->height * sizeof(uint32_t));
+    self->pixels = allocate(width * height * sizeof(uint32_t));
 
     self->palette[BG_COLOR] = 0xff0047A0;
     self->palette[SL_COLOR] = 0xffcd2e3a;
@@ -31,9 +32,16 @@ canvas_destroy(canvas_t **self_pointer) {
         free(self->pixels);
         canvas_window_destroy(&self->window);
         list_destroy(&self->clickable_area_list);
+        store_destroy(&self->asset_store);
         free(self);
         *self_pointer = NULL;
     }
+}
+
+void
+canvas_init_asset_store(canvas_t *self, const char *base) {
+    assert(!self->asset_store);
+    self->asset_store = store_new(base);
 }
 
 void

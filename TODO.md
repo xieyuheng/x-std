@@ -1,7 +1,6 @@
-[canvas] `canvas` has `asset_store`
-[canvas] `canvas_asset_get`
+[canvas] `canvas_asset_store_get`
 
-`example_button` -- no need to have `button_up_chr` and `button_down_chr`
+[example] `example_button` -- still need `button_up_chr` and `button_down_chr`
 
 - just load from store during rendering
 

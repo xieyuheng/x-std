@@ -15,11 +15,10 @@ example_button_new(void) {
     self->canvas->title = "example button";
     self->canvas->state = self;
 
-    // char *base = dirname(string_dup(__FILE__));
-    // canvas_init_asset_store(self->canvas, base);
-    // uint8_t *bytes = canvas_assert_get(self->canvas, "button10x10.chr");
-
     char *base = dirname(string_dup(__FILE__));
+    canvas_init_asset_store(self->canvas, base);
+    // uint8_t *bytes = canvas_asset_store_get(self->canvas, "button10x10.chr");
+
     const char *file_name = string_append(base, "/button10x10.chr");
     file_t *file = fopen(file_name, "rb");
     uint8_t *bytes = file_read_bytes(file);
