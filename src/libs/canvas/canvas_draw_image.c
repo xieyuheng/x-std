@@ -64,3 +64,11 @@ canvas_draw_chr_bytes(
         }
     }
 }
+
+void
+canvas_draw_image(canvas_t *self, size_t x, size_t y, const char *path, uint8_t blending) {
+    uint8_t *bytes = canvas_asset_store_get(self, path);
+    uint8_t width = image_hex_width_from_path(path);
+    uint8_t height = image_hex_height_from_path(path);
+    canvas_draw_chr_bytes(self, x, y, bytes, width, height, blending);
+}

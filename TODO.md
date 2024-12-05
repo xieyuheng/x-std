@@ -1,12 +1,7 @@
-[canvas] `canvas_draw_image` load asset from `asset_store`
-
-[canvas] `canvas_render_image_button`
-
-- load image from asset store
-- get image size from path
+[canvas] `canvas_draw_image_button`
 
 ```c
-canvas_render_image_button(canvas, x, y, "asset-name", blending, (on_click_t *) on_click_button);
+canvas_draw_image_button(canvas, x, y, "asset-name", blending, (on_click_t *) on_click_button);
 ```
 
 [canvas] `canvas_draw_icn_bytes` handle alpha

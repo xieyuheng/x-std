@@ -4,3 +4,5 @@
 
 void canvas_draw_icn_bytes(canvas_t *self, size_t x, size_t y, uint8_t *bytes, size_t width, size_t height, uint8_t blending);
 void canvas_draw_chr_bytes(canvas_t *self, size_t x, size_t y, uint8_t *bytes, size_t width, size_t height, uint8_t blending);
+
+void canvas_draw_image(canvas_t *self, size_t x, size_t y, const char *name, uint8_t blending);
