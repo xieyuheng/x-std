@@ -15,6 +15,7 @@ canvas_new(size_t width, size_t height, size_t scale) {
     self->palette[AP_COLOR] = 0xffffffff;
 
     self->window = canvas_window_new(self);
+    self->frame_rate = 60;
 
     self->clickable_area_list = list_new_with(
         (destructor_t *) clickable_area_destroy);

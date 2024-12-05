@@ -38,6 +38,7 @@ struct canvas_t {
     canvas_window_t *window;
     const char *title;
 
+    size_t frame_rate;
     void *state;
     on_key_t *on_key;
     on_click_t *on_click;

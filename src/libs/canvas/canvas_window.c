@@ -372,7 +372,7 @@ canvas_window_open(canvas_window_t *self) {
     size_t nfds = 2;
     struct pollfd fds[nfds];
     fds[0].fd = XConnectionNumber(self->display);
-    fds[1].fd = frame_timerfd(60);
+    fds[1].fd = frame_timerfd(self->canvas->frame_rate);
     fds[0].events = fds[1].events = POLLIN;
 
     self->is_open = true;

@@ -1,10 +1,10 @@
-[canvas] be able to config `frame_rate` -- default to 60
-
 [canvas] `asset_store_t` -- asset file with cache
 
 [canvas] `asset_store_has`
 [canvas] `asset_store_get`
 [canvas] `asset_store_set`
+
+[canvas] `canvas` has `asset_store`
 
 [canvas] `canvas_render_image_button` -- load image from asset store
 
