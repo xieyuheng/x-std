@@ -1,4 +1,5 @@
-[canvas] `asset_store_t`
+[canvas] `asset_store_new`
+[canvas] `asset_store_destroy`
 
 [canvas] `asset_store_has`
 [canvas] `asset_store_get`
