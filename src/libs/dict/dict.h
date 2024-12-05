@@ -10,3 +10,4 @@ dict_t *dict_new_with(destructor_t *destructor);
 void dict_set(dict_t *self, const char *key, void *item);
 bool dict_has(dict_t *self, const char *key);
 void *dict_get(dict_t *self, const char *key);
+void *dict_get_or_fail(dict_t *self, const char *key);

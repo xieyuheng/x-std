@@ -120,3 +120,14 @@ dict_get(dict_t *self, const char *key) {
 
     return NULL;
 }
+
+void *
+dict_get_or_fail(dict_t *self, const char *key) {
+    void *item = dict_get(self, key);
+    if (!item) {
+        fprintf(stderr, "[dict_get_or_fail] undefined key: %s\n", key);
+        exit(1);
+    }
+
+    return item;
+}

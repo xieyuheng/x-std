@@ -1,4 +1,4 @@
-[dict] `dict_get_or_fail`
+[dict] `dict_length`
 
 [canvas] be able to config `frame_rate` -- default to 60
 
