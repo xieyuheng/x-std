@@ -33,3 +33,13 @@ void
 store_purge_cache(store_t *self) {
     dict_purge(self->cache_dict);
 }
+
+// bool
+// store_has(store_t *self, const char* path) {
+//     uint8_t *bytes = store_get(self, path);
+//     if (bytes) {
+//         return true;
+//     } else {
+//         return false;
+//     }
+// }

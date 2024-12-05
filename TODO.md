@@ -1,4 +1,4 @@
-[store] `store_has` & `store_get`
+[store] `store_get`
 
 [store] `store_test` -- `store_has` and `store_get`
 
