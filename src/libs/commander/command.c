@@ -6,7 +6,7 @@ command_new(const char *name) {
     self->name = name;
     self->description = NULL;
     self->help = NULL;
-    self->run_with_commander = NULL;
+    self->run = NULL;
     return self;
 }
 

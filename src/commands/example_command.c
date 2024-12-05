@@ -1,13 +1,13 @@
 #include "index.h"
 #include "../example_button/index.h"
 
-static int run_with_commander(char **args, const commander_t *commander);
+static int run(char **args, const commander_t *commander);
 
 void
 example_command(const commander_t *commander) {
     command_t *command = command_new("example");
     command->description = "run example programs";
-    command->run_with_commander = run_with_commander;
+    command->run = run;
     commander_add(commander, command);
 }
 
@@ -20,7 +20,7 @@ print_known_examples(void) {
 }
 
 int
-run_with_commander(char **args, const commander_t *commander) {
+run(char **args, const commander_t *commander) {
     (void) commander;
 
     char **names = args + 1;

@@ -1,18 +1,18 @@
 #include "index.h"
 #include "../image_viewer/index.h"
 
-static int run_with_commander(char **args, const commander_t *commander);
+static int run(char **args, const commander_t *commander);
 
 void
 view_image_command(const commander_t *commander) {
     command_t *command = command_new("view-image");
     command->description = "view .icn or .chr image";
-    command->run_with_commander = run_with_commander;
+    command->run = run;
     commander_add(commander, command);
 }
 
 int
-run_with_commander(char **args, const commander_t *commander) {
+run(char **args, const commander_t *commander) {
     (void) commander;
 
     char **paths = args + 1;

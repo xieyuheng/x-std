@@ -70,8 +70,8 @@ commander_run_command(const commander_t *self, const command_t *command) {
     assert(command);
 
     char **args = self->argv + 1;
-    if (command->run_with_commander)
-        return (*command->run_with_commander)(args, self);
+    if (command->run)
+        return (*command->run)(args, self);
     
     printf("no callback function in command: %s\n", command->name);
     return 1;
