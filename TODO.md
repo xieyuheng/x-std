@@ -1,9 +1,11 @@
-[store] `store_base`
 [store] `store_clear_cache`
+
+[store] `store_test` -- `store_new` and `store_destroy`
 
 [store] `store_has`
 [store] `store_get`
-[store] `store_set`
+
+[store] `store_test` -- `store_has` and `store_get`
 
 [canvas] `canvas` has `asset_store`
 [canvas] `canvas_asset_get`

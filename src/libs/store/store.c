@@ -23,3 +23,8 @@ store_destroy(store_t **self_pointer) {
         *self_pointer = NULL;
     }
 }
+
+const char *
+store_base(store_t *self) {
+    return self->base;
+}
