@@ -232,7 +232,7 @@ canvas_window_resize(canvas_window_t *self, size_t width, size_t height) {
 }
 
 static void
-canvas_window_resize_button(
+canvas_window_receive_button(
     canvas_window_t *self,
     uint8_t button_id,
     bool is_release
@@ -338,7 +338,7 @@ canvas_window_receive(canvas_window_t *self) {
     case ButtonPress: {
         XButtonPressedEvent *event = (XButtonPressedEvent *)&unknown_event;
         bool is_release = false;
-        canvas_window_resize_button(
+        canvas_window_receive_button(
             self,
             event->button,
             is_release);
@@ -348,7 +348,7 @@ canvas_window_receive(canvas_window_t *self) {
     case ButtonRelease: {
         XButtonPressedEvent *event = (XButtonPressedEvent *)&unknown_event;
         bool is_release = true;
-        canvas_window_resize_button(
+        canvas_window_receive_button(
             self,
             event->button,
             is_release);
