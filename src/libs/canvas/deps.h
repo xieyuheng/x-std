@@ -16,3 +16,4 @@
 #include "../list/index.h"
 #include "../int/index.h"
 #include "../image/index.h"
+#include "../store/index.h"
