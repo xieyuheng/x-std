@@ -339,10 +339,11 @@ canvas_window_receive(canvas_window_t *self) {
 
     case MotionNotify: {
         XMotionEvent *event = (XMotionEvent *)&unknown_event;
-        size_t x = canvas_window_adjust_x(self, event->x);
-        size_t y = canvas_window_adjust_x(self, event->y);
+        size_t x = canvas_window_adjust_x(self, (size_t) event->x);
+        size_t y = canvas_window_adjust_x(self, (size_t) event->y);
         self->canvas->cursor->x = x;
         self->canvas->cursor->y = y;
+        printf("x: %lu, y: %lu\n", x, y);
         break;
     }
     }

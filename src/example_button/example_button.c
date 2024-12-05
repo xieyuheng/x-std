@@ -53,14 +53,21 @@ on_frame(
     canvas_fill_bottom_right(canvas, 0, 0, BG_COLOR);
     canvas_clear_clickable_area(canvas);
 
-    render_cursor(self, canvas);
     render_button(self, canvas);
+    render_cursor(self, canvas);
 }
 
 void
 render_cursor(example_button_t *self, canvas_t *canvas) {
     (void) self;
-    (void) canvas;
+
+    size_t x = canvas->cursor->x;
+    size_t y = canvas->cursor->y;
+    uint8_t blending = 1;
+
+    canvas_draw_image(
+        canvas, x, y,
+        "cursor-01x01.chr", blending);
 }
 
 void
