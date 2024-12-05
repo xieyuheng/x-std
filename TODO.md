@@ -1,4 +1,3 @@
-[store] `store_destroy`
 [store] `store_base`
 [store] `store_clear_cache`
 
