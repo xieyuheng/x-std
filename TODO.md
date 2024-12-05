@@ -2,16 +2,14 @@
 `cut_image_command` -- call `chr_subimage` and save to `-o file` -- only handle `.chr` for now
 
 [example] `example_button` -- quit using `chr_subimage`
+
 [canvas] `canvas_render_image_button`
 
 - load image from asset store
 - get image size from path
 
 ```c
-canvas_render_image_button(
-    canvas, x, y,
-    "asset-name",
-    (on_click_t *) on_click_button);
+canvas_render_image_button(canvas, x, y, "asset-name", (on_click_t *) on_click_button);
 ```
 
 [canvas] `canvas_draw_image` load asset from `asset_store`
@@ -21,9 +19,9 @@ canvas_render_image_button(
 
 [practice] button custom cursor
 
-# canvas
+`example_blending` - a new example to show all the blendings
 
-[canvas] [maybe] give each 16 blending a name
+[canvas] give each 16 blending a name
 
 # editor
 
