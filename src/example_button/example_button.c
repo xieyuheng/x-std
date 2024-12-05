@@ -2,8 +2,6 @@
 
 struct example_button_t {
     canvas_t *canvas;
-    uint8_t *button_up_chr;
-    uint8_t *button_down_chr;
     bool is_pressed;
 };
 
@@ -17,9 +15,6 @@ example_button_new(void) {
 
     char *base = dirname(string_dup(__FILE__));
     canvas_init_asset_store(self->canvas, base);
-    uint8_t *bytes = canvas_asset_store_get(self->canvas, "button10x10.chr");
-    self->button_up_chr = chr_subimage(bytes, 0x10, 0, 0, 3, 3);
-    self->button_down_chr = chr_subimage(bytes, 0x10, 3, 0, 3, 3);
 
     self->is_pressed = false;
 
@@ -32,8 +27,6 @@ example_button_destroy(example_button_t **self_pointer) {
     if (*self_pointer) {
         example_button_t *self = *self_pointer;
         canvas_destroy(&self->canvas);
-        free(self->button_up_chr);
-        free(self->button_down_chr);
         free(self);
         *self_pointer = NULL;
     }
@@ -66,18 +59,28 @@ on_click_button(
 
 static void
 render_button(example_button_t *self, canvas_t *canvas) {
+    uint8_t *bytes = canvas_asset_store_get(self->canvas, "button10x10.chr");
+
+    static uint8_t *button_up_chr;
+    if (!button_up_chr)
+        button_up_chr = chr_subimage(bytes, 0x10, 0, 0, 3, 3);
+
+    static uint8_t *button_down_chr;
+    if (!button_down_chr)
+        button_down_chr = chr_subimage(bytes, 0x10, 3, 0, 3, 3);
+
     size_t x = 3 * TILE;
     size_t y = 3 * TILE;
     size_t width = 3 * TILE;
     size_t height = 3 * TILE;
 
     if (self->is_pressed) {
-        canvas_draw_chr_image(canvas, x, y, self->button_down_chr, 3, 3, 1);
+        canvas_draw_chr_image(canvas, x, y, button_down_chr, 3, 3, 1);
         canvas_add_clickable_area(
             canvas, x, y, width, height,
             (on_click_t *) on_click_button);
     } else {
-        canvas_draw_chr_image(canvas, x, y, self->button_up_chr, 3, 3, 1);
+        canvas_draw_chr_image(canvas, x, y, button_up_chr, 3, 3, 1);
         canvas_add_clickable_area(
             canvas, x, y, width, height,
             (on_click_t *) on_click_button);
