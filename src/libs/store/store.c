@@ -34,6 +34,11 @@ store_purge_cache(store_t *self) {
     dict_purge(self->cache_dict);
 }
 
+size_t
+store_cache_size(store_t *self) {
+    return dict_length(self->cache_dict);
+}
+
 uint8_t *
 store_get_cache(store_t *self, const char* path) {
     return dict_get(self->cache_dict, path);
