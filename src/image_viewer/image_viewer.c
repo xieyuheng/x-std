@@ -47,7 +47,7 @@ on_frame(
 
     if (!self->is_changed) return;
 
-    size_t width = image_width_from_path(self->path);
+    size_t width = image_hex_width_from_path(self->path);
     size_t height = image_height_from_path(self->path);
     printf("[image_viewer/on_frame] width:  0x%lxti\n", width);
     printf("[image_viewer/on_frame] height: 0x%lxti\n", height);
@@ -67,7 +67,7 @@ on_frame(
 
 void
 image_viewer_open(image_viewer_t *self) {
-    size_t width = image_width_from_path(self->path);
+    size_t width = image_hex_width_from_path(self->path);
     size_t height = image_height_from_path(self->path);
     printf("[image_viewer_open] width:  0x%lxti\n", width);
     printf("[image_viewer_open] height: 0x%lxti\n", height);

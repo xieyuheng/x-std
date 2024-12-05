@@ -1,4 +1,3 @@
-ambr image_width_from_path image_hex_width_from_path
 ambr image_height_from_path image_hex_height_from_path
 
 [string] `string_parse_hex`
