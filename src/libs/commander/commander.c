@@ -22,11 +22,6 @@ commander_destroy(commander_t **self_pointer) {
     }
 }
 
-const char *
-commander_version(const commander_t *self) {
-    return self->version;
-}
-
 void
 commander_add(const commander_t *self, command_t *command) {
     list_push(self->command_list, command);
