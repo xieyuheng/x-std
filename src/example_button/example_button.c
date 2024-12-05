@@ -11,6 +11,14 @@ example_button_t *
 example_button_new(void) {
     example_button_t *self = allocate(sizeof(example_button_t));
 
+    self->canvas = canvas_new(9 * TILE, 9 * TILE, 0x10);
+    self->canvas->title = "example button";
+    self->canvas->state = self;
+
+    // char *base = dirname(string_dup(__FILE__));
+    // canvas_init_asset_store(self->canvas, base);
+    // uint8_t *bytes = canvas_assert_get(self->canvas, "button10x10.chr");
+
     char *base = dirname(string_dup(__FILE__));
     const char *file_name = string_append(base, "/button10x10.chr");
     file_t *file = fopen(file_name, "rb");
@@ -18,10 +26,6 @@ example_button_new(void) {
     self->button_up_chr = chr_subimage(bytes, 0x10, 0, 0, 3, 3);
     self->button_down_chr = chr_subimage(bytes, 0x10, 3, 0, 3, 3);
     free(bytes);
-
-    self->canvas = canvas_new(9 * TILE, 9 * TILE, 0x10);
-    self->canvas->title = "example button";
-    self->canvas->state = self;
 
     self->is_pressed = false;
 

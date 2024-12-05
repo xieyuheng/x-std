@@ -1,12 +1,21 @@
-[store] `store_new`
+[memory] `destroy` -- like free but indirect
+
+[store] `store_new` -- set `destructor` for `dict`
+
 [store] `store_destroy`
 [store] `store_base`
+[store] `store_clear_cache`
 
 [store] `store_has`
 [store] `store_get`
 [store] `store_set`
 
 [canvas] `canvas` has `asset_store`
+[canvas] `canvas_asset_get`
+
+`example_button` -- no need to have `button_up_chr` and `button_down_chr`
+
+- just load from store during rendering
 
 [canvas] `canvas_render_image_button` -- load image from asset store
 
