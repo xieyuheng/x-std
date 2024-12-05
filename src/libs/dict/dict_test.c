@@ -23,6 +23,9 @@ dict_test(void) {
     assert(string_equal(dict_get(dict, "b"), "B"));
     assert(string_equal(dict_get(dict, "c"), "C"));
 
+    dict_purge(dict);
+    assert(dict_length(dict) == 0);
+
     dict_destroy(&dict);
 
     printf("</dict_test>\n");

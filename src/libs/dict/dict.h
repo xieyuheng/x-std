@@ -3,6 +3,7 @@
 // a dist is a string to pointer kv-map.
 
 dict_t *dict_new(void);
+void dict_purge(dict_t *self);
 void dict_destroy(dict_t **self_pointer);
 void dict_set_destructor(dict_t *self, destructor_t *destructor);
 dict_t *dict_new_with(destructor_t *destructor);

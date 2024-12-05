@@ -1,5 +1,3 @@
-[dict] `dict_purge`
-
 [canvas] be able to config `frame_rate` -- default to 60
 
 [canvas] `asset_store_t` -- asset file with cache
