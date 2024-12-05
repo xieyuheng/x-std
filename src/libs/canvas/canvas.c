@@ -44,6 +44,11 @@ canvas_init_asset_store(canvas_t *self, const char *base) {
     self->asset_store = store_new(base);
 }
 
+uint8_t *
+canvas_asset_store_get(canvas_t *self, const char *path) {
+    return store_get(self->asset_store, path);
+}
+
 void
 canvas_open(canvas_t *self) {
     canvas_window_open(self->window);

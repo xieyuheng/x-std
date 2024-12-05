@@ -1,5 +1,3 @@
-[canvas] `canvas_asset_store_get`
-
 [example] `example_button` -- still need `button_up_chr` and `button_down_chr`
 
 - just load from store during rendering
