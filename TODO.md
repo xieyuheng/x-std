@@ -1,5 +1,3 @@
-[store] `store_get_fresh` normalize path
-
 [canvas] `canvas` has `asset_store`
 [canvas] `canvas_asset_get`
 

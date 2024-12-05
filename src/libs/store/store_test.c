@@ -4,8 +4,10 @@ void
 store_test(void) {
     printf("<store_test>\n");
 
-    char *base = string_append(dirname(string_dup(__FILE__)), "/");
+    char *base = dirname(string_dup(__FILE__));
     store_t *store = store_new(base);
+
+    printf("store base: %s\n", store_base(store));
 
     assert(store_cache_size(store) == 0);
 
@@ -31,7 +33,6 @@ store_test(void) {
     }
 
     assert(store_cache_size(store) == 2);
-
     store_purge_cache(store);
     assert(store_cache_size(store) == 0);
 
