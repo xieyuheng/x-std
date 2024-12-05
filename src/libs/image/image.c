@@ -8,7 +8,7 @@ image_hex_width_from_path(const char *path) {
 }
 
 uint8_t
-image_height_from_path(const char *path) {
+image_hex_height_from_path(const char *path) {
     size_t length = strlen(path);
     const char *height_start = path + (length - 6);
     return strtol(height_start, NULL, 16);

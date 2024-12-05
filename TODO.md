@@ -1,5 +1,3 @@
-ambr image_height_from_path image_hex_height_from_path
-
 [string] `string_parse_hex`
 
 `cut_image_command` -- call `chr_subimage` -- only handle `.chr` for now
