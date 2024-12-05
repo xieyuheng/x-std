@@ -1,8 +1,8 @@
 `cut_image_command` -- call `chr_subimage` -- only handle `.chr` for now
 
 ```
-bifer cut-image button10x10.chr 0 0 button-up.03x03.chr
-bifer cut-image button10x10.chr 1 0 button-down.03x03.chr
+bifer cut-image button10x10.chr 0 0 button-up-03x03.chr
+bifer cut-image button10x10.chr 1 0 button-down-03x03.chr
 ```
 
 [example] `example_button` -- quit using `chr_subimage`
