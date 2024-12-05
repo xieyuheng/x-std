@@ -1,4 +1,13 @@
-[store] `store_test` -- `store_has` and `store_get`
+[file] `file_exists`
+
+```
+access(argv[1], F_OK) != -1
+```
+
+[store] `store_test` -- `store_has`
+[store] `store_test` -- `store_purge_cache`
+
+[store] `store_get_fresh` normalize path
 
 [canvas] `canvas` has `asset_store`
 [canvas] `canvas_asset_get`
