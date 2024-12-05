@@ -1,4 +1,4 @@
-[store] `store_t`
+[editor] `editor_test` setup
 
 [store] `store_new`
 [store] `store_destroy`
@@ -29,7 +29,7 @@ canvas_render_image_button(
 
 # editor
 
-[editor] `editor` setup
+[editor] `editor_t`
 [editor] parse hex
 [editor] use `canvas_draw_icn_image` to view font
 [editor] `canvas_draw_text`
