@@ -216,13 +216,11 @@ canvas_window_resize(canvas_window_t *self, size_t width, size_t height) {
 static void
 canvas_window_resize_button(
     canvas_window_t *self,
-    size_t event_x,
-    size_t event_y,
     uint8_t button_id,
     bool is_release
 ) {
-    size_t x = canvas_window_adjust_x(self, event_x);
-    size_t y = canvas_window_adjust_y(self, event_y);
+    size_t x = self->canvas->cursor->x;
+    size_t y = self->canvas->cursor->y;
 
     if (self->canvas->on_click) {
         self->canvas->on_click(
@@ -326,8 +324,6 @@ canvas_window_receive(canvas_window_t *self) {
         bool is_release = false;
         canvas_window_resize_button(
             self,
-            event->x,
-            event->y,
             event->button,
             is_release);
         return;
@@ -338,8 +334,6 @@ canvas_window_receive(canvas_window_t *self) {
         bool is_release = true;
         canvas_window_resize_button(
             self,
-            event->x,
-            event->y,
             event->button,
             is_release);
         return;
@@ -347,8 +341,10 @@ canvas_window_receive(canvas_window_t *self) {
 
     case MotionNotify: {
         XMotionEvent *event = (XMotionEvent *)&unknown_event;
-        (void) event->x;
-        (void) event->y;
+        size_t x = canvas_window_adjust_x(self, event->x);
+        size_t y = canvas_window_adjust_x(self, event->y);
+        self->canvas->cursor->x = x;
+        self->canvas->cursor->y = y;
         break;
     }
     }

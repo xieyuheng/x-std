@@ -19,6 +19,7 @@ void canvas_window_destroy(canvas_window_t **self_pointer);
 
 size_t canvas_window_offset_x(canvas_window_t *self);
 size_t canvas_window_offset_y(canvas_window_t *self);
+
 size_t canvas_window_adjust_x(canvas_window_t *self, size_t x);
 size_t canvas_window_adjust_y(canvas_window_t *self, size_t y);
 
