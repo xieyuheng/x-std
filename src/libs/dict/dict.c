@@ -31,3 +31,10 @@ entry_destroy(entry_t **self_pointer) {
 struct dict_t {
     list_t *entry_list;
 };
+
+dict_t *
+dict_new(void) {
+    dict_t *self = allocate(sizeof(dict_t));
+    self->entry_list = list_new_with((destructor_t *) entry_destroy);
+    return self;
+}

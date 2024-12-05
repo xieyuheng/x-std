@@ -1,4 +1,3 @@
-[dict] `dict_new`
 [dict] `dict_destroy`
 [dict] `dict_new_with`
 [dict] `dict_has`
