@@ -1,11 +1,13 @@
-setup libs/asset_store
+[store] `store_test` -- setup
 
-[asset_store] `asset_store_new`
-[asset_store] `asset_store_destroy`
+[store] `store_t`
 
-[asset_store] `asset_store_has`
-[asset_store] `asset_store_get`
-[asset_store] `asset_store_set`
+[store] `store_new`
+[store] `store_destroy`
+
+[store] `store_has`
+[store] `store_get`
+[store] `store_set`
 
 [canvas] `canvas` has `asset_store`
 

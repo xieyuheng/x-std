@@ -7,5 +7,4 @@
 #include "canvas_draw_image.h"
 #include "clickable_area.h"
 #include "canvas_window.h"
-#include "asset_store.h"
 #include "canvas_test.h"
