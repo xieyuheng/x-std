@@ -67,13 +67,9 @@ render_cursor(example_button_t *self, canvas_t *canvas) {
     size_t y = canvas->cursor->y;
 
     if (self->is_pressed) {
-        canvas_draw_image(
-            canvas, x, y,
-            "cursor-01x01.chr", 0xf);
+        canvas_draw_image(canvas, x, y, "cursor-01x01.chr", 0xf);
     } else {
-        canvas_draw_image(
-            canvas, x, y,
-            "cursor-01x01.chr", 0x5);
+        canvas_draw_image(canvas, x, y, "cursor-01x01.chr", 0x5);
     }
 
 }
@@ -82,18 +78,13 @@ void
 render_button(example_button_t *self, canvas_t *canvas) {
     size_t x = 3 * TILE;
     size_t y = 3 * TILE;
-    uint8_t blending = 1;
 
     if (self->is_pressed) {
-        canvas_draw_image_button(
-            canvas, x, y,
-            "button-down-03x03.chr", blending,
-            (on_click_t *) on_click_button);
+        canvas_draw_image_button(canvas, x, y, "button-down-03x03.chr", 0x1,
+                                 (on_click_t *) on_click_button);
     } else {
-        canvas_draw_image_button(
-            canvas, x, y,
-            "button-up-03x03.chr", blending,
-            (on_click_t *) on_click_button);
+        canvas_draw_image_button(canvas, x, y, "button-up-03x03.chr", 0x1,
+                                 (on_click_t *) on_click_button);
     }
 }
 
