@@ -8,6 +8,6 @@ void store_destroy(store_t **self_pointer);
 const char *store_base(store_t *self);
 void store_purge_cache(store_t *self);
 
-uint8_t *store_get_from_cache(store_t *self, const char* path);
+uint8_t *store_get_cache(store_t *self, const char* path);
 uint8_t *store_get(store_t *self, const char* path);
 bool store_has(store_t *self, const char* path);

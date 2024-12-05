@@ -35,13 +35,13 @@ store_purge_cache(store_t *self) {
 }
 
 uint8_t *
-store_get_from_cache(store_t *self, const char* path) {
+store_get_cache(store_t *self, const char* path) {
     return dict_get(self->cache_dict, path);
 }
 
 uint8_t *
 store_get(store_t *self, const char* path) {
-    uint8_t *cached_bytes = store_get_from_cache(self, path);
+    uint8_t *cached_bytes = store_get_cache(self, path);
     if (cached_bytes) {
         return cached_bytes;
     }
