@@ -6,9 +6,13 @@ dict_test(void) {
 
     dict_t *dict = dict_new_with((destructor_t *) string_destroy);
 
+    assert(dict_length(dict) == 0);
+
     dict_set(dict, "a", string_dup("A"));
     dict_set(dict, "b", string_dup("B"));
     dict_set(dict, "c", string_dup("C"));
+
+    assert(dict_length(dict) == 3);
 
     assert(dict_has(dict, "a"));
     assert(dict_has(dict, "b"));

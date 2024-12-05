@@ -1,4 +1,4 @@
-[dict] `dict_length`
+[dict] `dict_purge`
 
 [canvas] be able to config `frame_rate` -- default to 60
 

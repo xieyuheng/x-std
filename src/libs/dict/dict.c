@@ -74,6 +74,11 @@ dict_destroy(dict_t **self_pointer) {
     }
 }
 
+size_t
+dict_length(dict_t *self) {
+    return list_length(self->entry_list);
+}
+
 void
 dict_set(dict_t *self, const char *key, void *item) {
     entry_t *entry = list_first(self->entry_list);

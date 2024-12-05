@@ -7,6 +7,7 @@ void dict_destroy(dict_t **self_pointer);
 void dict_set_destructor(dict_t *self, destructor_t *destructor);
 dict_t *dict_new_with(destructor_t *destructor);
 
+size_t dict_length(dict_t *self);
 void dict_set(dict_t *self, const char *key, void *item);
 bool dict_has(dict_t *self, const char *key);
 void *dict_get(dict_t *self, const char *key);
