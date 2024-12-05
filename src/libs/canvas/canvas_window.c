@@ -36,13 +36,29 @@ size_t canvas_window_offset_y(canvas_window_t *self) {
 size_t
 canvas_window_adjust_x(canvas_window_t *self, size_t x) {
     // adjust `x` after centering.
-    return (x - canvas_window_offset_x(self)) / self->canvas->scale;
+    size_t offset_x = canvas_window_offset_x(self);
+
+    if (x < offset_x)
+        x = offset_x;
+
+    if (x > self->width + offset_x)
+        x = self->width + offset_x;
+
+    return (x - offset_x) / self->canvas->scale;
 }
 
 size_t
 canvas_window_adjust_y(canvas_window_t *self, size_t y) {
     // adjust `y` after centering.
-    return (y - canvas_window_offset_y(self)) / self->canvas->scale;
+    size_t offset_y = canvas_window_offset_y(self);
+
+    if (y < offset_y)
+        y = offset_y;
+
+    if (y > self->height + offset_y)
+        y = self->height + offset_y;
+
+    return (y - offset_y) / self->canvas->scale;
 }
 
 static void canvas_window_init_display(canvas_window_t *self);
@@ -358,7 +374,7 @@ canvas_window_receive(canvas_window_t *self) {
     case MotionNotify: {
         XMotionEvent *event = (XMotionEvent *)&unknown_event;
         size_t x = canvas_window_adjust_x(self, int_relu(event->x));
-        size_t y = canvas_window_adjust_x(self, int_relu(event->y));
+        size_t y = canvas_window_adjust_y(self, int_relu(event->y));
         self->canvas->cursor->x = x;
         self->canvas->cursor->y = y;
         break;
