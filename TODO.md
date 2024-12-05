@@ -1,9 +1,15 @@
+[canvas] be able to hide cursor -- learn from uxn11
+
+# example button
+
+[example] `render_cursor`
+
 [canvas] `canvas_draw_icn_bytes` handle alpha
 [canvas] `canvas_draw_chr_bytes` handle alpha
 
-[practice] button custom cursor
+# example blending
 
-`example_blending` - a new example to show all the blendings
+[example] `example_blending` -- setup -- a new example to show all the blendings
 
 [canvas] give each 16 blending a name
 
