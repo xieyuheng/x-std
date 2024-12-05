@@ -28,3 +28,8 @@ const char *
 store_base(store_t *self) {
     return self->base;
 }
+
+void
+store_clear_cache(store_t *self) {
+    dict_purge(self->cache_dict);
+}

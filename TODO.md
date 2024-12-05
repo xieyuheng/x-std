@@ -1,5 +1,3 @@
-[store] `store_clear_cache`
-
 [store] `store_test` -- `store_new` and `store_destroy`
 
 [store] `store_has`
