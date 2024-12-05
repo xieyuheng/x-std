@@ -30,6 +30,6 @@ store_base(store_t *self) {
 }
 
 void
-store_clear_cache(store_t *self) {
+store_purge_cache(store_t *self) {
     dict_purge(self->cache_dict);
 }
