@@ -1,4 +1,5 @@
 [canvas] hide system cursor -- learn from uxn11
+[canvas] `canvas` has a default cursor chr image
 
 # example button
 

@@ -56,6 +56,9 @@ canvas_open(canvas_t *self) {
 
 void
 canvas_put_pixel(canvas_t *self, size_t x, size_t y, uint32_t pixel) {
+    if (x >= self->width) return;
+    if (y >= self->height) return;
+
     self->pixels[y * self->width + x] = pixel;
 }
 
