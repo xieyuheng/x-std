@@ -1,5 +1,6 @@
 [store] `store_new`
 [store] `store_destroy`
+[store] `store_base`
 
 [store] `store_has`
 [store] `store_get`
