@@ -39,6 +39,21 @@ store_get_cache(store_t *self, const char* path) {
     return dict_get(self->cache_dict, path);
 }
 
+void
+store_set_cache(store_t *self, const char* path, uint8_t *bytes) {
+    dict_set(self->cache_dict, path, bytes);
+}
+
+uint8_t *
+store_get_fresh(store_t *self, const char* path) {
+    char *file_name = string_append(self->base, path);
+    file_t *file = fopen(file_name, "rb");
+    uint8_t *bytes = file_read_bytes(file);
+    free(file_name);
+    fclose(file);
+    return bytes;
+}
+
 uint8_t *
 store_get(store_t *self, const char* path) {
     uint8_t *cached_bytes = store_get_cache(self, path);
@@ -46,7 +61,9 @@ store_get(store_t *self, const char* path) {
         return cached_bytes;
     }
 
-    return NULL;
+    uint8_t *fresh_bytes = store_get_fresh(self, path);
+    store_set_cache(self, path, fresh_bytes);
+    return fresh_bytes;
 }
 
 bool
