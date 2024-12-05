@@ -1,9 +1,11 @@
-[canvas] `asset_store_new`
-[canvas] `asset_store_destroy`
+setup libs/asset_store
 
-[canvas] `asset_store_has`
-[canvas] `asset_store_get`
-[canvas] `asset_store_set`
+[asset_store] `asset_store_new`
+[asset_store] `asset_store_destroy`
+
+[asset_store] `asset_store_has`
+[asset_store] `asset_store_get`
+[asset_store] `asset_store_set`
 
 [canvas] `canvas` has `asset_store`
 
