@@ -1,5 +1,3 @@
-[canvas] `on_click_t` no need to pase `x` and `y` just read form `canvas->cursor`
-
 [canvas] hide system cursor -- learn from uxn11
 
 # example button

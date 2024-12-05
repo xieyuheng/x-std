@@ -226,7 +226,6 @@ canvas_window_resize_button(
         self->canvas->on_click(
             self->canvas->state,
             self->canvas,
-            x, y,
             button_id,
             is_release);
     }
@@ -243,7 +242,6 @@ canvas_window_resize_button(
             clickable_area->on_click(
                 self->canvas->state,
                 self->canvas,
-                x, y,
                 button_id,
                 is_release);
             return;

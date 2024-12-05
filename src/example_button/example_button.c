@@ -30,7 +30,7 @@ example_button_destroy(example_button_t **self_pointer) {
 
 static void on_frame(example_button_t *self, canvas_t *canvas, uint64_t passed);
 static void render_button(example_button_t *self, canvas_t *canvas);
-static void on_click_button(example_button_t *self, canvas_t *canvas, size_t x, size_t y, uint8_t button, bool is_release);
+static void on_click_button(example_button_t *self, canvas_t *canvas, uint8_t button, bool is_release);
 static void render_cursor(example_button_t *self, canvas_t *canvas);
 
 void
@@ -86,15 +86,11 @@ void
 on_click_button(
     example_button_t *self,
     canvas_t *canvas,
-    size_t x,
-    size_t y,
     uint8_t button,
     bool is_release
 ) {
     (void) self;
     (void) canvas;
-    (void) x;
-    (void) y;
 
     if (button == 1) {
         if (is_release) {
