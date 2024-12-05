@@ -10,7 +10,9 @@ example_button_new(void) {
     example_button_t *self = new(example_button_t);
     self->canvas = canvas_new(9 * TILE, 9 * TILE, 0x10);
     self->canvas->title = "example button";
+    self->canvas->hide_system_cursor = true;
     self->canvas->state = self;
+
     char *base = dirname(string_dup(__FILE__));
     canvas_init_asset_store(self->canvas, base);
     self->is_pressed = false;

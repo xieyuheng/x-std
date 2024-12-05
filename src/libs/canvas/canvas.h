@@ -18,6 +18,7 @@ typedef void (on_frame_t)(void *state, canvas_t *canvas, uint64_t passed);
 struct canvas_t {
     size_t width, height;
     cursor_t *cursor;
+    bool hide_system_cursor;
 
     // scale defines the ratio between
     // canvas pixel and screen pixel.

@@ -148,7 +148,9 @@ canvas_window_hide_cursor(canvas_window_t *self) {
 
 void
 canvas_window_init_cursor(canvas_window_t *self) {
-    canvas_window_hide_cursor(self);
+    if (self->canvas->hide_system_cursor) {
+        canvas_window_hide_cursor(self);
+    }
 }
 
 static void

@@ -6,6 +6,7 @@ canvas_new(size_t width, size_t height, size_t scale) {
     self->width = width;
     self->height = height;
     self->cursor = cursor_new(width / 2, height / 2);
+    self->hide_system_cursor = false;
     self->scale = scale;
 
     self->pixels = allocate(width * height * sizeof(uint32_t));

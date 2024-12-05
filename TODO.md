@@ -1,7 +1,3 @@
-# example button
-
-[canvas] `canvas` has a default cursor chr image
-
 # example blending
 
 [example blending] `example_blending` -- setup -- a new example to show all the blendings
