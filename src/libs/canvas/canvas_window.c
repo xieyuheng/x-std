@@ -49,6 +49,7 @@ static void canvas_window_init_display(canvas_window_t *self);
 static void canvas_window_init_window(canvas_window_t *self);
 static void canvas_window_init_input(canvas_window_t *self);
 static void canvas_window_init_title(canvas_window_t *self);
+static void canvas_window_init_cursor(canvas_window_t *self);
 
 static void
 canvas_window_init(canvas_window_t *self) {
@@ -56,6 +57,7 @@ canvas_window_init(canvas_window_t *self) {
     canvas_window_init_window(self);
     canvas_window_init_input(self);
     canvas_window_init_title(self);
+    canvas_window_init_cursor(self);
 }
 
 void
@@ -115,6 +117,22 @@ canvas_window_init_title(canvas_window_t *self) {
 
     if (self->canvas->title)
         XStoreName(self->display, self->window, self->canvas->title);
+}
+
+static void
+canvas_window_hide_cursor(canvas_window_t *self) {
+    XColor black = {0};
+    char empty[] = {0};
+    Pixmap bitmap = XCreateBitmapFromData(self->display, self->window, empty, 1, 1);
+    Cursor blank = XCreatePixmapCursor(self->display, bitmap, bitmap, &black, &black, 0, 0);
+    XDefineCursor(self->display, self->window, blank);
+    XFreeCursor(self->display, blank);
+    XFreePixmap(self->display, bitmap);
+}
+
+void
+canvas_window_init_cursor(canvas_window_t *self) {
+    canvas_window_hide_cursor(self);
 }
 
 static void

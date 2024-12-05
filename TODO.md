@@ -1,10 +1,9 @@
 # example button
 
-[canvas] hide system cursor -- learn from uxn11
-[canvas] `canvas` has a default cursor chr image
-
 [canvas] `canvas_draw_icn_bytes` handle alpha
 [canvas] `canvas_draw_chr_bytes` handle alpha
+
+[canvas] `canvas` has a default cursor chr image
 
 # example blending
 
