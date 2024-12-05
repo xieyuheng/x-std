@@ -1,4 +1,4 @@
-[canvas] `asset_store_t` -- asset file with cache
+[canvas] `asset_store_t`
 
 [canvas] `asset_store_has`
 [canvas] `asset_store_get`
