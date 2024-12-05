@@ -34,12 +34,27 @@ store_purge_cache(store_t *self) {
     dict_purge(self->cache_dict);
 }
 
-// bool
-// store_has(store_t *self, const char* path) {
-//     uint8_t *bytes = store_get(self, path);
-//     if (bytes) {
-//         return true;
-//     } else {
-//         return false;
-//     }
-// }
+uint8_t *
+store_get_from_cache(store_t *self, const char* path) {
+    return dict_get(self->cache_dict, path);
+}
+
+uint8_t *
+store_get(store_t *self, const char* path) {
+    uint8_t *cached_bytes = store_get_from_cache(self, path);
+    if (cached_bytes) {
+        return cached_bytes;
+    }
+
+    return NULL;
+}
+
+bool
+store_has(store_t *self, const char* path) {
+    uint8_t *bytes = store_get(self, path);
+    if (bytes) {
+        return true;
+    } else {
+        return false;
+    }
+}
