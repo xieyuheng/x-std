@@ -2,14 +2,14 @@
 
 # example button
 
-[example] `render_cursor`
+[example button] `render_cursor`
 
 [canvas] `canvas_draw_icn_bytes` handle alpha
 [canvas] `canvas_draw_chr_bytes` handle alpha
 
 # example blending
 
-[example] `example_blending` -- setup -- a new example to show all the blendings
+[example blending] `example_blending` -- setup -- a new example to show all the blendings
 
 [canvas] give each 16 blending a name
 
