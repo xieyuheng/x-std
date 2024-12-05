@@ -1,4 +1,3 @@
-[canvas] `cursor_destroy`
 [canvas] `canvas` has `cursor`
 [canvas] `on_click_t` no need to pase `x` and `y` just read form `canvas->cursor`
 
