@@ -1,3 +1,5 @@
+[commander] `command_run_t` only take `commander` as argument
+
 `cut_image_command` -- call `chr_subimage` -- only handle `.chr` for now
 
 ```

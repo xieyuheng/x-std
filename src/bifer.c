@@ -17,9 +17,7 @@ main(int argc, char *argv[]) {
     commander_use(commander, cut_image_command);
     commander_use(commander, example_command);
 
-    int status = commander_run(commander);
-    commander_destroy(&commander);
-    return status;
+    return commander_run(commander);
 }
 
 void

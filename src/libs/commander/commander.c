@@ -22,7 +22,8 @@ commander_destroy(commander_t **self_pointer) {
     }
 }
 
-const char *commander_version(const commander_t *self) {
+const char *
+commander_version(const commander_t *self) {
     return self->version;
 }
 
@@ -72,7 +73,7 @@ commander_run_command(const commander_t *self, const command_t *command) {
     char **args = self->argv + 1;
     if (command->run)
         return (*command->run)(args, self);
-    
+
     printf("no callback function in command: %s\n", command->name);
     return 1;
 }
@@ -98,6 +99,6 @@ commander_run(const commander_t *self) {
         command = list_next(self->command_list);
     }
 
-    printf("command not found: %s\n", name);
+    printf("[commander_run] command not found: %s\n", name);
     return 1;
 }

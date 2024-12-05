@@ -14,7 +14,7 @@ int
 run(char **args, const commander_t *commander) {
     (void) args;
 
-    printf("%s\n", commander_version(commander));
+    printf("%s\n", commander->version);
 
     return 0;
 }
