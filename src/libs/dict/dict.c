@@ -58,6 +58,12 @@ dict_destroy(dict_t **self_pointer) {
     assert(self_pointer);
     if (*self_pointer) {
         dict_t *self = *self_pointer;
+        entry_t *entry = list_pop(self->entry_list);
+        while (entry) {
+            self->destructor(&entry->item);
+            entry_destroy(&entry);
+            entry = list_pop(self->entry_list);
+        }
 
         list_destroy(&self->entry_list);
         free(self);
