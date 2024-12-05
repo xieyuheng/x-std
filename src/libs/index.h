@@ -11,6 +11,7 @@
 #include "lexer/index.h"
 #include "file/index.h"
 #include "image/index.h"
+#include "store/index.h"
 #include "canvas/index.h"
 #include "commander/index.h"
 

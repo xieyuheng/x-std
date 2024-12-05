@@ -1,6 +1,6 @@
 #pragma once
 
-// asset file with cache
+// file store with cache
 
 struct store_t {
     const char *base;

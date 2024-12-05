@@ -1,5 +1,3 @@
-[store] `store_test` -- setup
-
 [store] `store_t`
 
 [store] `store_new`
