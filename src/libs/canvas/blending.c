@@ -1,5 +1,8 @@
 #include "index.h"
 
+// About the 16 blendings:
+// - https://wiki.xxiivv.com/site/varvara.html
+
 color_t blending_table[16][4] = {
     // fg
     // ap
