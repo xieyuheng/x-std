@@ -35,11 +35,11 @@ canvas_draw_icn_bytes(
                     if (blending_is_transparent(blending) && color == 0) continue;
 
                     color_t blended = blending_table[color][blending];
-                    canvas_draw_pixel(
+                    canvas_put_pixel(
                         self,
                         x + (col * 8 + s),
                         y + (row * 8 + line),
-                        blended);
+                        self->palette[blended]);
                 }
             }
         }
@@ -67,11 +67,11 @@ canvas_draw_chr_bytes(
                     if (blending_is_transparent(blending) && color == 0) continue;
 
                     color_t blended = blending_table[color][blending];
-                    canvas_draw_pixel(
+                    canvas_put_pixel(
                         self,
                         x + (col * 8 + s),
                         y + (row * 8 + line),
-                        blended);
+                        self->palette[blended]);
                 }
             }
         }

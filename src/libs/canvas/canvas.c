@@ -68,11 +68,6 @@ canvas_put_pixel(canvas_t *self, size_t x, size_t y, uint32_t pixel) {
 }
 
 void
-canvas_draw_pixel(canvas_t *self, size_t x, size_t y, color_t color) {
-    canvas_put_pixel(self, x, y, self->palette[color]);
-}
-
-void
 canvas_add_clickable_area(
     canvas_t *self,
     size_t x, size_t y,
