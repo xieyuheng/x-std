@@ -14,17 +14,17 @@ canvas_test(void) {
     // }
 
     // {
-    //     canvas_fill_bottom_left(canvas, TILE, 2 * TILE, SL_COLOR);
+    //     canvas_fill_bottom_left(canvas, TILE, 2 * TILE, canvas->palette[SL_COLOR]);
     //     canvas_open(canvas);
     // }
 
     // {
-    //     canvas_fill_top_right(canvas, TILE, 2 * TILE, SL_COLOR);
+    //     canvas_fill_top_right(canvas, TILE, 2 * TILE, canvas->palette[SL_COLOR]);
     //     canvas_open(canvas);
     // }
 
     // {
-    //     canvas_fill_top_left(canvas, TILE, 2 * TILE, SL_COLOR);
+    //     canvas_fill_top_left(canvas, TILE, 2 * TILE, canvas->palette[SL_COLOR]);
     //     canvas_open(canvas);
     // }
 

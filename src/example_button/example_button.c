@@ -30,7 +30,7 @@ on_frame(state_t *state, canvas_t *canvas, uint64_t passed) {
     (void) passed;
 
     canvas->window->background_pixel = canvas->palette[BG_COLOR];
-    canvas_fill_bottom_right(canvas, 0, 0, BG_COLOR);
+    canvas_fill_bottom_right(canvas, 0, 0, canvas->palette[BG_COLOR]);
     canvas_clear_clickable_area(canvas);
 
     render_button(state, canvas);
