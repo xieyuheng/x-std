@@ -69,7 +69,6 @@ render_button(state_t *state, canvas_t *canvas) {
 
 void
 on_click_button(state_t *state, canvas_t *canvas, uint8_t button, bool is_release) {
-    (void) state;
     (void) canvas;
 
     if (button == 1) {
