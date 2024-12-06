@@ -9,7 +9,7 @@ canvas_test(void) {
 
     // {
     //     for (size_t i = 0; i < 8; i++)
-    //         canvas_put_pixel(canvas, i, i, canvas->palette[SL_COLOR]);
+    //         canvas_draw_pixel(canvas, i, i, canvas->palette[SL_COLOR]);
     //     canvas_open(canvas);
     // }
 

@@ -49,7 +49,7 @@ uint8_t *canvas_asset_store_get(canvas_t *self, const char *path);
 
 void canvas_open(canvas_t *self);
 
-void canvas_put_pixel(canvas_t *self, size_t x, size_t y, uint32_t pixel);
+void canvas_draw_pixel(canvas_t *self, size_t x, size_t y, uint32_t pixel);
 
 void canvas_add_clickable_area(
     canvas_t *self,

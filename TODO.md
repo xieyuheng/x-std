@@ -1,5 +1,3 @@
-[canvas] rename `canvas_put_pixel` to `canvas_draw_pixel`
-
 # example blending
 
 [example blending] `example_blending_start` -- `render_blending_table`
