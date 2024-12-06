@@ -2,23 +2,29 @@
 
 extern color_t blending_table[16][4];
 
+// blending naming:
+//     <BG_COLOR>_<AP_COLOR><VARIANT>
+
 typedef enum {
-    BG_BG_SL_FG_TR,
-    BG_SL_FG_AP,
-    BG_FG_AP_SL,
-    BG_AP_SL_FG,
-    SL_BG_SL_FG,
-    BG_SL_FG_AP_TR,
-    SL_FG_AP_SL,
-    SL_AP_SL_FG,
-    FG_BG_SL_FG,
-    FG_SL_FG_AP,
-    BG_FG_AP_SL_TR,
-    FG_AP_SL_FG,
-    AP_BG_SL_FG,
-    AP_SL_FG_AP,
-    AP_FG_AP_SL,
-    BG_AP_SL_FG_TR,
+    TR_FG,
+    BG_AP,
+    BG_SL,
+    BG_FG2,
+
+    SL_FG,
+    TR_AP,
+    SL_SL,
+    SL_FG2,
+
+    FG_FG,
+    FG_AP,
+    TR_SL,
+    FG_FG2,
+
+    AP_FG,
+    AP_AP,
+    AP_SL,
+    TR_FG2,
 } blending_t;
 
 bool blending_is_transparent(blending_t blending);

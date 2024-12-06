@@ -43,9 +43,9 @@ render_cursor(state_t *state, canvas_t *canvas) {
     size_t y = canvas->cursor->y;
 
     if (state->is_pressed) {
-        canvas_draw_image(canvas, x, y, "cursor-01x01.chr", 0xf);
+        canvas_draw_image(canvas, x, y, "cursor-01x01.chr", TR_FG2);
     } else {
-        canvas_draw_image(canvas, x, y, "cursor-01x01.chr", 0x5);
+        canvas_draw_image(canvas, x, y, "cursor-01x01.chr", TR_AP);
     }
 }
 
@@ -58,11 +58,11 @@ render_button(state_t *state, canvas_t *canvas) {
 
     if (state->is_pressed) {
         canvas_draw_image_button(
-            canvas, x, y, "button-down-03x03.chr", 0x1,
+            canvas, x, y, "button-down-03x03.chr", BG_AP,
             (on_click_t *) on_click_button);
     } else {
         canvas_draw_image_button(
-            canvas, x, y, "button-up-03x03.chr", 0x1,
+            canvas, x, y, "button-up-03x03.chr", BG_AP,
             (on_click_t *) on_click_button);
     }
 }
