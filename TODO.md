@@ -1,7 +1,3 @@
-# example button
-
-[canvas] `canvas->asset_base` -- quit calling `canvas_init_asset_store` in client
-
 # example blending
 
 [example blending] `example_blending_t`

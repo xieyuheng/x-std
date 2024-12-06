@@ -12,15 +12,13 @@ example_button_start(void) {
     state.is_pressed = false;
 
     canvas_t *canvas = canvas_new(9 * TILE, 9 * TILE, 0x10);
-    canvas->title = "example button";
-    canvas->hide_system_cursor = true;
-    char *base = dirname(string_dup(__FILE__));
-    canvas_init_asset_store(canvas, base);
     canvas->state = &state;
     canvas->on_frame = (on_frame_t *) on_frame;
+    canvas->asset_base = dirname(string_dup(__FILE__));
+    canvas->hide_system_cursor = true;
+    canvas->title = "example button";
 
     canvas_open(canvas);
-
     canvas_destroy(&canvas);
 }
 

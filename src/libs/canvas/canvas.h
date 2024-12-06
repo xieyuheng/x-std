@@ -37,13 +37,14 @@ struct canvas_t {
     on_frame_t *on_frame;
     list_t *clickable_area_list;
 
+    const char *asset_base;
     store_t *asset_store;
 };
 
 canvas_t *canvas_new(size_t width, size_t height, size_t scale);
 void canvas_destroy(canvas_t **self_pointer);
 
-void canvas_init_asset_store(canvas_t *self, const char *base);
+void canvas_init_asset_store(canvas_t *self);
 uint8_t *canvas_asset_store_get(canvas_t *self, const char *path);
 
 void canvas_open(canvas_t *self);
