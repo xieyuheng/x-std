@@ -1,5 +1,3 @@
-ambr 'uint8_t blending'  'blending_t blending'
-
 # editor
 
 [editor] `editor_t`

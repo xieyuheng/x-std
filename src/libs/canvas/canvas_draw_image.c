@@ -6,7 +6,7 @@ canvas_draw_icn_bytes(
     size_t x, size_t y,
     uint8_t *bytes,
     size_t width, size_t height,
-    uint8_t blending
+    blending_t blending
 ) {
     for (size_t row = 0; row < height; row++) {
         for (size_t col = 0; col < width; col++) {
@@ -36,7 +36,7 @@ canvas_draw_chr_bytes(
     size_t x, size_t y,
     uint8_t *bytes,
     size_t width, size_t height,
-    uint8_t blending
+    blending_t blending
 ) {
     for (size_t row = 0; row < height; row++) {
         for (size_t col = 0; col < width; col++) {
@@ -67,7 +67,7 @@ canvas_draw_image(
     canvas_t *self,
     size_t x, size_t y,
     const char *path,
-    uint8_t blending
+    blending_t blending
 ) {
     uint8_t width = image_hex_width_from_path(path);
     uint8_t height = image_hex_height_from_path(path);
@@ -80,7 +80,7 @@ canvas_draw_image_button(
     canvas_t *self,
     size_t x, size_t y,
     const char *path,
-    uint8_t blending,
+    blending_t blending,
     on_click_t *on_click
 ) {
     uint8_t width = image_hex_width_from_path(path);

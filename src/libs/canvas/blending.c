@@ -1,6 +1,6 @@
 #include "index.h"
 
-uint8_t blending_table[16][4] = {
+color_t blending_table[16][4] = {
     { 0, 0, 1, 2 }, // bg bg sl fg tr
     { 0, 1, 2, 3 }, // bg sl fg ap
     { 0, 2, 3, 1 }, // bg fg ap sl
@@ -20,7 +20,7 @@ uint8_t blending_table[16][4] = {
 };
 
 bool
-blending_is_transparent(uint8_t blending) {
+blending_is_transparent(blending_t blending) {
     return
         (blending == 0x0) ||
         (blending == 0x5) ||

@@ -1,6 +1,6 @@
 #pragma once
 
-extern uint8_t blending_table[16][4];
+extern color_t blending_table[16][4];
 
 typedef enum {
     BG_BG_SL_FG_TR,
@@ -21,4 +21,4 @@ typedef enum {
     BG_AP_SL_FG_TR,
 } blending_t;
 
-bool blending_is_transparent(uint8_t blending);
+bool blending_is_transparent(blending_t blending);

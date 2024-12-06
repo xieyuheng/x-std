@@ -2,7 +2,7 @@
 
 struct image_viewer_t {
     const char *path;
-    uint8_t blending;
+    blending_t blending;
     size_t scale;
     bool is_changed;
 };

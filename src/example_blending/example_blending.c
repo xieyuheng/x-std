@@ -35,7 +35,7 @@ render_blending_table(canvas_t *canvas) {
 
     for (uint8_t x = 0; x < 4; x++) {
         for (uint8_t y = 0; y < 4; y++) {
-            uint8_t blending = x + y * 4;
+            blending_t blending = x + y * 4;
             canvas_draw_image(
                 canvas,
                 offset + x * 2 * TILE,
