@@ -1,11 +1,42 @@
 #include "index.h"
 
-static uint8_t blending_table[4][16] = {
-    {0, 0, 0, 0, 1, 0, 1, 1, 2, 2, 0, 2, 3, 3, 3, 0},
-    {0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3},
-    {1, 2, 3, 1, 1, 2, 3, 1, 1, 2, 3, 1, 1, 2, 3, 1},
-    {2, 3, 1, 2, 2, 3, 1, 2, 2, 3, 1, 2, 2, 3, 1, 2},
+static uint8_t blending_table[16][4] = {
+    { 0, 0, 1, 2 }, // bg bg sl fg tr
+    { 0, 1, 2, 3 }, // bg sl fg ap
+    { 0, 2, 3, 1 }, // bg fg ap sl
+    { 0, 3, 1, 2 }, // bg ap sl fg
+    { 1, 0, 1, 2 }, // sl bg sl fg
+    { 0, 1, 2, 3 }, // bg sl fg ap tr
+    { 1, 2, 3, 1 }, // sl fg ap sl
+    { 1, 3, 1, 2 }, // sl ap sl fg
+    { 2, 0, 1, 2 }, // fg bg sl fg
+    { 2, 1, 2, 3 }, // fg sl fg ap
+    { 0, 2, 3, 1 }, // bg fg ap sl tr
+    { 2, 3, 1, 2 }, // fg ap sl fg
+    { 3, 0, 1, 2 }, // ap bg sl fg
+    { 3, 1, 2, 3 }, // ap sl fg ap
+    { 3, 2, 3, 1 }, // ap fg ap sl
+    { 0, 3, 1, 2 }, // bg ap sl fg tr
 };
+
+typedef enum {
+    BG_BG_SL_FG_TR,
+    BG_SL_FG_AP,
+    BG_FG_AP_SL,
+    BG_AP_SL_FG,
+    SL_BG_SL_FG,
+    BG_SL_FG_AP_TR,
+    SL_FG_AP_SL,
+    SL_AP_SL_FG,
+    FG_BG_SL_FG,
+    FG_SL_FG_AP,
+    BG_FG_AP_SL_TR,
+    FG_AP_SL_FG,
+    AP_BG_SL_FG,
+    AP_SL_FG_AP,
+    AP_FG_AP_SL,
+    BG_AP_SL_FG_TR,
+} blending_t;
 
 static bool
 blending_is_transparent(uint8_t blending) {
@@ -34,7 +65,7 @@ canvas_draw_icn_bytes(
                     color_t color = bit;
                     if (blending_is_transparent(blending) && color == 0) continue;
 
-                    color_t blended = blending_table[color][blending];
+                    color_t blended = blending_table[blending][color];
                     canvas_draw_pixel(
                         self,
                         x + (col * 8 + s),
@@ -66,7 +97,7 @@ canvas_draw_chr_bytes(
                     color_t color = bit1 + bit2 * 2;
                     if (blending_is_transparent(blending) && color == 0) continue;
 
-                    color_t blended = blending_table[color][blending];
+                    color_t blended = blending_table[blending][color];
                     canvas_draw_pixel(
                         self,
                         x + (col * 8 + s),

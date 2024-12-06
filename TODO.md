@@ -1,7 +1,6 @@
 # example blending
 
-[canvas] extract `blending_table`
-[canvas] `blending_table` should use row matrix
+[canvas] extract `blending.c`
 [canvas] give each 16 blending a name
 
 # editor
