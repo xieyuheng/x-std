@@ -1,7 +1,7 @@
 # example blending
 
-[example blending] `example_blending_start` -- setup canvas
-[example blending] `example_blending_start` -- show the blending table
+[example blending] `example_blending_start` -- `on_frame`
+[example blending] `example_blending_start` -- `render_blending_table`
 
 [canvas] extract `blending_table`
 [canvas] `blending_table` should use row matrix
