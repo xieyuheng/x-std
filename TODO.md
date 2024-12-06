@@ -1,6 +1,5 @@
 # example blending
 
-[example blending] `example_blending_start` -- `on_frame`
 [example blending] `example_blending_start` -- `render_blending_table`
 
 [canvas] extract `blending_table`
