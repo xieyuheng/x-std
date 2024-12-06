@@ -14,6 +14,8 @@ example_blending_start(void) {
     canvas_destroy(&canvas);
 }
 
+static void render_blending_table(canvas_t *canvas);
+
 void
 on_frame(void *state, canvas_t *canvas, uint64_t passed) {
     (void) state;
@@ -23,6 +25,11 @@ on_frame(void *state, canvas_t *canvas, uint64_t passed) {
     canvas_fill_bottom_right(canvas, 0, 0, BG_COLOR);
     canvas_clear_clickable_area(canvas);
 
-    // render_button(state, canvas);
-    // render_cursor(state, canvas);
+    render_blending_table(canvas);
+}
+
+void
+render_blending_table(canvas_t *canvas) {
+    (void) canvas;
+    //
 }

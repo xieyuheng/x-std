@@ -39,8 +39,6 @@ on_frame(state_t *state, canvas_t *canvas, uint64_t passed) {
 
 void
 render_cursor(state_t *state, canvas_t *canvas) {
-    (void) state;
-
     size_t x = canvas->cursor->x;
     size_t y = canvas->cursor->y;
 
