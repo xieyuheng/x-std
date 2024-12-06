@@ -1,7 +1,11 @@
 # example blending
 
-[example blending] `example_blending` -- setup -- a new example to show all the blendings
+[example blending] `example_blending_t`
+[example blending] `example_blending_new`
+[example blending] `example_blending_destroy`
 
+[canvas] extract `blending_table`
+[canvas] `blending_table` should use row matrix
 [canvas] give each 16 blending a name
 
 # editor

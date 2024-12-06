@@ -12,7 +12,6 @@ example_button_new(void) {
     self->canvas->title = "example button";
     self->canvas->hide_system_cursor = true;
     self->canvas->state = self;
-
     char *base = dirname(string_dup(__FILE__));
     canvas_init_asset_store(self->canvas, base);
     self->is_pressed = false;
@@ -31,9 +30,6 @@ example_button_destroy(example_button_t **self_pointer) {
 }
 
 static void on_frame(example_button_t *self, canvas_t *canvas, uint64_t passed);
-static void render_button(example_button_t *self, canvas_t *canvas);
-static void on_click_button(example_button_t *self, canvas_t *canvas, uint8_t button, bool is_release);
-static void render_cursor(example_button_t *self, canvas_t *canvas);
 
 void
 example_button_start(void) {
@@ -42,6 +38,9 @@ example_button_start(void) {
     canvas_open(self->canvas);
     example_button_destroy(&self);
 }
+
+static void render_button(example_button_t *self, canvas_t *canvas);
+static void render_cursor(example_button_t *self, canvas_t *canvas);
 
 void
 on_frame(
@@ -73,6 +72,8 @@ render_cursor(example_button_t *self, canvas_t *canvas) {
     }
 
 }
+
+static void on_click_button(example_button_t *self, canvas_t *canvas, uint8_t button, bool is_release);
 
 void
 render_button(example_button_t *self, canvas_t *canvas) {
