@@ -1,8 +1,15 @@
+# example button
+
+[canvas] `canvas->asset_base` -- quit calling `canvas_init_asset_store` in client
+
 # example blending
 
 [example blending] `example_blending_t`
 [example blending] `example_blending_new`
 [example blending] `example_blending_destroy`
+[example blending] `example_blending_t` -- setup canvas
+[example blending] `example_blending_start`
+[example blending] setup example command
 
 [canvas] extract `blending_table`
 [canvas] `blending_table` should use row matrix

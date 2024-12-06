@@ -1,50 +1,35 @@
 #include "index.h"
 
-struct example_button_t {
-    canvas_t *canvas;
+typedef struct {
     bool is_pressed;
-};
+} state_t;
 
-example_button_t *
-example_button_new(void) {
-    example_button_t *self = new(example_button_t);
-    self->canvas = canvas_new(9 * TILE, 9 * TILE, 0x10);
-    self->canvas->title = "example button";
-    self->canvas->hide_system_cursor = true;
-    self->canvas->state = self;
-    char *base = dirname(string_dup(__FILE__));
-    canvas_init_asset_store(self->canvas, base);
-    self->is_pressed = false;
-    return self;
-}
-
-void
-example_button_destroy(example_button_t **self_pointer) {
-    assert(self_pointer);
-    if (*self_pointer) {
-        example_button_t *self = *self_pointer;
-        canvas_destroy(&self->canvas);
-        free(self);
-        *self_pointer = NULL;
-    }
-}
-
-static void on_frame(example_button_t *self, canvas_t *canvas, uint64_t passed);
+static void on_frame(state_t *state, canvas_t *canvas, uint64_t passed);
 
 void
 example_button_start(void) {
-    example_button_t *self = example_button_new();
-    self->canvas->on_frame = (on_frame_t *) on_frame;
-    canvas_open(self->canvas);
-    example_button_destroy(&self);
+    state_t state;
+    state.is_pressed = false;
+
+    canvas_t *canvas = canvas_new(9 * TILE, 9 * TILE, 0x10);
+    canvas->title = "example button";
+    canvas->hide_system_cursor = true;
+    char *base = dirname(string_dup(__FILE__));
+    canvas_init_asset_store(canvas, base);
+    canvas->state = &state;
+    canvas->on_frame = (on_frame_t *) on_frame;
+
+    canvas_open(canvas);
+
+    canvas_destroy(&canvas);
 }
 
-static void render_button(example_button_t *self, canvas_t *canvas);
-static void render_cursor(example_button_t *self, canvas_t *canvas);
+static void render_button(state_t *state, canvas_t *canvas);
+static void render_cursor(state_t *state, canvas_t *canvas);
 
 void
 on_frame(
-    example_button_t *self,
+    state_t *state,
     canvas_t *canvas,
     uint64_t passed
 ) {
@@ -54,33 +39,32 @@ on_frame(
     canvas_fill_bottom_right(canvas, 0, 0, BG_COLOR);
     canvas_clear_clickable_area(canvas);
 
-    render_button(self, canvas);
-    render_cursor(self, canvas);
+    render_button(state, canvas);
+    render_cursor(state, canvas);
 }
 
 void
-render_cursor(example_button_t *self, canvas_t *canvas) {
-    (void) self;
+render_cursor(state_t *state, canvas_t *canvas) {
+    (void) state;
 
     size_t x = canvas->cursor->x;
     size_t y = canvas->cursor->y;
 
-    if (self->is_pressed) {
+    if (state->is_pressed) {
         canvas_draw_image(canvas, x, y, "cursor-01x01.chr", 0xf);
     } else {
         canvas_draw_image(canvas, x, y, "cursor-01x01.chr", 0x5);
     }
-
 }
 
-static void on_click_button(example_button_t *self, canvas_t *canvas, uint8_t button, bool is_release);
+static void on_click_button(state_t *state, canvas_t *canvas, uint8_t button, bool is_release);
 
 void
-render_button(example_button_t *self, canvas_t *canvas) {
+render_button(state_t *state, canvas_t *canvas) {
     size_t x = 3 * TILE;
     size_t y = 3 * TILE;
 
-    if (self->is_pressed) {
+    if (state->is_pressed) {
         canvas_draw_image_button(canvas, x, y, "button-down-03x03.chr", 0x1,
                                  (on_click_t *) on_click_button);
     } else {
@@ -91,20 +75,20 @@ render_button(example_button_t *self, canvas_t *canvas) {
 
 void
 on_click_button(
-    example_button_t *self,
+    state_t *state,
     canvas_t *canvas,
     uint8_t button,
     bool is_release
 ) {
-    (void) self;
+    (void) state;
     (void) canvas;
 
     if (button == 1) {
         if (is_release) {
-            self->is_pressed = false;
+            state->is_pressed = false;
             printf("!");
         } else {
-            self->is_pressed = true;
+            state->is_pressed = true;
         }
     }
 }
