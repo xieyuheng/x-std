@@ -1,5 +1,6 @@
 #include "index.h"
 #include "../example_button/index.h"
+#include "../example_blending/index.h"
 
 static int run(commander_t *commander);
 
@@ -13,10 +14,7 @@ example_command(commander_t *commander) {
 
 static void
 print_known_examples(void) {
-    printf(
-        "[example] known examples: "
-        "button"
-        "\n");
+    printf("[example] known examples: button, blending\n");
 }
 
 int
@@ -32,6 +30,11 @@ run(commander_t *commander) {
 
     if (string_equal(name, "button")) {
         example_button_start();
+        return 0;
+    }
+
+    if (string_equal(name, "blending")) {
+        example_blending_start();
         return 0;
     }
 
