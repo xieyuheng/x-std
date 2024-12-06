@@ -1,7 +1,4 @@
-# example blending
-
-[canvas] extract `blending.c`
-[canvas] give each 16 blending a name
+ambr 'uint8_t blending'  'blending_t blending'
 
 # editor
 
