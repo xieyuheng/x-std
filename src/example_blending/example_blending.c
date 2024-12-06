@@ -4,8 +4,9 @@ static void on_frame(void *state, canvas_t *canvas, uint64_t passed);
 
 void
 example_blending_start(void) {
-    canvas_t *canvas = canvas_new(0x8 * TILE, 0x8 * TILE, 0x8);
+    canvas_t *canvas = canvas_new(0xa * TILE, 0xa * TILE, 0x8);
     canvas->state = NULL;
+    canvas->frame_rate = 16;
     canvas->on_frame = (on_frame_t *) on_frame;
     canvas->asset_base = dirname(string_dup(__FILE__));
     canvas->title = "example blending";
@@ -30,13 +31,15 @@ on_frame(void *state, canvas_t *canvas, uint64_t passed) {
 
 void
 render_blending_table(canvas_t *canvas) {
+    size_t offset = TILE;
+
     for (uint8_t x = 0; x < 4; x++) {
         for (uint8_t y = 0; y < 4; y++) {
             uint8_t blending = x + y * 4;
             canvas_draw_image(
                 canvas,
-                x * 2 * TILE,
-                y * 2 * TILE,
+                offset + x * 2 * TILE,
+                offset + y * 2 * TILE,
                 "blending-02x02.chr",
                 blending);
         }

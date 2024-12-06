@@ -1,7 +1,5 @@
 # example blending
 
-[example blending] `example_blending_start` -- `render_blending_table`
-
 [canvas] extract `blending_table`
 [canvas] `blending_table` should use row matrix
 [canvas] give each 16 blending a name
