@@ -1,6 +1,7 @@
 # editor
 
-[editor] setup `eidt` command -- test with `editor_start` for now
+[editor] `editor_start`
+[editor] `edit_command` call `editor_start`
 
 [editor] `canvas_draw_font`
 [editor] `canvas_draw_text`

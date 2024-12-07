@@ -12,6 +12,7 @@ main(int argc, char *argv[]) {
 
     commander_use(commander, default_help_command);
     commander_use(commander, default_version_command);
+    commander_use(commander, edit_command);
     commander_use(commander, self_test_command);
     commander_use(commander, view_image_command);
     commander_use(commander, cut_image_command);
