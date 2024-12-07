@@ -21,11 +21,34 @@ utf8_test(void) {
         assert(utf8_code_point(string) == 0x00006587);
     }
 
-    utf8_iter_t *iter = utf8_iter_new("abc 中文 123");
+    {
+        const char *string = "abc";
+        assert(utf8_code_point(string) == 0x61);
+        assert(utf8_code_point(string+1) == 0x62);
+        assert(utf8_code_point(string+2) == 0x63);
+    }
 
-    //
+    {
+        const char *string = "abc 中文 123";
+        utf8_iter_t *iter = utf8_iter_new(string);
 
-    utf8_iter_destroy(&iter);
+        code_point_t code_point = utf8_iter_start(iter);
+        printf("testing string: %s\n", string);
+        while (code_point) {
+            printf("code_point: 0x%x\n", code_point);
+            code_point = utf8_iter_next(iter);
+        }
+
+        utf8_iter_destroy(&iter);
+    }
+
+    {
+        const char *string = "";
+        utf8_iter_t *iter = utf8_iter_new(string);
+        code_point_t code_point = utf8_iter_start(iter);
+        assert(code_point == 0);
+        utf8_iter_destroy(&iter);
+    }
 
     printf("</utf8_test>\n");
 }
