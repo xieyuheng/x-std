@@ -1,11 +1,9 @@
 #include "index.h"
 
-typedef void *item_t;
-
 struct array_t {
     size_t size;
     size_t cursor;
-    item_t *items;
+    void **items;
     destructor_t *destructor;
 };
 
@@ -22,7 +20,7 @@ void
 array_purge(array_t *self) {
     assert(self);
     while(!array_is_empty(self)) {
-        item_t item = array_pop(self);
+        void *item = array_pop(self);
         if (self->destructor)
             self->destructor(&item);
     }
@@ -73,7 +71,7 @@ array_is_empty(const array_t *self) {
 void *
 array_top(array_t *self) {
     assert(self->cursor > 0);
-    item_t item = self->items[self->cursor - 1];
+    void *item = self->items[self->cursor - 1];
     return item;
 }
 
@@ -81,7 +79,7 @@ void *
 array_pop(array_t *self) {
     assert(self->cursor > 0);
     self->cursor--;
-    item_t item = self->items[self->cursor];
+    void *item = self->items[self->cursor];
     return item;
 }
 

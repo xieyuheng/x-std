@@ -2,8 +2,6 @@
 
 #define STACK_BLOCK_SIZE 1024
 
-typedef void *item_t;
-
 struct stack_t {
     size_t block_size;
     list_t *array_list;
@@ -22,7 +20,7 @@ stack_new(void) {
 // stack_purge(stack_t *self) {
 //     assert(self);
 //     while(!stack_is_empty(self)) {
-//         item_t item = stack_pop(self);
+//         void* item = stack_pop(self);
 //         if (self->destructor)
 //             self->destructor(&item);
 //     }
@@ -80,9 +78,10 @@ stack_top(stack_t *self) {
 
 // void *
 // stack_pop(stack_t *self) {
-//     assert(self->cursor > 0);
-//     self->cursor--;
-//     item_t item = self->items[self->cursor];
+//     array_t *array = list_start(self->array_list);
+//     assert(array);
+//     // TODO
+//     void* item = self->items[self->cursor];
 //     return item;
 // }
 
