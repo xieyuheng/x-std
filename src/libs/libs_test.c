@@ -11,6 +11,7 @@ libs_test(void) {
     stack_test();
     int_test();
     code_test();
+    utf8_test();
     text_test();
     lexer_test();
     canvas_test();

@@ -1,4 +1,3 @@
-[utf8] `utf8_test` -- setup
 [utf8] `utf8_iter_new`
 [utf8] `utf8_iter_destroy`
 [utf8] `utf8_iter_start`
