@@ -3,8 +3,8 @@
 size_t
 code_max_lineno(const char *text) {
     size_t lineno = 1;
-    size_t string_length = strlen(text);
-    for (size_t i = 0; i < string_length; i++) {
+    size_t length = strlen(text);
+    for (size_t i = 0; i < length; i++) {
         if (text[i] == '\n') lineno++;
     }
 
@@ -16,8 +16,8 @@ code_lineno_of_index(const char *text, size_t index) {
     // just count the number of '\n'.
     // the consting starts from 1.
     size_t lineno = 1;
-    size_t string_length = strlen(text);
-    for (size_t i = 0; i < string_length; i++) {
+    size_t length = strlen(text);
+    for (size_t i = 0; i < length; i++) {
         if (i >= index) break;
         else if (text[i] == '\n') lineno++;
     }
@@ -38,12 +38,12 @@ code_print_context(
     size_t end_lineno = code_lineno_of_index(text, end);
     size_t max_lineno = end_lineno + offset;
 
-    size_t left_padding = uint_decimal_string_length(max_lineno);
-    size_t string_length = strlen(text);
+    size_t left_padding = uint_decimal_length(max_lineno);
+    size_t length = strlen(text);
 
     size_t current_lineno = 1;
 
-    for (size_t i = 0; i < string_length; i++) {
+    for (size_t i = 0; i < length; i++) {
         char c = text[i];
         // Do NOT use minus on unsigned int!
         if (start_lineno <= current_lineno + offset &&
