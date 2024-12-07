@@ -4,13 +4,12 @@ void
 stack_test(void) {
     printf("<stack_test>\n");
 
-    // stack_t *stack = stack_new_with(
-    //     100, (destructor_t *) string_destroy);
+    stack_t *stack = stack_new_with((destructor_t *) string_destroy);
 
-    // assert(stack);
-    // assert(stack_size(stack) == 100);
+    assert(stack);
+
     // assert(stack_length(stack) == 0);
-    // assert(stack_is_empty(stack));
+    assert(stack_is_empty(stack));
 
     // char *cheese = string_dup("boursin");
     // char *bread = string_dup("baguette");

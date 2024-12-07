@@ -1,12 +1,15 @@
-[stack] `stack_purge`
-[stack] `stack_destroy`
-[stack] `stack_new_with`
 [stack] `stack_length`
+
 [stack] `stack_top`
 [stack] `stack_pop`
+[stack] `stack_purge`
+[stack] `stack_destroy`
+
 [stack] `stack_push`
 [stack] `stack_get`
 [stack] `stack_pick`
+
+
 
 [text] `text_from_string` -- use `stack`
 [text] `text_to_string`

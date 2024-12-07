@@ -1,8 +1,11 @@
 #include "index.h"
 
+#define STACK_BLOCK_SIZE 1024
+
 typedef void *item_t;
 
 struct stack_t {
+    size_t block_size;
     list_t *array_list;
     destructor_t *destructor;
 };
@@ -10,6 +13,7 @@ struct stack_t {
 stack_t *
 stack_new(void) {
     stack_t *self = new(stack_t);
+    self->block_size = STACK_BLOCK_SIZE;
     self->array_list = list_new();
     return self;
 }
@@ -43,12 +47,12 @@ stack_set_destructor(
     self->destructor = destructor;
 }
 
-// stack_t *
-// stack_new_with(size_t size, destructor_t *destructor) {
-//     stack_t *self = stack_new(size);
-//     self->destructor = destructor;
-//     return self;
-// }
+stack_t *
+stack_new_with(destructor_t *destructor) {
+    stack_t *self = stack_new();
+    self->destructor = destructor;
+    return self;
+}
 
 // size_t
 // stack_length(const stack_t *self) {
