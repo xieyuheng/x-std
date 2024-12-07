@@ -55,5 +55,23 @@ array_test(void) {
     array_destroy(&array);
     assert(array == NULL);
 
+    {
+        char *cheese = string_dup("boursin");
+        char *bread = string_dup("baguette");
+        char *wine = string_dup("bordeaux");
+
+        array_t *array = array_new_with(
+            3, (destructor_t *) string_destroy);
+
+        assert(!array_is_full(array));
+
+        array_push(array, cheese);  assert(!array_is_full(array));
+        array_push(array, bread);   assert(!array_is_full(array));
+        array_push(array, wine);    assert(array_is_full(array));
+
+        // array_destroy(&array);
+        // assert(array == NULL);
+    }
+
     printf("</array_test>\n");
 }

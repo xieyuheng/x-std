@@ -68,6 +68,11 @@ array_is_empty(const array_t *self) {
     return self->cursor == 0;
 }
 
+bool
+array_is_full(const array_t *self) {
+    return self->cursor == self->size;
+}
+
 void *
 array_top(array_t *self) {
     assert(self->cursor > 0);

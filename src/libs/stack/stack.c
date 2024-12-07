@@ -1,6 +1,6 @@
 #include "index.h"
 
-#define STACK_BLOCK_SIZE 1024
+#define STACK_BLOCK_SIZE 1
 
 struct stack_t {
     size_t block_size;
@@ -12,6 +12,7 @@ stack_t *
 stack_new(void) {
     stack_t *self = new(stack_t);
     self->block_size = STACK_BLOCK_SIZE;
+    assert(self->block_size >= 1);
     self->array_list = list_new();
     return self;
 }
@@ -83,6 +84,7 @@ stack_pop(stack_t *self) {
     assert(array);
     void* item = array_pop(array);
     if (array_is_empty(array)) {
+        list_pop(self->array_list);
         array_destroy(&array);
     }
 
@@ -92,8 +94,9 @@ stack_pop(stack_t *self) {
 void
 stack_push(stack_t *self, void *item) {
     array_t *array = list_end(self->array_list);
-    if (!array) {
+    if (!array || array_is_full(array)) {
         array = array_new(self->block_size);
+        printf ("push\n");
         list_push(self->array_list, array);
     }
 
@@ -113,5 +116,5 @@ stack_get(stack_t *self, size_t index) {
 
 void *
 stack_pick(stack_t *self, size_t index) {
-    return stack_get(self, stack_length(self) - index);
+    return stack_get(self, stack_length(self) - index - 1);
 }
