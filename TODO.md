@@ -1,4 +1,3 @@
-[stack] `stack_get`
 [stack] `stack_pick`
 
 [text] `text_from_string` -- use `stack`

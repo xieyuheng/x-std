@@ -100,11 +100,16 @@ stack_push(stack_t *self, void *item) {
     array_push(array, item);
 }
 
-// void *
-// stack_get(stack_t *self, size_t index) {
-//     assert(index < self->cursor);
-//     return self->items[index];
-// }
+void *
+stack_get(stack_t *self, size_t index) {
+    array_t *array = list_get(
+        self->array_list,
+        index / self->block_size);
+
+    if (!array) return NULL;
+
+    return array_get(array, index % self->block_size);
+}
 
 // void *
 // stack_pick(stack_t *self, size_t index) {
