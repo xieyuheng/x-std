@@ -1,6 +1,5 @@
 # editor
 
-[editor] `editor_new`
 [editor] `editor_destroy`
 
 [editor] `editor_t` setup canvas
