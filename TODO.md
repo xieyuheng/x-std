@@ -1,4 +1,3 @@
-[stack] `stack_push`
 [stack] `stack_purge`
 [stack] `stack_destroy`
 

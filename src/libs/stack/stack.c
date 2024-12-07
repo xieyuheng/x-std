@@ -88,11 +88,16 @@ stack_pop(stack_t *self) {
     return item;
 }
 
-// void
-// stack_push(stack_t *self, void *item) {
-//     self->items[self->cursor] = item;
-//     self->cursor++;
-// }
+void
+stack_push(stack_t *self, void *item) {
+    array_t *array = list_end(self->array_list);
+    if (!array) {
+        array = array_new(self->block_size);
+        list_push(self->array_list, array);
+    }
+
+    array_push(array, item);
+}
 
 // void *
 // stack_get(stack_t *self, size_t index) {
