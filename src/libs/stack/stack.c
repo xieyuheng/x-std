@@ -51,19 +51,14 @@ stack_set_destructor(
 // }
 
 // size_t
-// stack_size(const stack_t *self) {
-//     return self->size;
-// }
-
-// size_t
 // stack_length(const stack_t *self) {
 //     return self->cursor;
 // }
 
-// bool
-// stack_is_empty(const stack_t *self) {
-//     return self->cursor == 0;
-// }
+bool
+stack_is_empty(const stack_t *self) {
+    return list_is_empty(self->array_list);
+}
 
 // void *
 // stack_top(stack_t *self) {
