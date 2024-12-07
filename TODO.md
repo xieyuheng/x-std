@@ -1,9 +1,8 @@
-[stack] `stack_top`
+[stack] `stack_push`
 [stack] `stack_pop`
 [stack] `stack_purge`
 [stack] `stack_destroy`
 
-[stack] `stack_push`
 [stack] `stack_get`
 [stack] `stack_pick`
 

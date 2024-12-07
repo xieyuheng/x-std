@@ -71,12 +71,12 @@ stack_is_empty(const stack_t *self) {
     return list_is_empty(self->array_list);
 }
 
-// void *
-// stack_top(stack_t *self) {
-//     assert(self->cursor > 0);
-//     item_t item = self->items[self->cursor - 1];
-//     return item;
-// }
+void *
+stack_top(stack_t *self) {
+    array_t *array = list_start(self->array_list);
+    assert(array);
+    return array_top(array);
+}
 
 // void *
 // stack_pop(stack_t *self) {
