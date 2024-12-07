@@ -1,5 +1,3 @@
-[stack] `stack_length`
-
 [stack] `stack_top`
 [stack] `stack_pop`
 [stack] `stack_purge`

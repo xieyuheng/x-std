@@ -8,7 +8,7 @@ stack_test(void) {
 
     assert(stack);
 
-    // assert(stack_length(stack) == 0);
+    assert(stack_length(stack) == 0);
     assert(stack_is_empty(stack));
 
     // char *cheese = string_dup("boursin");

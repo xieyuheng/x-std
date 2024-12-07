@@ -54,10 +54,17 @@ stack_new_with(destructor_t *destructor) {
     return self;
 }
 
-// size_t
-// stack_length(const stack_t *self) {
-//     return self->cursor;
-// }
+size_t
+stack_length(const stack_t *self) {
+    size_t length = 0;
+    array_t *array = list_start(self->array_list);
+    while (array) {
+        length += array_length(array);
+        array = list_next(self->array_list);
+    }
+
+    return length;
+}
 
 bool
 stack_is_empty(const stack_t *self) {
