@@ -8,3 +8,4 @@ struct text_t {
 };
 
 text_t *text_new(size_t length);
+void text_destroy(text_t **self_pointer);
