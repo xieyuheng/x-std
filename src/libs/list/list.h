@@ -15,8 +15,6 @@ bool list_has(const list_t *self, void *item);
 bool list_remove(list_t *self, void *item);
 
 void *list_current(const list_t *self);
-void *list_first(const list_t *self);
-void *list_last(const list_t *self);
 
 // move the cursor.
 

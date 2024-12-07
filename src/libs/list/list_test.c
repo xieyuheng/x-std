@@ -8,8 +8,6 @@ list_test(void) {
     assert(list);
     assert(list_length(list) == 0);
 
-    assert(list_first(list) == NULL);
-    assert(list_last(list) == NULL);
     assert(list_current(list) == NULL);
 
     assert(list_start(list) == NULL);
@@ -46,11 +44,9 @@ list_test(void) {
         assert(list_has(list, bread));
         assert(list_has(list, wine));
 
-        assert(list_first(list) == cheese);
         assert(list_next(list) == cheese);
 
         assert(list_start(list) == cheese);
-        assert(list_last(list) == wine);
         assert(list_next(list) == bread);
 
         assert(list_start(list) == cheese);
@@ -64,10 +60,8 @@ list_test(void) {
         list_remove(list, wine);
         assert(list_length(list) == 2);
 
-        assert(list_first(list) == cheese);
         list_remove(list, cheese);
         assert(list_length(list) == 1);
-        assert(list_first(list) == bread);
 
         list_remove(list, bread);
         assert(list_length(list) == 0);
@@ -76,17 +70,13 @@ list_test(void) {
     {
         list_push(list, cheese);
         list_push(list, bread);
-        assert(list_last(list) == bread);
         list_remove(list, bread);
-        assert(list_last(list) == cheese);
         list_remove(list, cheese);
-        assert(list_last(list) == NULL);
     }
 
     {
         list_unshift(list, cheese);
         assert(list_length(list) == 1);
-        assert(list_first(list) == cheese);
 
         list_unshift(list, bread);
         assert(list_length(list) == 2);
@@ -95,7 +85,6 @@ list_test(void) {
 
         list_push(list, wine);
         assert(list_length(list) == 3);
-        assert(list_first(list) == bread);
 
         list_pop(list);
         list_pop(list);

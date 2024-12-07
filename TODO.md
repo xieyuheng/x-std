@@ -1,5 +1,3 @@
-[list] remove `list_first` and `list_last` and `list_current` -- be aware about the cursor moving
-
 [stack] `stack_t` should be have `array_list`
 
 [text] `text_from_string` -- use `stack`

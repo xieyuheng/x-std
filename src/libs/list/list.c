@@ -128,24 +128,6 @@ list_current(const list_t *self) {
 }
 
 void *
-list_first(const list_t *self) {
-    assert(self);
-    if (self->first)
-        return self->first->item;
-    else
-        return NULL;
-}
-
-void *
-list_last(const list_t *self) {
-    assert(self);
-    if (self->last)
-        return self->last->item;
-    else
-        return NULL;
-}
-
-void *
 list_start(list_t *self) {
     assert(self);
     self->cursor = self->first;
