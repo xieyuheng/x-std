@@ -11,3 +11,14 @@ editor_new(void) {
     self->canvas = canvas;
     return self;
 }
+
+void
+editor_destroy(editor_t **self_pointer) {
+    assert(self_pointer);
+    if (*self_pointer) {
+        editor_t *self = *self_pointer;
+        canvas_destroy(&self->canvas);
+        free(self);
+        *self_pointer = NULL;
+    }
+}

@@ -1,11 +1,12 @@
 # editor
 
-[editor] `editor_destroy`
+[editor] setup `eidt` command -- test with `editor_start` for now
 
-[editor] `editor_t` setup canvas
-
-[editor] setup `eidt` command -- testing with out arguments for now
-
-[editor] parse `.hex` file
-[editor] [maybe] `canvas_draw_hex_font`
+[editor] `canvas_draw_font`
 [editor] `canvas_draw_text`
+
+# font
+
+[font] `libs/font` setup
+[font] `font_t` has unicode and bitmap
+[font] read and save `.hex` file
