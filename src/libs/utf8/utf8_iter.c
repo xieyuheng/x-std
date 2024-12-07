@@ -38,7 +38,7 @@ utf8_iter_start(utf8_iter_t *self) {
 
 code_point_t
 utf8_iter_next(utf8_iter_t *self) {
-    self->cursor += utf8_byte_length(self->string[self->cursor]);
+    self->cursor += utf8_char_length(self->string[self->cursor]);
 
     if (self->string[self->cursor] == '\0')
         return '\0';

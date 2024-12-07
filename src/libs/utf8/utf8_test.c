@@ -4,11 +4,11 @@ void
 utf8_test(void) {
     printf("<utf8_test>\n");
 
-    assert(utf8_byte_length('a') == 1);
+    assert(utf8_char_length('a') == 1);
 
     {
         const char *string = "中"; // 0xE4 0xB8 0xAD
-        assert(utf8_byte_length(string[0]) == 3);
+        assert(utf8_char_length(string[0]) == 3);
     }
 
     {

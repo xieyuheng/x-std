@@ -1,4 +1,4 @@
-[utf8] `utf8_length`
+[utf8] `utf8_string_length`
 
 [text] `text_from_string` -- use `utf8_iter` and `stack`
 

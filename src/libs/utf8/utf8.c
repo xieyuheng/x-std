@@ -1,7 +1,7 @@
 #include "index.h"
 
 uint8_t
-utf8_byte_length(char c) {
+utf8_char_length(char c) {
     uint8_t byte =  c;
     uint8_t pattern_1 = 0x00; // 0b0_______ >> 7
     uint8_t pattern_2 = 0x06; // 0b110_____ >> 5
@@ -13,7 +13,7 @@ utf8_byte_length(char c) {
     if (byte >> 4 == pattern_3) return 3;
     if (byte >> 3 == pattern_4) return 4;
 
-    fprintf(stderr, "[utf8_byte_length] invalid utf8: 0x%x\n", byte);
+    fprintf(stderr, "[utf8_char_length] invalid utf8: 0x%x\n", byte);
     exit(1);
 }
 
@@ -24,7 +24,7 @@ utf8_code_point(const char *string) {
     uint8_t mask_4 = 0x07; // 0b00000111
     uint8_t mask_r = 0x3F; // 0b00111111
 
-    uint8_t byte_length = utf8_byte_length(string[0]);
+    uint8_t byte_length = utf8_char_length(string[0]);
     switch (byte_length) {
     case 1: {
         return (uint8_t) string[0];
