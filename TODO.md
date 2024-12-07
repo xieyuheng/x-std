@@ -1,4 +1,3 @@
-[utf8] `utf8_iter` -- setup
 [utf8] `utf8_iter_t`
 [utf8] `utf8_iter_new`
 [utf8] `utf8_iter_destroy`
@@ -18,6 +17,8 @@
 [font] `font_new`
 [font] `font_destroy`
 [font] read and save `.hex` file
+
+[example button] fix click and move away logic
 
 [editor] `canvas_draw_font`
 [editor] `canvas_draw_text`
