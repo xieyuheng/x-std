@@ -35,14 +35,13 @@ stack_new(void) {
 //     }
 // }
 
-
-// void
-// stack_set_destructor(
-//     stack_t *self,
-//     destructor_t *destructor
-// ) {
-//     self->destructor = destructor;
-// }
+void
+stack_set_destructor(
+    stack_t *self,
+    destructor_t *destructor
+) {
+    self->destructor = destructor;
+}
 
 // stack_t *
 // stack_new_with(size_t size, destructor_t *destructor) {
