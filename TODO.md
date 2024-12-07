@@ -1,4 +1,5 @@
-[text] make `text_t` private
+[text] `text_destroy`
+
 [text] `text_to_utf8`
 [text] `text_from_utf8`
 

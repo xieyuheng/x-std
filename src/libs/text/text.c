@@ -1,6 +1,9 @@
 #include "index.h"
 
-struct text_t {
-    size_t length;
-    code_point_t *code_points;
-};
+text_t *
+text_new(size_t length) {
+    text_t *self = new(text_t);
+    self->length = length;
+    self->code_points = allocate_many(length, sizeof(text_t));
+    return self;
+}
