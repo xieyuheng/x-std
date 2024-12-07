@@ -268,3 +268,15 @@ list_shift(list_t *self) {
 
     return item;
 }
+
+void *
+list_get(list_t *self, size_t index) {
+    void *item = list_start(self);
+    while (item) {
+        if (index == 0) return item;
+        item = list_next(self);
+        index--;
+    }
+
+    return NULL;
+}

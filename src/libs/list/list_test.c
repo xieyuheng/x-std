@@ -23,9 +23,9 @@ list_test(void) {
 
     //  Three items we'll use as test data
     //  List items are void *, not particularly strings
-    char *cheese = string_dup("boursin");
-    char *bread = string_dup("baguette");
-    char *wine = string_dup("bordeaux");
+    char *cheese = string_dup("cheese");
+    char *bread = string_dup("bread");
+    char *wine = string_dup("wine");
 
     {
         list_push(list, cheese);
@@ -134,6 +134,22 @@ list_test(void) {
         assert(list_end(list) == wine);
         assert(list_prev(list) == bread);
         assert(list_prev(list) == cheese);
+
+        assert(list_pop(list) == wine);
+        assert(list_pop(list) == bread);
+        assert(list_pop(list) == cheese);
+    }
+
+
+    {
+        list_push(list, cheese);
+        list_push(list, bread);
+        list_push(list, wine);
+
+        assert(list_get(list, 0) == cheese);
+        assert(list_get(list, 1) == bread);
+        assert(list_get(list, 2) == wine);
+        assert(list_get(list, 3) == NULL);
 
         assert(list_pop(list) == wine);
         assert(list_pop(list) == bread);

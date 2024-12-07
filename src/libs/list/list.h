@@ -34,3 +34,7 @@ void *list_pop(list_t *self);
 
 void list_unshift(list_t *self, void *item);
 void *list_shift(list_t *self);
+
+// at the index of the list.
+
+void *list_get(list_t *self, size_t index);
