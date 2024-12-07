@@ -1,7 +1,5 @@
 #pragma once
 
-typedef uint32_t code_point_t;
-
 struct text_t {
     size_t length;
     code_point_t *code_points;

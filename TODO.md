@@ -1,6 +1,8 @@
 [utf8] `utf8_iter_t`
 [utf8] `utf8_iter_new`
 [utf8] `utf8_iter_destroy`
+[utf8] `utf8_iter_start`
+[utf8] `utf8_iter_next`
 
 [text] `text_from_string` -- use `utf8_iter` and `stack`
 
