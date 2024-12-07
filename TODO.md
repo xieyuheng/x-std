@@ -1,7 +1,10 @@
 # editor
 
-[editor] `editor_t`
+[editor] `editor_new`
+[editor] `editor_destroy`
+
 [editor] `editor_t` setup canvas
+
 [editor] setup `eidt` command -- testing with out arguments for now
 
 [editor] parse `.hex` file
