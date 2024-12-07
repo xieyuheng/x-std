@@ -71,19 +71,22 @@ stack_is_empty(const stack_t *self) {
 
 void *
 stack_top(stack_t *self) {
-    array_t *array = list_start(self->array_list);
+    array_t *array = list_end(self->array_list);
     assert(array);
     return array_top(array);
 }
 
-// void *
-// stack_pop(stack_t *self) {
-//     array_t *array = list_start(self->array_list);
-//     assert(array);
-//     // TODO
-//     void* item = self->items[self->cursor];
-//     return item;
-// }
+void *
+stack_pop(stack_t *self) {
+    array_t *array = list_end(self->array_list);
+    assert(array);
+    void* item = array_pop(array);
+    if (array_is_empty(array)) {
+        array_destroy(&array);
+    }
+
+    return item;
+}
 
 // void
 // stack_push(stack_t *self, void *item) {
