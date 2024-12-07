@@ -1,4 +1,4 @@
-[text] a `text_t` is a array if `code_point_t` with `length`
+[text] make `text_t` private
 [text] `text_to_utf8`
 [text] `text_from_utf8`
 
