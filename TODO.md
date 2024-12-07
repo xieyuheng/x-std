@@ -1,3 +1,6 @@
+[utf8] `utf8_byte_length`
+
+[utf8] `utf8_iter_current`
 [utf8] `utf8_iter_start`
 [utf8] `utf8_iter_next`
 
