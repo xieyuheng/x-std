@@ -14,6 +14,7 @@ text_destroy(text_t **self_pointer) {
     if (*self_pointer) {
         text_t *self = *self_pointer;
         free(self->code_points);
+        free(self);
         *self_pointer = NULL;
     }
 }

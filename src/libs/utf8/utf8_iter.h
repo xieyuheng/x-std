@@ -6,3 +6,4 @@ struct utf8_iter_t {
 };
 
 utf8_iter_t *utf8_iter_new(const char *string);
+void utf8_iter_destroy(utf8_iter_t **self_pointer);
