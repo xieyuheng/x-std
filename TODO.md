@@ -1,5 +1,13 @@
-[text] `text_to_utf8`
-[text] `text_from_utf8`
+rename `stack` to `array` -- fixed sized
+
+[stack] `stack_t` should be have `array_list`
+
+[text] `text_from_string` -- use `stack`
+[text] `text_to_string`
+[text] `text_dup`
+[text] `text_equal`
+[text] `text_append`
+[text] `text_slice`
 
 [font] `libs/font` setup -- learn from unifont
 [font] `font_t` has `code` and bitmap
