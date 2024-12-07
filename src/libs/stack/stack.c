@@ -96,7 +96,6 @@ stack_push(stack_t *self, void *item) {
     array_t *array = list_end(self->array_list);
     if (!array || array_is_full(array)) {
         array = array_new(self->block_size);
-        printf ("push\n");
         list_push(self->array_list, array);
     }
 
