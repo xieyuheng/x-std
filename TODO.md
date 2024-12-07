@@ -1,7 +1,6 @@
 # editor
 
-[editor] `editor_start`
-[editor] `edit_command` call `editor_start`
+[editor] `eidtor` -- setup `on_frame`
 
 [editor] `canvas_draw_font`
 [editor] `canvas_draw_text`

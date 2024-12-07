@@ -22,3 +22,10 @@ editor_destroy(editor_t **self_pointer) {
         *self_pointer = NULL;
     }
 }
+
+void
+editor_start(void) {
+    editor_t *self = editor_new();
+    canvas_open(self->canvas);
+    editor_destroy(&self);
+}

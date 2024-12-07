@@ -1,6 +1,5 @@
 #include "index.h"
-#include "../example_button/index.h"
-#include "../example_blending/index.h"
+#include "../editor/index.h"
 
 static int run(commander_t *commander);
 
@@ -15,6 +14,6 @@ edit_command(commander_t *commander) {
 int
 run(commander_t *commander) {
     (void) commander;
-    printf("[edit] todo\n");
+    editor_start();
     return 1;
 }
