@@ -23,7 +23,7 @@ lexer_destroy(lexer_t **self_pointer) {
 
 static bool
 lexer_is_finished(lexer_t *self) {
-    return self->cursor == self->text_length;
+    return self->cursor == self->string_length;
 }
 
 static char
@@ -51,7 +51,7 @@ lexer_lex(lexer_t *self) {
 
     self->cursor = 0;
     self->buffer_length = 0;
-    self->text_length = strlen(self->text);
+    self->string_length = strlen(self->text);
 
     self->token_list = list_new_with((destructor_t *) token_destroy);
     while (!lexer_is_finished(self)) {

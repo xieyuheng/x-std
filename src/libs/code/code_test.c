@@ -1,8 +1,8 @@
 #include "index.h"
 
 void
-text_test(void) {
-    printf("<text_test>\n");
+code_test(void) {
+    printf("<code_test>\n");
 
     {
         const char *text = ""
@@ -10,7 +10,7 @@ text_test(void) {
             "12345\n"
             ".";
 
-        assert(text_max_lineno(text) == 3);
+        assert(code_max_lineno(text) == 3);
     }
 
     {
@@ -19,7 +19,7 @@ text_test(void) {
             "12345\n"
             ".\n";
 
-        assert(text_max_lineno(text) == 4);
+        assert(code_max_lineno(text) == 4);
     }
 
     {
@@ -28,10 +28,10 @@ text_test(void) {
             "12345\n"
             ".\n";
 
-        assert(text_lineno_of_index(text, 0) == 1);
-        assert(text_lineno_of_index(text, 1) == 1);
-        assert(text_lineno_of_index(text, 100) == 4);
+        assert(code_lineno_of_index(text, 0) == 1);
+        assert(code_lineno_of_index(text, 1) == 1);
+        assert(code_lineno_of_index(text, 100) == 4);
     }
 
-    printf("</text_test>\n");
+    printf("</code_test>\n");
 }

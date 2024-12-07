@@ -4,7 +4,7 @@
 
 struct lexer_t {
     const char *text;
-    size_t text_length;
+    size_t string_length;
     size_t cursor;
     char *buffer;
     size_t buffer_length;

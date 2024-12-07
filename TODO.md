@@ -1,4 +1,4 @@
-[text] move `text`/ to `string/` -- leave text for utf-32
+ambr text string
 [text] `libs/text` setup
 [text] a `text_t` is a array if `code_point_t` with `length`
 [text] `text_to_utf8`
