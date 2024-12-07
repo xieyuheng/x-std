@@ -14,7 +14,53 @@ utf8_byte_length(char c) {
     if (byte >> 3 == pattern_4) return 4;
 
     fprintf(stderr, "[utf8_byte_length] invalid utf8: 0x%x\n", byte);
-
     exit(1);
 }
 
+code_point_t
+utf8_first_code_point(const char *string) {
+    uint8_t mask_2 = 0x1F; // 0b00011111
+    uint8_t mask_3 = 0x0F; // 0b00001111
+    uint8_t mask_4 = 0x07; // 0b00000111
+    uint8_t mask_r = 0x3F; // 0b00111111
+
+    uint8_t byte_length = utf8_byte_length(string[0]);
+    switch (byte_length) {
+    case 1: {
+        return (uint8_t) string[0];
+    }
+
+    case 2: {
+        uint8_t byte_1 = string[0];
+        uint8_t byte_2 = string[1];
+        return
+            (((code_point_t) (mask_2 & byte_1)) << 6) +
+            (((code_point_t) (mask_r & byte_2)) << 0);
+    }
+
+    case 3: {
+        uint8_t byte_1 = string[0];
+        uint8_t byte_2 = string[1];
+        uint8_t byte_3 = string[2];
+        return
+            (((code_point_t) (mask_3 & byte_1)) << 12) +
+            (((code_point_t) (mask_r & byte_2)) << 6) +
+            (((code_point_t) (mask_r & byte_3)) << 0);
+    }
+
+    case 4: {
+        uint8_t byte_1 = string[0];
+        uint8_t byte_2 = string[1];
+        uint8_t byte_3 = string[2];
+        uint8_t byte_4 = string[3];
+        return
+            (((code_point_t) (mask_4 & byte_1)) << 18) +
+            (((code_point_t) (mask_r & byte_2)) << 12) +
+            (((code_point_t) (mask_r & byte_3)) << 6) +
+            (((code_point_t) (mask_r & byte_4)) << 0);
+    }
+    }
+
+    fprintf(stderr, "[utf8_first_code_point] invalid byte length: %u\n", byte_length);
+    exit(1);
+}
