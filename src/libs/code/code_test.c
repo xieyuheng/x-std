@@ -5,32 +5,32 @@ code_test(void) {
     printf("<code_test>\n");
 
     {
-        const char *text = ""
+        const char *string = ""
             ".\n"
             "12345\n"
             ".";
 
-        assert(code_max_lineno(text) == 3);
+        assert(code_max_lineno(string) == 3);
     }
 
     {
-        const char *text = ""
+        const char *string = ""
             ".\n"
             "12345\n"
             ".\n";
 
-        assert(code_max_lineno(text) == 4);
+        assert(code_max_lineno(string) == 4);
     }
 
     {
-        const char *text = ""
+        const char *string = ""
             ".\n"
             "12345\n"
             ".\n";
 
-        assert(code_lineno_of_index(text, 0) == 1);
-        assert(code_lineno_of_index(text, 1) == 1);
-        assert(code_lineno_of_index(text, 100) == 4);
+        assert(code_lineno_of_index(string, 0) == 1);
+        assert(code_lineno_of_index(string, 1) == 1);
+        assert(code_lineno_of_index(string, 100) == 4);
     }
 
     printf("</code_test>\n");
