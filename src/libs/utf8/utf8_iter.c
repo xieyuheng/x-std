@@ -22,3 +22,9 @@ code_point_t
 utf8_iter_current(utf8_iter_t *self) {
     return utf8_code_point(self->string + self->cursor);
 }
+
+code_point_t
+utf8_iter_start(utf8_iter_t *self) {
+    self->cursor = 0;
+    return utf8_code_point(self->string + self->cursor);
+}
