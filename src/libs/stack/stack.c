@@ -7,14 +7,12 @@ struct stack_t {
     destructor_t *destructor;
 };
 
-// stack_t *
-// stack_new(size_t size) {
-//     stack_t *self = new(stack_t);
-//     self->size = size;
-//     self->cursor = 0;
-//     self->items = allocate_pointers(size);
-//     return self;
-// }
+stack_t *
+stack_new(void) {
+    stack_t *self = new(stack_t);
+    self->array_list = list_new();
+    return self;
+}
 
 // void
 // stack_purge(stack_t *self) {
