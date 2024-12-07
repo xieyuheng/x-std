@@ -1,5 +1,13 @@
-[text] `text_from_string` -- use `stack`
-[text] `text_to_string`
+[utf8] `utf8_iter` -- setup
+[utf8] `utf8_iter_t`
+[utf8] `utf8_iter_new`
+[utf8] `utf8_iter_destroy`
+
+[text] `text_from_string` -- use `utf8_iter` and `stack`
+
+[string] `string_append_inplace`
+
+[text] `text_to_string` -- use `string_append_inplace`
 [text] `text_dup`
 [text] `text_equal`
 [text] `text_append`
