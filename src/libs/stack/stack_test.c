@@ -11,21 +11,21 @@ stack_test(void) {
     assert(stack_length(stack) == 0);
     assert(stack_is_empty(stack));
 
-    // char *cheese = string_dup("boursin");
-    // char *bread = string_dup("baguette");
-    // char *wine = string_dup("bordeaux");
+    char *cheese = string_dup("boursin");
+    char *bread = string_dup("baguette");
+    char *wine = string_dup("bordeaux");
 
-    // stack_push(stack, cheese);
-    // assert(stack_length(stack) == 1);
-    // assert(!stack_is_empty(stack));
+    stack_push(stack, cheese);
+    assert(stack_length(stack) == 1);
+    assert(!stack_is_empty(stack));
 
-    // stack_push(stack, bread);
-    // assert(stack_length(stack) == 2);
-    // assert(!stack_is_empty(stack));
+    stack_push(stack, bread);
+    assert(stack_length(stack) == 2);
+    assert(!stack_is_empty(stack));
 
-    // stack_push(stack, wine);
-    // assert(stack_length(stack) == 3);
-    // assert(!stack_is_empty(stack));
+    stack_push(stack, wine);
+    assert(stack_length(stack) == 3);
+    assert(!stack_is_empty(stack));
 
     // assert(stack_pick(stack, 0) == wine);
     // assert(stack_pick(stack, 1) == bread);
@@ -47,12 +47,12 @@ stack_test(void) {
     // stack_push(stack, wine);
     // assert(stack_length(stack) == 3);
 
-    // stack_purge(stack);
-    // assert(stack_length(stack) == 0);
-    // assert(stack_is_empty(stack));
+    stack_purge(stack);
+    assert(stack_length(stack) == 0);
+    assert(stack_is_empty(stack));
 
-    // stack_destroy(&stack);
-    // assert(stack == NULL);
+    stack_destroy(&stack);
+    assert(stack == NULL);
 
     printf("</stack_test>\n");
 }

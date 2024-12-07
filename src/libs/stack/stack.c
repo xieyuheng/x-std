@@ -16,26 +16,27 @@ stack_new(void) {
     return self;
 }
 
-// void
-// stack_purge(stack_t *self) {
-//     assert(self);
-//     while(!stack_is_empty(self)) {
-//         void* item = stack_pop(self);
-//         if (self->destructor)
-//             self->destructor(&item);
-//     }
-// }
+void
+stack_purge(stack_t *self) {
+    assert(self);
+    while(!stack_is_empty(self)) {
+        void* item = stack_pop(self);
+        if (self->destructor)
+            self->destructor(&item);
+    }
+}
 
-// void
-// stack_destroy(stack_t **self_pointer) {
-//     assert(self_pointer);
-//     if (*self_pointer) {
-//         stack_t *self = *self_pointer;
-//         stack_purge(self);
-//         free(self);
-//         *self_pointer = NULL;
-//     }
-// }
+void
+stack_destroy(stack_t **self_pointer) {
+    assert(self_pointer);
+    if (*self_pointer) {
+        stack_t *self = *self_pointer;
+        stack_purge(self);
+        list_destroy(&self->array_list);
+        free(self);
+        *self_pointer = NULL;
+    }
+}
 
 void
 stack_set_destructor(

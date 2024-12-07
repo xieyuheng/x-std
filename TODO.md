@@ -1,10 +1,5 @@
-[stack] `stack_purge`
-[stack] `stack_destroy`
-
 [stack] `stack_get`
 [stack] `stack_pick`
-
-
 
 [text] `text_from_string` -- use `stack`
 [text] `text_to_string`
