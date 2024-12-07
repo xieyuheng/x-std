@@ -111,8 +111,7 @@ stack_get(stack_t *self, size_t index) {
     return array_get(array, index % self->block_size);
 }
 
-// void *
-// stack_pick(stack_t *self, size_t index) {
-//     assert(index < self->cursor);
-//     return self->items[self->cursor - 1 - index];
-// }
+void *
+stack_pick(stack_t *self, size_t index) {
+    return stack_get(self, stack_length(self) - index);
+}

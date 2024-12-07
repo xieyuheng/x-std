@@ -1,5 +1,3 @@
-[stack] `stack_pick`
-
 [text] `text_from_string` -- use `stack`
 [text] `text_to_string`
 [text] `text_dup`

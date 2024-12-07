@@ -16,20 +16,23 @@ stack_test(void) {
     char *wine = string_dup("bordeaux");
 
     stack_push(stack, cheese);
+    assert(stack_top(stack) == cheese);
     assert(stack_length(stack) == 1);
     assert(!stack_is_empty(stack));
 
     stack_push(stack, bread);
+    assert(stack_top(stack) == bread);
     assert(stack_length(stack) == 2);
     assert(!stack_is_empty(stack));
 
     stack_push(stack, wine);
+    assert(stack_top(stack) == wine);
     assert(stack_length(stack) == 3);
     assert(!stack_is_empty(stack));
 
-    // assert(stack_pick(stack, 0) == wine);
-    // assert(stack_pick(stack, 1) == bread);
-    // assert(stack_pick(stack, 2) == cheese);
+    assert(stack_pick(stack, 0) == wine);
+    assert(stack_pick(stack, 1) == bread);
+    assert(stack_pick(stack, 2) == cheese);
 
     assert(stack_get(stack, 2) == wine);
     assert(stack_get(stack, 1) == bread);
