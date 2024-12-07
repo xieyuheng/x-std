@@ -1,6 +1,6 @@
 #include "index.h"
 
-#define STACK_BLOCK_SIZE 1
+#define STACK_BLOCK_SIZE 1024
 
 struct stack_t {
     size_t block_size;
