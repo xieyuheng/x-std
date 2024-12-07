@@ -1,5 +1,3 @@
-rename `stack` to `array` -- fixed sized
-
 [stack] `stack_t` should be have `array_list`
 
 [text] `text_from_string` -- use `stack`

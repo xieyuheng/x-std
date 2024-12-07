@@ -2,16 +2,16 @@
 
 typedef void *item_t;
 
-struct stack_t {
+struct array_t {
     size_t size;
     size_t cursor;
     item_t *items;
     destructor_t *destructor;
 };
 
-stack_t *
-stack_new(size_t size) {
-    stack_t *self = new(stack_t);
+array_t *
+array_new(size_t size) {
+    array_t *self = new(array_t);
     self->size = size;
     self->cursor = 0;
     self->items = allocate_pointers(size);
@@ -19,21 +19,21 @@ stack_new(size_t size) {
 }
 
 void
-stack_purge(stack_t *self) {
+array_purge(array_t *self) {
     assert(self);
-    while(!stack_is_empty(self)) {
-        item_t item = stack_pop(self);
+    while(!array_is_empty(self)) {
+        item_t item = array_pop(self);
         if (self->destructor)
             self->destructor(&item);
     }
 }
 
 void
-stack_destroy(stack_t **self_pointer) {
+array_destroy(array_t **self_pointer) {
     assert(self_pointer);
     if (*self_pointer) {
-        stack_t *self = *self_pointer;
-        stack_purge(self);
+        array_t *self = *self_pointer;
+        array_purge(self);
         free(self);
         *self_pointer = NULL;
     }
@@ -41,44 +41,44 @@ stack_destroy(stack_t **self_pointer) {
 
 
 void
-stack_set_destructor(
-    stack_t *self,
+array_set_destructor(
+    array_t *self,
     destructor_t *destructor
 ) {
     self->destructor = destructor;
 }
 
-stack_t *
-stack_new_with(size_t size, destructor_t *destructor) {
-    stack_t *self = stack_new(size);
+array_t *
+array_new_with(size_t size, destructor_t *destructor) {
+    array_t *self = array_new(size);
     self->destructor = destructor;
     return self;
 }
 
 size_t
-stack_size(const stack_t *self) {
+array_size(const array_t *self) {
     return self->size;
 }
 
 size_t
-stack_length(const stack_t *self) {
+array_length(const array_t *self) {
     return self->cursor;
 }
 
 bool
-stack_is_empty(const stack_t *self) {
+array_is_empty(const array_t *self) {
     return self->cursor == 0;
 }
 
 void *
-stack_top(stack_t *self) {
+array_top(array_t *self) {
     assert(self->cursor > 0);
     item_t item = self->items[self->cursor - 1];
     return item;
 }
 
 void *
-stack_pop(stack_t *self) {
+array_pop(array_t *self) {
     assert(self->cursor > 0);
     self->cursor--;
     item_t item = self->items[self->cursor];
@@ -86,19 +86,19 @@ stack_pop(stack_t *self) {
 }
 
 void
-stack_push(stack_t *self, void *item) {
+array_push(array_t *self, void *item) {
     self->items[self->cursor] = item;
     self->cursor++;
 }
 
 void *
-stack_get(stack_t *self, size_t index) {
+array_get(array_t *self, size_t index) {
     assert(index < self->cursor);
     return self->items[index];
 }
 
 void *
-stack_pick(stack_t *self, size_t index) {
+array_pick(array_t *self, size_t index) {
     assert(index < self->cursor);
     return self->items[self->cursor - 1 - index];
 }

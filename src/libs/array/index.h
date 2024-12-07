@@ -2,5 +2,5 @@
 
 #include "deps.h"
 #include "types.h"
-#include "stack.h"
-#include "stack_test.h"
+#include "array.h"
+#include "array_test.h"

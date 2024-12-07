@@ -7,7 +7,7 @@ libs_test(void) {
     string_test();
     list_test();
     dict_test();
-    stack_test();
+    array_test();
     int_test();
     code_test();
     text_test();    
