@@ -17,3 +17,8 @@ utf8_iter_destroy(utf8_iter_t **self_pointer) {
         *self_pointer = NULL;
     }
 }
+
+code_point_t
+utf8_iter_current(utf8_iter_t *self) {
+    return utf8_first_code_point(self->string + self->cursor);
+}
