@@ -1,4 +1,3 @@
-ambr utf8_first_code_point utf8_code_point
 [utf8] `utf8_iter_start`
 [utf8] `utf8_iter_next`
 

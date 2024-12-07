@@ -18,7 +18,7 @@ utf8_byte_length(char c) {
 }
 
 code_point_t
-utf8_first_code_point(const char *string) {
+utf8_code_point(const char *string) {
     uint8_t mask_2 = 0x1F; // 0b00011111
     uint8_t mask_3 = 0x0F; // 0b00001111
     uint8_t mask_4 = 0x07; // 0b00000111
@@ -61,6 +61,6 @@ utf8_first_code_point(const char *string) {
     }
     }
 
-    fprintf(stderr, "[utf8_first_code_point] invalid byte length: %u\n", byte_length);
+    fprintf(stderr, "[utf8_code_point] invalid byte length: %u\n", byte_length);
     exit(1);
 }
