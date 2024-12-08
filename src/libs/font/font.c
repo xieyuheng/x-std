@@ -39,11 +39,11 @@ font_load_hex_file(file_t *file) {
     font_t *font = font_new();
     char *string = file_read_string(file);
 
-    // char *line = string;
-    // while (line) {
-    //     font_put(glyph_parse_hex(line));
-    //     line = string_next_line(line);
-    // }
+    const char *line = string;
+    while (line) {
+        font_put(font, glyph_parse_hex(line));
+        line = string_next_line(line);
+    }
 
     free(string);
     return font;
