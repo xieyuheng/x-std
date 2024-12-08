@@ -68,5 +68,12 @@ utf8_test(void) {
         assert(utf8_string_length("abc 中文 123") == 10);
     }
 
+    {
+        assert(string_equal(utf8_encode(utf8_decode("a")), "a"));
+        assert(string_equal(utf8_encode(utf8_decode("abc")), "a"));
+        assert(string_equal(utf8_encode(utf8_decode("中")), "中"));
+        assert(string_equal(utf8_encode(utf8_decode("中文")), "中"));
+    }
+
     printf("</utf8_test>\n");
 }

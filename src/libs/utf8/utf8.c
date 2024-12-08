@@ -95,17 +95,17 @@ utf8_encode_into(code_point_t code_point, char *dest) {
     }
 
     if (code_point <= 0x07FF) {
-        uint8_t byte_1 = pattern_2 & (code_point >> 6);
-        uint8_t byte_2 = pattern_r & ((uint8_t) code_point << 2 >> 2);
+        uint8_t byte_1 = pattern_2 | (code_point >> 6);
+        uint8_t byte_2 = pattern_r | ((uint8_t) code_point << 2 >> 2);
         dest[0] = byte_1;
         dest[1] = byte_2;
         return;
     }
 
     if (code_point <= 0xFFFF) {
-        uint8_t byte_1 = pattern_3 & (code_point >> 12);
-        uint8_t byte_2 = pattern_r & ((uint8_t) (code_point >> 6) << 2 >> 2);
-        uint8_t byte_3 = pattern_r & ((uint8_t) code_point << 2 >> 2);
+        uint8_t byte_1 = pattern_3 | (code_point >> 12);
+        uint8_t byte_2 = pattern_r | ((uint8_t) (code_point >> 6) << 2 >> 2);
+        uint8_t byte_3 = pattern_r | ((uint8_t) code_point << 2 >> 2);
         dest[0] = byte_1;
         dest[1] = byte_2;
         dest[2] = byte_3;
@@ -113,10 +113,10 @@ utf8_encode_into(code_point_t code_point, char *dest) {
     }
 
     if (code_point <= 0x10FFFF) {
-        uint8_t byte_1 = pattern_4 & (code_point >> 18);
-        uint8_t byte_2 = pattern_r & ((uint8_t) (code_point >> 12) << 2 >> 2);
-        uint8_t byte_3 = pattern_r & ((uint8_t) (code_point >> 6) << 2 >> 2);
-        uint8_t byte_4 = pattern_r & ((uint8_t) code_point << 2 >> 2);
+        uint8_t byte_1 = pattern_4 | (code_point >> 18);
+        uint8_t byte_2 = pattern_r | ((uint8_t) (code_point >> 12) << 2 >> 2);
+        uint8_t byte_3 = pattern_r | ((uint8_t) (code_point >> 6) << 2 >> 2);
+        uint8_t byte_4 = pattern_r | ((uint8_t) code_point << 2 >> 2);
         dest[0] = byte_1;
         dest[1] = byte_2;
         dest[2] = byte_3;
@@ -126,4 +126,13 @@ utf8_encode_into(code_point_t code_point, char *dest) {
 
     fprintf(stderr, "[utf8_encode_into] code point too large: 0x%x\n", code_point);
     exit(1);
+}
+
+char *
+utf8_encode(code_point_t code_point) {
+    char *dest = allocate(5);
+    utf8_encode_into(code_point, dest);
+    char *string = string_dup(dest);
+    free(dest);
+    return string;
 }
