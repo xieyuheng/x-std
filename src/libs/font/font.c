@@ -35,16 +35,21 @@ font_put(font_t *self, glyph_t *glyph) {
 }
 
 font_t *
-font_from_hex_file(file_t *file) {
+font_from_hex_string(const char *string) {
     font_t *font = font_new();
-    char *string = file_read_string(file);
-
     const char *line = string;
     while (line) {
         font_put(font, glyph_parse_hex(line));
         line = string_next_line(line);
     }
 
+    return font;
+}
+
+font_t *
+font_from_hex_file(file_t *file) {
+    char *string = file_read_string(file);
+    font_t *font = font_from_hex_string(string);
     free(string);
     return font;
 }
