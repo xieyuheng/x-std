@@ -1,4 +1,3 @@
-[char] setup
 [char] `char_to_hex`
 
 [font] `glyph_parse_hex`
