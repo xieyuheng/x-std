@@ -1,4 +1,3 @@
-[font] `glyph_destroy`
 [font] `glyph_code_point`
 [font] `glyph_width`
 [font] `glyph_height`

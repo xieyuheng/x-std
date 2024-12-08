@@ -25,3 +25,14 @@ glyph_new(code_point_t code_point, size_t width, size_t height) {
     self->bitmap = allocate(height * width / 8);
     return self;
 }
+
+void
+glyph_destroy(glyph_t **self_pointer) {
+    assert(self_pointer);
+    if (*self_pointer) {
+        glyph_t *self = *self_pointer;
+        free(self->bitmap);
+        free(self);
+        *self_pointer = NULL;
+    }
+}
