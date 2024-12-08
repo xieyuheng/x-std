@@ -1,11 +1,11 @@
 #include "index.h"
-#include "../editor/index.h"
+#include "../font_viewer/index.h"
 
 static int run(commander_t *commander);
 
 void
-edit_command(commander_t *commander) {
-    command_t *command = command_new("edit");
+font_view_command(commander_t *commander) {
+    command_t *command = command_new("font:view");
     command->description = "edit a .hex font file";
     command->run = run;
     commander_add(commander, command);
@@ -14,6 +14,6 @@ edit_command(commander_t *commander) {
 int
 run(commander_t *commander) {
     (void) commander;
-    editor_start();
+    font_viewer_start();
     return 1;
 }

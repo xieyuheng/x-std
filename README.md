@@ -1,6 +1,6 @@
 # bifer
 
-A bitmap font editor.
+A bitmap font font_viewer.
 
 ## Install
 
