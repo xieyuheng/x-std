@@ -122,3 +122,16 @@ glyph_parse_hex(const char* string) {
 
     return glyph;
 }
+
+void
+glyph_print_ascii_art(const glyph_t *self, char off_char, char on_char) {
+    for (size_t y = 0; y < glyph_height(self); y++) {
+        for (size_t x = 0; x < glyph_width(self); x++) {
+            bool dot = glyph_get(self, x, y);
+            if (dot) printf("%c%c", on_char, on_char);
+            else printf("%c%c", off_char, off_char);;
+        }
+
+        printf("\n");
+    }
+}
