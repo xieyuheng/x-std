@@ -1,6 +1,7 @@
-[string] `string_append_inplace`
+[utf8] `utf8_encode_into`
+[utf8] `utf8_encode`
 
-[text] `text_to_string` -- use `string_append_inplace`
+[text] `text_to_string` -- use `memcpy`
 
 [font] `libs/font` setup -- learn from unifont
 [font] `font_t` has `code` and bitmap

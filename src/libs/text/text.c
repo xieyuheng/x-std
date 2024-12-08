@@ -105,3 +105,8 @@ text_slice(text_t *self, size_t start, size_t end) {
 
     return text;
 }
+
+char *
+text_to_string(text_t *self) {
+    char *string
+}
