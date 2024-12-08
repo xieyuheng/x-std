@@ -1,9 +1,8 @@
-[font] setup `font_glyph_iter.c`
-[font] `font_glyph_iter_t`
-[font] `font_glyph_iter_new`
-[font] `font_glyph_iter_destroy`
-[font] `font_glyph_iter_start`
-[font] `font_glyph_iter_next`
+[font] `glyph_iter_t`
+[font] `glyph_iter_new`
+[font] `glyph_iter_destroy`
+[font] `glyph_iter_start`
+[font] `glyph_iter_next`
 
 [font viewer] `font_viewer_t` has `current_glyph`
 [font viewer] space key to view the next glyph
