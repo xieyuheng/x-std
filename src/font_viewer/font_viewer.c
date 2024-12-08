@@ -4,6 +4,7 @@ font_viewer_t *
 font_viewer_new(font_t *font) {
     font_viewer_t *self = new(font_viewer_t);
     self->font = font;
+    self->current_glyph = font_first_glyph(font);
 
     canvas_t *canvas = canvas_new(0xa * TILE, 0xa * TILE, 0x8);
     canvas->state = self;
@@ -11,6 +12,7 @@ font_viewer_new(font_t *font) {
     canvas->title = "bifer";
     self->canvas = canvas;
 
+    self->blending = BG_AP_BLENDING;
     return self;
 }
 
@@ -28,8 +30,14 @@ font_viewer_destroy(font_viewer_t **self_pointer) {
 
 static void
 render_current_glyph(font_viewer_t *self, canvas_t *canvas) {
-    glyph_t *glyph = font_get(self->font, 'A');
-    canvas_draw_glyph(canvas, 8, 8, glyph, 4, BG_AP_BLENDING);
+    if (self->current_glyph) {
+        size_t scale = 4;
+        canvas_draw_glyph(
+            canvas,
+            8, 8,
+            self->current_glyph, scale,
+            self->blending);
+    }
 }
 
 static void
@@ -44,9 +52,26 @@ on_frame(font_viewer_t *self, canvas_t *canvas, uint64_t passed) {
     render_current_glyph(self, canvas);
 }
 
+static void
+on_key(
+    font_viewer_t *self,
+    canvas_t *canvas,
+    const char *key_name,
+    bool is_release
+) {
+    (void) canvas;
+
+    if (is_release) {
+        if (string_equal_mod_case(key_name, "tab")) {
+            self->blending = (self->blending + 1) % 16;
+        }
+    }
+}
+
 void
 font_viewer_open(font_viewer_t *self) {
     self->canvas->on_frame = (on_frame_t *) on_frame;
+    self->canvas->on_key = (on_key_t *) on_key;
     canvas_open(self->canvas);
 }
 
