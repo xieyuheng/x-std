@@ -35,7 +35,7 @@ font_put(font_t *self, glyph_t *glyph) {
 }
 
 font_t *
-font_load_hex_file(file_t *file) {
+font_from_hex_file(file_t *file) {
     font_t *font = font_new();
     char *string = file_read_string(file);
 
