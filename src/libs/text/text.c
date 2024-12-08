@@ -90,3 +90,18 @@ text_append(text_t *left, text_t *right) {
 
     return text;
 }
+
+text_t *
+text_slice(text_t *self, size_t start, size_t end) {
+    assert(end >= start);
+
+    size_t length = end - start;
+    text_t *text = text_new(length);
+
+    memcpy(
+        text->code_points,
+        self->code_points + start,
+        length * sizeof(code_point_t));
+
+    return text;
+}

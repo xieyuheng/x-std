@@ -108,6 +108,7 @@ string_append(const char *left, const char *right) {
 
 char *
 string_slice(const char *self, size_t start, size_t end) {
+    assert(end >= start);
     size_t length = end - start;
     char *result = malloc(length + 1);
     memcpy(result, self + start, length);

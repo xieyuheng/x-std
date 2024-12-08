@@ -1,5 +1,3 @@
-[text] `text_slice`
-
 [string] `string_append_inplace`
 
 [text] `text_to_string` -- use `string_append_inplace`

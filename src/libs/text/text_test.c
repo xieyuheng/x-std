@@ -43,5 +43,17 @@ text_test(void) {
                     text_from_string("abc"))));
     }
 
+    {
+        text_t *text = text_from_string("中文");
+        assert(
+            text_equal(
+                text_slice(text, 0, 1),
+                text_from_string("中")));
+        assert(
+            text_equal(
+                text_slice(text, 1, 2),
+                text_from_string("文")));
+    }
+
     printf("</text_test>\n");
 }
