@@ -22,3 +22,15 @@ glyph_iter_destroy(glyph_iter_t **self_pointer) {
         *self_pointer = NULL;
     }
 }
+
+glyph_t *
+glyph_iter_start(glyph_iter_t *self) {
+    self->cursor = 0;
+    while (self->cursor <= MAX_CODE_POINT) {
+        glyph_t *glyph = font_get(self->font, self->cursor);
+        if (glyph) return glyph;
+        self->cursor++;
+    }
+
+    return NULL;
+}

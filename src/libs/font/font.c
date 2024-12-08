@@ -24,7 +24,7 @@ font_destroy(font_t **self_pointer) {
 }
 
 glyph_t *
-font_get(font_t *self, code_point_t code_point) {
+font_get(const font_t *self, code_point_t code_point) {
     assert(code_point <= MAX_CODE_POINT);
     return self->glyphs[code_point];
 }
