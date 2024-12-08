@@ -29,14 +29,10 @@ font_load_hex_file(file_t *file) {
     font_t *font = font_new();
     char *string = file_read_string(file);
 
-    // TODO
-
-    // line_iter_t *iter = line_iter_new(string);
-    // char *line = line_iter_start(iter);
+    // char *line = string;
     // while (line) {
-    //     glyph_t *glyph = glyph_parse_hex(line);
-    //     glyph
-    //     line = line_iter_next(iter);
+    //     font_put_glyph(glyph_parse_hex(line));
+    //     line = string_next_line(line);
     // }
 
     free(string);
