@@ -1,4 +1,3 @@
-[font] `glyph_parse_hex` use `string_next_line`
 [font] `font_put_glyph`
 [font] `font_load_hex_file`
 [font] setup unifont-ascii.hex
