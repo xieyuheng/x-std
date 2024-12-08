@@ -28,5 +28,11 @@ text_test(void) {
         assert(!text_equal(text_from_string("abc"), text_from_string("abd")));
     }
 
+    {
+        text_t *text = text_from_string("中文");
+        assert(text_dup(text) != text);
+        assert(text_equal(text_dup(text), text));
+    }
+
     printf("</text_test>\n");
 }

@@ -59,6 +59,15 @@ text_equal(text_t *left, text_t *right) {
     return memcmp(
         left->code_points,
         right->code_points,
-        left->length * sizeof(code_point_t)
-        ) == 0;
+        left->length * sizeof(code_point_t)) == 0;
+}
+
+text_t *
+text_dup(text_t *self) {
+    text_t *text = text_new(self->length);
+    memcpy(
+        self->code_points,
+        text->code_points,
+        self->length * sizeof(code_point_t));
+    return text;
 }
