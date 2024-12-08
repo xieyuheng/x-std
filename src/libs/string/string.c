@@ -182,3 +182,13 @@ string_equal_mod_case(const char *left, const char *right) {
 
     return result;
 }
+
+char *
+string_next_line(char *self) {
+    int newline_index = string_find_index(self, '\n');
+    if (newline_index == -1) {
+        return NULL;
+    }
+
+    return self + newline_index + 1;
+}

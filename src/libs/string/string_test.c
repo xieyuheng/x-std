@@ -69,5 +69,25 @@ string_test(void) {
     assert(string_equal_mod_case("ABC", "abc"));
     assert(string_equal_mod_case("abc", "ABC"));
 
+
+    {
+        const char *string =
+            "123\n"
+            "456\n"
+            "789\n";
+
+        char *line = (char *) string;
+        size_t count = 0;
+        while (line) {
+            if (count == 0) assert(string_starts_with(line, "123\n"));
+            if (count == 1) assert(string_starts_with(line, "456\n"));
+            if (count == 2) assert(string_starts_with(line, "789\n"));
+
+            line = string_next_line(line);
+            count++;
+        }
+    }
+
+
     printf("</string_test>\n");
 }
