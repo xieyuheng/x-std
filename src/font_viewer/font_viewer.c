@@ -6,7 +6,7 @@ font_viewer_new(font_t *font) {
     self->font = font;
     self->current_glyph = font_first_glyph(font);
 
-    canvas_t *canvas = canvas_new(0xa * TILE, 0xa * TILE, 0x8);
+    canvas_t *canvas = canvas_new(0x20 * TILE, 0x20 * TILE, 0x4);
     canvas->state = self;
     canvas->asset_base = dirname(string_dup(__FILE__));
     canvas->title = "bifer";
@@ -31,10 +31,11 @@ font_viewer_destroy(font_viewer_t **self_pointer) {
 static void
 render_current_glyph(font_viewer_t *self, canvas_t *canvas) {
     if (self->current_glyph) {
-        size_t scale = 4;
+        size_t scale = 8;
         canvas_draw_glyph(
             canvas,
-            8, 8,
+            0x20 / 4 * scale,
+            0x20 / 4 * scale,
             self->current_glyph, scale,
             self->blending);
     }
