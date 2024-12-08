@@ -1,7 +1,5 @@
 #include "index.h"
 
-#define MAX_CODE_POINT 0x10FFFF
-
 struct font_t {
     glyph_t **glyphs;
 };
@@ -29,6 +27,11 @@ glyph_t *
 font_get(font_t *self, code_point_t code_point) {
     assert(code_point <= MAX_CODE_POINT);
     return self->glyphs[code_point];
+}
+
+void
+font_put(font_t *self, glyph_t *glyph) {
+    self->glyphs[glyph_code_point(glyph)] = glyph;
 }
 
 font_t *
