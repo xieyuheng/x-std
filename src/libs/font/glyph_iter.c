@@ -12,3 +12,13 @@ glyph_iter_new(const font_t *font) {
     self->cursor = 0;
     return self;
 }
+
+void
+glyph_iter_destroy(glyph_iter_t **self_pointer) {
+    assert(self_pointer);
+    if (*self_pointer) {
+        glyph_iter_t *self = *self_pointer;
+        free(self);
+        *self_pointer = NULL;
+    }
+}
