@@ -65,6 +65,17 @@ on_key(
         if (string_equal_mod_case(key_name, "tab")) {
             self->blending = (self->blending + 1) % 16;
         }
+
+        if (string_equal_mod_case(key_name, "space")) {
+            code_point_t code_point = glyph_code_point(self->current_glyph);
+            glyph_t *next_glyph = font_next_glyph(self->font, code_point);
+            if (next_glyph) {
+                self->current_glyph = next_glyph;
+            } else {
+                self->current_glyph = font_first_glyph(self->font);
+            }
+
+        }
     }
 }
 
