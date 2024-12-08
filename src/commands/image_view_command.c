@@ -4,8 +4,8 @@
 static int run(commander_t *commander);
 
 void
-view_image_command(commander_t *commander) {
-    command_t *command = command_new("view-image");
+image_view_command(commander_t *commander) {
+    command_t *command = command_new("image:view");
     command->description = "view .icn or .chr image";
     command->run = run;
     commander_add(commander, command);
