@@ -1,5 +1,3 @@
-[font] `glyph_iter_t`
-[font] `glyph_iter_new`
 [font] `glyph_iter_destroy`
 [font] `glyph_iter_start`
 [font] `glyph_iter_next`
