@@ -8,5 +8,6 @@
 #include <stdbool.h>
 #include <ctype.h>
 
-#include "../memory/index.h"
 #include "../string/index.h"
+#include "../text/index.h"
+#include "../file/index.h"

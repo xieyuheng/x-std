@@ -1,4 +1,4 @@
-[font] `libs/font` setup -- learn from unifont
+[font] `font_test` setup
 [font] `font_t` has `code` and bitmap
 [font] `font_new`
 [font] `font_destroy`
