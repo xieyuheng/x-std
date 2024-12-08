@@ -13,6 +13,7 @@ libs_test(void) {
     code_test();
     utf8_test();
     text_test();
+    font_test();
     lexer_test();
     canvas_test();
     image_test();

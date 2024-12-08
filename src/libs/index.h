@@ -11,6 +11,7 @@
 #include "code/index.h"
 #include "utf8/index.h"
 #include "text/index.h"
+#include "font/index.h"
 #include "lexer/index.h"
 #include "file/index.h"
 #include "image/index.h"
