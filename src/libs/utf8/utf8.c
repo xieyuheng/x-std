@@ -130,7 +130,8 @@ utf8_encode_into(code_point_t code_point, char *dest) {
 
 char *
 utf8_encode(code_point_t code_point) {
-    char *dest = allocate(5);
+    size_t max_encode_length = 4;
+    char *dest = allocate(max_encode_length + 1);
     utf8_encode_into(code_point, dest);
     char *string = string_dup(dest);
     free(dest);

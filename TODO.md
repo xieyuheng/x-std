@@ -1,5 +1,3 @@
-[text] `text_to_string` -- use `memcpy`
-
 [font] `libs/font` setup -- learn from unifont
 [font] `font_t` has `code` and bitmap
 [font] `font_new`

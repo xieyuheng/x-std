@@ -55,5 +55,20 @@ text_test(void) {
                 text_from_string("文")));
     }
 
+    {
+        assert(
+            string_equal(
+                text_to_string(text_from_string("中文")),
+                "中文"));
+        assert(
+            string_equal(
+                text_to_string(text_from_string("abc")),
+                "abc"));
+        assert(
+            string_equal(
+                text_to_string(text_from_string("")),
+                ""));
+    }
+
     printf("</text_test>\n");
 }

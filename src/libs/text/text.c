@@ -105,3 +105,19 @@ text_slice(text_t *self, size_t start, size_t end) {
 
     return text;
 }
+
+char *
+text_to_string(text_t *self) {
+    size_t max_encode_length = 4;
+    char *dest = allocate(text_length(self) * max_encode_length + 1);
+    size_t cursor = 0;
+    for (size_t i = 0; i < self->length; i++) {
+        code_point_t code_point = text_get(self, i);
+        utf8_encode_into(code_point, dest + cursor);
+        cursor += utf8_char_length(dest[cursor]);
+    }
+
+    char *string = string_dup(dest);
+    free(dest);
+    return string;
+}
