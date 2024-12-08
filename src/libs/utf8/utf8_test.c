@@ -34,9 +34,21 @@ utf8_test(void) {
 
         code_point_t code_point = utf8_iter_start(iter);
         printf("testing string: %s\n", string);
+        size_t index = 0;
         while (code_point) {
-            printf("code_point: 0x%x\n", code_point);
+            if (index == 0) assert(code_point == 0x61);
+            if (index == 1) assert(code_point == 0x62);
+            if (index == 2) assert(code_point == 0x63);
+            if (index == 3) assert(code_point == 0x20);
+            if (index == 4) assert(code_point == 0x4e2d);
+            if (index == 5) assert(code_point == 0x6587);
+            if (index == 6) assert(code_point == 0x20);
+            if (index == 7) assert(code_point == 0x31);
+            if (index == 8) assert(code_point == 0x32);
+            if (index == 9) assert(code_point == 0x33);
+
             code_point = utf8_iter_next(iter);
+            index++;
         }
 
         utf8_iter_destroy(&iter);
