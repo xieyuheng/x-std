@@ -1,5 +1,7 @@
 #include "index.h"
 
+// https://en.wikipedia.org/wiki/UTF-8
+
 uint8_t
 utf8_char_length(char c) {
     uint8_t byte =  c;
@@ -77,4 +79,51 @@ utf8_string_length(const char *string) {
 
     utf8_iter_destroy(&iter);
     return length;
+}
+
+void
+utf8_encode_into(code_point_t code_point, char *dest) {
+    uint8_t pattern_r = 0x80; // 0b10000000
+    uint8_t pattern_2 = 0xC0; // 0b11000000
+    uint8_t pattern_3 = 0xE0; // 0b11100000
+    uint8_t pattern_4 = 0xF0; // 0b11110000
+
+    if (code_point <= 0x007F) {
+        uint8_t byte_1 = code_point;
+        dest[0] = byte_1;
+        return;
+    }
+
+    if (code_point <= 0x07FF) {
+        uint8_t byte_1 = pattern_2 & (code_point >> 6);
+        uint8_t byte_2 = pattern_r & ((uint8_t) code_point << 2 >> 2);
+        dest[0] = byte_1;
+        dest[1] = byte_2;
+        return;
+    }
+
+    if (code_point <= 0xFFFF) {
+        uint8_t byte_1 = pattern_3 & (code_point >> 12);
+        uint8_t byte_2 = pattern_r & ((uint8_t) (code_point >> 6) << 2 >> 2);
+        uint8_t byte_3 = pattern_r & ((uint8_t) code_point << 2 >> 2);
+        dest[0] = byte_1;
+        dest[1] = byte_2;
+        dest[2] = byte_3;
+        return;
+    }
+
+    if (code_point <= 0x10FFFF) {
+        uint8_t byte_1 = pattern_4 & (code_point >> 18);
+        uint8_t byte_2 = pattern_r & ((uint8_t) (code_point >> 12) << 2 >> 2);
+        uint8_t byte_3 = pattern_r & ((uint8_t) (code_point >> 6) << 2 >> 2);
+        uint8_t byte_4 = pattern_r & ((uint8_t) code_point << 2 >> 2);
+        dest[0] = byte_1;
+        dest[1] = byte_2;
+        dest[2] = byte_3;
+        dest[3] = byte_4;
+        return;
+    }
+
+    fprintf(stderr, "[utf8_encode_into] code point too large: 0x%x\n", code_point);
+    exit(1);
 }

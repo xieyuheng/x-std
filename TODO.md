@@ -1,4 +1,3 @@
-[utf8] `utf8_encode_into`
 [utf8] `utf8_encode`
 
 [text] `text_to_string` -- use `memcpy`
