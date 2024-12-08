@@ -13,7 +13,11 @@ font_view_command(commander_t *commander) {
 
 int
 run(commander_t *commander) {
-    (void) commander;
-    font_viewer_start();
+    char **paths = commander_rest_argv(commander);
+    char *path = paths[0];
+
+    file_t *file = file_open_or_fail(path, "r");
+    font_t *font = font_from_hex_file(file);
+    font_viewer_start(font);
     return 1;
 }
