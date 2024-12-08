@@ -1,4 +1,5 @@
-[font viewer] `font_viewer_t` has `current_glyph`
+[font] `font_first_glyph` & `font_next_glyph` -- remove `glyph_iter`
+
 [font viewer] space key to view the next glyph
 [font viewer] tab to change blending
 [font viewer] fix style

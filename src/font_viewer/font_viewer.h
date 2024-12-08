@@ -3,6 +3,7 @@
 struct font_viewer_t {
     canvas_t *canvas;
     font_t *font;
+    glyph_t *current_glyph;
 };
 
 font_viewer_t *font_viewer_new(font_t *font);
