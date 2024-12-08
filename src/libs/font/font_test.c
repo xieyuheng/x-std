@@ -18,7 +18,10 @@ font_test(void) {
 
     for (code_point_t i = 0; i < 0x80; i++) {
         glyph_t *glyph = font_get(font, i);
+
         if (glyph) {
+            printf("ascii code point: ox%x\n", i);
+            printf("\n");
             glyph_print_ascii_art(glyph, ' ', '#');
             printf("\n");
         } else {
