@@ -6,3 +6,5 @@ void glyph_destroy(glyph_t **self_pointer);
 code_point_t glyph_code_point(const glyph_t *self);
 size_t glyph_width(const glyph_t *self);
 size_t glyph_height(const glyph_t *self);
+
+bool glyph_get(const glyph_t *self, size_t x, size_t y);

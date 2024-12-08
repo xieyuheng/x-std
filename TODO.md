@@ -1,4 +1,4 @@
-[font] `glyph_get(x, y)`
+[font] `glyph_parse_hex`
 
 [font] a `font_t` has an array of `glyphs` of length `0x10FFFF`
 [font] `font_new`

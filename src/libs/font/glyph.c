@@ -51,3 +51,20 @@ size_t
 glyph_height(const glyph_t *self) {
     return self->height;
 }
+
+bool
+glyph_get(const glyph_t *self, size_t x, size_t y) {
+    if (self->width == 8) {
+        uint8_t byte = self->bitmap[y];
+        return (byte >> x) & 0x1;
+    }
+
+    assert(self->width == 16);
+    if (x < 8) {
+        uint8_t byte = self->bitmap[y * 2];
+        return (byte >> x) & 0x1;
+    } else {
+        uint8_t byte = self->bitmap[y * 2 + 1];
+        return (byte >> (x - 8)) & 0x1;
+    }
+}
