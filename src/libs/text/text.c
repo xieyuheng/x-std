@@ -18,3 +18,20 @@ text_destroy(text_t **self_pointer) {
         *self_pointer = NULL;
     }
 }
+
+text_t *
+text_from_string(const char *string) {
+    size_t length = utf8_string_length(string);
+    text_t *text = text_new(length);
+
+    utf8_iter_t *iter = utf8_iter_new(string);
+    code_point_t code_point = utf8_iter_start(iter);
+    size_t index = 0;
+    while (code_point) {
+        text->code_points[index] = code_point;
+        code_point = utf8_iter_next(iter);
+        index++;
+    }
+
+    return text;
+}

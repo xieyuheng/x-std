@@ -1,4 +1,7 @@
-[text] `text_from_string` -- use `utf8_iter` and `stack`
+[text] `text_length`
+[text] `text_get`
+
+[text] test `text_from_string`
 
 [string] `string_append_inplace`
 
