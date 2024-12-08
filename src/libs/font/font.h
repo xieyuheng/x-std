@@ -3,4 +3,7 @@
 font_t *font_new(void);
 void font_destroy(font_t **self_pointer);
 
+glyph_t *font_get(font_t *self, code_point_t code_point);
+void font_put(font_t *self, glyph_t *glyph);
+
 font_t *font_load_hex_file(file_t *file);
