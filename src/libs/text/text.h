@@ -7,3 +7,4 @@ text_t *text_from_string(const char *string);
 
 size_t text_length(text_t *self);
 code_point_t text_get(text_t *self, size_t index);
+bool text_equal(text_t *left, text_t *right);

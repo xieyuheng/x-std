@@ -21,5 +21,12 @@ text_test(void) {
         text_destroy(&text);
     }
 
+    {
+        assert(text_equal(text_from_string("中文"), text_from_string("中文")));
+        assert(!text_equal(text_from_string("中文"), text_from_string("中")));
+        assert(text_equal(text_from_string("abc"), text_from_string("abc")));
+        assert(!text_equal(text_from_string("abc"), text_from_string("abd")));
+    }
+
     printf("</text_test>\n");
 }

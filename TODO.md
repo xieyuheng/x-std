@@ -1,5 +1,4 @@
 [text] `text_dup`
-[text] `text_equal`
 [text] `text_append`
 [text] `text_slice`
 

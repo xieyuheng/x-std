@@ -50,3 +50,15 @@ code_point_t
 text_get(text_t *self, size_t index) {
     return self->code_points[index];
 }
+
+bool
+text_equal(text_t *left, text_t *right) {
+    if (left->length != right->length)
+        return false;
+
+    return memcmp(
+        left->code_points,
+        right->code_points,
+        left->length * sizeof(code_point_t)
+        ) == 0;
+}
