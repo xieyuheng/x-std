@@ -1,4 +1,3 @@
-[text] `text_length`
 [text] `text_get`
 
 [text] test `text_from_string`
