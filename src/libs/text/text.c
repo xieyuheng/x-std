@@ -45,3 +45,8 @@ size_t
 text_length(text_t *self) {
     return self->length;
 }
+
+code_point_t
+text_get(text_t *self, size_t index) {
+    return self->code_points[index];
+}

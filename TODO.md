@@ -1,5 +1,3 @@
-[text] `text_get`
-
 [text] test `text_from_string`
 
 [string] `string_append_inplace`
