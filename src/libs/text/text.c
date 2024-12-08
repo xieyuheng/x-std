@@ -65,9 +65,28 @@ text_equal(text_t *left, text_t *right) {
 text_t *
 text_dup(text_t *self) {
     text_t *text = text_new(self->length);
+
     memcpy(
-        self->code_points,
         text->code_points,
+        self->code_points,
         self->length * sizeof(code_point_t));
+
+    return text;
+}
+
+text_t *
+text_append(text_t *left, text_t *right) {
+    text_t *text = text_new(left->length + right->length);
+
+    memcpy(
+        text->code_points,
+        left->code_points,
+        left->length * sizeof(code_point_t));
+
+    memcpy(
+        text->code_points + left->length,
+        right->code_points,
+        right->length * sizeof(code_point_t));
+
     return text;
 }

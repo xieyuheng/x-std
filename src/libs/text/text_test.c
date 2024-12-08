@@ -34,5 +34,14 @@ text_test(void) {
         assert(text_equal(text_dup(text), text));
     }
 
+    {
+        assert(
+            text_equal(
+                text_from_string("中文abc"),
+                text_append(
+                    text_from_string("中文"),
+                    text_from_string("abc"))));
+    }
+
     printf("</text_test>\n");
 }
