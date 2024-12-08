@@ -1,5 +1,3 @@
-[font] `glyph_set`
-
 [font] a `font_t` has an array of `glyphs` of length `0x10FFFF`
 [font] `font_new`
 [font] `font_destroy`

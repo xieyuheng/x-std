@@ -69,6 +69,32 @@ glyph_get(const glyph_t *self, size_t x, size_t y) {
     }
 }
 
+void
+glyph_set(const glyph_t *self, size_t x, size_t y, bool dot) {
+    if (self->width == 8) {
+        if (dot)
+            self->bitmap[y] |= (uint8_t) 1 << x;
+        else
+            self->bitmap[y] &= ~((uint8_t) 1 << x);
+        return;
+    }
+
+    assert(self->width == 16);
+    if (x < 8) {
+        if (dot)
+            self->bitmap[y * 2] |= (uint8_t) 1 << x;
+        else
+            self->bitmap[y * 2] &= ~((uint8_t) 1 << x);
+        return;
+    } else {
+        if (dot)
+            self->bitmap[y * 2 + 1] |= (uint8_t) 1 << (x - 8);
+        else
+            self->bitmap[y * 2 + 1] &= ~((uint8_t) 1 << (x - 8));
+        return;
+    }
+}
+
 glyph_t *
 glyph_parse_hex(const char* string) {
     int colon_index = string_find_index(string, ':');
