@@ -1,3 +1,4 @@
+[canvas] extract `canvas_draw_color`
 [canvas] `canvas_draw_glyph`
 
 [font viewer] load font and show the first glyph
