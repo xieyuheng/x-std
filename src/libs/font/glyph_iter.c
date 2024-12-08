@@ -34,3 +34,15 @@ glyph_iter_start(glyph_iter_t *self) {
 
     return NULL;
 }
+
+glyph_t *
+glyph_iter_next(glyph_iter_t *self) {
+    self->cursor++;
+    while (self->cursor <= MAX_CODE_POINT) {
+        glyph_t *glyph = font_get(self->font, self->cursor);
+        if (glyph) return glyph;
+        self->cursor++;
+    }
+
+    return NULL;
+}

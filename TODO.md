@@ -1,4 +1,3 @@
-[font] `glyph_iter_next`
 [font] `glyph_test` test `glyph_iter_t`
 
 [font viewer] `font_viewer_t` has `current_glyph`
