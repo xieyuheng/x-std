@@ -64,3 +64,17 @@ utf8_code_point(const char *string) {
     fprintf(stderr, "[utf8_code_point] invalid byte length: %u\n", byte_length);
     exit(1);
 }
+
+size_t
+utf8_string_length(const char *string) {
+    size_t length = 0;
+    utf8_iter_t *iter = utf8_iter_new(string);
+    code_point_t code_point = utf8_iter_start(iter);
+    while (code_point) {
+        length++;
+        code_point = utf8_iter_next(iter);
+    }
+
+    utf8_iter_destroy(&iter);
+    return length;
+}
