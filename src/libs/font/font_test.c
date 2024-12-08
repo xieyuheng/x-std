@@ -1,8 +1,8 @@
 #include "index.h"
 
 void
-font_test(void) {
-    printf("<font_test>\n");
+glyph_test(void) {
+    printf("<glyph_test>\n");
 
     glyph_t *glyph = glyph_parse_hex("0041:0000000018242442427E424242420000");
 
@@ -26,6 +26,21 @@ font_test(void) {
     printf("\n");
 
     glyph_destroy(&glyph);
+
+    printf("</glyph_test>\n");
+}
+
+void
+font_test(void) {
+    glyph_test();
+
+    printf("<font_test>\n");
+
+    font_t *font = font_new();
+
+    // 
+
+    font_destroy(&font);
 
     printf("</font_test>\n");
 }
