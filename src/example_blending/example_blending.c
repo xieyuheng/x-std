@@ -1,35 +1,6 @@
 #include "index.h"
 
-static void on_frame(void *state, canvas_t *canvas, uint64_t passed);
-
-void
-example_blending_start(void) {
-    canvas_t *canvas = canvas_new(0xa * TILE, 0xa * TILE, 0x8);
-    canvas->state = NULL;
-    canvas->frame_rate = 16;
-    canvas->on_frame = (on_frame_t *) on_frame;
-    canvas->asset_base = dirname(string_dup(__FILE__));
-    canvas->title = "example blending";
-
-    canvas_open(canvas);
-    canvas_destroy(&canvas);
-}
-
-static void render_blending_table(canvas_t *canvas);
-
-void
-on_frame(void *state, canvas_t *canvas, uint64_t passed) {
-    (void) state;
-    (void) passed;
-
-    canvas->window->background_pixel = 0xffaaaaaa;
-    canvas_fill_bottom_right(canvas, 0, 0, 0xffaaaaaa);
-    canvas_clear_clickable_area(canvas);
-
-    render_blending_table(canvas);
-}
-
-void
+static void
 render_blending_table(canvas_t *canvas) {
     size_t offset = TILE;
 
@@ -44,4 +15,29 @@ render_blending_table(canvas_t *canvas) {
                 blending);
         }
     }
+}
+
+static void
+on_frame(void *state, canvas_t *canvas, uint64_t passed) {
+    (void) state;
+    (void) passed;
+
+    canvas->window->background_pixel = 0xffaaaaaa;
+    canvas_fill_bottom_right(canvas, 0, 0, 0xffaaaaaa);
+    canvas_clear_clickable_area(canvas);
+
+    render_blending_table(canvas);
+}
+
+void
+example_blending_start(void) {
+    canvas_t *canvas = canvas_new(0xa * TILE, 0xa * TILE, 0x8);
+    canvas->state = NULL;
+    canvas->frame_rate = 16;
+    canvas->on_frame = (on_frame_t *) on_frame;
+    canvas->asset_base = dirname(string_dup(__FILE__));
+    canvas->title = "example blending";
+
+    canvas_open(canvas);
+    canvas_destroy(&canvas);
 }

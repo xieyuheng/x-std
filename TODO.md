@@ -1,4 +1,4 @@
-quit using too many `static` in examples
+[example button] quit using too many pre `static`
 
 [text] `text_dup`
 [text] `text_equal`
