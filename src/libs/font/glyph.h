@@ -8,3 +8,6 @@ size_t glyph_width(const glyph_t *self);
 size_t glyph_height(const glyph_t *self);
 
 bool glyph_get(const glyph_t *self, size_t x, size_t y);
+void glyph_set(const glyph_t *self, size_t x, size_t y, bool dot);
+
+glyph_t *glyph_parse_hex(const char* string);

@@ -68,7 +68,7 @@ string_parse_int(const char *self) {
 uint64_t
 string_parse_hex(const char *self) {
     char *int_end = NULL;
-    return strtol(self, &int_end, 16);
+    return strtoul(self, &int_end, 16);
 }
 
 bool

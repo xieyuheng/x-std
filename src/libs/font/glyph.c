@@ -68,3 +68,27 @@ glyph_get(const glyph_t *self, size_t x, size_t y) {
         return (byte >> (x - 8)) & 0x1;
     }
 }
+
+glyph_t *
+glyph_parse_hex(const char* string) {
+    int colon_index = string_find_index(string, ':');
+    assert(colon_index != -1);
+
+    code_point_t code_point = string_parse_hex(string);
+    string += colon_index;
+
+    int newline_index = string_find_index(string, '\n');
+    if (newline_index == -1) {
+        newline_index = string_find_index(string, '\0');
+        assert(newline_index != -1);
+    }
+
+    size_t width = newline_index / 2; // two hex chars is one byte.
+    size_t height = 16;
+    glyph_t *glyph = glyph_new(code_point, width, height);
+    // for () {
+    //     glyph->bitmap = ;
+    // }
+
+    return glyph;
+}
