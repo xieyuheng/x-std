@@ -53,3 +53,27 @@ font_from_hex_file(file_t *file) {
     free(string);
     return font;
 }
+
+glyph_t *
+font_first_glyph(font_t *self) {
+    code_point_t code_point = 0;
+    while (code_point <= MAX_CODE_POINT) {
+        glyph_t *glyph = font_get(self, code_point);
+        if (glyph) return glyph;
+        code_point++;
+    }
+
+    return NULL;
+}
+
+glyph_t *
+font_next_glyph(font_t *self, code_point_t code_point) {
+    code_point++;
+    while (code_point <= MAX_CODE_POINT) {
+        glyph_t *glyph = font_get(self, code_point);
+        if (glyph) return glyph;
+        code_point++;
+    }
+
+    return NULL;
+}

@@ -8,3 +8,6 @@ void font_put(font_t *self, glyph_t *glyph);
 
 font_t *font_from_hex_string(const char *string);
 font_t *font_from_hex_file(file_t *file);
+
+glyph_t *font_first_glyph(font_t *self);
+glyph_t *font_next_glyph(font_t *self, code_point_t code_point);
