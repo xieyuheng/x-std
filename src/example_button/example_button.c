@@ -5,6 +5,7 @@ typedef struct {
 } state_t;
 
 static void on_frame(state_t *state, canvas_t *canvas, uint64_t passed);
+static void on_click(state_t *state, canvas_t *canvas, uint8_t button, bool is_release);
 
 void
 example_button_start(void) {
@@ -14,6 +15,7 @@ example_button_start(void) {
     canvas_t *canvas = canvas_new(9 * TILE, 9 * TILE, 0x10);
     canvas->state = &state;
     canvas->on_frame = (on_frame_t *) on_frame;
+    canvas->on_click = (on_click_t *) on_click;
     canvas->asset_base = dirname(string_dup(__FILE__));
     canvas->hide_system_cursor = true;
     canvas->title = "example button";
@@ -77,6 +79,20 @@ on_click_button(state_t *state, canvas_t *canvas, uint8_t button, bool is_releas
             printf("!");
         } else {
             state->is_pressed = true;
+        }
+    }
+}
+
+void
+on_click(state_t *state, canvas_t *canvas, uint8_t button, bool is_release) {
+    (void) canvas;
+
+    // to handle click inside a button,
+    // but release outside the button.
+
+    if (button == 1) {
+        if (is_release) {
+            state->is_pressed = false;
         }
     }
 }
