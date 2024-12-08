@@ -1,5 +1,3 @@
-[font] `glyph_width`
-[font] `glyph_height`
 [font] `glyph_get(x, y)`
 
 [font] a `font_t` has an array of `glyphs` of length `0x10FFFF`

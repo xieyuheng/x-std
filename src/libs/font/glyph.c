@@ -42,9 +42,12 @@ glyph_code_point(const glyph_t *self) {
     return self->code_point;
 }
 
-// size_t
-// glyph_width(const glyph_t *self) {
+size_t
+glyph_width(const glyph_t *self) {
+    return self->width;
+}
 
-// }
-
-// size_t glyph_height(const glyph_t *self);
+size_t
+glyph_height(const glyph_t *self) {
+    return self->height;
+}
