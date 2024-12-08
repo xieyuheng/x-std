@@ -4,8 +4,73 @@ typedef struct {
     bool is_pressed;
 } state_t;
 
-static void on_frame(state_t *state, canvas_t *canvas, uint64_t passed);
-static void on_click(state_t *state, canvas_t *canvas, uint8_t button, bool is_release);
+static void
+render_cursor(state_t *state, canvas_t *canvas) {
+    size_t x = canvas->cursor->x;
+    size_t y = canvas->cursor->y;
+
+    if (state->is_pressed) {
+        canvas_draw_image(canvas, x, y, "cursor-01x01.chr", TR_FG2_BLENDING);
+    } else {
+        canvas_draw_image(canvas, x, y, "cursor-01x01.chr", TR_AP_BLENDING);
+    }
+}
+
+static void
+on_click_button(state_t *state, canvas_t *canvas, uint8_t button, bool is_release) {
+    (void) canvas;
+
+    if (button == 1) {
+        if (is_release) {
+            state->is_pressed = false;
+            printf("!");
+        } else {
+            state->is_pressed = true;
+        }
+    }
+}
+
+static void
+render_button(state_t *state, canvas_t *canvas) {
+    size_t x = 3 * TILE;
+    size_t y = 3 * TILE;
+
+    if (state->is_pressed) {
+        canvas_draw_image_button(
+            canvas, x, y, "button-down-03x03.chr", BG_AP_BLENDING,
+            (on_click_t *) on_click_button);
+    } else {
+        canvas_draw_image_button(
+            canvas, x, y, "button-up-03x03.chr", BG_AP_BLENDING,
+            (on_click_t *) on_click_button);
+    }
+}
+
+static void
+on_click(state_t *state, canvas_t *canvas, uint8_t button, bool is_release) {
+    (void) canvas;
+
+    // to handle click inside a button,
+    // but release outside the button.
+
+    if (button == 1) {
+        if (is_release) {
+            state->is_pressed = false;
+        }
+    }
+}
+
+static void
+on_frame(state_t *state, canvas_t *canvas, uint64_t passed) {
+    (void) passed;
+
+    canvas->window->background_pixel = canvas->palette[BG_COLOR];
+    canvas_fill_bottom_right(canvas, 0, 0, canvas->palette[BG_COLOR]);
+    canvas_clear_clickable_area(canvas);
+
+    render_button(state, canvas);
+    render_cursor(state, canvas);
+}
 
 void
 example_button_start(void) {
@@ -22,77 +87,4 @@ example_button_start(void) {
 
     canvas_open(canvas);
     canvas_destroy(&canvas);
-}
-
-static void render_button(state_t *state, canvas_t *canvas);
-static void render_cursor(state_t *state, canvas_t *canvas);
-
-void
-on_frame(state_t *state, canvas_t *canvas, uint64_t passed) {
-    (void) passed;
-
-    canvas->window->background_pixel = canvas->palette[BG_COLOR];
-    canvas_fill_bottom_right(canvas, 0, 0, canvas->palette[BG_COLOR]);
-    canvas_clear_clickable_area(canvas);
-
-    render_button(state, canvas);
-    render_cursor(state, canvas);
-}
-
-void
-render_cursor(state_t *state, canvas_t *canvas) {
-    size_t x = canvas->cursor->x;
-    size_t y = canvas->cursor->y;
-
-    if (state->is_pressed) {
-        canvas_draw_image(canvas, x, y, "cursor-01x01.chr", TR_FG2_BLENDING);
-    } else {
-        canvas_draw_image(canvas, x, y, "cursor-01x01.chr", TR_AP_BLENDING);
-    }
-}
-
-static void on_click_button(state_t *state, canvas_t *canvas, uint8_t button, bool is_release);
-
-void
-render_button(state_t *state, canvas_t *canvas) {
-    size_t x = 3 * TILE;
-    size_t y = 3 * TILE;
-
-    if (state->is_pressed) {
-        canvas_draw_image_button(
-            canvas, x, y, "button-down-03x03.chr", BG_AP_BLENDING,
-            (on_click_t *) on_click_button);
-    } else {
-        canvas_draw_image_button(
-            canvas, x, y, "button-up-03x03.chr", BG_AP_BLENDING,
-            (on_click_t *) on_click_button);
-    }
-}
-
-void
-on_click_button(state_t *state, canvas_t *canvas, uint8_t button, bool is_release) {
-    (void) canvas;
-
-    if (button == 1) {
-        if (is_release) {
-            state->is_pressed = false;
-            printf("!");
-        } else {
-            state->is_pressed = true;
-        }
-    }
-}
-
-void
-on_click(state_t *state, canvas_t *canvas, uint8_t button, bool is_release) {
-    (void) canvas;
-
-    // to handle click inside a button,
-    // but release outside the button.
-
-    if (button == 1) {
-        if (is_release) {
-            state->is_pressed = false;
-        }
-    }
 }

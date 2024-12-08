@@ -1,5 +1,3 @@
-[example button] quit using too many pre `static`
-
 [text] `text_dup`
 [text] `text_equal`
 [text] `text_append`
