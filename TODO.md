@@ -1,5 +1,3 @@
-[text] test `text_from_string`
-
 [string] `string_append_inplace`
 
 [text] `text_to_string` -- use `string_append_inplace`
