@@ -1,5 +1,3 @@
-[font] `glyph_parse_hex`
-
 [font] `font_test` test `glyph_parse_hex`
 
 [font] `glyph_set`

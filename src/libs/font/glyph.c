@@ -86,9 +86,11 @@ glyph_parse_hex(const char* string) {
     size_t width = newline_index / 2; // two hex chars is one byte.
     size_t height = 16;
     glyph_t *glyph = glyph_new(code_point, width, height);
-    // for () {
-    //     glyph->bitmap = ;
-    // }
+    for (size_t i = 0; i < (size_t) newline_index; i += 2) {
+        uint8_t high_nibble = string[i];
+        uint8_t low_nibble = string[i + 1];
+        glyph->bitmap[i/2] = (high_nibble << 4) + low_nibble;
+    }
 
     return glyph;
 }
