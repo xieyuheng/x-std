@@ -23,3 +23,8 @@ font_destroy(font_t **self_pointer) {
         *self_pointer = NULL;
     }
 }
+
+// font_t *
+// font_load_hex_file(file_t *file) {
+
+// }
