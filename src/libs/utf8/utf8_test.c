@@ -13,19 +13,19 @@ utf8_test(void) {
 
     {
         const char *string = "中";
-        assert(utf8_code_point(string) == 0x00004E2D);
+        assert(utf8_decode(string) == 0x00004E2D);
     }
 
     {
         const char *string = "文";
-        assert(utf8_code_point(string) == 0x00006587);
+        assert(utf8_decode(string) == 0x00006587);
     }
 
     {
         const char *string = "abc";
-        assert(utf8_code_point(string) == 0x61);
-        assert(utf8_code_point(string+1) == 0x62);
-        assert(utf8_code_point(string+2) == 0x63);
+        assert(utf8_decode(string) == 0x61);
+        assert(utf8_decode(string+1) == 0x62);
+        assert(utf8_decode(string+2) == 0x63);
     }
 
     {

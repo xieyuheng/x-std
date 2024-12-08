@@ -23,7 +23,7 @@ utf8_iter_current(utf8_iter_t *self) {
     if (self->string[self->cursor] == '\0')
         return '\0';
 
-    return utf8_code_point(self->string + self->cursor);
+    return utf8_decode(self->string + self->cursor);
 }
 
 code_point_t
@@ -33,7 +33,7 @@ utf8_iter_start(utf8_iter_t *self) {
     if (self->string[self->cursor] == '\0')
         return '\0';
 
-    return utf8_code_point(self->string + self->cursor);
+    return utf8_decode(self->string + self->cursor);
 }
 
 code_point_t
@@ -43,5 +43,5 @@ utf8_iter_next(utf8_iter_t *self) {
     if (self->string[self->cursor] == '\0')
         return '\0';
 
-    return utf8_code_point(self->string + self->cursor);
+    return utf8_decode(self->string + self->cursor);
 }
