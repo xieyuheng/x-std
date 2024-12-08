@@ -27,6 +27,12 @@ font_viewer_destroy(font_viewer_t **self_pointer) {
 }
 
 static void
+render_glyph(font_viewer_t *self, canvas_t *canvas) {
+    glyph_t *glyph = font_get(self->font, 'A');
+    canvas_draw_glyph(canvas, 8, 8, glyph, 4, BG_AP_BLENDING);
+}
+
+static void
 on_frame(font_viewer_t *self, canvas_t *canvas, uint64_t passed) {
     (void) self;
     (void) passed;
@@ -34,6 +40,8 @@ on_frame(font_viewer_t *self, canvas_t *canvas, uint64_t passed) {
     canvas->window->background_pixel = canvas->palette[BG_COLOR];
     canvas_fill_bottom_right(canvas, 0, 0, canvas->palette[BG_COLOR]);
     canvas_clear_clickable_area(canvas);
+
+    render_glyph(self, canvas);
 }
 
 void

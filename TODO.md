@@ -1,4 +1,3 @@
-[font viewer] load font and show the first glyph
 [font viewer] space key to view the next glyph
 
 [canvas] `canvas` has optional `font`
