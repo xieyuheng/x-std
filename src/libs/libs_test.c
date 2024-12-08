@@ -4,6 +4,7 @@ void
 libs_test(void) {
     printf("<libs_test>\n");
 
+    char_test();
     string_test();
     list_test();
     dict_test();
