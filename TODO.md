@@ -1,7 +1,3 @@
-[store] `store_get` return `blob` instead of `bytes`
-
-[store] also support `string` -- not only `bytes`
-
 [font viewer] `font_viewer_init_font` -- load font from `asset_store`
 
 [font viewer] `render_page` -- 0x10 chars per line

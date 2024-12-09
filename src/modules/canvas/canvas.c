@@ -39,7 +39,7 @@ canvas_destroy(canvas_t **self_pointer) {
     }
 }
 
-uint8_t *
+blob_t *
 canvas_asset_store_get(canvas_t *self, const char *path) {
     return store_get(self->asset_store, path);
 }
