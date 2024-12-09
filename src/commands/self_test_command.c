@@ -14,13 +14,13 @@ self_test_command(commander_t *commander) {
 int
 run(commander_t *commander) {
     (void) commander;
-    
-    printf("<self-test>\n");
+
+    printf("<self_test>\n");
 
     modules_test();
     font_viewer_test();
 
-    printf("</self-test>\n");
+    printf("</self_test>\n");
 
     return 0;
 }
