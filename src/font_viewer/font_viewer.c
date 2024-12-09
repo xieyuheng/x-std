@@ -130,12 +130,6 @@ on_click_page(font_viewer_t *self, canvas_t *canvas, uint8_t button, bool is_rel
     }
 }
 
-
-// static void
-// render_page_lineno(font_viewer_t *self, canvas_t *canvas) {
-
-// }
-
 static void
 render_page(font_viewer_t *self, canvas_t *canvas) {
     size_t x_offset = 4 * TILE;
@@ -204,12 +198,16 @@ on_key(
 
     if (is_release) {
         if (string_equal_mod_case(key_name, "space")) {
-            code_point_t code_point = glyph_code_point(self->glyph);
-            glyph_t *next_glyph = font_next_glyph(self->font, code_point);
-            if (next_glyph) {
-                self->glyph = next_glyph;
+            self->page++;
+            if (self->page > MAX_CODE_POINT / (16 * 16)) {
+                self->page = 0;
+            }
+            code_point_t code_point = self->page * (16 * 16);
+            glyph_t *glyph = font_next_glyph(self->font, code_point - 1);
+            if (glyph) {
+                self->glyph = glyph;
             } else {
-                self->glyph = font_first_glyph(self->font);
+                self->glyph = NULL;
             }
         }
     }
