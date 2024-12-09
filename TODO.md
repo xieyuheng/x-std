@@ -1,4 +1,3 @@
-[file] `file_read_blob`
 [file] `file_write_blob`
 
 [store] `store_get` return `blob` instead of `bytes`
