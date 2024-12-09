@@ -39,6 +39,8 @@ struct canvas_t {
 
     const char *asset_base;
     store_t *asset_store;
+
+    const font_t *font;
 };
 
 canvas_t *canvas_new(size_t width, size_t height, size_t scale);

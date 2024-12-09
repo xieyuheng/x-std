@@ -75,7 +75,6 @@ on_key(
             } else {
                 self->current_glyph = font_first_glyph(self->font);
             }
-
         }
     }
 }
