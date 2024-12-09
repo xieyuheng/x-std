@@ -1,4 +1,3 @@
-[blob] `blob_length`
 [blob] `blob_bytes`
 [blob] `blob_string`
 
