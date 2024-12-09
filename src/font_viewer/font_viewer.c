@@ -9,8 +9,12 @@ font_viewer_init_theme(font_viewer_t *self) {
 }
 
 static void
-font_viewer_init(font_viewer_t *self) {
-    font_viewer_init_theme(self);
+font_viewer_init_font(font_viewer_t *self) {
+    char *base = dirname(dirname(dirname(string_dup(__FILE__))));
+    char *font_file_name = string_append(
+        base, "/assets/fonts/unifont_all-16.0.02.hex");
+    file_t *font_file = file_open_or_fail(font_file_name, "r");
+    self->canvas->font = font_from_hex_file(font_file);
 }
 
 font_viewer_t *
@@ -19,7 +23,7 @@ font_viewer_new(font_t *font) {
 
     self->width = 0x30 * TILE;
     self->height = 0x20 * TILE;
-
+    self->blending = BG_AP_BLENDING;
     self->font = font;
     self->current_glyph = font_first_glyph(font);
 
@@ -29,15 +33,9 @@ font_viewer_new(font_t *font) {
     canvas->title = "bifer";
     self->canvas = canvas;
 
-    char *base = dirname(dirname(dirname(string_dup(__FILE__))));
-    char *font_file_name = string_append(
-        base, "/assets/fonts/unifont_all-16.0.02.hex");
-    file_t *font_file = file_open_or_fail(font_file_name, "r");
-    canvas->font = font_from_hex_file(font_file);
+    font_viewer_init_theme(self);
+    font_viewer_init_font(self);
 
-    font_viewer_init(self);
-
-    self->blending = BG_AP_BLENDING;
     return self;
 }
 
