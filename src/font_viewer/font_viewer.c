@@ -7,7 +7,7 @@
 static void
 init_canvas_theme(canvas_t *canvas) {
     canvas->palette[BG_COLOR] = 0xffffffff;
-    canvas->palette[SL_COLOR] = 0xffffaaaa;
+    canvas->palette[SL_COLOR] = 0xffff8888;
     canvas->palette[FG_COLOR] = 0xffffffff;
     canvas->palette[AP_COLOR] = 0xff000000;
 }
@@ -70,6 +70,16 @@ render_background_grid(font_viewer_t *self, canvas_t *canvas) {
 static void
 render_glyph(font_viewer_t *self, canvas_t *canvas) {
     if (self->glyph) {
+        size_t thickness = 2;
+        canvas_draw_rect(
+            canvas,
+            38 * TILE - thickness,
+            4 * TILE - thickness,
+            glyph_width(self->glyph) * TILE + thickness * 2,
+            glyph_height(self->glyph) * TILE + thickness * 2,
+            thickness,
+            canvas->palette[SL_COLOR]);
+
         size_t scale = TILE;
         canvas_draw_glyph(
             canvas,
@@ -77,7 +87,7 @@ render_glyph(font_viewer_t *self, canvas_t *canvas) {
             4 * TILE,
             self->glyph,
             scale,
-            BG_AP_BLENDING);
+            TR_AP_BLENDING);
     }
 }
 
@@ -131,7 +141,7 @@ render_page(font_viewer_t *self, canvas_t *canvas) {
                         x_offset + col * 2 * TILE,
                         y_offset + row * 2 * TILE,
                         glyph_width(glyph),
-                        2 * TILE,
+                        glyph_height(glyph),
                         canvas->palette[SL_COLOR]);
                 }
 
