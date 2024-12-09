@@ -1,3 +1,5 @@
+[font viewer] `render_page_lineno`
+
 [font viewer] `render_page_up_button`
 [font viewer] `render_page_down_button`
 

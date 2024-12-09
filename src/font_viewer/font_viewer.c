@@ -60,35 +60,49 @@ static void
 render_background_grid(font_viewer_t *self, canvas_t *canvas) {
     (void) self;
 
-    for (size_t x = 0; x < WIDTH / TILE; x++) {
-        for (size_t y = 0; y < HEIGHT / TILE; y++) {
-            canvas_draw_pixel(canvas, x * TILE, y * TILE, 0xffff0000);
+    for (size_t i = 0; i < WIDTH / TILE; i++) {
+        for (size_t j = 0; j < HEIGHT / TILE; j++) {
+            canvas_draw_pixel(canvas, i * TILE, i * TILE, 0xffff0000);
         }
     }
 }
 
 static void
 render_glyph(font_viewer_t *self, canvas_t *canvas) {
-    if (self->glyph) {
-        size_t thickness = 2;
-        canvas_draw_rect(
-            canvas,
-            38 * TILE - thickness,
-            4 * TILE - thickness,
-            glyph_width(self->glyph) * TILE + thickness * 2,
-            glyph_height(self->glyph) * TILE + thickness * 2,
-            thickness,
-            canvas->palette[SL_COLOR]);
+    if (!self->glyph) return;
 
-        size_t scale = TILE;
-        canvas_draw_glyph(
-            canvas,
-            38 * TILE,
-            4 * TILE,
-            self->glyph,
-            scale,
-            TR_AP_BLENDING);
+    size_t x = 38 * TILE;
+    size_t y = 4 * TILE;
+
+    size_t thickness = 2;
+    size_t width = glyph_width(self->glyph) * TILE;
+    size_t height = glyph_height(self->glyph) * TILE;
+    canvas_draw_rect(
+        canvas,
+        x - thickness,
+        y - thickness,
+        width + thickness * 2,
+        height + thickness * 2,
+        thickness,
+        canvas->palette[SL_COLOR]);
+
+    for (size_t i = 1; i < width / TILE; i++) {
+        for (size_t j = 1; j < height / TILE; j++) {
+            canvas_draw_pixel(
+                canvas,
+                x + i * TILE,
+                y + j * TILE,
+                canvas->palette[SL_COLOR]);
+        }
     }
+
+    size_t scale = TILE;
+    canvas_draw_glyph(
+        canvas,
+        x, y,
+        self->glyph,
+        scale,
+        TR_AP_BLENDING);
 }
 
 static void
@@ -115,6 +129,12 @@ on_click_page(font_viewer_t *self, canvas_t *canvas, uint8_t button, bool is_rel
         }
     }
 }
+
+
+// static void
+// render_page_lineno(font_viewer_t *self, canvas_t *canvas) {
+
+// }
 
 static void
 render_page(font_viewer_t *self, canvas_t *canvas) {
