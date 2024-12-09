@@ -7,7 +7,7 @@
 static void
 init_canvas_theme(canvas_t *canvas) {
     canvas->palette[BG_COLOR] = 0xffffffff;
-    canvas->palette[SL_COLOR] = 0xff000000;
+    canvas->palette[SL_COLOR] = 0xff330000;
     canvas->palette[FG_COLOR] = 0xffffffff;
     canvas->palette[AP_COLOR] = 0xff000000;
 }
@@ -28,7 +28,7 @@ font_viewer_t *
 font_viewer_new(font_t *font) {
     font_viewer_t *self = new(font_viewer_t);
 
-    self->blending = TR_AP_BLENDING;
+    self->blending = BG_AP_BLENDING;
     self->font = font;
     self->glyph = font_first_glyph(font);
     self->page = 0;

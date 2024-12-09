@@ -1,6 +1,5 @@
-[canvas] `canvas_fill_rect`
-
 [font viewer] `render_page` -- highlight current glyph
+[font viewer] `render_glyph` -- highlight
 
 [font viewer] `render_page_up_button`
 [font viewer] `render_page_down_button`
