@@ -11,8 +11,7 @@ init_canvas_theme(canvas_t *canvas) {
 static void
 init_canvas_asset_store(canvas_t *canvas) {
     char *root = dirname(dirname(dirname(string_dup(__FILE__))));
-    canvas->asset_base = string_append(root, "/assets");
-    canvas_init_asset_store(canvas);
+    canvas_init_asset_store(canvas, string_append(root, "/assets"));
 }
 
 static void
@@ -85,7 +84,6 @@ render_glyph_info(font_viewer_t *self, canvas_t *canvas) {
 
 static void
 on_frame(font_viewer_t *self, canvas_t *canvas, uint64_t passed) {
-    (void) self;
     (void) passed;
 
     canvas->window->background_pixel = canvas->palette[BG_COLOR];
@@ -125,9 +123,9 @@ on_key(
 void
 font_viewer_start(font_t *font) {
     font_viewer_t *self = font_viewer_new(font);
-
     self->canvas->on_frame = (on_frame_t *) on_frame;
     self->canvas->on_key = (on_key_t *) on_key;
+
     canvas_open(self->canvas);
 
     font_viewer_destroy(&self);

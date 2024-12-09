@@ -81,7 +81,7 @@ example_button_start(void) {
     canvas->state = &state;
     canvas->on_frame = (on_frame_t *) on_frame;
     canvas->on_click = (on_click_t *) on_click;
-    canvas->asset_base = dirname(string_dup(__FILE__));
+    canvas_init_asset_store(canvas, dirname(string_dup(__FILE__)));
     canvas->hide_system_cursor = true;
     canvas->title = "example button";
 
