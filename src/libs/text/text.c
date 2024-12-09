@@ -54,6 +54,8 @@ text_get(const text_t *self, size_t index) {
 
 bool
 text_equal(const text_t *left, const text_t *right) {
+    if (left == right) return true;
+
     if (left->length != right->length)
         return false;
 
