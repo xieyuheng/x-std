@@ -89,6 +89,25 @@ render_glyph_info(font_viewer_t *self, canvas_t *canvas) {
 }
 
 static void
+on_click_page(font_viewer_t *self, canvas_t *canvas, uint8_t button, bool is_release) {
+    (void) self;
+    (void) canvas;
+
+    if (button == 1 && is_release) {
+        size_t x_offset = 4 * TILE;
+        size_t y_offset = 4 * TILE;
+
+        size_t col = (canvas->cursor->x - x_offset) / (2 * TILE);
+        size_t row = (canvas->cursor->y - y_offset) / (2 * TILE);
+        code_point_t code_point = self->page * (16 * 16) + row * 16 + col;
+        glyph_t *glyph = font_get(self->font, code_point);
+        if (glyph) {
+            self->glyph = glyph;
+        }
+    }
+}
+
+static void
 render_page(font_viewer_t *self, canvas_t *canvas) {
     size_t x_offset = 4 * TILE;
     size_t y_offset = 4 * TILE;
@@ -106,6 +125,14 @@ render_page(font_viewer_t *self, canvas_t *canvas) {
                 self->blending);
         }
     }
+
+    canvas_add_clickable_area(
+        canvas,
+        x_offset,
+        y_offset,
+        16 * 2 * TILE,
+        16 * 2 * TILE,
+        (on_click_t *) on_click_page);
 }
 
 static void

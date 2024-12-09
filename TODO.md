@@ -1,6 +1,7 @@
-[canvas] `canvas_draw_text_button`
+[canvas] `canvas_fill_rect`
 
-[font viewer] `render_page_glyph` -- click to change `self->glyph`
+[font viewer] `render_page` -- highlight current glyph
+
 [font viewer] `render_page_up_button`
 [font viewer] `render_page_down_button`
 
