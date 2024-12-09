@@ -30,6 +30,10 @@ blob_test(void) {
         assert(blob_1 != blob_2);
         assert(blob_equal(blob_1, blob_2));
 
+        blob_bytes(blob_2)[1] = 'B';
+
+        assert(!blob_equal(blob_1, blob_2));
+
         blob_destroy(&blob_1);
         blob_destroy(&blob_2);
     }
