@@ -4,6 +4,7 @@ struct font_viewer_t {
     canvas_t *canvas;
     size_t width, height;
     blending_t blending;
+    store_t *asset_store;
     font_t *font;
     glyph_t *glyph;
 };

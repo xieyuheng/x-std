@@ -68,7 +68,7 @@ render_glyph(font_viewer_t *self, canvas_t *canvas) {
 static void
 render_glyph_info(font_viewer_t *self, canvas_t *canvas) {
     if (self->glyph) {
-        size_t scale = 2;
+        size_t scale = 1;
         canvas_draw_text(
             canvas,
             self->width / 4,
