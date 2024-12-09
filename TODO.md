@@ -1,4 +1,4 @@
-[blob] `blob_new` -- call `realloc` to ensure a ending '\0'
+[blob] `blob_destroy`
 [blob] `blob_length`
 [blob] `blob_bytes`
 [blob] `blob_string`
