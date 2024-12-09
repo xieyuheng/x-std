@@ -1,5 +1,3 @@
-[blob] `blob_dup`
-
 [file] `file_read_blob`
 [file] `file_write_blob`
 

@@ -54,3 +54,10 @@ blob_equal(blob_t *left, blob_t *right) {
         right->bytes,
         left->length) == 0;
 }
+
+blob_t *
+blob_dup(blob_t *self) {
+    blob_t *blob = blob_new(self->length);
+    memcpy(blob->bytes, self->bytes, self->length);
+    return blob;
+}
