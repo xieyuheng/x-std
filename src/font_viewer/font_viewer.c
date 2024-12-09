@@ -1,26 +1,24 @@
 #include "index.h"
 
 static void
-font_viewer_init_theme(font_viewer_t *self) {
-    self->canvas->palette[BG_COLOR] = 0xffffffff;
-    self->canvas->palette[SL_COLOR] = 0xff000000;
-    self->canvas->palette[FG_COLOR] = 0xffffffff;
-    self->canvas->palette[AP_COLOR] = 0xff000000;
+init_canvas_theme(canvas_t *canvas) {
+    canvas->palette[BG_COLOR] = 0xffffffff;
+    canvas->palette[SL_COLOR] = 0xff000000;
+    canvas->palette[FG_COLOR] = 0xffffffff;
+    canvas->palette[AP_COLOR] = 0xff000000;
 }
 
-
 static void
-font_viewer_init_asset_store(font_viewer_t *self) {
+init_canvas_asset_store(canvas_t *canvas) {
     char *root = dirname(dirname(dirname(string_dup(__FILE__))));
-    self->canvas->asset_base = string_append(root, "/assets");
-    canvas_init_asset_store(self->canvas);
+    canvas->asset_base = string_append(root, "/assets");
+    canvas_init_asset_store(canvas);
 }
 
 static void
-font_viewer_init_font(font_viewer_t *self) {
-    blob_t *blob = canvas_asset_store_get(
-        self->canvas, "fonts/unifont_all-16.0.02.hex");
-    self->canvas->font = font_from_hex_string(blob_string(blob));
+init_canvas_font(canvas_t *canvas) {
+    blob_t *blob = canvas_asset_store_get(canvas, "fonts/unifont_all-16.0.02.hex");
+    canvas->font = font_from_hex_string(blob_string(blob));
 }
 
 font_viewer_t *
@@ -35,13 +33,12 @@ font_viewer_new(font_t *font) {
 
     canvas_t *canvas = canvas_new(self->width, self->height, 0x4);
     canvas->state = self;
-    canvas->asset_base = dirname(string_dup(__FILE__));
     canvas->title = "bifer";
     self->canvas = canvas;
 
-    font_viewer_init_theme(self);
-    font_viewer_init_asset_store(self);
-    font_viewer_init_font(self);
+    init_canvas_theme(canvas);
+    init_canvas_asset_store(canvas);
+    init_canvas_font(canvas);
 
     return self;
 }
