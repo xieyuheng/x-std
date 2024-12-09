@@ -17,7 +17,7 @@ run(commander_t *commander) {
     
     printf("<self-test>\n");
 
-    libs_test();
+    modules_test();
     font_viewer_test();
 
     printf("</self-test>\n");
