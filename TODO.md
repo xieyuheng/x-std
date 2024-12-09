@@ -1,5 +1,6 @@
-[font viewer] improve layout
-[font viewer] `render_page` -- 0x10 chars per line
+[canvas] `canvas_draw_text_button`
+
+[font viewer] `render_page_glyph` -- click to change `self->glyph`
 [font viewer] `render_page_up_button`
 [font viewer] `render_page_down_button`
 

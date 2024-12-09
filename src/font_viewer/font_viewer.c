@@ -31,6 +31,7 @@ font_viewer_new(font_t *font) {
     self->blending = TR_AP_BLENDING;
     self->font = font;
     self->glyph = font_first_glyph(font);
+    self->page = 0;
 
     canvas_t *canvas = canvas_new(WIDTH, HEIGHT, SCALE);
     canvas->state = self;
@@ -73,8 +74,8 @@ render_glyph(font_viewer_t *self, canvas_t *canvas) {
         size_t scale = TILE;
         canvas_draw_glyph(
             canvas,
-            32 * TILE,
-            6 * TILE,
+            38 * TILE,
+            4 * TILE,
             self->glyph,
             scale,
             self->blending);
@@ -83,15 +84,27 @@ render_glyph(font_viewer_t *self, canvas_t *canvas) {
 
 static void
 render_glyph_info(font_viewer_t *self, canvas_t *canvas) {
-    if (self->glyph) {
-        size_t scale = 1;
-        canvas_draw_text(
-            canvas,
-            self->canvas->width / 4,
-            self->canvas->height / 4 * 3,
-            text_from_string("abc 中文"),
-            scale,
-            self->blending);
+    (void) self;
+    (void) canvas;
+}
+
+static void
+render_page(font_viewer_t *self, canvas_t *canvas) {
+    size_t x_offset = 4 * TILE;
+    size_t y_offset = 4 * TILE;
+    size_t scale = 1;
+    for (size_t row = 0; row < 16; row++) {
+        for (size_t col = 0; col < 16; col++) {
+            code_point_t code_point = self->page * (16 * 16) + row * 16 + col;
+            glyph_t *glyph = font_get(self->font, code_point);
+            canvas_draw_glyph(
+                canvas,
+                x_offset + col * 2 * TILE,
+                y_offset + row * 2 * TILE,
+                glyph,
+                scale,
+                self->blending);
+        }
     }
 }
 
@@ -103,9 +116,12 @@ on_frame(font_viewer_t *self, canvas_t *canvas, uint64_t passed) {
     canvas_fill_bottom_right(canvas, 0, 0, canvas->palette[BG_COLOR]);
     canvas_clear_clickable_area(canvas);
 
-    render_background_grid(self, canvas);
+    (void) render_background_grid;
+    // render_background_grid(self, canvas);
+
     render_glyph(self, canvas);
     render_glyph_info(self, canvas);
+    render_page(self, canvas);
 }
 
 static void
