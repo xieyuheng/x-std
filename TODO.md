@@ -1,4 +1,5 @@
-[blob] `blob_test`
+[blob] `blob_equal`
+[blob] `blob_dup`
 
 [file] `file_read_blob`
 [file] `file_write_blob`
