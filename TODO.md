@@ -1,6 +1,10 @@
 [font] `glyph_encode_hex`
 
-[font viewer] `render_current_glyph_info` -- show hex encoding of `current_glyph`
+[font viewer] `render_page`
+[font viewer] `render_page_up_button`
+[font viewer] `render_page_down_button`
+
+[font viewer] `render_glyph_info` -- show hex encoding of `glyph`
 
 [font viewer] has button to next
 

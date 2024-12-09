@@ -25,7 +25,7 @@ font_viewer_new(font_t *font) {
     self->height = 0x20 * TILE;
     self->blending = BG_AP_BLENDING;
     self->font = font;
-    self->current_glyph = font_first_glyph(font);
+    self->glyph = font_first_glyph(font);
 
     canvas_t *canvas = canvas_new(self->width, self->height, 0x4);
     canvas->state = self;
@@ -52,22 +52,22 @@ font_viewer_destroy(font_viewer_t **self_pointer) {
 }
 
 static void
-render_current_glyph(font_viewer_t *self, canvas_t *canvas) {
-    if (self->current_glyph) {
+render_glyph(font_viewer_t *self, canvas_t *canvas) {
+    if (self->glyph) {
         size_t scale = 8;
         canvas_draw_glyph(
             canvas,
             self->width / 4,
             self->height / 4,
-            self->current_glyph,
+            self->glyph,
             scale,
             self->blending);
     }
 }
 
 static void
-render_current_glyph_info(font_viewer_t *self, canvas_t *canvas) {
-    if (self->current_glyph) {
+render_glyph_info(font_viewer_t *self, canvas_t *canvas) {
+    if (self->glyph) {
         size_t scale = 2;
         canvas_draw_text(
             canvas,
@@ -88,8 +88,8 @@ on_frame(font_viewer_t *self, canvas_t *canvas, uint64_t passed) {
     canvas_fill_bottom_right(canvas, 0, 0, canvas->palette[BG_COLOR]);
     canvas_clear_clickable_area(canvas);
 
-    render_current_glyph(self, canvas);
-    render_current_glyph_info(self, canvas);
+    render_glyph(self, canvas);
+    render_glyph_info(self, canvas);
 }
 
 static void
@@ -107,12 +107,12 @@ on_key(
         }
 
         if (string_equal_mod_case(key_name, "space")) {
-            code_point_t code_point = glyph_code_point(self->current_glyph);
+            code_point_t code_point = glyph_code_point(self->glyph);
             glyph_t *next_glyph = font_next_glyph(self->font, code_point);
             if (next_glyph) {
-                self->current_glyph = next_glyph;
+                self->glyph = next_glyph;
             } else {
-                self->current_glyph = font_first_glyph(self->font);
+                self->glyph = font_first_glyph(self->font);
             }
         }
     }

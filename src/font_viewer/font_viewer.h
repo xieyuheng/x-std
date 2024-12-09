@@ -5,7 +5,7 @@ struct font_viewer_t {
     size_t width, height;
     blending_t blending;
     font_t *font;
-    glyph_t *current_glyph;
+    glyph_t *glyph;
 };
 
 font_viewer_t *font_viewer_new(font_t *font);
