@@ -1,5 +1,3 @@
-[blob] `blob_test`
-
 [blob] `blob_t` -- `bytes` with `length` -- with a extra ending '\0' to be viewed as string
 [blob] `blob_new` -- call `realloc` to ensure a ending '\0'
 [blob] `blob_length`
