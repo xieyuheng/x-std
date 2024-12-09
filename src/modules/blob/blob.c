@@ -14,3 +14,14 @@ blob_new(size_t length) {
     self->bytes = allocate(length + 1);
     return self;
 }
+
+void
+blob_destroy(blob_t **self_pointer) {
+    assert(self_pointer);
+    if (*self_pointer) {
+        blob_t *self = *self_pointer;
+        free(self->bytes);
+        free(self);
+        *self_pointer = NULL;
+    }
+}
