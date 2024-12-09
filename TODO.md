@@ -1,5 +1,4 @@
-[blob] `blob_bytes`
-[blob] `blob_string`
+[blob] `blob_test`
 
 [file] `file_read_blob`
 [file] `file_write_blob`

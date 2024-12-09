@@ -30,3 +30,13 @@ size_t
 blob_length(blob_t *self) {
     return self->length;
 }
+
+uint8_t *
+blob_bytes(blob_t *self) {
+    return self->bytes;
+}
+
+char *
+blob_string(blob_t *self) {
+    return (char *) self->bytes;
+}
