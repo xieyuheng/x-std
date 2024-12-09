@@ -86,15 +86,12 @@ on_key(
 }
 
 void
-font_viewer_open(font_viewer_t *self) {
+font_viewer_start(font_t *font) {
+    font_viewer_t *self = font_viewer_new(font);
+
     self->canvas->on_frame = (on_frame_t *) on_frame;
     self->canvas->on_key = (on_key_t *) on_key;
     canvas_open(self->canvas);
-}
 
-void
-font_viewer_start(font_t *font) {
-    font_viewer_t *self = font_viewer_new(font);
-    font_viewer_open(self);
     font_viewer_destroy(&self);
 }
