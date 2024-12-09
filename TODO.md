@@ -1,5 +1,7 @@
-[font viewer] `font_viewer_init_asset_store`
-[font viewer] load font from `asset_store`
+[store] `bytes` with `length`
+[store] also support `string` -- not only `bytes`
+
+[font viewer] `font_viewer_init_font` -- load font from `asset_store`
 
 [font viewer] `render_page` -- 0x10 chars per line
 [font viewer] `render_page_up_button`

@@ -8,11 +8,18 @@ font_viewer_init_theme(font_viewer_t *self) {
     self->canvas->palette[AP_COLOR] = 0xff000000;
 }
 
+
+static void
+font_viewer_init_asset_store(font_viewer_t *self) {
+    char *root = dirname(dirname(dirname(string_dup(__FILE__))));
+    self->canvas->asset_base = string_append(root, "/assets");
+    canvas_init_asset_store(self->canvas);
+}
+
 static void
 font_viewer_init_font(font_viewer_t *self) {
-    char *base = dirname(dirname(dirname(string_dup(__FILE__))));
-    char *font_file_name = string_append(
-        base, "/assets/fonts/unifont_all-16.0.02.hex");
+    char *root = dirname(dirname(dirname(string_dup(__FILE__))));
+    char *font_file_name = string_append(root, "/assets/fonts/unifont_all-16.0.02.hex");
     file_t *font_file = file_open_or_fail(font_file_name, "r");
     self->canvas->font = font_from_hex_file(font_file);
 }
@@ -34,6 +41,7 @@ font_viewer_new(font_t *font) {
     self->canvas = canvas;
 
     font_viewer_init_theme(self);
+    font_viewer_init_asset_store(self);
     font_viewer_init_font(self);
 
     return self;

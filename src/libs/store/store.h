@@ -15,4 +15,5 @@ void store_set_cache(store_t *self, const char* path, uint8_t *bytes);
 uint8_t *store_get_fresh(store_t *self, const char* path);
 
 uint8_t *store_get(store_t *self, const char* path);
+// char *store_get_string(store_t *self, const char* path);
 bool store_has(store_t *self, const char* path);
