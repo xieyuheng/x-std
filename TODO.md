@@ -1,4 +1,3 @@
-[font viewer] `render_page` -- highlight current glyph
 [font viewer] `render_glyph` -- highlight
 
 [font viewer] `render_page_up_button`

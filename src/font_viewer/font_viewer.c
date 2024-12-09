@@ -7,7 +7,7 @@
 static void
 init_canvas_theme(canvas_t *canvas) {
     canvas->palette[BG_COLOR] = 0xffffffff;
-    canvas->palette[SL_COLOR] = 0xff330000;
+    canvas->palette[SL_COLOR] = 0xffffaaaa;
     canvas->palette[FG_COLOR] = 0xffffffff;
     canvas->palette[AP_COLOR] = 0xff000000;
 }
@@ -28,7 +28,6 @@ font_viewer_t *
 font_viewer_new(font_t *font) {
     font_viewer_t *self = new(font_viewer_t);
 
-    self->blending = BG_AP_BLENDING;
     self->font = font;
     self->glyph = font_first_glyph(font);
     self->page = 0;
@@ -78,7 +77,7 @@ render_glyph(font_viewer_t *self, canvas_t *canvas) {
             4 * TILE,
             self->glyph,
             scale,
-            self->blending);
+            BG_AP_BLENDING);
     }
 }
 
@@ -93,7 +92,7 @@ on_click_page(font_viewer_t *self, canvas_t *canvas, uint8_t button, bool is_rel
     (void) self;
     (void) canvas;
 
-    if (button == 1 && is_release) {
+    if (button == 1 && !is_release) {
         size_t x_offset = 4 * TILE;
         size_t y_offset = 4 * TILE;
 
@@ -111,20 +110,6 @@ static void
 render_page(font_viewer_t *self, canvas_t *canvas) {
     size_t x_offset = 4 * TILE;
     size_t y_offset = 4 * TILE;
-    size_t scale = 1;
-    for (size_t row = 0; row < 16; row++) {
-        for (size_t col = 0; col < 16; col++) {
-            code_point_t code_point = self->page * (16 * 16) + row * 16 + col;
-            glyph_t *glyph = font_get(self->font, code_point);
-            canvas_draw_glyph(
-                canvas,
-                x_offset + col * 2 * TILE,
-                y_offset + row * 2 * TILE,
-                glyph,
-                scale,
-                self->blending);
-        }
-    }
 
     canvas_add_clickable_area(
         canvas,
@@ -133,6 +118,33 @@ render_page(font_viewer_t *self, canvas_t *canvas) {
         16 * 2 * TILE,
         16 * 2 * TILE,
         (on_click_t *) on_click_page);
+
+    size_t scale = 1;
+    for (size_t row = 0; row < 16; row++) {
+        for (size_t col = 0; col < 16; col++) {
+            code_point_t code_point = self->page * (16 * 16) + row * 16 + col;
+            glyph_t *glyph = font_get(self->font, code_point);
+            if (glyph) {
+                if (glyph == self->glyph) {
+                    canvas_fill_rect(
+                        canvas,
+                        x_offset + col * 2 * TILE,
+                        y_offset + row * 2 * TILE,
+                        glyph_width(glyph),
+                        2 * TILE,
+                        canvas->palette[SL_COLOR]);
+                }
+
+                canvas_draw_glyph(
+                    canvas,
+                    x_offset + col * 2 * TILE,
+                    y_offset + row * 2 * TILE,
+                    glyph,
+                    scale,
+                    TR_AP_BLENDING);
+            }
+        }
+    }
 }
 
 static void
@@ -161,10 +173,6 @@ on_key(
     (void) canvas;
 
     if (is_release) {
-        if (string_equal_mod_case(key_name, "tab")) {
-            self->blending = (self->blending + 1) % 16;
-        }
-
         if (string_equal_mod_case(key_name, "space")) {
             code_point_t code_point = glyph_code_point(self->glyph);
             glyph_t *next_glyph = font_next_glyph(self->font, code_point);
