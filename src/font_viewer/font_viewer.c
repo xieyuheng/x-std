@@ -1,5 +1,9 @@
 #include "index.h"
 
+#define WIDTH (60 * TILE)
+#define HEIGHT (40 * TILE)
+#define SCALE 4
+
 static void
 init_canvas_theme(canvas_t *canvas) {
     canvas->palette[BG_COLOR] = 0xffffffff;
@@ -24,15 +28,11 @@ font_viewer_t *
 font_viewer_new(font_t *font) {
     font_viewer_t *self = new(font_viewer_t);
 
-    self->blending = BG_AP_BLENDING;
+    self->blending = TR_AP_BLENDING;
     self->font = font;
     self->glyph = font_first_glyph(font);
 
-    size_t width = 0x30 * TILE;
-    size_t height = 0x20 * TILE;
-    size_t scale = 4;
-
-    canvas_t *canvas = canvas_new(width, height, scale);
+    canvas_t *canvas = canvas_new(WIDTH, HEIGHT, SCALE);
     canvas->state = self;
     canvas->title = "bifer";
     self->canvas = canvas;
@@ -57,13 +57,24 @@ font_viewer_destroy(font_viewer_t **self_pointer) {
 }
 
 static void
+render_background_grid(font_viewer_t *self, canvas_t *canvas) {
+    (void) self;
+
+    for (size_t x = 0; x < WIDTH / TILE; x++) {
+        for (size_t y = 0; y < HEIGHT / TILE; y++) {
+            canvas_draw_pixel(canvas, x * TILE, y * TILE, 0xffff0000);
+        }
+    }
+}
+
+static void
 render_glyph(font_viewer_t *self, canvas_t *canvas) {
     if (self->glyph) {
-        size_t scale = 8;
+        size_t scale = TILE;
         canvas_draw_glyph(
             canvas,
-            self->canvas->width / 4,
-            self->canvas->height / 4,
+            32 * TILE,
+            6 * TILE,
             self->glyph,
             scale,
             self->blending);
@@ -92,6 +103,7 @@ on_frame(font_viewer_t *self, canvas_t *canvas, uint64_t passed) {
     canvas_fill_bottom_right(canvas, 0, 0, canvas->palette[BG_COLOR]);
     canvas_clear_clickable_area(canvas);
 
+    render_background_grid(self, canvas);
     render_glyph(self, canvas);
     render_glyph_info(self, canvas);
 }
