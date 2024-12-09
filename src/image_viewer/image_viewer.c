@@ -66,11 +66,13 @@ on_frame(
 }
 
 void
-image_viewer_open(image_viewer_t *self) {
+image_viewer_start(const char *path) {
+    image_viewer_t *self = image_viewer_new(path);
+
     size_t width = image_hex_width_from_path(self->path);
     size_t height = image_hex_height_from_path(self->path);
-    printf("[image_viewer_open] width:  0x%lxti\n", width);
-    printf("[image_viewer_open] height: 0x%lxti\n", height);
+    printf("[image_viewer_start] width:  0x%lxti\n", width);
+    printf("[image_viewer_start] height: 0x%lxti\n", height);
 
     canvas_t *canvas = canvas_new(width * TILE, height * TILE, self->scale);
     canvas->title = self->path;
@@ -81,4 +83,5 @@ image_viewer_open(image_viewer_t *self) {
     canvas_open(canvas);
 
     canvas_destroy(&canvas);
+    image_viewer_destroy(&self);
 }
