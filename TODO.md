@@ -1,5 +1,4 @@
-[font viewer] extract `font_viewer_init`
-[font viewer] extract `font_viewer_init_theme`
+[font viewer] `font_viewer_init_font`
 
 [font] `glyph_encode_hex`
 

@@ -1,5 +1,18 @@
 #include "index.h"
 
+static void
+font_viewer_init_theme(font_viewer_t *self) {
+    self->canvas->palette[BG_COLOR] = 0xffffffff;
+    self->canvas->palette[SL_COLOR] = 0xff000000;
+    self->canvas->palette[FG_COLOR] = 0xffffffff;
+    self->canvas->palette[AP_COLOR] = 0xff000000;
+}
+
+static void
+font_viewer_init(font_viewer_t *self) {
+    font_viewer_init_theme(self);
+}
+
 font_viewer_t *
 font_viewer_new(font_t *font) {
     font_viewer_t *self = new(font_viewer_t);
@@ -16,16 +29,13 @@ font_viewer_new(font_t *font) {
     canvas->title = "bifer";
     self->canvas = canvas;
 
-    self->canvas->palette[BG_COLOR] = 0xffffffff;
-    self->canvas->palette[SL_COLOR] = 0xff000000;
-    self->canvas->palette[FG_COLOR] = 0xffffffff;
-    self->canvas->palette[AP_COLOR] = 0xff000000;
-
     char *base = dirname(dirname(dirname(string_dup(__FILE__))));
     char *font_file_name = string_append(
         base, "/assets/fonts/unifont_all-16.0.02.hex");
     file_t *font_file = file_open_or_fail(font_file_name, "r");
     canvas->font = font_from_hex_file(font_file);
+
+    font_viewer_init(self);
 
     self->blending = BG_AP_BLENDING;
     return self;
