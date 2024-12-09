@@ -1,3 +1,6 @@
+[font viewer] extract `font_viewer_init`
+[font viewer] extract `font_viewer_init_theme`
+
 [font] `glyph_encode_hex`
 
 [font viewer] `render_current_glyph_info` -- show hex encoding of `current_glyph`

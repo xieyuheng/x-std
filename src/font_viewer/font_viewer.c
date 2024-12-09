@@ -4,7 +4,7 @@ font_viewer_t *
 font_viewer_new(font_t *font) {
     font_viewer_t *self = new(font_viewer_t);
 
-    self->width = 0x20 * TILE;
+    self->width = 0x30 * TILE;
     self->height = 0x20 * TILE;
 
     self->font = font;
@@ -15,6 +15,11 @@ font_viewer_new(font_t *font) {
     canvas->asset_base = dirname(string_dup(__FILE__));
     canvas->title = "bifer";
     self->canvas = canvas;
+
+    self->canvas->palette[BG_COLOR] = 0xffffffff;
+    self->canvas->palette[SL_COLOR] = 0xff000000;
+    self->canvas->palette[FG_COLOR] = 0xffffffff;
+    self->canvas->palette[AP_COLOR] = 0xff000000;
 
     char *base = dirname(dirname(dirname(string_dup(__FILE__))));
     char *font_file_name = string_append(
@@ -45,7 +50,7 @@ render_current_glyph(font_viewer_t *self, canvas_t *canvas) {
         canvas_draw_glyph(
             canvas,
             self->width / 4,
-            self->width / 4,
+            self->height / 4,
             self->current_glyph,
             scale,
             self->blending);
@@ -59,7 +64,7 @@ render_current_glyph_info(font_viewer_t *self, canvas_t *canvas) {
         canvas_draw_text(
             canvas,
             self->width / 4,
-            self->width / 4 * 3,
+            self->height / 4 * 3,
             text_from_string("abc 中文"),
             scale,
             self->blending);
