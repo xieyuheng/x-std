@@ -1,5 +1,3 @@
-[font viewer] `font_viewer_init_font` -- load font from `asset_store`
-
 [font viewer] `render_page` -- 0x10 chars per line
 [font viewer] `render_page_up_button`
 [font viewer] `render_page_down_button`

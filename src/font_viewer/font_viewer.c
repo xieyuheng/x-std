@@ -18,10 +18,9 @@ font_viewer_init_asset_store(font_viewer_t *self) {
 
 static void
 font_viewer_init_font(font_viewer_t *self) {
-    char *root = dirname(dirname(dirname(string_dup(__FILE__))));
-    char *font_file_name = string_append(root, "/assets/fonts/unifont_all-16.0.02.hex");
-    file_t *font_file = file_open_or_fail(font_file_name, "r");
-    self->canvas->font = font_from_hex_file(font_file);
+    blob_t *blob = canvas_asset_store_get(
+        self->canvas, "fonts/unifont_all-16.0.02.hex");
+    self->canvas->font = font_from_hex_string(blob_string(blob));
 }
 
 font_viewer_t *
