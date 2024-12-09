@@ -12,6 +12,12 @@ font_viewer_new(font_t *font) {
     canvas->title = "bifer";
     self->canvas = canvas;
 
+    char *base = dirname(dirname(dirname(string_dup(__FILE__))));
+    char *font_file_name = string_append(
+        base, "/assets/fonts/unifont_all-16.0.02.hex");
+    file_t *font_file = file_open_or_fail(font_file_name, "r");
+    canvas->font = font_from_hex_file(font_file);
+
     self->blending = BG_AP_BLENDING;
     return self;
 }

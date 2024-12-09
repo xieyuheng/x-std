@@ -1,5 +1,3 @@
-[font viewer] add `font` to `canvas`
-
 [canvas] `canvas_draw_text`
 
 [font viewer] show hex info about `current_glyph`
