@@ -1,9 +1,6 @@
-[font viewer] test `canvas_draw_text`
-
 [font] `glyph_encode_hex`
 
-[font viewer] show `code_point` of `current_glyph`
-[font viewer] show hex encoding of `current_glyph`
+[font viewer] `render_current_glyph_info` -- show hex encoding of `current_glyph`
 
 [font viewer] has button to next
 

@@ -3,10 +3,14 @@
 font_viewer_t *
 font_viewer_new(font_t *font) {
     font_viewer_t *self = new(font_viewer_t);
+
+    self->width = 0x20 * TILE;
+    self->height = 0x20 * TILE;
+
     self->font = font;
     self->current_glyph = font_first_glyph(font);
 
-    canvas_t *canvas = canvas_new(0x20 * TILE, 0x20 * TILE, 0x4);
+    canvas_t *canvas = canvas_new(self->width, self->height, 0x4);
     canvas->state = self;
     canvas->asset_base = dirname(string_dup(__FILE__));
     canvas->title = "bifer";
@@ -40,9 +44,24 @@ render_current_glyph(font_viewer_t *self, canvas_t *canvas) {
         size_t scale = 8;
         canvas_draw_glyph(
             canvas,
-            0x20 / 4 * scale,
-            0x20 / 4 * scale,
-            self->current_glyph, scale,
+            self->width / 4,
+            self->width / 4,
+            self->current_glyph,
+            scale,
+            self->blending);
+    }
+}
+
+static void
+render_current_glyph_info(font_viewer_t *self, canvas_t *canvas) {
+    if (self->current_glyph) {
+        size_t scale = 2;
+        canvas_draw_text(
+            canvas,
+            self->width / 4,
+            self->width / 4 * 3,
+            text_from_string("abc 中文"),
+            scale,
             self->blending);
     }
 }
@@ -57,6 +76,7 @@ on_frame(font_viewer_t *self, canvas_t *canvas, uint64_t passed) {
     canvas_clear_clickable_area(canvas);
 
     render_current_glyph(self, canvas);
+    render_current_glyph_info(self, canvas);
 }
 
 static void
