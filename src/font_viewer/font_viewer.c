@@ -24,13 +24,15 @@ font_viewer_t *
 font_viewer_new(font_t *font) {
     font_viewer_t *self = new(font_viewer_t);
 
-    self->width = 0x30 * TILE;
-    self->height = 0x20 * TILE;
     self->blending = BG_AP_BLENDING;
     self->font = font;
     self->glyph = font_first_glyph(font);
 
-    canvas_t *canvas = canvas_new(self->width, self->height, 0x4);
+    size_t width = 0x30 * TILE;
+    size_t height = 0x20 * TILE;
+    size_t scale = 4;
+
+    canvas_t *canvas = canvas_new(width, height, scale);
     canvas->state = self;
     canvas->title = "bifer";
     self->canvas = canvas;
@@ -60,8 +62,8 @@ render_glyph(font_viewer_t *self, canvas_t *canvas) {
         size_t scale = 8;
         canvas_draw_glyph(
             canvas,
-            self->width / 4,
-            self->height / 4,
+            self->canvas->width / 4,
+            self->canvas->height / 4,
             self->glyph,
             scale,
             self->blending);
@@ -74,8 +76,8 @@ render_glyph_info(font_viewer_t *self, canvas_t *canvas) {
         size_t scale = 1;
         canvas_draw_text(
             canvas,
-            self->width / 4,
-            self->height / 4 * 3,
+            self->canvas->width / 4,
+            self->canvas->height / 4 * 3,
             text_from_string("abc 中文"),
             scale,
             self->blending);

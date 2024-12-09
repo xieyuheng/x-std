@@ -2,7 +2,6 @@
 
 struct font_viewer_t {
     canvas_t *canvas;
-    size_t width, height;
     blending_t blending;
     font_t *font;
     glyph_t *glyph;
