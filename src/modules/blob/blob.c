@@ -40,3 +40,17 @@ char *
 blob_string(blob_t *self) {
     return (char *) self->bytes;
 }
+
+bool
+blob_equal(blob_t *left, blob_t *right) {
+    if (left == right)
+        return true;
+
+    if (left->length != right->length)
+        return false;
+
+    return memcmp(
+        left->bytes,
+        right->bytes,
+        left->length) == 0;
+}

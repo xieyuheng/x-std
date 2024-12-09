@@ -1,4 +1,3 @@
-[blob] `blob_equal`
 [blob] `blob_dup`
 
 [file] `file_read_blob`
