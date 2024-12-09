@@ -1,4 +1,4 @@
-[canvas] `canvas_draw_text`
+[font viewer] test `canvas_draw_text`
 
 [font] `glyph_encode_hex`
 
