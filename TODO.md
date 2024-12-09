@@ -1,5 +1,3 @@
-[file] `file_write_blob`
-
 [store] `store_get` return `blob` instead of `bytes`
 
 [store] also support `string` -- not only `bytes`

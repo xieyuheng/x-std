@@ -60,3 +60,8 @@ file_read_blob(file_t *file) {
     assert(nbytes == (size_t) size);
     return blob;
 }
+
+void
+file_write_blob(file_t *file, blob_t *blob) {
+    fwrite(blob_bytes(blob), 1, blob_length(blob), file);
+}
