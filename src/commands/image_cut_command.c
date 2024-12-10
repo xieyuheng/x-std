@@ -1,5 +1,5 @@
 #include "index.h"
-#include "../font_viewer/index.h"
+#include "../font_editor/index.h"
 
 static int run(commander_t *commander);
 

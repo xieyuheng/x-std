@@ -24,9 +24,9 @@ init_canvas_font(canvas_t *canvas) {
     canvas->font = font_from_hex_string(blob_string(blob));
 }
 
-font_viewer_t *
-font_viewer_new(font_t *font) {
-    font_viewer_t *self = new(font_viewer_t);
+font_editor_t *
+font_editor_new(font_t *font) {
+    font_editor_t *self = new(font_editor_t);
 
     self->font = font;
     self->glyph = font_first_glyph(font);
@@ -45,10 +45,10 @@ font_viewer_new(font_t *font) {
 }
 
 void
-font_viewer_destroy(font_viewer_t **self_pointer) {
+font_editor_destroy(font_editor_t **self_pointer) {
     assert(self_pointer);
     if (*self_pointer) {
-        font_viewer_t *self = *self_pointer;
+        font_editor_t *self = *self_pointer;
         canvas_destroy(&self->canvas);
         font_destroy(&self->font);
         free(self);
@@ -57,7 +57,7 @@ font_viewer_destroy(font_viewer_t **self_pointer) {
 }
 
 static void
-render_background_grid(font_viewer_t *self, canvas_t *canvas) {
+render_background_grid(font_editor_t *self, canvas_t *canvas) {
     (void) self;
 
     for (size_t i = 0; i < WIDTH / TILE; i++) {
@@ -68,7 +68,7 @@ render_background_grid(font_viewer_t *self, canvas_t *canvas) {
 }
 
 static void
-render_glyph(font_viewer_t *self, canvas_t *canvas) {
+render_glyph(font_editor_t *self, canvas_t *canvas) {
     if (!self->glyph) return;
 
     size_t x = 38 * TILE;
@@ -106,13 +106,13 @@ render_glyph(font_viewer_t *self, canvas_t *canvas) {
 }
 
 static void
-render_glyph_info(font_viewer_t *self, canvas_t *canvas) {
+render_glyph_info(font_editor_t *self, canvas_t *canvas) {
     (void) self;
     (void) canvas;
 }
 
 static void
-on_click_page(font_viewer_t *self, canvas_t *canvas, uint8_t button, bool is_release) {
+on_click_page(font_editor_t *self, canvas_t *canvas, uint8_t button, bool is_release) {
     (void) self;
     (void) canvas;
 
@@ -131,7 +131,7 @@ on_click_page(font_viewer_t *self, canvas_t *canvas, uint8_t button, bool is_rel
 }
 
 static void
-render_page(font_viewer_t *self, canvas_t *canvas) {
+render_page(font_editor_t *self, canvas_t *canvas) {
     size_t x_offset = 4 * TILE;
     size_t y_offset = 4 * TILE;
 
@@ -172,7 +172,7 @@ render_page(font_viewer_t *self, canvas_t *canvas) {
 }
 
 static void
-on_frame(font_viewer_t *self, canvas_t *canvas, uint64_t passed) {
+on_frame(font_editor_t *self, canvas_t *canvas, uint64_t passed) {
     (void) passed;
 
     canvas->window->background_pixel = canvas->palette[BG_COLOR];
@@ -189,7 +189,7 @@ on_frame(font_viewer_t *self, canvas_t *canvas, uint64_t passed) {
 
 static void
 on_key(
-    font_viewer_t *self,
+    font_editor_t *self,
     canvas_t *canvas,
     const char *key_name,
     bool is_release
@@ -214,12 +214,12 @@ on_key(
 }
 
 void
-font_viewer_start(font_t *font) {
-    font_viewer_t *self = font_viewer_new(font);
+font_editor_start(font_t *font) {
+    font_editor_t *self = font_editor_new(font);
     self->canvas->on_frame = (on_frame_t *) on_frame;
     self->canvas->on_key = (on_key_t *) on_key;
 
     canvas_open(self->canvas);
 
-    font_viewer_destroy(&self);
+    font_editor_destroy(&self);
 }
