@@ -57,7 +57,7 @@ font_editor_destroy(font_editor_t **self_pointer) {
 }
 
 static void
-render_background_grid(font_editor_t *self, canvas_t *canvas) {
+draw_background_grid(font_editor_t *self, canvas_t *canvas) {
     (void) self;
 
     for (size_t i = 0; i < WIDTH / TILE; i++) {
@@ -68,7 +68,7 @@ render_background_grid(font_editor_t *self, canvas_t *canvas) {
 }
 
 static void
-render_glyph(font_editor_t *self, canvas_t *canvas) {
+draw_glyph(font_editor_t *self, canvas_t *canvas) {
     if (!self->glyph) return;
 
     size_t x = 38 * TILE;
@@ -106,7 +106,7 @@ render_glyph(font_editor_t *self, canvas_t *canvas) {
 }
 
 static void
-render_glyph_info(font_editor_t *self, canvas_t *canvas) {
+draw_glyph_info(font_editor_t *self, canvas_t *canvas) {
     (void) self;
     (void) canvas;
 }
@@ -131,7 +131,7 @@ on_click_page(font_editor_t *self, canvas_t *canvas, uint8_t button, bool is_rel
 }
 
 static void
-render_page(font_editor_t *self, canvas_t *canvas) {
+draw_page(font_editor_t *self, canvas_t *canvas) {
     size_t x_offset = 4 * TILE;
     size_t y_offset = 4 * TILE;
 
@@ -179,12 +179,12 @@ on_frame(font_editor_t *self, canvas_t *canvas, uint64_t passed) {
     canvas_fill_bottom_right(canvas, 0, 0, canvas->palette[BG_COLOR]);
     canvas_clear_clickable_area(canvas);
 
-    (void) render_background_grid;
-    // render_background_grid(self, canvas);
+    (void) draw_background_grid;
+    // draw_background_grid(self, canvas);
 
-    render_glyph(self, canvas);
-    render_glyph_info(self, canvas);
-    render_page(self, canvas);
+    draw_glyph(self, canvas);
+    draw_glyph_info(self, canvas);
+    draw_page(self, canvas);
 }
 
 static void

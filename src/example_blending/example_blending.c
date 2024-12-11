@@ -1,7 +1,7 @@
 #include "index.h"
 
 static void
-render_blending_table(canvas_t *canvas) {
+draw_blending_table(canvas_t *canvas) {
     size_t offset = TILE;
 
     for (uint8_t x = 0; x < 4; x++) {
@@ -26,7 +26,7 @@ on_frame(void *state, canvas_t *canvas, uint64_t passed) {
     canvas_fill_bottom_right(canvas, 0, 0, 0xffaaaaaa);
     canvas_clear_clickable_area(canvas);
 
-    render_blending_table(canvas);
+    draw_blending_table(canvas);
 }
 
 void

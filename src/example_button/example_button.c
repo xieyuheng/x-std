@@ -5,7 +5,7 @@ typedef struct {
 } state_t;
 
 static void
-render_cursor(state_t *state, canvas_t *canvas) {
+draw_cursor(state_t *state, canvas_t *canvas) {
     size_t x = canvas->cursor->x;
     size_t y = canvas->cursor->y;
 
@@ -31,7 +31,7 @@ on_click_button(state_t *state, canvas_t *canvas, uint8_t button, bool is_releas
 }
 
 static void
-render_button(state_t *state, canvas_t *canvas) {
+draw_button(state_t *state, canvas_t *canvas) {
     size_t x = 3 * TILE;
     size_t y = 3 * TILE;
 
@@ -68,8 +68,8 @@ on_frame(state_t *state, canvas_t *canvas, uint64_t passed) {
     canvas_fill_bottom_right(canvas, 0, 0, canvas->palette[BG_COLOR]);
     canvas_clear_clickable_area(canvas);
 
-    render_button(state, canvas);
-    render_cursor(state, canvas);
+    draw_button(state, canvas);
+    draw_cursor(state, canvas);
 }
 
 void
