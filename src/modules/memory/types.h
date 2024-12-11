@@ -1,3 +1,3 @@
 #pragma once
 
-typedef void (destructor_t)(void **item_pointer);
+typedef void (destroy_t)(void **item_pointer);

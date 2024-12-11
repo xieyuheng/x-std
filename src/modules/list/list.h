@@ -6,8 +6,8 @@ list_t *list_new(void);
 void list_destroy(list_t **self_pointer);
 void list_purge(list_t *self);
 
-void list_set_destructor(list_t *self, destructor_t *destructor);
-list_t *list_new_with(destructor_t *destructor);
+void list_set_destroy_fn(list_t *self, destroy_t *destroy);
+list_t *list_new_with(destroy_t *destroy);
 
 size_t list_length(const list_t *self);
 bool list_is_empty(const list_t *self);

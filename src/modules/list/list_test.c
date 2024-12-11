@@ -150,7 +150,7 @@ list_test(void) {
         list_push(list, bread);
         list_push(list, wine);
 
-        list_set_destructor(list, (destructor_t *) string_destroy);
+        list_set_destroy_fn(list, (destroy_t *) string_destroy);
 
         list_purge(list);
         assert(list_length(list) == 0);

@@ -13,7 +13,7 @@ struct list_t {
     node_t *last;
     node_t *cursor;
     size_t length;
-    destructor_t *destructor;
+    destroy_t *destroy;
 };
 
 list_t *
@@ -40,8 +40,8 @@ list_purge(list_t *self) {
     node_t *node = self->first;
     while (node) {
         node_t *next = node->next;
-        if (self->destructor)
-            self->destructor(&node->item);
+        if (self->destroy)
+            self->destroy(&node->item);
         free(node);
         node = next;
     }
@@ -53,17 +53,17 @@ list_purge(list_t *self) {
 }
 
 void
-list_set_destructor(
+list_set_destroy_fn(
     list_t *self,
-    destructor_t *destructor
+    destroy_t *destroy
 ) {
-    self->destructor = destructor;
+    self->destroy = destroy;
 }
 
 list_t *
-list_new_with(destructor_t *destructor) {
+list_new_with(destroy_t *destroy) {
     list_t *self = list_new();
-    self->destructor = destructor;
+    self->destroy = destroy;
     return self;
 }
 
