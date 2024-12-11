@@ -62,7 +62,7 @@ render_background_grid(font_editor_t *self, canvas_t *canvas) {
 
     for (size_t i = 0; i < WIDTH / TILE; i++) {
         for (size_t j = 0; j < HEIGHT / TILE; j++) {
-            canvas_draw_pixel(canvas, i * TILE, i * TILE, 0xffff0000);
+            canvas_draw_pixel(canvas, i * TILE, j * TILE, 0xffff0000);
         }
     }
 }
