@@ -159,5 +159,63 @@ list_test(void) {
         assert(list == NULL);
     }
 
+    {
+        char *a = string_dup("a");
+        char *b = string_dup("b");
+        char *c = string_dup("c");
+
+        list_t *list = list_new_with((destroy_t *) string_destroy);
+
+        list_push(list, a);
+        list_push(list, b);
+        list_push(list, c);
+
+        assert(list_has(list, a));
+        assert(list_has(list, b));
+        assert(list_has(list, c));
+
+        assert(!list_has(list, "a"));
+        assert(!list_has(list, "b"));
+        assert(!list_has(list, "c"));
+
+        assert(!list_has(list, "A"));
+        assert(!list_has(list, "B"));
+        assert(!list_has(list, "C"));
+
+        list_set_equal_fn(list, (equal_t *) string_equal);
+
+        assert(list_has(list, "a"));
+        assert(list_has(list, "b"));
+        assert(list_has(list, "c"));
+
+        assert(!list_has(list, "A"));
+        assert(!list_has(list, "B"));
+        assert(!list_has(list, "C"));
+
+        assert(!list_find(list, "A"));
+        assert(!list_find(list, "B"));
+        assert(!list_find(list, "C"));
+
+        list_set_equal_fn(list, (equal_t *) string_equal_mod_case);
+
+        assert(list_has(list, "a"));
+        assert(list_has(list, "b"));
+        assert(list_has(list, "c"));
+
+        assert(list_has(list, "A"));
+        assert(list_has(list, "B"));
+        assert(list_has(list, "C"));
+
+        assert(list_find(list, "A") == a);
+        assert(list_find(list, "B") == b);
+        assert(list_find(list, "C") == c);
+
+        list_purge(list);
+        assert(list_length(list) == 0);
+
+        list_destroy(&list);
+        assert(list == NULL);
+    }
+
     printf("</list_test>\n");
 }

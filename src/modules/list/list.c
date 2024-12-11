@@ -14,6 +14,7 @@ struct list_t {
     node_t *cursor;
     size_t length;
     destroy_t *destroy;
+    equal_t *equal;
 };
 
 list_t *
@@ -53,11 +54,13 @@ list_purge(list_t *self) {
 }
 
 void
-list_set_destroy_fn(
-    list_t *self,
-    destroy_t *destroy
-) {
+list_set_destroy_fn(list_t *self, destroy_t *destroy) {
     self->destroy = destroy;
+}
+
+void
+list_set_equal_fn(list_t *self, equal_t *equal) {
+    self->equal = equal;
 }
 
 list_t *
@@ -78,11 +81,14 @@ list_is_empty(const list_t *self) {
 }
 
 bool
-list_has(const list_t *self, void *item) {
+list_has(const list_t *self, const void *item) {
     assert(self);
     node_t *node = self->first;
     while (node) {
-        if (node->item == item) return true;
+        if ((node->item == item) ||
+            (self->equal && self->equal(node->item, item)))
+            return true;
+
         node = node->next;
     }
 
@@ -116,6 +122,27 @@ list_remove(list_t *self, void *item) {
     free(node);
     self->length--;
     return true;
+}
+
+void *
+list_find(list_t *self, const void *item) {
+    assert(self);
+
+    self->cursor = self->first;
+
+    node_t *node = self->first;
+    while (node) {
+        if ((node->item == item) ||
+            (self->equal && self->equal(node->item, item)))
+        {
+            self->cursor = node;
+            return node->item;
+        }
+
+        node = node->next;
+    }
+
+    return NULL;
 }
 
 void *
