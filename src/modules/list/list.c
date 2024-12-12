@@ -13,8 +13,9 @@ struct list_t {
     node_t *last;
     node_t *cursor;
     size_t length;
-    destroy_t *destroy;
-    equal_t *equal;
+    destroy_t *destroy_fn;
+    equal_t *equal_fn;
+    dup_t *dup_fn;
 };
 
 list_t *
@@ -41,8 +42,8 @@ list_purge(list_t *self) {
     node_t *node = self->first;
     while (node) {
         node_t *next = node->next;
-        if (self->destroy)
-            self->destroy(&node->item);
+        if (self->destroy_fn)
+            self->destroy_fn(&node->item);
         free(node);
         node = next;
     }
@@ -55,19 +56,47 @@ list_purge(list_t *self) {
 
 void
 list_set_destroy_fn(list_t *self, destroy_t *destroy) {
-    self->destroy = destroy;
+    self->destroy_fn = destroy;
 }
 
 void
 list_set_equal_fn(list_t *self, equal_t *equal) {
-    self->equal = equal;
+    self->equal_fn = equal;
+}
+
+void
+list_set_dup_fn(list_t *self, dup_t *dup) {
+    self->dup_fn = dup;
 }
 
 list_t *
 list_new_with(destroy_t *destroy) {
     list_t *self = list_new();
-    self->destroy = destroy;
+    self->destroy_fn = destroy;
     return self;
+}
+
+list_t *
+list_dup(list_t *self) {
+    if (!self) return NULL;
+
+    list_t *list = list_new();
+    list->destroy_fn = self->destroy_fn;
+    list->equal_fn = self->equal_fn;
+    list->dup_fn = self->dup_fn;
+
+    void *item = list_start(self);
+    while (item) {
+        if (self->dup_fn) {
+            list_push(list, self->dup_fn(item));
+        } else {
+            list_push(list, item);
+        }
+
+        item = list_next(self);
+    }
+
+    return list;
 }
 
 size_t
@@ -86,7 +115,7 @@ list_has(const list_t *self, const void *item) {
     node_t *node = self->first;
     while (node) {
         if ((node->item == item) ||
-            (self->equal && self->equal(node->item, item)))
+            (self->equal_fn && self->equal_fn(node->item, item)))
             return true;
 
         node = node->next;
@@ -133,7 +162,7 @@ list_find(list_t *self, const void *item) {
     node_t *node = self->first;
     while (node) {
         if ((node->item == item) ||
-            (self->equal && self->equal(node->item, item)))
+            (self->equal_fn && self->equal_fn(node->item, item)))
         {
             self->cursor = node;
             return node->item;
