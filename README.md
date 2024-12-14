@@ -1,6 +1,6 @@
-# jamdoo
+# 简牍 / jamdoo
 
-A bitmap font editor.
+一个支持纵书的中文文本编辑器。
 
 ## Install
 
