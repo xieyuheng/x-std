@@ -34,7 +34,7 @@ example_blending_start(void) {
     canvas_t *canvas = canvas_new(0xa * TILE, 0xa * TILE, 0x8);
     canvas->state = NULL;
     canvas->frame_rate = 16;
-    canvas->on_frame = (on_frame_t *) on_frame;
+    canvas->on_frame = (on_frame_fn_t *) on_frame;
     canvas_init_asset_store(canvas, dirname(string_dup(__FILE__)));
     canvas->title = "example blending";
 

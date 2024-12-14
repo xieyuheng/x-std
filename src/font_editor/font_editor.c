@@ -141,7 +141,7 @@ draw_page(font_editor_t *self, canvas_t *canvas) {
         y_offset,
         16 * 2 * TILE,
         16 * 2 * TILE,
-        (on_click_t *) on_click_page);
+        (on_click_fn_t *) on_click_page);
 
     size_t scale = 1;
     for (size_t row = 0; row < 16; row++) {
@@ -216,8 +216,8 @@ on_key(
 void
 font_editor_start(font_t *font) {
     font_editor_t *self = font_editor_new(font);
-    self->canvas->on_frame = (on_frame_t *) on_frame;
-    self->canvas->on_key = (on_key_t *) on_key;
+    self->canvas->on_frame = (on_frame_fn_t *) on_frame;
+    self->canvas->on_key = (on_key_fn_t *) on_key;
 
     canvas_open(self->canvas);
 

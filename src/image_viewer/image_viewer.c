@@ -77,8 +77,8 @@ image_viewer_start(const char *path) {
     canvas_t *canvas = canvas_new(width * TILE, height * TILE, self->scale);
     canvas->title = self->path;
     canvas->state = self;
-    canvas->on_key = (on_key_t *) on_key;
-    canvas->on_frame = (on_frame_t *) on_frame;
+    canvas->on_key = (on_key_fn_t *) on_key;
+    canvas->on_frame = (on_frame_fn_t *) on_frame;
 
     canvas_open(canvas);
 

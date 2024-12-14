@@ -38,11 +38,11 @@ draw_button(state_t *state, canvas_t *canvas) {
     if (state->is_pressed) {
         canvas_draw_image_button(
             canvas, x, y, "button-down-03x03.chr", BG_AP_BLENDING,
-            (on_click_t *) on_click_button);
+            (on_click_fn_t *) on_click_button);
     } else {
         canvas_draw_image_button(
             canvas, x, y, "button-up-03x03.chr", BG_AP_BLENDING,
-            (on_click_t *) on_click_button);
+            (on_click_fn_t *) on_click_button);
     }
 }
 
@@ -79,8 +79,8 @@ example_button_start(void) {
 
     canvas_t *canvas = canvas_new(9 * TILE, 9 * TILE, 0x10);
     canvas->state = &state;
-    canvas->on_frame = (on_frame_t *) on_frame;
-    canvas->on_click = (on_click_t *) on_click;
+    canvas->on_frame = (on_frame_fn_t *) on_frame;
+    canvas->on_click = (on_click_fn_t *) on_click;
     canvas_init_asset_store(canvas, dirname(string_dup(__FILE__)));
     canvas->hide_system_cursor = true;
     canvas->title = "example button";
