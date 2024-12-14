@@ -34,7 +34,7 @@ font_editor_new(font_t *font) {
 
     canvas_t *canvas = canvas_new(WIDTH, HEIGHT, SCALE);
     canvas->state = self;
-    canvas->title = "bifer";
+    canvas->title = "jamdoo";
     self->canvas = canvas;
 
     init_canvas_theme(canvas);

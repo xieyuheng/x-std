@@ -1,4 +1,4 @@
-# bifer
+# jamdoo
 
 A bitmap font editor.
 
@@ -13,13 +13,13 @@ Dependencies:
 Compile:
 
 ```
-git clone https://github.com/xieyuheng/bifer
-cd bifer
+git clone https://github.com/xieyuheng/jamdoo
+cd jamdoo
 make
 make test
 ```
 
-The compiled binary `./bin/bifer` is the command-line program.
+The compiled binary `./bin/jamdoo` is the command-line program.
 
 ## Development
 
