@@ -85,7 +85,7 @@ list_dup(list_t *self) {
     list->equal_fn = self->equal_fn;
     list->dup_fn = self->dup_fn;
 
-    void *item = list_start(self);
+    void *item = list_first(self);
     while (item) {
         if (self->dup_fn) {
             list_push(list, self->dup_fn(item));
@@ -184,7 +184,7 @@ list_current(const list_t *self) {
 }
 
 void *
-list_start(list_t *self) {
+list_first(list_t *self) {
     assert(self);
     self->cursor = self->first;
     return list_current(self);
@@ -309,7 +309,7 @@ list_shift(list_t *self) {
 
 void *
 list_get(list_t *self, size_t index) {
-    void *item = list_start(self);
+    void *item = list_first(self);
     while (item) {
         if (index == 0) return item;
         item = list_next(self);
