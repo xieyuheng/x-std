@@ -15,7 +15,7 @@ Compile:
 ```
 git clone https://github.com/xieyuheng/jamdoo
 cd jamdoo
-make
+make -j
 make test
 ```
 
