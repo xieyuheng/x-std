@@ -16,4 +16,10 @@ bool hash_set(hash_t *self, void *key, void *value);
 void hash_put(hash_t *self, void *key, void *value);
 void hash_delete(hash_t *self, const void *key);
 
+void *hash_first(hash_t *self);
+void *hash_next(hash_t *self);
+void *hash_cursor(hash_t *self);
+
+list_t *hash_value_list(hash_t *self);
+
 void hash_report(const hash_t *self);
