@@ -4,8 +4,8 @@
 static int run(commander_t *commander);
 
 // examples:
-//     jamdoo image:cut button-10x10.chr 0 0 button-up-03x03.chr
-//     jamdoo image:cut button-10x10.chr 3 0 button-down-03x03.chr
+//     app image:cut button-10x10.chr 0 0 button-up-03x03.chr
+//     app image:cut button-10x10.chr 3 0 button-down-03x03.chr
 
 void
 image_cut_command(commander_t *commander) {

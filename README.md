@@ -1,6 +1,6 @@
-# 简牍 / jamdoo
+# C Modules
 
-一个支持纵书的中文文本编辑器。
+Our C project template, to fight [blank page syndrome](https://hintjens.gitbooks.io/scalable-c/content/chapter2.html).
 
 ## Install
 
@@ -13,13 +13,13 @@ Dependencies:
 Compile:
 
 ```
-git clone https://github.com/xieyuheng/jamdoo
-cd jamdoo
+git clone https://github.com/cicada-lang/c-modules
+cd c-modules
 make -j
 make test
 ```
 
-The compiled binary `./bin/jamdoo` is the command-line program.
+The compiled binary `./bin/app` is the command-line program.
 
 ## Development
 
