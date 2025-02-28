@@ -5,15 +5,26 @@ static atomic_size_t global_count = 0;
 // READ_ONCE(var) → atomic_load_explicit(&var, memory_order_relaxed)
 // WRITE_ONCE(var, val) → atomic_store_explicit(&var, val, memory_order_relaxed)
 
+// static void
+// counter_add1(void) {
+//     size_t count = atomic_load_explicit(&global_count, memory_order_relaxed);
+//     atomic_store_explicit(&global_count, count, memory_order_relaxed);
+// }
+
+// static size_t
+// counter_read(void) {
+//     return atomic_load_explicit(&global_count, memory_order_relaxed);
+// }
+
 static void
 counter_add1(void) {
-    size_t count = atomic_load_explicit(&global_count, memory_order_relaxed);
-    atomic_store_explicit(&global_count, count, memory_order_relaxed);
+    size_t count = atomic_load(&global_count);
+    atomic_store(&global_count, count);
 }
 
 static size_t
 counter_read(void) {
-    return atomic_load_explicit(&global_count, memory_order_relaxed);
+    return atomic_load(&global_count);
 }
 
 // static void
