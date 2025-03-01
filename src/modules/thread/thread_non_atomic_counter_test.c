@@ -1,6 +1,6 @@
 #include "index.h"
 
-static size_t global_count = 0;
+static atomic_size_t global_count = 0;
 
 static void
 counter_add1(void) {
