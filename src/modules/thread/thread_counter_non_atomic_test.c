@@ -4,7 +4,12 @@ static atomic_size_t global_count = 0;
 
 static void
 counter_add1(void) {
+    // atomic_fetch_add(&global_count, 1);
+    // sleep(0); // let other threads run
+    // atomic_fetch_add(&global_count, 1);
+
     size_t count = volatile_load(&global_count);
+    sleep(0); // let other threads run
     volatile_store(&global_count, count + 1);
 }
 
@@ -14,8 +19,8 @@ counter_read(void) {
 }
 
 void
-thread_non_atomic_counter_test(void) {
-    printf("<thread_non_atomic_counter_test>\n");
+thread_counter_non_atomic_test(void) {
+    printf("<thread_counter_non_atomic_test>\n");
 
     stack_t *thread_id_stack = stack_new();
     thread_fn_t *thread_fn = (thread_fn_t *) counter_add1;
@@ -31,5 +36,5 @@ thread_non_atomic_counter_test(void) {
 
     printf("count: %lu\n", counter_read());
 
-    printf("</thread_non_atomic_counter_test>\n");
+    printf("</thread_counter_non_atomic_test>\n");
 }

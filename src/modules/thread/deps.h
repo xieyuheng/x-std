@@ -1,5 +1,6 @@
 #pragma once
 
+#include <time.h>
 #include <pthread.h>
 #include <stdatomic.h>
 
