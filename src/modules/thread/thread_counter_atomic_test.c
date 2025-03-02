@@ -2,9 +2,11 @@
 
 static atomic_size_t global_count = 0;
 
-static void
-counter_add1(void) {
+static void *
+counter_add1(void *arg) {
+    (void) arg;
     atomic_fetch_add(&global_count, 1);
+    return NULL;
 }
 
 static size_t

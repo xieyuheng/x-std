@@ -1,15 +1,25 @@
 #include "index.h"
 
-static atomic_size_t global_count = 0;
-
-static void
-counter_add1(void) {
-    atomic_fetch_add(&global_count, 1);
+static void *
+counter_add1(size_t *count_pointer) {
+    size_t count = volatile_load(count_pointer);
+    sleep(0); // let other threads run
+    volatile_store(count_pointer, count + 1);
+    return NULL;
 }
+
+#define THREAD_NUMBER 10000
+
+static size_t counts[THREAD_NUMBER];
 
 static size_t
 counter_read(void) {
-    return atomic_load(&global_count);
+    size_t total_count = 0;
+    for (size_t i = 0; i < THREAD_NUMBER; i++) {
+        total_count += counts[i];
+    }
+
+    return total_count;
 }
 
 void
@@ -17,20 +27,20 @@ thread_counter_stat_test(void) {
     printf("<thread_counter_stat_test>\n");
     clock_t start_clock = clock();
 
-    stack_t *stack = stack_new();
+    list_t *list = list_new();
 
     thread_fn_t *thread_fn = (thread_fn_t *) counter_add1;
-    for (size_t i = 0; i < 10000; i++) {
-        thread_id_t thread_id = thread_start(thread_fn, NULL);
-        stack_push(stack, (void *) thread_id);
+    for (size_t i = 0; i < THREAD_NUMBER; i++) {
+        thread_id_t thread_id = thread_start(thread_fn, &counts[i]);
+        list_push(list, (void *) thread_id);
     }
 
-    while (!stack_is_empty(stack)) {
-        thread_id_t thread_id = (thread_id_t) stack_pop(stack);
+    while (!list_is_empty(list)) {
+        thread_id_t thread_id = (thread_id_t) list_pop(list);
         thread_wait(thread_id);
     }
 
-    stack_destroy(&stack);
+    list_destroy(&list);
 
     printf("final count: %lu\n", counter_read());
     printf("elapsed seconds: %fs\n", clock_elapsed_seconds(start_clock));

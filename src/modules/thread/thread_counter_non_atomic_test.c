@@ -2,11 +2,13 @@
 
 static atomic_size_t global_count = 0;
 
-static void
-counter_add1(void) {
+static void *
+counter_add1(void *arg) {
+    (void) arg;
     size_t count = volatile_load(&global_count);
     sleep(0); // let other threads run
     volatile_store(&global_count, count + 1);
+    return NULL;
 }
 
 static size_t
