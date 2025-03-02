@@ -7,6 +7,7 @@ thread_test(void) {
     thread_start_test();
     thread_counter_non_atomic_test();
     thread_counter_atomic_test();
+    thread_counter_stat_test();
 
     printf("</thread_test>\n");
 }
