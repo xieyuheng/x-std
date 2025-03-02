@@ -6,6 +6,7 @@ static void *
 counter_add1(void *arg) {
     (void) arg;
     atomic_fetch_add(&global_count, 1);
+    sleep(0); // let other threads run
     return NULL;
 }
 
