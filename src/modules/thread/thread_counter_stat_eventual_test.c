@@ -14,21 +14,26 @@ static atomic_size_t counts[THREAD_NUMBER];
 
 static atomic_size_t global_count = 0;
 static atomic_bool eventual_run_p = false;
+static atomic_bool eventual_stop_p = false;
 
 static void *
 eventual(void *arg) {
     (void) arg;
 
-    while (volatile_load(&eventual_run_p)) {
-        size_t total_count = 0;
-        for (size_t i = 0; i < THREAD_NUMBER; i++) {
-            total_count += volatile_load(&counts[i]);
+    while (true) {
+        if (volatile_load(&eventual_stop_p)) {
+            return NULL;
         }
 
-        volatile_store(&global_count, total_count);
-    }
+        if (volatile_load(&eventual_run_p)) {
+            size_t total_count = 0;
+            for (size_t i = 0; i < THREAD_NUMBER; i++) {
+                total_count += volatile_load(&counts[i]);
+            }
 
-    return NULL;
+            volatile_store(&global_count, total_count);
+        }
+    }
 }
 
 static size_t
@@ -44,7 +49,6 @@ thread_counter_stat_eventual_test(void) {
     list_t *list = list_new();
 
     thread_id_t eventual_thread_id = thread_start(eventual, NULL);
-
     volatile_store(&eventual_run_p, true);
 
     thread_fn_t *thread_fn = (thread_fn_t *) counter_add1;
@@ -53,17 +57,24 @@ thread_counter_stat_eventual_test(void) {
         list_push(list, (void *) thread_id);
     }
 
+    printf("final count: %lu\n", counter_read());
+    volatile_store(&eventual_run_p, false);
+
     while (!list_is_empty(list)) {
         thread_id_t thread_id = (thread_id_t) list_pop(list);
         thread_wait(thread_id);
     }
 
+    volatile_store(&eventual_run_p, true);
+    sleep(0.01);
+    printf("final count: %lu\n", counter_read());
     volatile_store(&eventual_run_p, false);
+
+    volatile_store(&eventual_stop_p, true);
     thread_wait(eventual_thread_id);
 
     list_destroy(&list);
 
-    printf("final count: %lu\n", counter_read());
     printf("elapsed seconds: %fs\n", clock_elapsed_seconds(start_clock));
     printf("</thread_counter_stat_eventual_test>\n");
 }
