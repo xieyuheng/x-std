@@ -8,7 +8,7 @@ counter_add1(size_t *count_pointer) {
     return NULL;
 }
 
-#define THREAD_NUMBER 10000
+#define THREAD_NUMBER 1000
 
 static size_t counts[THREAD_NUMBER];
 

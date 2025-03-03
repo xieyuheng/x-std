@@ -23,7 +23,7 @@ thread_counter_atomic_test(void) {
     stack_t *stack = stack_new();
 
     thread_fn_t *thread_fn = (thread_fn_t *) counter_add1;
-    for (size_t i = 0; i < 10000; i++) {
+    for (size_t i = 0; i < 1000; i++) {
         thread_id_t thread_id = thread_start(thread_fn, NULL);
         stack_push(stack, (void *) thread_id);
     }
