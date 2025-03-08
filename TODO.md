@@ -1,1 +1,0 @@
-thread_weak_memory_dekker_test
