@@ -20,8 +20,8 @@ void
 thread_count_to_big_test(void) {
     printf("<thread_count_to_big_test>\n");
 
-    thread_id_t thread_id_1 = thread_start((thread_fn_t *) count_to_big, NULL);
-    thread_id_t thread_id_2 = thread_start((thread_fn_t *) count_to_big, NULL);
+    thread_id_t thread_id_1 = thread_start(count_to_big, NULL);
+    thread_id_t thread_id_2 = thread_start(count_to_big, NULL);
 
     thread_wait(thread_id_1);
     thread_wait(thread_id_2);

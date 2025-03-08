@@ -7,3 +7,4 @@ void thread_counter_atomic_test(void);
 void thread_counter_stat_test(void);
 void thread_counter_stat_eventual_test(void);
 void thread_count_to_big_test(void);
+void thread_weak_memory_dekker_test(void);
