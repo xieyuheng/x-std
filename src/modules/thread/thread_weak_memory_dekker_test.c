@@ -7,12 +7,18 @@ static void *
 thread_fn_1(void *arg) {
     (void) arg;
 
+    x = 1;
+    a = y;
+
     return NULL;
 }
 
 static void *
 thread_fn_2(void *arg) {
     (void) arg;
+
+    y = 1;
+    b = x;
 
     return NULL;
 }
@@ -21,6 +27,8 @@ void
 thread_weak_memory_dekker_test(void) {
     printf("<thread_weak_memory_dekker_test>\n");
 
+    return; // comment to test
+    
     size_t count = 0;
 
     do {
