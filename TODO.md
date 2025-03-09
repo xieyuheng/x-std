@@ -1,1 +1,0 @@
-`thread_test_weak_memory_dekker_atomic`
