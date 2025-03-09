@@ -1,10 +1,10 @@
 #pragma once
 
 void thread_test(void);
-void thread_start_test(void);
-void thread_counter_non_atomic_test(void);
-void thread_counter_atomic_test(void);
-void thread_counter_stat_test(void);
-void thread_counter_stat_eventual_test(void);
-void thread_count_to_big_test(void);
-void thread_weak_memory_dekker_test(void);
+void thread_test_start(void);
+void thread_test_counter_non_atomic(void);
+void thread_test_counter_atomic(void);
+void thread_test_counter_stat(void);
+void thread_test_counter_stat_eventual(void);
+void thread_test_count_to_big(void);
+void thread_test_weak_memory_dekker(void);

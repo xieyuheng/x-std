@@ -24,8 +24,8 @@ thread_fn_2(void *arg) {
 }
 
 void
-thread_weak_memory_dekker_test(void) {
-    printf("<thread_weak_memory_dekker_test>\n");
+thread_test_weak_memory_dekker(void) {
+    printf("<thread_test_weak_memory_dekker>\n");
 
     return; // comment to test
     
@@ -46,5 +46,5 @@ thread_weak_memory_dekker_test(void) {
 
     printf("count: %lu\n", count);
 
-    printf("</thread_weak_memory_dekker_test>\n");
+    printf("</thread_test_weak_memory_dekker>\n");
 }

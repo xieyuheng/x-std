@@ -17,8 +17,8 @@ count_to_big(void *arg) {
 }
 
 void
-thread_count_to_big_test(void) {
-    printf("<thread_count_to_big_test>\n");
+thread_test_count_to_big(void) {
+    printf("<thread_test_count_to_big>\n");
 
     thread_id_t thread_id_1 = thread_start(count_to_big, NULL);
     thread_id_t thread_id_2 = thread_start(count_to_big, NULL);
@@ -28,5 +28,5 @@ thread_count_to_big_test(void) {
 
     printf("count: %lu\n", count);
 
-    printf("</thread_count_to_big_test>\n");
+    printf("</thread_test_count_to_big>\n");
 }

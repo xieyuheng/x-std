@@ -1,1 +1,1 @@
-`thread_weak_memory_dekker_test` -- also test atomic
+`thread_test_weak_memory_dekker_atomic`

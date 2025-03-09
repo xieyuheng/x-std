@@ -42,8 +42,8 @@ counter_read(void) {
 }
 
 void
-thread_counter_stat_eventual_test(void) {
-    printf("<thread_counter_stat_eventual_test>\n");
+thread_test_counter_stat_eventual(void) {
+    printf("<thread_test_counter_stat_eventual>\n");
     clock_t start_clock = clock();
 
     list_t *list = list_new();
@@ -76,5 +76,5 @@ thread_counter_stat_eventual_test(void) {
     list_destroy(&list);
 
     printf("elapsed seconds: %fs\n", clock_elapsed_seconds(start_clock));
-    printf("</thread_counter_stat_eventual_test>\n");
+    printf("</thread_test_counter_stat_eventual>\n");
 }

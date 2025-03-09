@@ -4,13 +4,13 @@ void
 thread_test(void) {
     printf("<thread_test>\n");
 
-    thread_start_test();
-    thread_counter_non_atomic_test();
-    thread_counter_atomic_test();
-    thread_counter_stat_test();
-    thread_counter_stat_eventual_test();
-    thread_count_to_big_test();
-    thread_weak_memory_dekker_test();
+    thread_test_start();
+    thread_test_counter_non_atomic();
+    thread_test_counter_atomic();
+    thread_test_counter_stat();
+    thread_test_counter_stat_eventual();
+    thread_test_count_to_big();
+    thread_test_weak_memory_dekker();
 
     printf("</thread_test>\n");
 }

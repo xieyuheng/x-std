@@ -17,8 +17,8 @@ counter_read(void) {
 }
 
 void
-thread_counter_non_atomic_test(void) {
-    printf("<thread_counter_non_atomic_test>\n");
+thread_test_counter_non_atomic(void) {
+    printf("<thread_test_counter_non_atomic>\n");
     clock_t start_clock = clock();
 
     list_t *list = list_new();
@@ -38,5 +38,5 @@ thread_counter_non_atomic_test(void) {
 
     printf("final count: %lu\n", counter_read());
     printf("elapsed seconds: %fs\n", clock_elapsed_seconds(start_clock));
-    printf("</thread_counter_non_atomic_test>\n");
+    printf("</thread_test_counter_non_atomic>\n");
 }
