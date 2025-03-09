@@ -11,6 +11,7 @@ thread_test(void) {
     thread_test_counter_stat_eventual();
     thread_test_count_to_big();
     thread_test_weak_memory_dekker();
+    thread_test_weak_memory_dekker_relaxed();
 
     printf("</thread_test>\n");
 }
