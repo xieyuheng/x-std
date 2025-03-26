@@ -30,6 +30,31 @@ allocate_pointers(size_t size) {
     return allocate_many(size, sizeof(void *));
 }
 
+void *
+reallocate(void *pointer, size_t old_size, size_t new_size) {
+    void *new_pointer = realloc(pointer, new_size);
+    assert(new_pointer);
+    assert(pointer_is_8_bytes_aligned(new_pointer));
+    memset((((char *) new_pointer) + old_size), 0, new_size - old_size);
+    return new_pointer;
+}
+
+void *
+reallocate_many(void *pointer, size_t old_size, size_t new_size, size_t unit_size) {
+    void *new_pointer = realloc(pointer, new_size * unit_size);
+    assert(new_pointer);
+    assert(pointer_is_8_bytes_aligned(new_pointer));
+    memset((((char *) new_pointer) + old_size * unit_size),
+           0,
+           (new_size - old_size) * unit_size);
+    return new_pointer;
+}
+
+void *
+reallocate_pointers(void *pointer, size_t old_size, size_t new_size) {
+    return reallocate_many(pointer, old_size, new_size, sizeof(void *));
+}
+
 bool
 pointer_is_cache_line_aligned(void *pointer) {
     size_t cache_line_size = sysconf(_SC_LEVEL1_DCACHE_LINESIZE);

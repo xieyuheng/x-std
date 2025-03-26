@@ -1,6 +1,6 @@
 #include "index.h"
 
-#define QUEUE_SIZE 3
+#define QUEUE_SIZE 4
 #define LENGTH 1000000
 
 static void *
@@ -11,7 +11,7 @@ uint_producer(queue_t *queue) {
 
         while (queue_is_full(queue)) {}
 
-        queue_enqueue(queue, (void *) count);
+        assert(queue_enqueue(queue, (void *) count));
         count++;
     }
 }
@@ -37,7 +37,7 @@ string_producer(queue_t *queue) {
 
         while (queue_is_full(queue)) {}
 
-        queue_enqueue(queue, uint_to_string(count));
+        assert(queue_enqueue(queue, uint_to_string(count)));
         count++;
     }
 }
@@ -60,8 +60,8 @@ string_consumer(queue_t *queue) {
 }
 
 void
-queue_test_thread_safe(void) {
-    printf("<queue_test_thread_safe>\n");
+queue_test_multi_thread(void) {
+    printf("<queue_test_multi_thread>\n");
 
     queue_t *queue = queue_new(QUEUE_SIZE);
 
@@ -91,5 +91,5 @@ queue_test_thread_safe(void) {
 
     queue_destroy(&queue);
 
-    printf("</queue_test_thread_safe>\n");
+    printf("</queue_test_multi_thread>\n");
 }

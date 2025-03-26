@@ -1,6 +1,6 @@
 #include "index.h"
 
-#define QUEUE_SIZE 1000
+#define QUEUE_SIZE 1024
 #define LENGTH 10000000
 
 static void *
@@ -11,7 +11,7 @@ uint_producer(queue_t *queue) {
 
         while (queue_is_full(queue)) {}
 
-        queue_enqueue(queue, (void *) count);
+        assert(queue_enqueue(queue, (void *) count));
         count++;
     }
 }
