@@ -9,7 +9,7 @@ ldflags = \
 
 cflags = \
 	-g \
-	-O0 \
+	-O3 \
 	-std=c2x \
 	-I/usr/local/include \
 	-Wall \
@@ -28,17 +28,15 @@ lib = $(patsubst src/%,lib/%,$(patsubst %.c,%.o,$(src)))
 app = app
 bin = bin/$(app)
 
-.PHONY: all
+.PHONY: all run self-test run-examples test clean
+
 all: bin/$(app)
 
-.PHONY: run
 run: bin/$(app)
 	./bin/$(app)
 
-.PHONY: test
 test: self-test
 
-.PHONY: self-test
 self-test: bin/$(app)
 	./bin/$(app) self-test
 
@@ -48,6 +46,5 @@ bin/$(app): $(lib) lib/$(app).o
 lib/%.o: src/%.c $(headers)
 	mkdir -p $(dir $@); $(cc) -c $(cflags) $< -o $@
 
-.PHONY: clean
 clean:
 	rm -rf lib bin
