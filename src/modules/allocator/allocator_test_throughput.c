@@ -18,7 +18,7 @@ thread_fn(void *arg) {
 
         for (size_t i = 0; i < BATCH_SIZE; i++) {
             void *value = stack_pop(allocated_stack);
-            allocator_free(allocator, stack, value);
+            allocator_recycle(allocator, stack, &value);
         }
     }
 
@@ -27,7 +27,7 @@ thread_fn(void *arg) {
 
 void
 allocator_test_throughput(void) {
-    printf("<allocator_test_throughput>\n");
+    test_start();
 
     allocator_t *allocator = allocator_new(CACHE_SIZE);
     size_t ENOUGH_ALLOCATION_COUNT = CACHE_SIZE * 100;
@@ -48,5 +48,5 @@ allocator_test_throughput(void) {
 
     allocator_destroy(&allocator);
 
-    printf("</allocator_test_throughput>\n");
+    test_end();
 }
