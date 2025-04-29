@@ -10,10 +10,10 @@ main(int argc, char *argv[]) {
     commander_t *commander = commander_new("app", APP_VERSION, argc, argv);
 
     commander_use(commander, example_command);
-    commander_use(commander, test_self_command);
-    commander_use(commander, test_modules_command);
-    commander_use(commander, default_version_command);
-    commander_use(commander, default_help_command);
+    commander_use(commander, cmd_test_self);
+    commander_use(commander, cmd_test_modules);
+    commander_use(commander, cmd_default_version);
+    commander_use(commander, cmd_default_help);
 
     return commander_run(commander);
 }
