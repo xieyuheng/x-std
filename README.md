@@ -1,7 +1,6 @@
 # My Standard Library
 
-[Scalable c](https://github.com/booksbyus/scalable-c) style
-source file distributed standard C library.
+A [scalable c](https://github.com/booksbyus/scalable-c) inspired standard C library.
 
 ## Install
 
