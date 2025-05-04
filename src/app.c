@@ -11,7 +11,7 @@ main(int argc, char *argv[]) {
 
     commander_use(commander, example_command);
     commander_use(commander, cmd_test_self);
-    commander_use(commander, cmd_test_modules);
+    commander_use(commander, cmd_test_packages);
     commander_use(commander, cmd_default_version);
     commander_use(commander, cmd_default_help);
 

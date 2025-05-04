@@ -39,20 +39,20 @@ lib = $(patsubst src/%, lib/%, $(patsubst %.c, %.o, $(src)))
 app = app
 bin = bin/$(app)
 
-.PHONY: all run test-modules test-self test clean
+.PHONY: all run test-packages test-self test clean
 
 all: bin/$(app)
 
 run: bin/$(app)
 	./bin/$(app)
 
-test-modules: bin/$(app)
-	./bin/$(app) test-modules
+test-packages: bin/$(app)
+	./bin/$(app) test-packages
 
 test-self: bin/$(app)
 	./bin/$(app) test-self
 
-test: test-modules test-self
+test: test-packages test-self
 
 bin/$(app): $(lib) lib/$(app).o
 	mkdir -p $(dir $@); $(cc) $^ $(ldflags) -o $@

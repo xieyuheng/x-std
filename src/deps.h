@@ -10,4 +10,5 @@
 #include <ctype.h>
 #include <libgen.h>
 
-#include "modules/index.h"
+#include "packages/std/index.h"
+#include "packages/canvas/index.h"

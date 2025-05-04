@@ -1,1 +1,1 @@
-extract x-canvas
+remove packages/canvas -- extract x-canvas project
