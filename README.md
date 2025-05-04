@@ -1,4 +1,4 @@
-# Scalable Standard Library
+# My Standard Library
 
 [Scalable c](https://github.com/booksbyus/scalable-c) style
 source file distributed standard C library.
