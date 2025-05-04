@@ -1,6 +1,6 @@
-# C Modules
+# Someone's C Standard Library
 
-Our C project template, to fight [blank page syndrome](https://hintjens.gitbooks.io/scalable-c/content/chapter2.html).
+Source file distributed standard library for C.
 
 ## Install
 
@@ -13,8 +13,8 @@ Dependencies:
 Compile:
 
 ```
-git clone https://github.com/cicada-lang/c-modules
-cd c-modules
+git clone https://github.com/xieyuheng/x-std
+cd x-std
 make -j
 make test
 ```
@@ -40,10 +40,6 @@ make clean && TSAN=true make -j
 ## References
 
 **Inspirations**:
-
-- [uxn](https://100r.co/site/uxn.html)
-
-**Books**:
 
 - [scalable c](https://github.com/booksbyus/scalable-c)
 
