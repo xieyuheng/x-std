@@ -17,7 +17,7 @@ ldflags = \
 cflags = \
 	-g \
 	-O3 \
-	-std=c23 \
+	-std=c2x \
 	-I/usr/local/include \
 	-Wall \
 	-Wwrite-strings \
