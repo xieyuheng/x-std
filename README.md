@@ -1,14 +1,9 @@
-# Someone's C Standard Library
+# Scalable Standard Library
 
-Source file distributed standard library for C.
+[Scalable c](https://github.com/booksbyus/scalable-c) style
+source file distributed standard C library.
 
 ## Install
-
-Dependencies:
-
-- `libx11`:
-  - debian: `sudo apt install libx11-dev`
-  - ubuntu: `sudo apt install libx11-dev`
 
 Compile:
 
@@ -36,12 +31,6 @@ to test data race in parallel program:
 ```shell
 make clean && TSAN=true make -j
 ```
-
-## References
-
-**Inspirations**:
-
-- [scalable c](https://github.com/booksbyus/scalable-c)
 
 ## Contributions
 

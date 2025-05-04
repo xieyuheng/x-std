@@ -15,7 +15,6 @@ run(commander_t *commander) {
     (void) commander;
 
     test_std();
-    test_canvas();
 
     return 0;
 }

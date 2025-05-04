@@ -11,4 +11,3 @@
 #include <libgen.h>
 
 #include "packages/std/index.h"
-#include "packages/canvas/index.h"
