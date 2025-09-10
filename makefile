@@ -50,7 +50,7 @@ test-self: bin/$(app)
 
 test: test-packages test-self
 
-bin/$(app): $(lib) lib/$(app).o
+bin/$(app): $(lib)
 	mkdir -p $(dir $@); $(cc) $^ $(ldflags) -o $@
 
 lib/%.o: src/%.c $(headers)
