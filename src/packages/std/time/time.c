@@ -3,7 +3,7 @@
 double
 time_second(void) {
     struct timespec ts;
-    clock_gettime(CLOCK_REALTIME, &ts);
+    clock_gettime(CLOCK_MONOTONIC, &ts);
     double second = ts.tv_sec + ts.tv_nsec * 1e-9;
     return second;
 }
@@ -17,9 +17,15 @@ time_passed_second(double start_second) {
 uint64_t
 time_nanosecond(void) {
     struct timespec ts;
-    clock_gettime(CLOCK_REALTIME, &ts);
+    clock_gettime(CLOCK_MONOTONIC, &ts);
     uint64_t nanosecond = ts.tv_sec * 1e+9 + ts.tv_nsec;
     return nanosecond;
+}
+
+uint64_t
+time_passed_nanosecond(uint64_t start_nanosecond) {
+    uint64_t end_nanosecond = time_nanosecond();
+    return end_nanosecond - start_nanosecond;
 }
 
 bool

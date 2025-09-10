@@ -3,11 +3,12 @@
 #define QUEUE_SIZE 4
 #define LENGTH 1000000
 
-static void *
-uint_producer(queue_t *queue) {
+static void
+uint_producer(thread_t *thread) {
+    queue_t *queue = thread->arg;
     size_t count = 0;
     while (true) {
-        if (count == LENGTH) return NULL;
+        if (count == LENGTH) return;
 
         while (queue_is_full(queue)) {}
 
@@ -16,24 +17,26 @@ uint_producer(queue_t *queue) {
     }
 }
 
-static void *
-uint_consumer(queue_t *queue) {
+static void
+uint_consumer(thread_t *thread) {
+    queue_t *queue = thread->arg;
     size_t count = 0;
     while (true) {
-        if (count == LENGTH) return NULL;
+        if (count == LENGTH) return;
 
         while (queue_is_empty(queue)) {}
 
         assert(((size_t) queue_pop_front(queue)) == count);
         count++;
     }
-}
 
-static void *
-string_producer(queue_t *queue) {
+}
+static void
+string_producer(thread_t *thread) {
+    queue_t *queue = thread->arg;
     size_t count = 0;
     while (true) {
-        if (count == LENGTH) return NULL;
+        if (count == LENGTH) return;
 
         while (queue_is_full(queue)) {}
 
@@ -42,11 +45,12 @@ string_producer(queue_t *queue) {
     }
 }
 
-static void *
-string_consumer(queue_t *queue) {
+static void
+string_consumer(thread_t *thread) {
+    queue_t *queue = thread->arg;
     size_t count = 0;
     while (true) {
-        if (count == LENGTH) return NULL;
+        if (count == LENGTH) return;
 
         while (queue_is_empty(queue)) {}
 
@@ -68,25 +72,21 @@ test_queue_multi_thread(void) {
     {
         who_printf("uint_producer vs. uint_consumer\n");
 
-        tid_t producer_id =
-            thread_start((thread_fn_t *) uint_producer, queue);
-        tid_t consumer_id =
-            thread_start((thread_fn_t *) uint_consumer, queue);
+        thread_t *producer_thread = thread_start(uint_producer, queue);
+        thread_t *consumer_thread = thread_start(uint_consumer, queue);
 
-        thread_wait(producer_id);
-        thread_wait(consumer_id);
+        thread_join(producer_thread);
+        thread_join(consumer_thread);
     }
 
     {
         who_printf("string_producer vs. string_consumer\n");
 
-        tid_t producer_id =
-            thread_start((thread_fn_t *) string_producer, queue);
-        tid_t consumer_id =
-            thread_start((thread_fn_t *) string_consumer, queue);
+        thread_t *producer_thread = thread_start(string_producer, queue);
+        thread_t *consumer_thread = thread_start(string_consumer, queue);
 
-        thread_wait(producer_id);
-        thread_wait(consumer_id);
+        thread_join(producer_thread);
+        thread_join(consumer_thread);
     }
 
     queue_destroy(&queue);

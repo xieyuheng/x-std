@@ -1,32 +1,27 @@
 #include "index.h"
 
-tid_t
+static void *
+pthread_start_fn(void *arg) {
+    thread_t *thread = arg;
+    thread->thread_fn(thread);
+    return NULL;
+}
+
+thread_t *
 thread_start(thread_fn_t *thread_fn, void *arg) {
-    tid_t tid;
-    int ok = pthread_create(&tid, NULL, thread_fn, arg);
+    thread_t *self = new(thread_t);
+    self->thread_fn = thread_fn;
+    self->arg = arg;
+    int ok = pthread_create(&self->pthread, NULL, pthread_start_fn, self);
     assert(ok == 0);
-    return tid;
-}
-
-tid_t
-thread_tid(void) {
-    return pthread_self();
-}
-
-void *
-thread_wait(tid_t tid) {
-    void *result;
-    int ok = pthread_join(tid, &result);
-    assert(ok == 0);
-    return result;
-}
-
-bool
-tid_equal(tid_t T1, tid_t T2) {
-    return pthread_equal(T1, T2);
+    return self;
 }
 
 void
-tid_print(tid_t tid) {
-    printf("%lu", (uint64_t) tid);
+thread_join(thread_t *self) {
+    void *result;
+    int ok = pthread_join(self->pthread, &result);
+    assert(ok == 0);
+    assert(result == NULL);
+    free(self);
 }

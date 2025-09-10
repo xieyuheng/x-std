@@ -7,4 +7,5 @@
 #include "../string/index.h"
 #include "../int/index.h"
 #include "../thread/index.h"
+#include "../lock/index.h"
 #include "../time/index.h"

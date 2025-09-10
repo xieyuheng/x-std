@@ -1,8 +1,6 @@
 #pragma once
 
-typedef void *(thread_fn_t)(void *arg);
+typedef struct thread_t thread_t;
+typedef struct thread_pool_t thread_pool_t;
 
-typedef pthread_t tid_t;
-typedef pthread_mutex_t mutex_t;
-typedef pthread_spinlock_t spinlock_t;
-typedef struct fast_spinlock_t fast_spinlock_t;
+typedef void (thread_fn_t)(thread_t *thread);

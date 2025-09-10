@@ -22,6 +22,8 @@
 #include "commander/index.h"
 #include "time/index.h"
 #include "thread/index.h"
+#include "lock/index.h"
+#include "counter/index.h"
 #include "queue/index.h"
 #include "deque/index.h"
 #include "allocator/index.h"

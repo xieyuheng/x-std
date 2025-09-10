@@ -3,11 +3,12 @@
 #define QUEUE_SIZE 1024
 #define LENGTH 10000000
 
-static void *
-uint_producer(queue_t *queue) {
+static void
+uint_producer(thread_t *thread) {
+    queue_t *queue = thread->arg;
     size_t count = 0;
     while (true) {
-        if (count == LENGTH) return NULL;
+        if (count == LENGTH) return;
 
         while (queue_is_full(queue)) {}
 
@@ -16,11 +17,12 @@ uint_producer(queue_t *queue) {
     }
 }
 
-static void *
-uint_consumer(queue_t *queue) {
+static void
+uint_consumer(thread_t *thread) {
+    queue_t *queue = thread->arg;
     size_t count = 0;
     while (true) {
-        if (count == LENGTH) return NULL;
+        if (count == LENGTH) return;
 
         while (queue_is_empty(queue)) {}
 
@@ -37,13 +39,11 @@ test_queue_throughput(void) {
 
     double start_second = time_second();
 
-    tid_t producer_id =
-        thread_start((thread_fn_t *) uint_producer, queue);
-    tid_t consumer_id =
-        thread_start((thread_fn_t *) uint_consumer, queue);
+    thread_t *producer_thread = thread_start(uint_producer, queue);
+    thread_t *consumer_thread = thread_start(uint_consumer, queue);
 
-    thread_wait(producer_id);
-    thread_wait(consumer_id);
+    thread_join(producer_thread);
+    thread_join(consumer_thread);
 
     double throughput = LENGTH / 1000 / time_passed_second(start_second);
     who_printf("throughput: %.f k/s\n", throughput);

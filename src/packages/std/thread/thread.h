@@ -1,8 +1,12 @@
 #pragma once
 
-tid_t thread_start(thread_fn_t *thread_fn, void *arg);
-tid_t thread_tid(void);
-void *thread_wait(tid_t tid);
+struct thread_t {
+    pthread_t pthread;
+    thread_fn_t *thread_fn;
+    void *arg;
+    thread_pool_t *thread_pool;
+    size_t id;
+};
 
-bool tid_equal(tid_t T1, tid_t T2);
-void tid_print(tid_t tid);
+thread_t *thread_start(thread_fn_t *thread_fn, void *arg);
+void thread_join(thread_t *self);

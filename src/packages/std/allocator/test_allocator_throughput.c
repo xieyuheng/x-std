@@ -4,9 +4,9 @@
 #define BATCH_SIZE 1000
 #define REPEATION_COUNT 5000
 
-static void *
-thread_fn(void *arg) {
-    allocator_t *allocator = arg;
+static void
+thread_fn(thread_t *thread) {
+    allocator_t *allocator = thread->arg;
     stack_t *stack = stack_new();
 
     stack_t *allocated_stack = stack_new();
@@ -21,8 +21,6 @@ thread_fn(void *arg) {
             allocator_recycle(allocator, stack, &value);
         }
     }
-
-    return NULL;
 }
 
 void
@@ -40,13 +38,13 @@ test_allocator_throughput(void) {
     size_t thread_count = 10;
     array_t *thread_array = array_new_auto();
     for (size_t i = 0; i < thread_count; i++) {
-        tid_t tid = thread_start(thread_fn, allocator);
-        array_push(thread_array, (void *) tid);
+        thread_t *T = thread_start(thread_fn, allocator);
+        array_push(thread_array, T);
     }
 
     for (size_t i = 0; i < thread_count; i++) {
-        tid_t tid = (tid_t) array_pop(thread_array);
-        thread_wait(tid);
+        thread_t *T = array_pop(thread_array);
+        thread_join(T);
     }
 
     who_printf("thread_count: %lu\n", thread_count);
